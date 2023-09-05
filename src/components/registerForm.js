@@ -1,35 +1,26 @@
-// components/RegisterForm.js
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import Link from "next/link";
 
-const RegisterForm = () => {
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = async (e) => {
+const Register = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ defaultValues: { username: "", password: "" } });
+  const onSubmit = async (data, e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/api/register", {
+      const response = await fetch("http://localhost:3001/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(data),
       });
 
       if (response.status === 201) {
         console.log("User registered successfully");
-        // Redirect to login or dashboard page
       } else {
         const data = await response.json();
         console.error("Error registering user:", data.error);
@@ -39,33 +30,47 @@ const RegisterForm = () => {
     }
   };
 
+  const inputStyle = "p-2 border-bg border-2 rounded-md";
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="username">Username:</label>
+    <div className="bg-bg h-screen flex justify-center items-center">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-4/5 h-3/5 bg-primary rounded-lg flex flex-col justify-center items-center gap-6"
+      >
+        <h1 text="Opprett bruker" />
         <input
+          {...register("username", { required: "Skriv brukernavn" })}
+          placeholder="username"
           type="text"
-          id="username"
-          name="username"
-          value={formData.username}
-          onChange={handleInputChange}
+          className={inputStyle}
         />
-      </div>
-      <div>
-        <label htmlFor="password">Password:</label>
         <input
+          {...register("password", {
+            required: "Skriv passord",
+            minLength: {
+              value: 8,
+              message: "Passordet må ha minst 8 tegn",
+            },
+          })}
+          placeholder="password"
           type="password"
-          id="password"
-          name="password"
-          value={formData.password}
-          onChange={handleInputChange}
+          className={inputStyle}
         />
-      </div>
-      <div>
-        <button type="submit">Register</button>
-      </div>
-    </form>
+        <button text="Opprett bruker" />
+        <span>
+          {errors.username?.message}
+          <br />
+          {errors.password?.message}
+        </span>
+        <span>
+          Har allerede en bruker?{" "}
+          <Link href="/login">
+            <span className="text-blue-800 cursor-pointer">Logg Inn</span>
+          </Link>
+        </span>
+      </form>
+    </div>
   );
 };
 
-export default RegisterForm;
+export default Register;
