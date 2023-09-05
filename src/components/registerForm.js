@@ -1,4 +1,3 @@
-// components/RegisterForm.js
 import { useState } from "react";
 
 const RegisterForm = () => {
@@ -29,7 +28,6 @@ const RegisterForm = () => {
 
       if (response.status === 201) {
         console.log("User registered successfully");
-        // Redirect to login or dashboard page
       } else {
         const data = await response.json();
         console.error("Error registering user:", data.error);
