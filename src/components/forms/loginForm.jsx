@@ -18,24 +18,30 @@ const LoginPage = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/api/login", {
-        method: "POST",
-        // headers: {
-        //   "Content-Type": "application/json",
-        // },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `http://localhost:3000/api/login?username=${formData.username}&password=${formData.password}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      if (response.status === 201) {
-        console.log("User registered successfully");
+      if (response.status === 200) {
+        // Redirect to "/" upon successful login
+        console.log("Login status: ", response.statusText);
+        // window.location.href = "/";
+        console.log(response.token);
+        localStorage.setItem("token", response.token);
       } else {
-        const data = await response.json();
-        console.error("Error registering user:", data.error);
+        console.error("Error logging in:", response.statusText);
       }
     } catch (error) {
-      console.error("Error registering user:", error);
+      console.error("Error logging in:", error);
     }
   };
+
   return (
     <div className="flex items-center justify-center min-h-screen">
       <form
