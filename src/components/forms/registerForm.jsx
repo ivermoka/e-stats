@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 
-const Register = () => {
+const Register = ({ setRegistered }) => {
   const {
     register,
     handleSubmit,
@@ -21,6 +21,7 @@ const Register = () => {
 
       if (response.status === 201) {
         console.log("User registered successfully");
+        setRegistered(true);
       } else {
         const data = await response.json();
         console.error("Error registering user:", data.error);
@@ -30,14 +31,15 @@ const Register = () => {
     }
   };
 
-  const inputStyle = "p-2 border-bg border-2 rounded-md";
+  const inputStyle =
+    "p-2 border-bg border-2 rounded-md hover:bg-bg duration-300";
   return (
     <div className="bg-bg h-screen flex justify-center items-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-4/5 h-3/5 bg-primary rounded-lg flex flex-col justify-center items-center gap-6"
       >
-        <h1 text="Opprett bruker" />
+        <h1 className="text-text text-7xl m-4 font-bold">Register</h1>
         <input
           {...register("username", { required: "Skriv brukernavn" })}
           placeholder="username"
@@ -56,7 +58,9 @@ const Register = () => {
           type="password"
           className={inputStyle}
         />
-        <button text="Opprett bruker" />
+        <button className={inputStyle} text="Opprett bruker">
+          Opprett bruker
+        </button>
         <span>
           {errors.username?.message}
           <br />
