@@ -1,4 +1,3 @@
-// pages/api/register.js
 import connectDB from "./../../../db";
 import User from "./../../../models/User";
 
