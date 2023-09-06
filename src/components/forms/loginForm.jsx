@@ -21,7 +21,7 @@ const LoginPage = () => {
       const response = await fetch(
         `http://localhost:3000/api/login?username=${formData.username}&password=${formData.password}`,
         {
-          method: "POST",
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
