@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const AboutYou = () => {
   return (
-    <div className="bg-bg h-screen w-screen flex justify-center items-center flex-col gap-4 fixed top-0 left-0">
+    <div className="bg-bg h-screen w-screen flex justify-center items-center flex-col gap-4 fixed top-0 left-0 z-20">
       <h2 className="font-bold text-2xl italic">Fortell oss litt om deg...</h2>
       <form className="bg-primary h-3/5 w-80 rounded-lg flex flex-col items-center gap-4 p-4 box-border">
         <Input label="Hva spiller du?" placeholder="CS:GO" />

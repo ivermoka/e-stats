@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 
-const Register = ({ setRegistered }) => {
+const Register = ({ setRegistered, setIsOpen }) => {
   const {
     register,
     handleSubmit,
@@ -20,6 +20,7 @@ const Register = ({ setRegistered }) => {
       });
 
       if (response.status === 201) {
+        setIsOpen(true);
         console.log("User registered successfully");
         setRegistered(true);
       } else {
