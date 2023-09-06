@@ -1,5 +1,5 @@
 {
-  "name": "cum",
+  "name": "treningsdagbok",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "autoprefixer": "10.4.15",
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "eslint": "8.48.0",

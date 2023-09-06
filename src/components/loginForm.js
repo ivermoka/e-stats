@@ -1,4 +1,3 @@
-// components/LoginForm.js
 import React, { useState } from "react";
 
 const LoginPage = () => {
@@ -20,10 +19,10 @@ const LoginPage = () => {
 
     try {
       const response = await fetch("http://localhost:3000/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        method: "GET",
+        // headers: {
+        //   "Content-Type": "application/json",
+        // },
         body: JSON.stringify(formData),
       });
 
