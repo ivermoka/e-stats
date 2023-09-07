@@ -1,19 +1,58 @@
+import SelectGame from "../profile/selectGame";
 import Input from "./input";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 const AboutYou = () => {
+  const [game, setGame] = useState("");
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    setUser(localStorage.getItem("username"));
+  }, []);
+  console.log(user);
+
+  const gameSelect = async () => {
+    try {
+      const res = await fetch("/api/selectGame", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ game: game, user: user }),
+      });
+      if (res.status === 200) {
+        console.log("Game selected.");
+      } else {
+        const data = await res.json();
+        console.log("Error", data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="bg-bg h-screen w-screen flex justify-center items-center flex-col gap-4 fixed top-0 left-0 z-20">
       <h2 className="font-bold text-2xl italic">Fortell oss litt om deg...</h2>
       <form className="bg-primary h-3/5 w-80 rounded-lg flex flex-col items-center gap-4 p-4 box-border">
-        <Input label="Hva spiller du?" placeholder="CS:GO" />
-        <Input label="Er du med på et lag?" placeholder="CS:GO" />
-        <Input label="placeholder" placeholder="CS:GO" />
-        <Input label="placeholder" placeholder="CS:GO" />
-        <Input label="placeholder" placeholder="CS:GO" />
+        Spill:
+        <select
+          name="game"
+          defaultValue={game}
+          onChange={(e) => {
+            setGame(e.target.value);
+          }}
+        >
+          <option value=""></option>
+          <option value="CS:GO">CS:GO</option>
+          <option value="League of Legends">League of Legends</option>
+          <option value="Dota 2">Dota 2</option>
+          <option value="Valorant">Valorant</option>
+          <option value="Overwatch">Overwatch</option>
+        </select>
         <Link href="/login">
           <button
             type="submit"
+            onClick={gameSelect}
             className="bg-primary border-bg border-2 rounded-md w-72 font-bold italic"
           >
             REGISTRER
