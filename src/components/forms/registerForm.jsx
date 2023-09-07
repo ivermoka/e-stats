@@ -2,8 +2,6 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { useState } from "react";
 
-// TODO: Vise error meldinger på siden hvis bruker allerede eksisterer med det brukernavnet
-
 const Register = ({ setRegistered }) => {
   const [userExists, setUserExists] = useState(false);
   const {
@@ -43,17 +41,17 @@ const Register = ({ setRegistered }) => {
       >
         <h1 className="text-text text-7xl m-4 font-bold">Register</h1>
         <input
-          {...register("username", { required: "Skriv brukernavn" })}
+          {...register("username", { required: "*Skriv brukernavn" })}
           placeholder="username"
           type="text"
           className={inputStyle}
         />
         <input
           {...register("password", {
-            required: "Skriv passord",
+            required: "*Skriv passord",
             minLength: {
               value: 8,
-              message: "Passordet må ha minst 8 tegn",
+              message: "*Passordet må ha minst 8 tegn",
             },
           })}
           placeholder="password"
@@ -63,12 +61,11 @@ const Register = ({ setRegistered }) => {
         <button className={inputStyle} text="Opprett bruker">
           Opprett bruker
         </button>
-        <span>
-          {errors.username?.message}
-          <br />
-          {errors.password?.message}
-          {userExists ? <span>Brukeren eksisterer allerede</span> : null}
-        </span>
+        <div className="flex flex-col text-center italic text-red-900">
+          <span>{errors.username?.message}</span>
+          <span>{errors.password?.message}</span>
+          <span>{userExists ? "*Dette brukernavnet er tatt :(" : null}</span>
+        </div>
         <span>
           Har allerede en bruker?{" "}
           <Link href="/login">

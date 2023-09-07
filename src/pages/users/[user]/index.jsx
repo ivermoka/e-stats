@@ -24,7 +24,12 @@ const Profil = () => {
       <h2 className="font-bold text-xl italic">Personlig Informasjon</h2>
       <Card id={id} setModalOpen={setModalOpen} />
       {modalOpen && (
-        <Edit modalOpen={modalOpen} setModalOpen={setModalOpen} id={id} />
+        <Edit
+          modalOpen={modalOpen}
+          setModalOpen={setModalOpen}
+          id={id}
+          setId={setId}
+        />
       )}
       <Button
         text="Logg Ut"
