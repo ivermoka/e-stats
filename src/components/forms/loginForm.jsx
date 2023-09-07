@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 
-// TODO: Vise error meldinger på siden hvis feil brukernavn eller passord
-
 const LoginPage = () => {
+  const [wrong, setWrong] = useState(false);
   const {
     register,
     handleSubmit,
@@ -31,6 +30,7 @@ const LoginPage = () => {
         localStorage.setItem("username", data.username);
         window.location.href = "/";
       } else {
+        setWrong(true);
         console.error("Error logging in:", response.statusText);
       }
     } catch (error) {
@@ -47,17 +47,17 @@ const LoginPage = () => {
       >
         <h1 className="text-text text-6xl m-4 font-bold">Logg Inn</h1>
         <input
-          {...register("username", { required: "Skriv brukernavn" })}
+          {...register("username", { required: "*Skriv brukernavn" })}
           placeholder="username"
           type="text"
           className={inputStyle}
         />
         <input
           {...register("password", {
-            required: "Skriv passord",
+            required: "*Skriv passord",
             minLength: {
               value: 8,
-              message: "Passordet må ha minst 8 tegn",
+              message: "*Passordet må ha minst 8 tegn",
             },
           })}
           placeholder="password"
@@ -67,11 +67,11 @@ const LoginPage = () => {
         <button className={inputStyle} text="Opprett bruker">
           Logg Inn
         </button>
-        <span>
-          {errors.username?.message}
-          <br />
-          {errors.password?.message}
-        </span>
+        <div className="flex flex-col text-center italic text-red-900">
+          <span>{errors.username?.message}</span>
+          <span>{errors.password?.message}</span>
+          <span>{wrong && "*Feil brukernavn eller passord"}</span>
+        </div>
         <span>
           Har ikke bruker?{" "}
           <Link href="/register">

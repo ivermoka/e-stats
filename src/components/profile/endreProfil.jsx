@@ -2,12 +2,14 @@ import Button from "./button";
 import SelectGame from "./selectGame";
 import { useEffect, useState } from "react";
 
-const EndreProfil = ({ setModalOpen, id }) => {
+const EndreProfil = ({ setModalOpen, id, setId }) => {
   const [user, setUser] = useState(null);
+  const [newUsername, setNewUsername] = useState(id);
+
   useEffect(() => {
     setUser(localStorage.getItem("username"));
   }, []);
-  const [newUsername, setNewUsername] = useState(id);
+
   const changeUsername = async () => {
     try {
       const res = await fetch("/api/changeUsername", {
@@ -17,8 +19,11 @@ const EndreProfil = ({ setModalOpen, id }) => {
         },
         body: JSON.stringify({ newUsername: newUsername, user: user }),
       });
+
       if (res.status === 200) {
-        console.log("Username changed");
+        localStorage.setItem("username", newUsername);
+        setId(newUsername);
+        window.location.href = "/users/" + newUsername;
       } else {
         const data = await res.json();
         console.log("Error", data);
@@ -29,6 +34,7 @@ const EndreProfil = ({ setModalOpen, id }) => {
   };
   const inputStyle =
     "border-2 border-primary rounded-lg p-1 box-border text-black";
+
   return (
     <div className="fixed top-0 left-0 h-screen w-screen p-8 flex flex-col gap-8 text-text bg-bg">
       <h2 className="font-bold text-xl italic">Endre Personlig Informasjon</h2>
