@@ -1,8 +1,12 @@
 import Button from "./button";
 import SelectGame from "./selectGame";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const EndreProfil = ({ setModalOpen, id }) => {
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    setUser(localStorage.getItem("username"));
+  }, []);
   const [newUsername, setNewUsername] = useState(id);
   const changeUsername = async () => {
     try {
@@ -11,10 +15,14 @@ const EndreProfil = ({ setModalOpen, id }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ newUsername: newUsername }),
+        body: JSON.stringify({ newUsername: newUsername, user: user }),
       });
-      const json = await res.json();
-      console.log(json);
+      if (res.status === 200) {
+        console.log("Username changed");
+      } else {
+        const data = await res.json();
+        console.log("Error", data);
+      }
     } catch (error) {
       console.log(error);
     }
