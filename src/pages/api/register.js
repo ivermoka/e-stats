@@ -1,14 +1,17 @@
 import connectDB from "./../../../db";
 import User from "./../../../models/User";
+import bcrypt from "bcrypt"; // Import bcrypt
 
 connectDB();
 
 export default async (req, res) => {
   if (req.method === "POST") {
     const { username, password } = req.body;
-
     try {
-      const user = new User({ username, password });
+      // Hash the password before saving it
+      const hashedPassword = await bcrypt.hash(password, 10); // 10 is the number of salt rounds
+
+      const user = new User({ username, password: hashedPassword }); // Use the hashed password
       await user.save();
       res.status(201).json({ message: "User registered successfully" });
     } catch (error) {

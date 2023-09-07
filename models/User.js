@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 const userSchema = new mongoose.Schema({
   username: { type: String, unique: true },
   password: String,
+  dateCreated: { type: Date, default: Date.now },
 });
 
 userSchema.methods.comparePassword = function (password) {

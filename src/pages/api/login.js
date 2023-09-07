@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 
   try {
     const user = await User.findOne({ username });
-    if (!user || user.password !== password) {
+    if (!user || !user.comparePassword(password)) {
       res.status(401).json({ status: "Wrong username or password" });
     } else {
       const token = jwt.sign(
