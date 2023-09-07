@@ -29,7 +29,7 @@ const LoginPage = () => {
         const data = await response.json();
         localStorage.setItem("token", data.token);
         localStorage.setItem("username", data.username);
-        // window.location.href = "/";
+        window.location.href = "/";
       } else {
         console.error("Error logging in:", response.statusText);
       }
@@ -38,7 +38,7 @@ const LoginPage = () => {
     }
   };
 
-  const inputStyle = "p-2 border-bg border-2 rounded-md active:text-white";
+  const inputStyle = "p-2 border-bg border-2 rounded-md";
   return (
     <div className="bg-bg h-screen flex justify-center items-center">
       <form

@@ -8,18 +8,15 @@ export default async (req, res) => {
   if (req.method === "POST") {
     const { username, password } = req.body;
     try {
-      // Hash the password before saving it
-      const hashedPassword = await bcrypt.hash(password, 10); // 10 is the number of salt rounds
+      const hashedPassword = await bcrypt.hash(password, 10);
 
-      const user = new User({ username, password: hashedPassword }); // Use the hashed password
+      const user = new User({ username, password: hashedPassword });
       await user.save();
       res.status(201).json({ message: "User registered successfully" });
     } catch (error) {
-      res
-        .status(500)
-        .json({
-          error: "Det finnes allerede en bruker med dette brukernavnet",
-        });
+      res.status(500).json({
+        error: "Det finnes allerede en bruker med dette brukernavnet",
+      });
     }
   }
 };
