@@ -1,7 +1,9 @@
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 
-const Register = ({ setRegistered, setIsOpen }) => {
+// TODO: Vise error meldinger på siden hvis bruker allerede eksisterer med det brukernavnet
+
+const Register = ({ setRegistered }) => {
   const {
     register,
     handleSubmit,
@@ -20,9 +22,9 @@ const Register = ({ setRegistered, setIsOpen }) => {
       });
 
       if (response.status === 201) {
-        setIsOpen(true);
         console.log("User registered successfully");
         setRegistered(true);
+        window.location.href = "/login";
       } else {
         const data = await response.json();
         console.error("Error registering user:", data.error);
@@ -38,7 +40,7 @@ const Register = ({ setRegistered, setIsOpen }) => {
     <div className="bg-bg h-screen flex justify-center items-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-4/5 h-3/5 bg-primary rounded-lg flex flex-col justify-center items-center gap-6"
+        className="w-4/5 h-3/5 bg-primary rounded-lg flex flex-col justify-center items-center gap-6 -mt-20"
       >
         <h1 className="text-text text-7xl m-4 font-bold">Register</h1>
         <input

@@ -1,3 +1,4 @@
+// userModel.js
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
@@ -9,6 +10,7 @@ const userSchema = new mongoose.Schema({
 userSchema.methods.comparePassword = function (password) {
   return bcrypt.compareSync(password, this.password);
 };
-const User = mongoose.model("User", userSchema);
+
+const User = mongoose.models.User || mongoose.model("User", userSchema);
 
 export default User;

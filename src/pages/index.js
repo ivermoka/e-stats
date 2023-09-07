@@ -1,3 +1,3 @@
 export default function Index() {
-  return <div>hello</div>;
+  return <div className="h-screen bg-bg"></div>;
 }

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Card from "../../../components/profile/profilKort";
 import Edit from "../../../components/profile/endreProfil";
+import Button from "@/components/profile/button";
 
 const Profil = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -18,14 +19,21 @@ const Profil = () => {
     }
   }, [url]);
 
-  const user = "test";
   return (
     <div className="h-screen p-8 flex flex-col gap-8 text-text">
-      <h2 className="font-bold text-xl italic mt-14">Personlig Informasjon</h2>
-      <Card id={id} user={user} setModalOpen={setModalOpen} />
+      <h2 className="font-bold text-xl italic">Personlig Informasjon</h2>
+      <Card id={id} setModalOpen={setModalOpen} />
       {modalOpen && (
         <Edit modalOpen={modalOpen} setModalOpen={setModalOpen} id={id} />
       )}
+      <Button
+        text="Logg Ut"
+        onClick={() => {
+          localStorage.removeItem("token");
+          localStorage.removeItem("username");
+          window.location.href = "/";
+        }}
+      />
     </div>
   );
 };
