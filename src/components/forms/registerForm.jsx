@@ -26,6 +26,7 @@ const Register = ({ setRegistered }) => {
       if (response.status === 201) {
         console.log("User registered successfully");
         localStorage.setItem("username", data.username);
+        localStorage.setItem("token", data.token);
         setRegistered(true);
       } else {
         setUserExists(true);

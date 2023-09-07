@@ -1,6 +1,7 @@
 import connectDB from "./../../../db";
 import User from "./../../../models/User";
-import bcrypt from "bcrypt"; // Import bcrypt
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 connectDB();
 
@@ -12,6 +13,13 @@ export default async (req, res) => {
 
       const user = new User({ username, password: hashedPassword });
       await user.save();
+      const token = jwt.sign(
+        { username: username, _id: user._id },
+        process.env.JWT_SECRET,
+        {
+          expiresIn: "1h",
+        }
+      );
       res.status(201).json({ message: "User registered successfully" });
     } catch (error) {
       res.status(500).json({

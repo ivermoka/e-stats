@@ -5,7 +5,9 @@ import { useState, useEffect } from "react";
 
 const AboutYou = () => {
   const [game, setGame] = useState("");
+  const [team, setTeam] = useState("");
   const [user, setUser] = useState(null);
+
   useEffect(() => {
     setUser(localStorage.getItem("username"));
   }, []);
@@ -13,12 +15,12 @@ const AboutYou = () => {
 
   const gameSelect = async () => {
     try {
-      const res = await fetch("/api/selectGame", {
+      const res = await fetch("/api/selectInfo", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ game: game, user: user }),
+        body: JSON.stringify({ game: game, team: team, user: user }),
       });
       if (res.status === 200) {
         console.log("Game selected.");
@@ -49,7 +51,22 @@ const AboutYou = () => {
           <option value="Valorant">Valorant</option>
           <option value="Overwatch">Overwatch</option>
         </select>
-        <Link href="/login">
+        Lag:
+        <select
+          name="team"
+          defaultValue={team}
+          onChange={(e) => {
+            setTeam(e.target.value);
+          }}
+        >
+          <option value=""></option>
+          <option value="Team1">Team 1</option>
+          <option value="Team2">Team 2</option>
+          <option value="Team3">Team 3</option>
+          <option value="Team4">Team 4</option>
+          <option value="Team5">Team 5</option>
+        </select>
+        <Link href="/">
           <button
             type="submit"
             onClick={gameSelect}
