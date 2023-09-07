@@ -1,9 +1,11 @@
 import { useForm } from "react-hook-form";
 import Link from "next/link";
+import { useState } from "react";
 
 // TODO: Vise error meldinger på siden hvis bruker allerede eksisterer med det brukernavnet
 
 const Register = ({ setRegistered }) => {
+  const [userExists, setUserExists] = useState(false);
   const {
     register,
     handleSubmit,
@@ -24,18 +26,15 @@ const Register = ({ setRegistered }) => {
       if (response.status === 201) {
         console.log("User registered successfully");
         setRegistered(true);
-        window.location.href = "/login";
       } else {
-        const data = await response.json();
-        console.error("Error registering user:", data.error);
+        setUserExists(true);
       }
     } catch (error) {
       console.error("Error registering user:", error);
     }
   };
 
-  const inputStyle =
-    "p-2 border-bg border-2 rounded-md hover:bg-bg duration-300";
+  const inputStyle = "p-2 border-bg border-2 rounded-md";
   return (
     <div className="bg-bg h-screen flex justify-center items-center">
       <form
@@ -68,6 +67,7 @@ const Register = ({ setRegistered }) => {
           {errors.username?.message}
           <br />
           {errors.password?.message}
+          {userExists ? <span>Brukeren eksisterer allerede</span> : null}
         </span>
         <span>
           Har allerede en bruker?{" "}

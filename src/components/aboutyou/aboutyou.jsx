@@ -11,7 +11,7 @@ const AboutYou = () => {
         <Input label="placeholder" placeholder="CS:GO" />
         <Input label="placeholder" placeholder="CS:GO" />
         <Input label="placeholder" placeholder="CS:GO" />
-        <Link href="/">
+        <Link href="/login">
           <button
             type="submit"
             className="bg-primary border-bg border-2 rounded-md w-72 font-bold italic"

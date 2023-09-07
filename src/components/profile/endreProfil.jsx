@@ -2,6 +2,21 @@ import Button from "./button";
 import SelectGame from "./selectGame";
 
 const EndreProfil = ({ setModalOpen, id }) => {
+  const changeUsername = async () => {
+    try {
+      const res = await fetch("/api/changeUsername", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username: "newUsername" }),
+      });
+      const json = await res.json();
+      console.log(json);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const inputStyle = "border-2 border-primary rounded-lg p-1 box-border";
   return (
     <div className="fixed top-0 left-0 h-screen w-screen p-8 flex flex-col gap-8 text-text bg-bg">
