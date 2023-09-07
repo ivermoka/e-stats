@@ -28,7 +28,6 @@ const LoginPage = () => {
       if (response.status === 200) {
         const data = await response.json();
         localStorage.setItem("token", data.token);
-        localStorage.setItem("username", data.username);
         window.location.href = "/";
       } else {
         console.error("Error logging in:", response.statusText);
