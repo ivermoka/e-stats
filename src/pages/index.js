@@ -1,5 +1,4 @@
-import Egenvurdering from "@/components/home/egenvurdering";
-import ArrowSVG from "@/components/home/arrowSVG";
+import Egenvurdering from "@/components/home/egenvurdering/egenvurdering";
 
 export default function Index() {
   return (
