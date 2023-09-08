@@ -5,7 +5,6 @@ connectDB();
 
 export default async function selectGame(req, res) {
   const { game, team, user } = req.body;
-  console.log(game);
 
   try {
     const foundUser = await User.findOne({ username: user });
@@ -13,11 +12,11 @@ export default async function selectGame(req, res) {
     if (!foundUser) {
       return res.status(404).json({ error: "User not found" });
     }
-    if (game == null) {
+    if (!game) {
       console.log("Game is null.");
       return res.status(404).json({ error: "Game not found" });
     }
-    if (team == null) {
+    if (!team) {
       console.log("Team is null.");
       return res.status(404).json({ error: "Team not found" });
     }
