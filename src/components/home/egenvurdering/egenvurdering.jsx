@@ -4,11 +4,13 @@ import Comment from "./comment";
 import { useState, useEffect } from "react";
 
 const Egenvurdering = () => {
+  const [date, setDate] = useState(null);
   const [user, setUser] = useState(null);
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
       setUser(localStorage.getItem("username"));
+      setDate(new Date().toLocaleDateString());
     }
   }, []);
 
@@ -21,26 +23,17 @@ const Egenvurdering = () => {
   const [comment, setComment] = useState("");
 
   const handleSubmit = async () => {
-    try {
-      await fetch(`/api/logSession`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          food: disclosure1,
-          sleep: disclosure2,
-          motivation: disclosure3,
-          physical: disclosure4,
-          psychological: disclosure5,
-          played: disclosure6,
-          comment: comment,
-          user: user,
-        }),
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    console.log(
+      disclosure1,
+      disclosure2,
+      disclosure3,
+      disclosure4,
+      disclosure5,
+      disclosure6,
+      comment,
+      date,
+      user
+    );
   };
   return (
     <form onSubmit={handleSubmit} className="min-h-screen mt-20">
