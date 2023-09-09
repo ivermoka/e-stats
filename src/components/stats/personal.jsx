@@ -20,27 +20,6 @@ const PersonalStats = () => {
     }
   }, [user, date]);
 
-  const getData = async () => {
-    try {
-      const response = await fetch(
-        `api/getPersonalData/?user=${user}&date=${date}`,
-        {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      if (response.status === 200) {
-        const data = await response.json();
-        setSessionData(data.session);
-        setDataFetched(true);
-      } else {
-        console.log("Error after fetch:", response);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const options = {
     responsive: true,
     plugins: {
