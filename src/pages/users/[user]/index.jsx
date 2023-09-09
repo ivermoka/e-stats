@@ -21,7 +21,7 @@ const Profil = () => {
 
   return (
     <div className="h-screen p-8 flex flex-col gap-8 text-text">
-      <h2 className="font-bold text-xl italic">Personlig Informasjon</h2>
+      <h2 className="font-bold text-xl italic mt-16">Personlig Informasjon</h2>
       <Card id={id} setModalOpen={setModalOpen} />
       {modalOpen && (
         <Edit

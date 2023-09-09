@@ -39,7 +39,7 @@ const Register = ({ setRegistered }) => {
     <div className="bg-bg h-screen flex justify-center items-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-4/5 h-3/5 bg-primary rounded-lg flex flex-col justify-center items-center gap-6 -mt-20"
+        className="w-4/5 h-3/5 bg-primary rounded-lg flex flex-col justify-center items-center gap-6 mt-12"
       >
         <h1 className="text-text text-7xl m-4 font-bold">Register</h1>
         <input

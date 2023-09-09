@@ -1,9 +1,9 @@
-import { set } from "mongoose";
 import Button from "./button";
-import SelectGame from "./selectGame";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const EndreProfil = ({ setModalOpen, id, setId }) => {
+  const [error, setError] = useState(null);
   const [user, setUser] = useState(null);
   const [newUsername, setNewUsername] = useState(id);
   const [password, setPassword] = useState("");
@@ -34,9 +34,10 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
         localStorage.setItem("username", newUsername);
         setId(newUsername);
         window.location.href = "/users/" + newUsername;
+        setModalOpen(false);
       } else {
         const data = await res.json();
-        console.log("Error", data);
+        setError(data.error);
       }
     } catch (error) {
       console.log(error);
@@ -66,7 +67,9 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
 
   return (
     <div className="fixed top-0 left-0 h-screen w-screen p-8 flex flex-col gap-8 text-text bg-bg">
-      <h2 className="font-bold text-xl italic">Endre Personlig Informasjon</h2>
+      <h2 className="font-bold text-xl italic mt-16">
+        Endre Personlig Informasjon
+      </h2>
       <div className="border-2 border-primary rounded-lg">
         <div className="bg-primary box-border p-4 text-3xl font-bold">{id}</div>
         <ul className="p-4 text-xl font-semibold flex flex-col gap-4">
@@ -128,11 +131,17 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
           </li>
           <Button
             onClick={() => {
-              setModalOpen(false);
               changeUsername();
             }}
             text="LAGRE"
           />
+          <Button
+            text="AVBRYT"
+            onClick={() => {
+              setModalOpen(false);
+            }}
+          />
+          <span className="text-center italic text-red-600">{error}</span>
         </ul>
       </div>
     </div>

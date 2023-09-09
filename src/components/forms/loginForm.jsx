@@ -43,7 +43,7 @@ const LoginPage = () => {
     <div className="bg-bg h-screen flex justify-center items-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-4/5 h-3/5 bg-primary rounded-lg flex flex-col justify-center items-center gap-6 -mt-32"
+        className="w-4/5 h-3/5 bg-primary rounded-lg flex flex-col justify-center items-center gap-6"
       >
         <h1 className="text-text text-6xl m-4 font-bold">Logg Inn</h1>
         <input

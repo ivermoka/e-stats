@@ -1,34 +1,49 @@
 import Day from "./day";
 import DisclosureMenu from "./disclosure";
 import Comment from "./comment";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Egenvurdering = () => {
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setUser(localStorage.getItem("username"));
+    }
+  }, []);
+
   const [disclosure1, setDisclosure1] = useState(0);
   const [disclosure2, setDisclosure2] = useState(0);
   const [disclosure3, setDisclosure3] = useState(0);
   const [disclosure4, setDisclosure4] = useState(0);
   const [disclosure5, setDisclosure5] = useState(0);
   const [disclosure6, setDisclosure6] = useState(0);
+  const [comment, setComment] = useState("");
 
   const handleSubmit = async () => {
-    console.log(
-      "Mat:",
-      disclosure1,
-      "Søvn:",
-      disclosure2,
-      "Motivasjon:",
-      disclosure3,
-      "Fysisk:",
-      disclosure4,
-      "Psykisk:",
-      disclosure5,
-      "Spill:",
-      disclosure6
-    );
+    try {
+      await fetch(`/api/logSession`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          food: disclosure1,
+          sleep: disclosure2,
+          motivation: disclosure3,
+          physical: disclosure4,
+          psychological: disclosure5,
+          played: disclosure6,
+          comment: comment,
+          user: user,
+        }),
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
-    <form onSubmit={handleSubmit} className="min-h-screen">
+    <form onSubmit={handleSubmit} className="min-h-screen mt-20">
       <Day />
       <div className="flex flex-col gap-2 bg-secondary rounded-md">
         <DisclosureMenu
@@ -56,7 +71,7 @@ const Egenvurdering = () => {
           header="Hvordan spilte jeg?"
         />
       </div>
-      <Comment />
+      <Comment setComment={setComment} />
       <button
         type="submit"
         className="rounded-md border-primary border-2 p-2 text-text font-bold italic my-4"
