@@ -42,24 +42,6 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
     } catch (error) {
       console.log(error);
     }
-
-    // try {
-    //   const res = await fetch("/api/selectInfo", {
-    //     method: "PUT",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ game: game, team: team, user: user }),
-    //   });
-    //   if (res.status === 200) {
-    //     console.log("Game and team selected.");
-    //   } else {
-    //     const data = await res.json();
-    //     console.log("Error", data);
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
 
   const inputStyle =
@@ -120,6 +102,7 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
             </select>
           </li>
           <li className="flex flex-col">
+            <span>Passord:</span>{" "}
             <input
               onChange={(e) => {
                 setPassword(e.target.value);
