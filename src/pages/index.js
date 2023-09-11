@@ -1,6 +1,7 @@
 import Egenvurdering from "@/components/home/egenvurdering/egenvurdering";
-import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Index() {
   const [storedToken, setStoredToken] = useState("");
@@ -13,28 +14,61 @@ export default function Index() {
     <div className="p-4 min-h-screen">
       {!showEgenvurdering && (
         <div className="h-screen flex flex-col justify-center gap-4 break-words">
-          <h1 className="text-primary font-bold text-6xl text-center">
+          <motion.h1
+            initial={{ x: -200, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.5, ease: "easeInOut", type: "spring" }}
+            className="text-primary font-bold text-6xl text-center"
+          >
             Velkommen til Treningsdagboka
-          </h1>
+          </motion.h1>
           {storedToken && (
-            <button
+            <motion.button
+              initial={{ x: -200, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{
+                duration: 0.5,
+                ease: "easeInOut",
+                type: "spring",
+                delay: 0.3,
+              }}
               onClick={() => setShowEgenvurdering(true)}
               className="bg-bg border-primary border-2 rounded-md p-2 text-text font-semibold text-2xl"
             >
               EGENVURDERING
-            </button>
+            </motion.button>
           )}
           {!storedToken && (
             <div className="flex justify-center text-text font-semibold text-lg gap-2">
               <Link href="/login">
-                <button className="border-primary border-2 rounded-md p-2 w-36">
+                <motion.button
+                  initial={{ x: -100, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{
+                    duration: 0.5,
+                    ease: "easeInOut",
+                    type: "spring",
+                    delay: 0.3,
+                  }}
+                  className="border-primary border-2 rounded-md p-2 w-36"
+                >
                   Logg Inn
-                </button>
+                </motion.button>
               </Link>
               <Link href="register">
-                <button className="border-primary border-2 rounded-md p-2 w-36">
+                <motion.button
+                  initial={{ x: -100, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{
+                    duration: 0.5,
+                    ease: "easeInOut",
+                    type: "spring",
+                    delay: 0.5,
+                  }}
+                  className="border-primary border-2 rounded-md p-2 w-36"
+                >
                   Registrer
-                </button>
+                </motion.button>
               </Link>
             </div>
           )}

@@ -14,12 +14,6 @@ const PersonalStats = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (user !== null) {
-      getData();
-    }
-  }, [user, date]);
-
   const options = {
     responsive: true,
     plugins: {

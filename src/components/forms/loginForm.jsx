@@ -38,7 +38,7 @@ const LoginPage = () => {
     }
   };
 
-  const inputStyle = "p-2 border-bg border-2 rounded-md";
+  const inputStyle = "p-2 shadow-md shadow-bg bg-text rounded-md";
   return (
     <div className="bg-bg h-screen flex justify-center items-center">
       <form
