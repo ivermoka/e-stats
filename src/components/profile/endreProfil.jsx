@@ -1,6 +1,5 @@
 import Button from "./button";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 
 const EndreProfil = ({ setModalOpen, id, setId }) => {
   const [error, setError] = useState(null);
@@ -44,18 +43,19 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
     }
   };
 
+  const boxStyle = "bg-primary p-4 rounded-lg shadow-md shadow-accent";
+
   const inputStyle =
     "border-2 border-primary rounded-lg p-1 box-border text-black";
 
   return (
-    <div className="fixed top-0 left-0 h-screen w-screen p-8 flex flex-col gap-8 text-text bg-bg">
-      <h2 className="font-bold text-xl italic mt-16">
+    <div className="fixed top-0 left-0 h-screen w-screen p-8 flex flex-col gap-2 text-text bg-bg z-50">
+      <div className={`font-bold text-xl italic mt-16 ${boxStyle}`}>
         Endre Personlig Informasjon
-      </h2>
-      <div className="border-2 border-primary rounded-lg">
-        <div className="bg-primary box-border p-4 text-3xl font-bold">{id}</div>
+      </div>
+      <div>
         <ul className="p-4 text-xl font-semibold flex flex-col gap-4">
-          <li className="flex flex-col">
+          <li className={`flex flex-col ${boxStyle}`}>
             <span>Brukernavn:</span>{" "}
             <input
               defaultValue={newUsername}
@@ -65,7 +65,7 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
               className={inputStyle}
             />{" "}
           </li>
-          <li className="flex flex-col">
+          <li className={`flex flex-col ${boxStyle}`}>
             <span>Spill:</span>{" "}
             <select
               name="game"
@@ -83,7 +83,7 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
               <option value="Overwatch">Overwatch</option>
             </select>
           </li>
-          <li className="flex flex-col">
+          <li className={`flex flex-col ${boxStyle}`}>
             <span>Lag:</span>{" "}
             <select
               name="team"
@@ -101,7 +101,7 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
               <option value="Team5">Team 5</option>
             </select>
           </li>
-          <li className="flex flex-col">
+          <li className={`flex flex-col ${boxStyle}`}>
             <span>Passord:</span>{" "}
             <input
               onChange={(e) => {
@@ -112,18 +112,22 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
               className={inputStyle}
             />
           </li>
-          <Button
+          <button
+            className={`${boxStyle}`}
             onClick={() => {
               changeUsername();
             }}
-            text="LAGRE"
-          />
-          <Button
-            text="AVBRYT"
+          >
+            LAGRE
+          </button>
+          <button
+            className={`${boxStyle}`}
             onClick={() => {
               setModalOpen(false);
             }}
-          />
+          >
+            AVBRYT
+          </button>
           <span className="text-center italic text-red-600">{error}</span>
         </ul>
       </div>

@@ -60,7 +60,7 @@ const Register = ({ setRegistered }) => {
           type="password"
           className={inputStyle}
         />
-        <button className={inputStyle} text="Opprett bruker">
+        <button className={`${inputStyle} font-semibold`} text="Opprett bruker">
           Opprett bruker
         </button>
         <div className="flex flex-col text-center italic text-red-900">
@@ -68,10 +68,10 @@ const Register = ({ setRegistered }) => {
           <span>{errors.password?.message}</span>
           <span>{userExists ? "*Dette brukernavnet er tatt :(" : null}</span>
         </div>
-        <span>
+        <span className="text-text">
           Har allerede en bruker?{" "}
           <Link href="/login">
-            <span className="text-blue-800 cursor-pointer">Logg Inn</span>
+            <span className="text-blue-500 cursor-pointer">Logg Inn</span>
           </Link>
         </span>
       </form>

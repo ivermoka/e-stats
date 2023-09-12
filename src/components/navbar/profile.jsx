@@ -2,7 +2,7 @@ export default function Profile() {
   return (
     <>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-        <g stroke="#ceb14b" strokeWidth={1.776}>
+        <g stroke="#fdfbfe" strokeWidth={1.776}>
           <circle cx={12} cy={6} r={4} />
           <path
             strokeLinecap="round"

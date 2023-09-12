@@ -1,24 +1,7 @@
-import { useEffect, useState } from "react";
-import Button from "./button";
 import { motion } from "framer-motion";
 
-const ProfilKort = ({ setModalOpen, id }) => {
-  const [owned, setOwned] = useState(false);
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      setUser(localStorage.getItem("username"));
-    }
-  }, []);
-
-  useEffect(() => {
-    if (user !== null && id == user) {
-      setOwned(true);
-    } else {
-      setOwned(false);
-    }
-  }, [id, user]);
+const ProfilKort = ({ id }) => {
+  const boxStyle = "bg-primary p-4 rounded-lg shadow-md shadow-accent";
 
   return (
     <motion.div
@@ -30,14 +13,14 @@ const ProfilKort = ({ setModalOpen, id }) => {
         type: "spring",
         delay: 0.2,
       }}
-      className="border-2 border-primary rounded-lg"
     >
-      <div className="bg-primary box-border p-4 text-3xl font-bold">{id}</div>
-      <ul className="p-4 text-xl font-semibold flex flex-col gap-2">
-        <li>Spill: </li>
-        <li>Lag: </li>
-        <li>Passord: ****</li>
-        {owned && <Button onClick={() => setModalOpen(true)} text="ENDRE" />}
+      <div className="box-border p-4 text-3xl font-bold flex justify-between">
+        <div className={`${boxStyle} text-center`}>{id}</div>{" "}
+      </div>
+      <ul className="p-4 text-xl font-semibold flex flex-col gap-4">
+        <li className={`${boxStyle}`}>Spill: </li>
+        <li className={`${boxStyle}`}>Lag: </li>
+        <li className={`${boxStyle}`}>Passord: ****</li>
       </ul>
     </motion.div>
   );

@@ -18,7 +18,7 @@ export default function Index() {
             initial={{ x: -200, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5, ease: "easeInOut", type: "spring" }}
-            className="text-primary font-bold text-6xl text-center"
+            className="text-text font-bold text-6xl text-center"
           >
             Velkommen til Treningsdagboka
           </motion.h1>
@@ -33,13 +33,13 @@ export default function Index() {
                 delay: 0.3,
               }}
               onClick={() => setShowEgenvurdering(true)}
-              className="bg-bg border-primary border-2 rounded-md p-2 text-text font-semibold text-2xl"
+              className="text-text font-semibold text-2xl bg-primary rounded-lg p-4 shadow-md shadow-accent"
             >
               EGENVURDERING
             </motion.button>
           )}
           {!storedToken && (
-            <div className="flex justify-center text-text font-semibold text-lg gap-2">
+            <div className="flex justify-center text-text font-semibold text-xl gap-2">
               <Link href="/login">
                 <motion.button
                   initial={{ x: -100, opacity: 0 }}
@@ -50,7 +50,7 @@ export default function Index() {
                     type: "spring",
                     delay: 0.3,
                   }}
-                  className="border-primary border-2 rounded-md p-2 w-36"
+                  className="bg-primary rounded-lg p-4 shadow-md shadow-accent w-36"
                 >
                   Logg Inn
                 </motion.button>
@@ -65,7 +65,7 @@ export default function Index() {
                     type: "spring",
                     delay: 0.5,
                   }}
-                  className="border-primary border-2 rounded-md p-2 w-36"
+                  className="bg-primary rounded-lg p-4 shadow-md shadow-accent w-36"
                 >
                   Registrer
                 </motion.button>
