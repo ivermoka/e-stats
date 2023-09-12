@@ -37,15 +37,15 @@ const Footer = () => {
         <Image
           className="m-8 opacity-50"
           priority
-          alt="elvebakken e-sport logo"
+          alt="elvebakken logo"
           src="/logo.png"
           width={150}
           height={50}
         />
-        <div className="text-primary">
+        <div className="text-text">
           Har du noen problemer? Kontakt oss:{" "}
           <span className="underline">elura001@osloskolen.no</span> eller
-          <span className="underline"> 69696969</span>
+          <span className="underline"> 420 69 123</span>
         </div>
       </div>
     </footer>

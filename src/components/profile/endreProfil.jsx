@@ -107,7 +107,6 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
-              placeholder="password"
               type="password"
               className={inputStyle}
             />
