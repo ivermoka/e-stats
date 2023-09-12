@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
+import Image from "next/image";
+import { useState } from "react";
 
 const ProfilKort = ({ id }) => {
   const boxStyle = "bg-primary p-4 rounded-lg shadow-md shadow-accent";
+
+  const [profilePicture, setProfilePicture] = useState("/logo.png");
 
   return (
     <motion.div
@@ -14,13 +18,20 @@ const ProfilKort = ({ id }) => {
         delay: 0.2,
       }}
     >
-      <div className="box-border p-4 text-3xl font-bold flex justify-between">
-        <div className={`${boxStyle} text-center`}>{id}</div>{" "}
+      <div className="box-border p-4 text-3xl font-bold flex gap-2">
+        <div className={`bg-primary rounded-full shadow-md shadow-accent w-24`}>
+          <Image
+            src={profilePicture}
+            alt="profile picture"
+            width={200}
+            height={200}
+          />
+        </div>
+        <div className={`${boxStyle} text-center w-full flex`}>{id}</div>
       </div>
       <ul className="p-4 text-xl font-semibold flex flex-col gap-4">
         <li className={`${boxStyle}`}>Spill: </li>
         <li className={`${boxStyle}`}>Lag: </li>
-        <li className={`${boxStyle}`}>Passord: ****</li>
       </ul>
     </motion.div>
   );

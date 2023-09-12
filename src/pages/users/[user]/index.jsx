@@ -9,6 +9,15 @@ const Profil = () => {
   const [id, setId] = useState(null);
   const url = usePathname();
 
+  const [owned, setOwned] = useState(false);
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setUser(localStorage.getItem("username"));
+    }
+  }, []);
+
   useEffect(() => {
     if (typeof window !== "undefined" && url !== null) {
       const urlParts = url.split("/");
@@ -18,15 +27,6 @@ const Profil = () => {
       }
     }
   }, [url]);
-
-  const [owned, setOwned] = useState(false);
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      setUser(localStorage.getItem("username"));
-    }
-  }, []);
 
   useEffect(() => {
     if (user !== null && id == user) {
@@ -39,7 +39,7 @@ const Profil = () => {
   const boxStyle = "bg-primary p-4 rounded-lg shadow-md shadow-accent";
 
   return (
-    <div className="h-screen p-8 flex flex-col gap-8 text-text overflow-x-hidden">
+    <div className="h-screen p-8 flex flex-col gap-4 text-text overflow-x-hidden">
       <motion.div
         initial={{ x: 200, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
@@ -57,26 +57,26 @@ const Profil = () => {
           setId={setId}
         />
       )}
-      <div className="flex justify-between font-semibold text-xl text-center">
-        <motion.button
-          initial={{ x: 200, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{
-            duration: 0.5,
-            ease: "easeInOut",
-            type: "spring",
-            delay: 0.5,
-          }}
-          onClick={() => {
-            localStorage.removeItem("token");
-            localStorage.removeItem("username");
-            window.location.href = "/";
-          }}
-          className={`${boxStyle} w-[45%] text-red-400`}
-        >
-          Logg Ut
-        </motion.button>
-        {owned && (
+      {owned && (
+        <div className="flex justify-between font-semibold text-xl text-center">
+          <motion.button
+            initial={{ x: 200, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{
+              duration: 0.5,
+              ease: "easeInOut",
+              type: "spring",
+              delay: 0.5,
+            }}
+            onClick={() => {
+              localStorage.removeItem("token");
+              localStorage.removeItem("username");
+              window.location.href = "/";
+            }}
+            className={`${boxStyle} w-[45%] text-red-400`}
+          >
+            Logg Ut
+          </motion.button>
           <motion.button
             initial={{ x: 200, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -93,8 +93,8 @@ const Profil = () => {
           >
             Endre
           </motion.button>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
