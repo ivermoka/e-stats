@@ -12,6 +12,7 @@ const PersonalStats = () => {
       setDate(new Date().toLocaleDateString());
       setUser(localStorage.getItem("username"));
     }
+    fetchSessionData();
   }, []);
 
   const options = {
@@ -22,6 +23,29 @@ const PersonalStats = () => {
         text: "Statistikk for valgt dag",
       },
     },
+  };
+
+  const fetchSessionData = async () => {
+    try {
+      const res = await fetch("/api/fetchUser", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user: user,
+        }),
+      });
+      if (res.status === 200) {
+        setSessionData(await res.json());
+        console.log(sessionData);
+        setDataFetched(true);
+      } else {
+        console.log("Could not fetch session data");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -51,12 +75,12 @@ const PersonalStats = () => {
                 label: "Rating 1-10",
                 backgroundColor: "rgba(255, 99, 132, 0.5)",
                 data: [
-                  sessionData.food,
-                  sessionData.sleep,
-                  sessionData.motivation,
-                  sessionData.physical,
-                  sessionData.psychological,
-                  sessionData.played,
+                  sessionData.disclosure1,
+                  sessionData.disclosure2,
+                  sessionData.disclosure3,
+                  sessionData.disclosure4,
+                  sessionData.disclosure5,
+                  sessionData.disclosure6,
                 ],
               },
             ],

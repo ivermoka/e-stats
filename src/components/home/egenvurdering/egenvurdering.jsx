@@ -22,21 +22,53 @@ const Egenvurdering = () => {
   const [disclosure6, setDisclosure6] = useState(0);
   const [comment, setComment] = useState("");
 
-  const handleSubmit = async () => {
-    console.log(
-      disclosure1,
-      disclosure2,
-      disclosure3,
-      disclosure4,
-      disclosure5,
-      disclosure6,
-      comment,
-      date,
-      user
-    );
+  // const handleSubmit = async () => {
+  //   console.log(
+  //     disclosure1,
+  //     disclosure2,
+  //     disclosure3,
+  //     disclosure4,
+  //     disclosure5,
+  //     disclosure6,
+  //     comment,
+  //     date,
+  //     user
+  //   );
+  // };
+  const rateDay = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch("/api/registerDay", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          disclosure1: disclosure1,
+          disclosure2: disclosure2,
+          disclosure3: disclosure3,
+          disclosure4: disclosure4,
+          disclosure5: disclosure5,
+          disclosure6: disclosure6,
+          comment: comment,
+          date: date,
+          user: user,
+        }),
+      });
+
+      if (res.status === 201) {
+        window.location.href = "/";
+        console.log("Day registered");
+      } else {
+        const data = await res.json();
+        setError(data.error);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
-    <form onSubmit={handleSubmit} className="min-h-screen mt-20">
+    <form onSubmit={rateDay} className="min-h-screen mt-20">
       <Day />
       <div className="flex flex-col gap-2 bg-secondary rounded-md">
         <DisclosureMenu
