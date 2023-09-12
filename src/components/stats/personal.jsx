@@ -1,12 +1,14 @@
 import { data } from "autoprefixer";
 import { BarChart } from "./barChart";
 import React, { useState, useEffect } from "react";
+import VelgDatoBoks from "@/pages/stats/statscalendartest";
 
 const PersonalStats = () => {
   const [user, setUser] = useState(null);
   const [date, setDate] = useState(null);
   const [dataFetched, setDataFetched] = useState(false);
   const [dataSchema, setDataSchema] = useState(null);
+  const [showCalendar, setShowCalendar] = useState(false);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -55,6 +57,7 @@ const PersonalStats = () => {
     }
   };
 
+
   return (
     <div>
       <h1 className="text-text text-xl font-bold italic">
@@ -63,9 +66,11 @@ const PersonalStats = () => {
           {user}, {date}
         </span>
       </h1>
-      <button className="text-text font-bold py-2 px-4 rounded-md border-primary border-2 my-4">
+      {/*}Knapp for å velge dato under denne linjen*/}
+      <button onClick={() => {setShowCalendar(!showCalendar)}} className="text-text font-bold py-2 px-4 rounded-md border-primary border-2 my-4">
         VELG DATO
       </button>
+      {showCalendar && <VelgDatoBoks />}
       {dataFetched ? (
         <div>
           <BarChart
