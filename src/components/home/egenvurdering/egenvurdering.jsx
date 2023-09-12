@@ -70,7 +70,7 @@ const Egenvurdering = () => {
   return (
     <form onSubmit={rateDay} className="min-h-screen mt-20">
       <Day />
-      <div className="flex flex-col gap-2 bg-secondary rounded-md">
+      <div className="flex flex-col gap-2 bg-primary rounded-lg">
         <DisclosureMenu
           setDisclosure={setDisclosure1}
           header="Hvor fornuftig har jeg spist i dag?"
@@ -99,7 +99,7 @@ const Egenvurdering = () => {
       <Comment setComment={setComment} />
       <button
         type="submit"
-        className="rounded-md border-primary border-2 p-2 text-text font-bold italic my-4"
+        className="rounded-lg bg-primary p-3 shadow-md shadow-accent text-text font-bold italic my-4"
       >
         LAGRE
       </button>

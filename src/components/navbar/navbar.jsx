@@ -14,27 +14,27 @@ export default function Navbar() {
   }, []);
   return (
     <>
-      <nav className="fixed flex justify-between items-center w-screen h-16 border-2 bg-bg border-b-primary border-transparent z-40">
-        <div className="flex">
+      <nav className="fixed flex justify-between items-center w-screen h-16 z-40 pt-4 px-2">
+        <div className="flex gap-2">
           <Link href="/">
-            <div className="h-full w-16 p-2 border-r-2 border-r-primary grid place-items-center">
+            <div className="h-full w-16 p-2 grid place-items-center bg-primary rounded-lg shadow-md shadow-accent">
               <Home />
             </div>
           </Link>
           <Link href="/stats">
-            <div className="h-full w-16 p-2 border-r-2 border-r-primary grid place-items-center">
+            <div className="h-full w-16 p-2 grid place-items-center bg-primary rounded-lg shadow-md shadow-accent">
               <Stats />
             </div>
           </Link>
         </div>
         {user ? (
           <Link href={`/users/${user}`}>
-            <div className="h-16 w-16 p-2 border-l-2 border-l-primary grid place-items-center">
+            <div className="h-16 w-16 p-2 grid place-items-center bg-primary rounded-lg shadow-md shadow-accent">
               <Profile />
             </div>
           </Link>
         ) : (
-          <div className="h-16 w-40 p-2 border-l-2 border-l-primary flex gap-2 justify-center items-center text-primary font-thin text-sm">
+          <div className="h-16 w-40 p-2 flex gap-2 justify-center items-center text-text font-thin text-md">
             <Link href="/register">Registrer </Link> /
             <Link href="/login">Logg Inn</Link>
           </div>

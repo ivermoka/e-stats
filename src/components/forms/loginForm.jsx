@@ -64,7 +64,7 @@ const LoginPage = () => {
           type="password"
           className={inputStyle}
         />
-        <button className={inputStyle} text="Opprett bruker">
+        <button className={`${inputStyle} font-semibold`} text="Opprett bruker">
           Logg Inn
         </button>
         <div className="flex flex-col text-center italic text-red-900">
@@ -72,10 +72,10 @@ const LoginPage = () => {
           <span>{errors.password?.message}</span>
           <span>{wrong && "*Feil brukernavn eller passord"}</span>
         </div>
-        <span>
+        <span className="text-text">
           Har ikke bruker?{" "}
           <Link href="/register">
-            <span className="text-blue-800 cursor-pointer">Opprett bruker</span>
+            <span className="text-blue-500 cursor-pointer">Opprett bruker</span>
           </Link>
         </span>
       </form>

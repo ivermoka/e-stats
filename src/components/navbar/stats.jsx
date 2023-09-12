@@ -3,7 +3,7 @@ const Stats = () => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
-      stroke="#ceb14b"
+      stroke="#fdfbfe"
       strokeWidth={3.84}
       viewBox="0 0 64 64"
     >
