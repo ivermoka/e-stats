@@ -1,3 +1,4 @@
+import { data } from "autoprefixer";
 import { BarChart } from "./barChart";
 import React, { useState, useEffect } from "react";
 
@@ -5,15 +6,24 @@ const PersonalStats = () => {
   const [user, setUser] = useState(null);
   const [date, setDate] = useState(null);
   const [dataFetched, setDataFetched] = useState(false);
-  const [sessionData, setSessionData] = useState(null);
+  const [dataSchema, setDataSchema] = useState(null);
+
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
       setDate(new Date().toLocaleDateString());
       setUser(localStorage.getItem("username"));
     }
-    fetchSessionData();
   }, []);
+
+  useEffect(() => {
+    if (user && dataFetched === false) {
+      fetchSessionData();
+      console.log("User", user);
+    } else {
+      console.log("No user");
+    }
+  }, [user]);
 
   const options = {
     responsive: true,
@@ -27,18 +37,15 @@ const PersonalStats = () => {
 
   const fetchSessionData = async () => {
     try {
-      const res = await fetch("/api/fetchUser", {
+      const res = await fetch(`/api/fetchUser?user=${user}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          user: user,
-        }),
       });
       if (res.status === 200) {
-        setSessionData(await res.json());
-        console.log(sessionData);
+        const data = await res.json();
+        setDataSchema(data.userSchema);
         setDataFetched(true);
       } else {
         console.log("Could not fetch session data");
@@ -60,35 +67,38 @@ const PersonalStats = () => {
         VELG DATO
       </button>
       {dataFetched ? (
-        <BarChart
-          data={{
-            labels: [
-              "Mat",
-              "Søvn",
-              "Motivasjon",
-              "Fysisk",
-              "Psykisk",
-              "Spilte",
-            ],
-            datasets: [
-              {
-                label: "Rating 1-10",
-                backgroundColor: "rgba(255, 99, 132, 0.5)",
-                data: [
-                  sessionData.disclosure1,
-                  sessionData.disclosure2,
-                  sessionData.disclosure3,
-                  sessionData.disclosure4,
-                  sessionData.disclosure5,
-                  sessionData.disclosure6,
-                ],
-              },
-            ],
-          }}
-          options={options}
-        />
+        <div>
+          <BarChart
+            data={{
+              labels: [
+                "Mat",
+                "Søvn",
+                "Motivasjon",
+                "Fysisk",
+                "Psykisk",
+                "Spilte",
+              ],
+              datasets: [
+                {
+                  label: "Rating 1-10",
+                  backgroundColor: "rgba(255, 99, 132, 0.5)",
+                  data: [
+                    dataSchema.disclosure1,
+                    dataSchema.disclosure2,
+                    dataSchema.disclosure3,
+                    dataSchema.disclosure4,
+                    dataSchema.disclosure5,
+                    dataSchema.disclosure6,
+                  ],
+                },
+              ],
+            }}
+            options={options}
+          />
+          <p className="text-text">{dataSchema.comment}</p>
+        </div>
       ) : (
-        <p>Loading data..</p>
+        <p className="text-text">Loading data..</p>
       )}
     </div>
   );
