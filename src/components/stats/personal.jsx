@@ -2,12 +2,14 @@ import { set } from "mongoose";
 import { BarChart } from "./barChart";
 import React, { useState, useEffect } from "react";
 import ReactLoading from "react-loading";
+import VelgDatoBoks from "@/pages/stats/statscalendartest";
 
 const PersonalStats = () => {
   const [user, setUser] = useState(null);
   const [date, setDate] = useState(new Date().toLocaleDateString());
   const [dataFetched, setDataFetched] = useState(false);
   const [dataSchema, setDataSchema] = useState(null);
+  const [showCalendar, setShowCalendar] = useState(false);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -61,9 +63,10 @@ const PersonalStats = () => {
           {user}, {date}
         </span>
       </h1>
-      <button className="text-text font-bold py-2 px-4 rounded-lg bg-primary shadow-md shadow-accent my-4">
+      <button className="text-text font-bold py-2 px-4 rounded-md border-primary border-2 my-4">
         VELG DATO
       </button>
+      {showCalendar && <VelgDatoBoks />}
       {dataFetched ? (
         <div>
           <BarChart
