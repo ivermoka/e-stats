@@ -1,17 +1,17 @@
-import { data } from "autoprefixer";
+import { set } from "mongoose";
 import { BarChart } from "./barChart";
 import React, { useState, useEffect } from "react";
+import ReactLoading from "react-loading";
 
 const PersonalStats = () => {
   const [user, setUser] = useState(null);
-  const [date, setDate] = useState(null);
+  const [date, setDate] = useState(new Date().toLocaleDateString());
   const [dataFetched, setDataFetched] = useState(false);
   const [dataSchema, setDataSchema] = useState(null);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
-      setDate(new Date().toLocaleDateString());
       setUser(localStorage.getItem("username"));
     }
   }, []);
@@ -19,9 +19,6 @@ const PersonalStats = () => {
   useEffect(() => {
     if (user && dataFetched === false) {
       fetchSessionData();
-      console.log("User", user);
-    } else {
-      console.log("No user");
     }
   }, [user]);
 
@@ -46,6 +43,7 @@ const PersonalStats = () => {
       if (res.status === 200) {
         const data = await res.json();
         setDataSchema(data.userSchema);
+        setDate(data.userSchema.date);
         setDataFetched(true);
       } else {
         console.log("Could not fetch session data");
@@ -59,11 +57,11 @@ const PersonalStats = () => {
     <div>
       <h1 className="text-text text-xl font-bold italic">
         Personlig statistikk for{" "}
-        <span className="text-primary">
+        <span className="text-orange-200">
           {user}, {date}
         </span>
       </h1>
-      <button className="text-text font-bold py-2 px-4 rounded-md border-primary border-2 my-4">
+      <button className="text-text font-bold py-2 px-4 rounded-lg bg-primary shadow-md shadow-accent my-4">
         VELG DATO
       </button>
       {dataFetched ? (
@@ -80,8 +78,8 @@ const PersonalStats = () => {
               ],
               datasets: [
                 {
-                  label: "Rating 1-10",
-                  backgroundColor: "rgba(255, 99, 132, 0.5)",
+                  label: "Rating",
+                  backgroundColor: "#1C1B29",
                   data: [
                     dataSchema.disclosure1,
                     dataSchema.disclosure2,
@@ -95,10 +93,20 @@ const PersonalStats = () => {
             }}
             options={options}
           />
-          <p className="text-text">{dataSchema.comment}</p>
+          <div className="bg-primary rounded-lg shadow-md shadow-accent text-text p-2 mt-4">
+            <h2 className="text-xl font-bold italic m-2">
+              Kommentar for dagen
+            </h2>
+            <div className="text-text bg-bg/50 rounded-lg p-2">
+              {dataSchema.comment}
+            </div>
+          </div>
         </div>
       ) : (
-        <p className="text-text">Loading data..</p>
+        <div className="flex flex-col items-center text-text text-lg">
+          <p>Laster personlig data</p>
+          <ReactLoading type={"bars"} color={"#1C1B29"} width={200} />
+        </div>
       )}
     </div>
   );

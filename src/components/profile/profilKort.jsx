@@ -30,6 +30,7 @@ const ProfilKort = ({ id }) => {
         <div className={`${boxStyle} text-center w-full flex`}>{id}</div>
       </div>
       <ul className="p-4 text-xl font-semibold flex flex-col gap-4">
+        <li className={`${boxStyle}`}>Skole: </li>
         <li className={`${boxStyle}`}>Spill: </li>
         <li className={`${boxStyle}`}>Lag: </li>
       </ul>

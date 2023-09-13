@@ -35,8 +35,7 @@ const Footer = () => {
       </div>
       <div className="flex flex-col justify-center items-center text-center">
         <Image
-          className="m-8 opacity-50"
-          priority
+          className="m-8 opacity-50 w-auto"
           alt="elvebakken logo"
           src="/logo.png"
           width={150}
