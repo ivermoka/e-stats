@@ -6,7 +6,8 @@ connectDB();
 export default async (req, res) => {
   if (req.method === "POST") {
     const user = req.query.user;
-    const userSchema = await Egenvurdering.findOne({ user: user });
+    const date = req.query.date;
+    const userSchema = await Egenvurdering.findOne({ user: user, date: date });
     try {
       res.status(200).json({ userSchema });
     } catch (error) {

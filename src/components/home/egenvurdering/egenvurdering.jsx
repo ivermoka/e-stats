@@ -22,19 +22,6 @@ const Egenvurdering = () => {
   const [disclosure6, setDisclosure6] = useState(0);
   const [comment, setComment] = useState("");
 
-  // const handleSubmit = async () => {
-  //   console.log(
-  //     disclosure1,
-  //     disclosure2,
-  //     disclosure3,
-  //     disclosure4,
-  //     disclosure5,
-  //     disclosure6,
-  //     comment,
-  //     date,
-  //     user
-  //   );
-  // };
   const rateDay = async (e) => {
     e.preventDefault();
     try {

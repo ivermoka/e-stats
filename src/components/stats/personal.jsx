@@ -36,7 +36,7 @@ const PersonalStats = () => {
 
   const fetchSessionData = async () => {
     try {
-      const res = await fetch(`/api/fetchUser?user=${user}`, {
+      const res = await fetch(`/api/fetchUser?user=${user}&date=${date}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
