@@ -11,6 +11,7 @@ const Egenvurdering = () => {
     if (storedToken) {
       setUser(localStorage.getItem("username"));
       setDate(new Date().toLocaleDateString());
+      fetchSessionData();
     }
   }, []);
 
@@ -52,6 +53,24 @@ const Egenvurdering = () => {
       }
     } catch (error) {
       console.log(error);
+    }
+  };
+  const fetchSessionData = async () => {
+    try {
+      console.log("fetch started");
+      const res = await fetch(`/api/fetchUser?user=${user}&date=${date}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (res.status === 200) {
+        alert("DU HAR ALLEREDE LAGET EN EGENVURDERING FOR I DAG");
+      } else {
+        console.log("Could not fetch session data");
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
   return (

@@ -5,9 +5,8 @@ import ReactLoading from "react-loading";
 import VelgDatoBoks from "@/components/stats/statscalendartest";
 
 const PersonalStats = () => {
-  const [value, onChange] = useState(new Date().toLocaleDateString());
+  const [value, setValue] = useState(new Date().toLocaleDateString());
   const [user, setUser] = useState(null);
-  const [date, setDate] = useState(new Date().toLocaleDateString());
   const [dataFetched, setDataFetched] = useState(false);
   const [dataSchema, setDataSchema] = useState(null);
   const [showCalendar, setShowCalendar] = useState(false);
@@ -38,7 +37,7 @@ const PersonalStats = () => {
 
   const fetchSessionData = async () => {
     try {
-      const res = await fetch(`/api/fetchUser?user=${user}&date=${date}`, {
+      const res = await fetch(`/api/fetchUser?user=${user}&date=${value}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -56,16 +55,12 @@ const PersonalStats = () => {
     }
   };
 
-  useEffect(() => {
-    onChange(new Date(value).toLocaleDateString());
-  }, [value]);
-
   return (
     <div>
       <h1 className="text-text text-xl font-bold italic">
         Personlig statistikk for{" "}
         <span className="text-orange-200">
-          {user}, {date}
+          {user}, {value}
         </span>
       </h1>
       <button
@@ -76,7 +71,15 @@ const PersonalStats = () => {
       >
         VELG DATO
       </button>
-      {showCalendar && <Calendar onChange={onChange} value={value} />}
+      {showCalendar && (
+        <Calendar
+          onClickDay={(day) => {
+            setValue(new Date(day).toLocaleDateString());
+            fetchSessionData();
+          }}
+          value={value}
+        />
+      )}
       {dataFetched ? (
         <div>
           <BarChart
