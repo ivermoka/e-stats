@@ -4,9 +4,8 @@ import Footer from "./../components/footer/footer";
 const Layout = ({ children }) => {
   return (
     <>
-      <Navbar />
       <main className="bg-bg">{children}</main>
-      <Footer />
+      <Navbar />
     </>
   );
 };

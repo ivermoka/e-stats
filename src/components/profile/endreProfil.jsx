@@ -50,7 +50,7 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
 
   return (
     <div className="fixed top-0 left-0 h-screen w-screen p-8 flex flex-col gap-2 text-text bg-bg z-50">
-      <div className={`font-bold text-xl italic mt-16 ${boxStyle}`}>
+      <div className={`font-bold text-xl italic ${boxStyle}`}>
         Endre Personlig Informasjon
       </div>
       <div>

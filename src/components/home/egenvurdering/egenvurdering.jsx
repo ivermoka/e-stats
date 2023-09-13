@@ -68,7 +68,7 @@ const Egenvurdering = () => {
     }
   };
   return (
-    <form onSubmit={rateDay} className="min-h-screen mt-20">
+    <form onSubmit={rateDay} className="min-h-screen">
       <Day />
       <div className="flex flex-col gap-2 bg-primary rounded-lg">
         <DisclosureMenu
