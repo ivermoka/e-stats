@@ -2,7 +2,7 @@ import Calendar from "react-calendar";
 import { BarChart } from "./barChart";
 import React, { useState, useEffect } from "react";
 import ReactLoading from "react-loading";
-import VelgDatoBoks from "@/components/stats/statscalendartest";
+import { BsCalendar } from "react-icons/bs";
 
 const PersonalStats = () => {
   const [value, setValue] = useState(new Date().toLocaleDateString());
@@ -19,11 +19,11 @@ const PersonalStats = () => {
   }, []);
 
   useEffect(() => {
-    if (user && dataFetched === false) {
+    if (user) {
       fetchSessionData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [user, value]);
 
   const options = {
     responsive: true,
@@ -70,12 +70,13 @@ const PersonalStats = () => {
         className="text-text font-bold py-2 px-4 rounded-lg bg-primary shadow-md shadow-accent my-4"
       >
         VELG DATO
+        <BsCalendar className="inline ml-2 mb-[2px]" />
       </button>
       {showCalendar && (
         <Calendar
+          className={`bg-primary rounded-lg shadow-md shadow-accent text-text p-2 font-semibold`}
           onClickDay={(day) => {
             setValue(new Date(day).toLocaleDateString());
-            fetchSessionData();
           }}
           value={value}
         />

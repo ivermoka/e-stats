@@ -14,7 +14,7 @@ export default function Navbar() {
   }, []);
   return (
     <>
-      <nav className="fixed flex justify-between items-center w-screen h-16 z-40 px-2 bottom-0 mb-4">
+      <nav className="fixed flex justify-between items-center w-screen h-16 z-40 px-2 bottom-0 mb-4 mt-8">
         <div className="flex gap-2">
           <Link href="/">
             <div className="h-full w-16 p-2 grid place-items-center bg-primary rounded-lg shadow-md shadow-accent">

@@ -29,7 +29,7 @@ const Profil = () => {
   }, [url]);
 
   useEffect(() => {
-    if (user !== null && id == user) {
+    if (user !== null && id === user) {
       setOwned(true);
     } else {
       setOwned(false);

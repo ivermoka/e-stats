@@ -18,7 +18,7 @@ const DisclosureMenu = ({ header, setDisclosure }) => {
               h-6 w-6 m1 duration-200`}
                 />
               </Disclosure.Button>
-              <Disclosure.Panel className={`grid grid-cols-5 gap-4`}>
+              <Disclosure.Panel className={`grid grid-cols-5 gap-4 mt-6`}>
                 <Box
                   onClick={() => {
                     setSelected(1);

@@ -3,10 +3,9 @@ import Image from "next/image";
 import { useState } from "react";
 
 const ProfilKort = ({ id }) => {
-  const boxStyle = "bg-primary p-4 rounded-lg shadow-md shadow-accent";
-
   const [profilePicture, setProfilePicture] = useState("/logo.png");
 
+  const boxStyle = "bg-primary p-4 rounded-lg shadow-md shadow-accent";
   return (
     <motion.div
       initial={{ x: 200, opacity: 0 }}

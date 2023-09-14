@@ -74,7 +74,9 @@ export default function Index() {
           )}
         </div>
       )}
-      {showEgenvurdering && <Egenvurdering />}
+      {showEgenvurdering && (
+        <Egenvurdering setShowEgenvurdering={setShowEgenvurdering} />
+      )}
     </div>
   );
 }
