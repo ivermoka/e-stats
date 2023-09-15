@@ -3,8 +3,9 @@ import DisclosureMenu from "./disclosure";
 import Comment from "./comment";
 import { useState, useEffect } from "react";
 import { AiOutlineRollback } from "react-icons/ai";
+import Link from "next/link";
 
-const Egenvurdering = ({ setShowEgenvurdering }) => {
+const Egenvurdering = () => {
   const [hasRated, setHasRated] = useState(true);
   const [date, setDate] = useState(null);
   const [user, setUser] = useState(null);
@@ -52,7 +53,6 @@ const Egenvurdering = ({ setShowEgenvurdering }) => {
         console.log("Day registered");
       } else {
         const data = await res.json();
-        setError(data.error);
       }
     } catch (error) {
       console.log(error);
@@ -80,19 +80,21 @@ const Egenvurdering = ({ setShowEgenvurdering }) => {
   return (
     <>
       {hasRated ? (
-        <h1 className="text-text">
-          Du har allerede levert egenvurdering i dag
+        <h1 className="text-text w-[92vw] xs:w-screen h-screen">
+          du har allerede egenvurdert xp
         </h1>
       ) : (
-        <form onSubmit={rateDay} className="min-h-screen mb-20">
+        <form
+          onSubmit={rateDay}
+          className="mb-20 w-[92vw] xs:w-screen xs:p-4 mt-16"
+        >
           <div className="flex justify-between">
             <Day />
-            <div
-              onClick={() => setShowEgenvurdering(false)}
-              className="rounded-lg text-text font-bold p-2 my-4 w-10 text-center italic bg-primary shadow-md shadow-accent"
-            >
-              <AiOutlineRollback className="w-full h-full" />
-            </div>
+            <Link href={"/"}>
+              <div className="rounded-lg text-text font-bold p-2 my-4 w-10 text-center italic bg-primary shadow-md shadow-accent">
+                <AiOutlineRollback className="w-full h-full" />
+              </div>
+            </Link>
           </div>
           <div className="flex flex-col gap-2 bg-primary rounded-lg">
             <DisclosureMenu

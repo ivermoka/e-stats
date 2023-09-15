@@ -21,7 +21,7 @@ const LoginPage = () => {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
 
       if (response.status === 200) {
@@ -40,7 +40,7 @@ const LoginPage = () => {
 
   const inputStyle = "p-2 shadow-md shadow-bg bg-text rounded-md";
   return (
-    <div className="bg-bg h-screen flex justify-center items-center">
+    <div className="bg-bg w-screen h-screen flex justify-center items-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-4/5 h-3/5 bg-primary rounded-lg flex flex-col justify-center items-center gap-6"

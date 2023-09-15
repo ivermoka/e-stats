@@ -57,7 +57,7 @@ const PersonalStats = () => {
 
   return (
     <div>
-      <h1 className="text-text text-xl font-bold italic">
+      <h1 className="text-text text-xl font-bold italic mt-12">
         Personlig statistikk for{" "}
         <span className="text-orange-200">
           {user}, {value}

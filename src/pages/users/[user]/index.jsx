@@ -39,7 +39,7 @@ const Profil = () => {
   const boxStyle = "bg-primary p-4 rounded-lg shadow-md shadow-accent";
 
   return (
-    <div className="h-screen p-8 flex flex-col gap-4 text-text overflow-x-hidden">
+    <div className="h-screen w-screen p-8 flex flex-col gap-4 text-text overflow-x-hidden">
       <motion.div
         initial={{ x: 200, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
