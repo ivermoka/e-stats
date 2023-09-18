@@ -14,7 +14,7 @@ export default function Navbar() {
   }, []);
   return (
     <>
-      <nav className="fixed w-full h-24 z-40 p-4 bottom-0 bg-primary/75 backdrop-blur-sm shadow-md shadow-accent rounded-t-3xl">
+      <nav className="fixed w-full h-24 p-4 bottom-0 bg-primary/75 backdrop-blur-sm shadow-md shadow-accent rounded-t-3xl">
         <div
           className={
             "bg-accent/50 rounded-lg w-full h-full flex justify-evenly items-center shadow-md shadow-bg"

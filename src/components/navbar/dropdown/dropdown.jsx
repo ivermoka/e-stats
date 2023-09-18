@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { FiX } from "react-icons/fi";
 import { motion } from "framer-motion";
 import UserInfo from "./userInfo";
@@ -11,7 +12,17 @@ import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { ImExit } from "react-icons/im";
 import { MdOutlineDeleteForever } from "react-icons/md";
 
-const Dropdown = ({ dropdown, setDropdown, user }) => {
+const Dropdown = ({ dropdown, setDropdown, user, showTerms, setShowTerms }) => {
+  const [team, setTeam] = useState(null);
+  const getTeam = async () => {
+    const res = await fetch(`http://localhost:3000/api/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 300 }}
@@ -46,7 +57,7 @@ const Dropdown = ({ dropdown, setDropdown, user }) => {
             onClick={() => setDropdown(false)}
           />
         </Link>
-        <Link href={"/teams/test"}>
+        <Link href={`/teams/${team}`}>
           <Links
             text={"Ditt Lag"}
             icon={<AiOutlineTeam />}
@@ -54,7 +65,14 @@ const Dropdown = ({ dropdown, setDropdown, user }) => {
           />
         </Link>
         <Line />
-        <Links text={"Vilkår for bruk"} icon={<IoMdCheckmarkCircleOutline />} />
+        <Links
+          text={"Vilkår for bruk"}
+          icon={<IoMdCheckmarkCircleOutline />}
+          onClick={() => {
+            setShowTerms(!showTerms);
+            setDropdown(false);
+          }}
+        />
         <Line />
         <Links
           text={"Logg Ut"}

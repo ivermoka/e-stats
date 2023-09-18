@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { AiOutlineRollback } from "react-icons/ai";
 import Link from "next/link";
 
-const Egenvurdering = () => {
+const Egenvurdering = ({}) => {
   const [hasRated, setHasRated] = useState(true);
   const [date, setDate] = useState(null);
   const [user, setUser] = useState(null);

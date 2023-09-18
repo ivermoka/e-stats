@@ -38,14 +38,15 @@ const LoginPage = () => {
     }
   };
 
-  const inputStyle = "p-2 shadow-md shadow-bg bg-text rounded-md";
+  const inputStyle =
+    "p-2 bg-bg border-secondary border-4 rounded-md w-4/5 text-text focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent duration-300";
   return (
-    <div className="bg-bg w-screen h-screen flex justify-center items-center">
+    <div className="bg-bg w-screen h-screen flex ">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-4/5 h-3/5 bg-primary rounded-lg flex flex-col justify-center items-center gap-6"
+        className="w-full flex flex-col justify-center items-start p-4 gap-6"
       >
-        <h1 className="text-text text-6xl m-4 font-bold">Logg Inn</h1>
+        <h1 className="text-text text-6xl font-bold">Logg Inn</h1>
         <input
           {...register("username", { required: "*Skriv brukernavn" })}
           placeholder="username"
@@ -64,9 +65,7 @@ const LoginPage = () => {
           type="password"
           className={inputStyle}
         />
-        <button className={`${inputStyle} font-semibold`} text="Opprett bruker">
-          Logg Inn
-        </button>
+        <button className={`${inputStyle} font-semibold`}>Logg Inn</button>
         <div className="flex flex-col text-center italic text-red-900">
           <span>{errors.username?.message}</span>
           <span>{errors.password?.message}</span>
@@ -84,42 +83,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
-// const [formData, setFormData] = useState({
-//   username: "",
-//   password: "",
-// });
-
-// const handleInputChange = (e) => {
-//   const { name, value } = e.target;
-//   setFormData({
-//     ...formData,
-//     [name]: value,
-//   });
-// };
-
-// const handleSubmit2 = async (e) => {
-//   e.preventDefault();
-
-//   try {
-//     const response = await fetch(
-//       `http://localhost:3000/api/login?username=${formData.username}&password=${formData.password}`,
-//       {
-//         method: "GET",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//       }
-//     );
-
-//     if (response.status === 200) {
-//       const data = await response.json();
-//       console.log("Token:", data.token, "Username:", data.username);
-//       localStorage.setItem("token", data.token);
-//     } else {
-//       console.error("Error logging in:", response.statusText);
-//     }
-//   } catch (error) {
-//     console.error("Error logging in:", error);
-//   }
-// };
