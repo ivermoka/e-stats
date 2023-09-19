@@ -10,6 +10,7 @@ const PersonalStats = () => {
   const [dataFetched, setDataFetched] = useState(false);
   const [dataSchema, setDataSchema] = useState(null);
   const [showCalendar, setShowCalendar] = useState(false);
+  
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -19,8 +20,9 @@ const PersonalStats = () => {
   }, []);
 
   useEffect(() => {
-    if (user && dataFetched === false) {
-      checkDate().then();
+    if (user) {
+      getUser().then();
+      console.log("hello")
       fetchSessionData().then();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -55,23 +57,26 @@ const PersonalStats = () => {
       console.log(err);
     }
   };
-  const checkDate = async () => {
-    try {
-      console.log("fetch started");
-      const res = await fetch(`/api/getUser?user=${user}&date=${value}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      if (res.status === 202) {
-        alert("DU HAR ALLEREDE LAGET EN EGENVURDERING FOR I DAG");
-      } else if (res.status === 201) {
-        console.log("GOod to go");
+  const getUser = async () => {
+    if(dataSchema){
+      try {
+        console.log("fetch started");
+        const res = await fetch(`/api/getUser?user=${user}&date=${value}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (res.status === 202) {
+          console.log("Egenvurdering for denne dagen eksisterer.");
+        } else if (res.status === 201) {
+          console.log("Egenvurdering for denne dagen eksisterer ikke.");
+        }
+      } catch (err) {
+        console.log(err);
       }
-    } catch (err) {
-      console.log(err);
     }
+
   };
 
   return (
