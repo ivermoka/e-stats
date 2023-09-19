@@ -15,16 +15,5 @@ export default async function handler(req, res) {
         error: "Det oppstod en feil ved henting av bruker.",
       });
     }
-  } else if (req.method === "GET") {
-    // Kan ikke bruke GET fordi det er en body i requesten
-    const user = req.body.user;
-    const date = req.body.date;
-    const userSchema = await Egenvurdering.findOne({ user: user, date: date });
-    console.log("userschema", userSchema);
-    if (userSchema === null) {
-      res.status(200).json("null");
-    } else if (userSchema !== null) {
-      res.status(404).json();
-    }
   }
 }

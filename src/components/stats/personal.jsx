@@ -20,8 +20,8 @@ const PersonalStats = () => {
 
   useEffect(() => {
     if (user && dataFetched === false) {
-      checkDate();
-      fetchSessionData();
+      checkDate().then();
+      fetchSessionData().then();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, value]);
@@ -58,16 +58,16 @@ const PersonalStats = () => {
   const checkDate = async () => {
     try {
       console.log("fetch started");
-      const res = await fetch(`/api/fetchUser?user=${user}&date=${value}`, {
-        method: "GET",
+      const res = await fetch(`/api/getUser?user=${user}&date=${value}`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
       });
-      if (res.status === 200) {
-        alert("Du har ikke registrert noe for denne datoen.");
-      } else if (res.status === 500) {
-        console.log("Session data found.");
+      if (res.status === 202) {
+        alert("DU HAR ALLEREDE LAGET EN EGENVURDERING FOR I DAG");
+      } else if (res.status === 201) {
+        console.log("GOod to go");
       }
     } catch (err) {
       console.log(err);
