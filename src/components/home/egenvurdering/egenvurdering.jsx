@@ -94,7 +94,7 @@ const Egenvurdering = ({}) => {
       ) : (
         <form
           onSubmit={rateDay}
-          className="mb-20 w-[92vw] xs:w-screen xs:p-4 mt-16"
+          className="mb-20 xs:p-4 mt-16 overflow-x-hidden"
         >
           <div className="flex justify-between">
             <Day />
