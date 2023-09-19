@@ -57,12 +57,12 @@ const PersonalStats = () => {
 
   return (
     <div>
-      <h1 className="text-text text-xl font-bold italic mt-12">
-        Personlig statistikk for{" "}
+      <div className="text-text text-xl font-bold italic mt-12">
+        <h1>Personlig statistikk for </h1>
         <span className="text-orange-200">
-          {user}, {value}
+          {user} - {value}
         </span>
-      </h1>
+      </div>
       <button
         onClick={() => {
           setShowCalendar(!showCalendar);
@@ -75,8 +75,10 @@ const PersonalStats = () => {
       {showCalendar && (
         <Calendar
           className={`bg-primary rounded-lg shadow-md shadow-accent text-text p-2 font-semibold`}
+          tileClassName={"p-1 border-text border-2 rounded-lg"}
           onClickDay={(day) => {
             setValue(new Date(day).toLocaleDateString());
+            setShowCalendar(false);
           }}
           value={value}
         />

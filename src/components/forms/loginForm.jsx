@@ -39,14 +39,14 @@ const LoginPage = () => {
   };
 
   const inputStyle =
-    "p-2 bg-bg border-secondary border-4 rounded-md w-4/5 text-text focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent duration-300";
+    "border-b-4 border-secondary bg-transparent p-2 text-text outline-none focus:border-b-2 duration-300 w-60";
   return (
     <div className="bg-bg w-screen h-screen flex ">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full flex flex-col justify-center items-start p-4 gap-6"
+        className="w-full flex flex-col justify-center items-center p-4 gap-6"
       >
-        <h1 className="text-text text-6xl font-bold">Logg Inn</h1>
+        <h1 className="text-text text-5xl m-4">Logg Inn</h1>
         <input
           {...register("username", { required: "*Skriv brukernavn" })}
           placeholder="username"
@@ -71,12 +71,18 @@ const LoginPage = () => {
           <span>{errors.password?.message}</span>
           <span>{wrong && "*Feil brukernavn eller passord"}</span>
         </div>
-        <span className="text-text">
+        <div className="text-text">
+          Glemt passord?{" "}
+          <Link href="/">
+            <span className="text-blue-500 cursor-pointer">Bytt passord</span>
+          </Link>{" "}
+        </div>{" "}
+        <div className="text-text">
           Har ikke bruker?{" "}
           <Link href="/register">
             <span className="text-blue-500 cursor-pointer">Opprett bruker</span>
-          </Link>
-        </span>
+          </Link>{" "}
+        </div>
       </form>
     </div>
   );
