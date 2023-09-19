@@ -10,7 +10,7 @@ const PersonalStats = () => {
   const [dataFetched, setDataFetched] = useState(false);
   const [dataSchema, setDataSchema] = useState(null);
   const [showCalendar, setShowCalendar] = useState(false);
-  
+
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
