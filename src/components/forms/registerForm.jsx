@@ -8,7 +8,7 @@ const Register = ({ setRegistered }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ defaultValues: { username: "", password: "" } });
+  } = useForm({ defaultValues: { mail: "", username: "", password: "" } });
   const onSubmit = async (data, e) => {
     e.preventDefault();
 
@@ -34,14 +34,21 @@ const Register = ({ setRegistered }) => {
     }
   };
 
-  const inputStyle = "p-2 shadow-md shadow-bg bg-text rounded-md";
+  const inputStyle =
+    "border-b-4 border-secondary bg-transparent p-2 text-text outline-none focus:border-b-2 duration-300 w-60";
   return (
     <div className="bg-bg w-screen h-screen flex justify-center items-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-4/5 h-3/5 bg-primary rounded-lg flex flex-col justify-center items-center gap-6"
+        className="rounded-lg flex flex-col justify-center items-center gap-4"
       >
-        <h1 className="text-text text-7xl m-4 font-bold">Register</h1>
+        <h1 className="text-text text-5xl m-4">Register</h1>
+        <input
+          {...register("mail", { required: "*Skriv mail" })}
+          placeholder="mail"
+          type="email"
+          className={inputStyle}
+        />
         <input
           {...register("username", { required: "*Skriv brukernavn" })}
           placeholder="username"
@@ -64,6 +71,7 @@ const Register = ({ setRegistered }) => {
           Opprett bruker
         </button>
         <div className="flex flex-col text-center italic text-red-900">
+          <span>{errors.mail?.message}</span>
           <span>{errors.username?.message}</span>
           <span>{errors.password?.message}</span>
           <span>{userExists ? "*Dette brukernavnet er tatt :(" : null}</span>
