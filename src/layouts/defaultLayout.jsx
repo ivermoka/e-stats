@@ -1,12 +1,13 @@
-import Navbar from "./../components/navbar/navbar";
-import Footer from "./../components/footer/footer";
+import Nav from "../components/navbar/nav";
+import TopBar from "../components/navbar/topBar";
 
 const Layout = ({ children }) => {
   return (
-    <>
-      <main className="bg-bg">{children}</main>
-      <Navbar />
-    </>
+    <div className={"flex flex-col items-center"}>
+      <TopBar />
+      <main className="bg-bg w-screen">{children}</main>
+      <Nav />
+    </div>
   );
 };
 

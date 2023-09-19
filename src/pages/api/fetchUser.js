@@ -3,7 +3,7 @@ import Egenvurdering from "../../../models/EgenvurderingModel";
 
 connectDB();
 
-export default async (req, res) => {
+export default async function handler(req, res) {
   if (req.method === "POST") {
     const user = req.query.user;
     const date = req.query.date;
@@ -27,4 +27,4 @@ export default async (req, res) => {
       res.status(404).json();
     }
   }
-};
+}
