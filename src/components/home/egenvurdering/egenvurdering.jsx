@@ -11,9 +11,14 @@ const Egenvurdering = () => {
     if (storedToken) {
       setUser(localStorage.getItem("username"));
       setDate(new Date().toLocaleDateString());
-      fetchSessionData();
     }
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      fetchSessionData();
+    }
+  }, [user]);
 
   const [disclosure1, setDisclosure1] = useState(0);
   const [disclosure2, setDisclosure2] = useState(0);
@@ -58,16 +63,16 @@ const Egenvurdering = () => {
   const fetchSessionData = async () => {
     try {
       console.log("fetch started");
-      const res = await fetch(`/api/fetchUser?user=${user}&date=${date}`, {
-        method: "GET",
+      const res = await fetch(`/api/getUser?user=${user}&date=${date}`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
       });
-      if (res.status === 200) {
-        alert("DU HAR ALLEREDE LAGET EN EGENVURDERING FOR I DAG");
-      } else {
-        console.log("Could not fetch session data");
+      if (res.status === 201) {
+        console.log("no egenvurdering found");
+      } else if (res.status === 202) {
+        alert("DU HAR ALLEREDE LAGET EN EGENVURDERING FOR I DAG", res);
       }
     } catch (err) {
       console.log(err);
