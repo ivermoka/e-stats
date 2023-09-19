@@ -73,10 +73,12 @@ const Egenvurdering = ({}) => {
           "Content-Type": "application/json",
         },
       });
-      if (res.status === 200) {
+      if (res.status === 202) {
+        setHasRated(true);
         alert("DU HAR ALLEREDE LAGET EN EGENVURDERING FOR I DAG");
-      } else {
-        console.log("Could not fetch session data");
+      } else if (res.status === 201) {
+        setHasRated(false);
+        console.log("GOod to go");
       }
     } catch (err) {
       console.log(err);
