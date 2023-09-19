@@ -15,10 +15,10 @@ const Top = () => {
   }, []);
 
   const [dropdown, setDropdown] = useState(false);
-  const [showTerms, setShowTerms] = useState(false);
+  const [showTerms, setShowTerms] = useState(true);
 
   useEffect(() => {
-    if (dropdown || showTerms) {
+    if (dropdown) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";

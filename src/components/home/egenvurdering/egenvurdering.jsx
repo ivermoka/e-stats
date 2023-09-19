@@ -66,7 +66,6 @@ const Egenvurdering = ({}) => {
 
   const fetchSessionData = async () => {
     try {
-      console.log("fetch started");
       const res = await fetch(`/api/getUser?user=${user}&date=${date}`, {
         method: "POST",
         headers: {
@@ -75,22 +74,36 @@ const Egenvurdering = ({}) => {
       });
       if (res.status === 202) {
         setHasRated(true);
-        alert("DU HAR ALLEREDE LAGET EN EGENVURDERING FOR I DAG");
       } else if (res.status === 201) {
         setHasRated(false);
-        console.log("GOod to go");
       }
     } catch (err) {
       console.log(err);
     }
   };
 
+  const boxStyle =
+    "bg-primary rounded-lg p-2 shadow-md shadow-accent font-semibold text-center text-2xl";
+
   return (
     <>
       {hasRated ? (
-        <h1 className="text-text w-[92vw] xs:w-screen h-screen">
-          du har allerede egenvurdert xp
-        </h1>
+        <div className="text-text h-screen mt-20 flex flex-col items-center gap-8">
+          <div className={`${boxStyle}`}>
+            Det eksisterer allerede en egenvurdering for denne dagen
+          </div>
+          <div className={`${boxStyle}`}>Du kan...</div>
+          <div className={"flex gap-4"}>
+            <Link href={"/stats"} className={`${boxStyle} w-36`}>
+              Se stats
+            </Link>
+            <Link href={`/users/${user}`} className={`${boxStyle} w-36`}>
+              Se profil
+            </Link>
+          </div>
+          <div className={`${boxStyle}`}>Eller...</div>{" "}
+          <button className={`${boxStyle}`}>Slette egenvurderingen...</button>
+        </div>
       ) : (
         <form
           onSubmit={rateDay}

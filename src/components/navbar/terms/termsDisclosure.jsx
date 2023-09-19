@@ -3,7 +3,7 @@ import { BiDownArrow } from "react-icons/bi";
 
 const TermsDisclosure = ({ header, text }) => {
   return (
-    <div className="p-2 w-full rounded-md text-text bg-primary break-words">
+    <div className="p-2 w-full rounded-md text-text bg-primary break-words shadow-accent shadow-md">
       <Disclosure>
         {({ open }) => (
           <>

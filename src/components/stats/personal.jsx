@@ -10,7 +10,6 @@ const PersonalStats = () => {
   const [dataFetched, setDataFetched] = useState(false);
   const [dataSchema, setDataSchema] = useState(null);
   const [showCalendar, setShowCalendar] = useState(false);
-  
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -22,7 +21,7 @@ const PersonalStats = () => {
   useEffect(() => {
     if (user) {
       getUser().then();
-      console.log("hello")
+      console.log("hello");
       fetchSessionData().then();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -58,7 +57,7 @@ const PersonalStats = () => {
     }
   };
   const getUser = async () => {
-    if(dataSchema){
+    if (dataSchema) {
       try {
         console.log("fetch started");
         const res = await fetch(`/api/getUser?user=${user}&date=${value}`, {
@@ -76,7 +75,6 @@ const PersonalStats = () => {
         console.log(err);
       }
     }
-
   };
 
   return (
@@ -99,7 +97,7 @@ const PersonalStats = () => {
       {showCalendar && (
         <Calendar
           className={`bg-primary rounded-lg shadow-md shadow-accent text-text p-2 font-semibold`}
-          tileClassName={"p-1 border-text border-2 rounded-lg"}
+          tileClassName={"p-2 border-text border-2 rounded-lg"}
           onClickDay={(day) => {
             setValue(new Date(day).toLocaleDateString());
             setShowCalendar(false);
