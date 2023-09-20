@@ -4,7 +4,8 @@ import User from "../../../models/User";
 connectDB();
 
 export default async function selectGame(req, res) {
-  const { game, team, user } = req.body;
+  const { user, school } = req.body;
+  console.log("school: ", school);
 
   try {
     const foundUser = await User.findOne({ username: user });
@@ -12,16 +13,11 @@ export default async function selectGame(req, res) {
     if (!foundUser) {
       return res.status(404).json({ error: "User not found" });
     }
-    if (!game) {
-      console.log("Game is null.");
-      return res.status(404).json({ error: "Game not found" });
+    if (!school){
+        console.log("School is null.");
+        return res.status(404).json({ error: "School not found" });
     }
-    if (!team) {
-      console.log("Team is null.");
-      return res.status(404).json({ error: "Team not found" });
-    }
-    foundUser.team = team;
-    foundUser.game = game;
+    foundUser.school = school;
     await foundUser.save();
     res.status(200).json({ status: "Game and team played added." });
   } catch (error) {

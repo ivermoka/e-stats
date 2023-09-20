@@ -7,6 +7,7 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
   const [newUsername, setNewUsername] = useState(id);
   const [password, setPassword] = useState("");
   const [team, setTeam] = useState("");
+  const [school, setSchool] = useState("");
 
   useEffect(() => {
     setUser(localStorage.getItem("username"));
@@ -24,6 +25,7 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
           user: user,
           password: password,
           team: team,
+          school: school,
         }),
       });
 
@@ -62,6 +64,39 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
               }}
               className={inputStyle}
             />{" "}
+          </li>
+          <li className={`flex flex-col ${boxStyle}`}>
+            <span>Skole:</span>{" "}
+            <select
+              name="skole"
+              defaultValue={school}
+              onChange={(e) => {
+                setSchool(e.target.value);
+              }}
+              className={inputStyle}
+            >
+              <option value=""></option>
+              <option value="Elvebakken">Elvebakken</option>
+              <option value="Persbråten">Persbråten</option>
+            </select>
+          </li>
+          <li className={`flex flex-col ${boxStyle}`}>
+            <span>Spill:</span>{" "}
+            <select
+              name="game"
+              defaultValue={game}
+              onChange={(e) => {
+                setGame(e.target.value);
+              }}
+              className={inputStyle}
+            >
+              <option value=""></option>
+              <option value="CS:GO">CS:GO</option>
+              <option value="League of Legends">League of Legends</option>
+              <option value="Dota 2">Dota 2</option>
+              <option value="Valorant">Valorant</option>
+              <option value="Overwatch">Overwatch</option>
+            </select>
           </li>
           <li className={`flex flex-col ${boxStyle}`}>
             <span>Lag:</span>{" "}

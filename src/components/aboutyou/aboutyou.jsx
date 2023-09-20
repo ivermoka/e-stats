@@ -3,13 +3,11 @@ import { useState, useEffect } from "react";
 
 const AboutYou = () => {
   const [skole, setSkole] = useState("");
-  const [game, setGame] = useState("");
-  const [team, setTeam] = useState("");
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     setUser(localStorage.getItem("username"));
-  }, []);
+  }, [user]);
 
   const gameSelect = async () => {
     try {
@@ -18,7 +16,7 @@ const AboutYou = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ game: game, team: team, user: user }),
+        body: JSON.stringify({ user: user, school: skole }),
       });
       if (res.status === 200) {
         console.log("Game selected.");
@@ -41,38 +39,21 @@ const AboutYou = () => {
           Skole:
           <select
             className="rounded-lg shadow-md shadow-accent bg-primary p-2"
-            name="team"
+            name="skole"
             defaultValue={skole}
             onChange={(e) => {
-              setTeam(e.target.value);
+              setSkole(e.target.value);
             }}
           >
             <option value=""></option>
-            <option value="Team1">Elvebakken</option>
-            <option value="Team2">Persbråten</option>
-          </select>
-        </div>
-        <div className="flex flex-col gap-2 bg-bg p-4 rounded-lg">
-          Spill:
-          <select
-            className="rounded-lg shadow-md shadow-accent bg-primary p-2"
-            name="team"
-            defaultValue={skole}
-            onChange={(e) => {
-              setTeam(e.target.value);
-            }}
-          >
-            <option value=""></option>
-            <option value="Team1">CS:GO</option>
-            <option value="Team2">Dota 2</option>
-            <option value="Team2">VALORANT</option>
-            <option value="Team2">League of Legends</option>
+            <option value="Elvebakken">Elvebakken</option>
+            <option value="Persbråten">Persbråten</option>
           </select>
         </div>
         <Link href="/">
           <button
             type="submit"
-            onClick={gameSelect}
+            onClick={() => gameSelect()}
             className="bg-secondary rounded-lg shadow-md shadow-accent w-full font-bold italic p-2"
           >
             REGISTRER
