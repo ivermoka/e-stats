@@ -8,6 +8,7 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
   const [password, setPassword] = useState("");
   const [game, setGame] = useState(""); //kan etterpå sette default til det som er i databasen
   const [team, setTeam] = useState("");
+  const [school, setSchool] = useState("");
 
   useEffect(() => {
     setUser(localStorage.getItem("username"));
@@ -26,6 +27,7 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
           password: password,
           game: game,
           team: team,
+          school: school
         }),
       });
 
@@ -64,6 +66,21 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
               }}
               className={inputStyle}
             />{" "}
+          </li>
+          <li className={`flex flex-col ${boxStyle}`}>
+            <span>Skole:</span>{" "}
+            <select
+                name="skole"
+                defaultValue={school}
+                onChange={(e) => {
+                  setSchool(e.target.value);
+                }}
+                className={inputStyle}
+            >
+              <option value=""></option>
+              <option value="Elvebakken">Elvebakken</option>
+              <option value="Persbråten">Persbråten</option>
+            </select>
           </li>
           <li className={`flex flex-col ${boxStyle}`}>
             <span>Spill:</span>{" "}

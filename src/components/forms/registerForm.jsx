@@ -11,7 +11,6 @@ const Register = ({ setRegistered }) => {
   } = useForm({ defaultValues: { mail: "", username: "", password: "" } });
   const onSubmit = async (data, e) => {
     e.preventDefault();
-
     try {
       const response = await fetch("http://localhost:3000/api/register", {
         method: "POST",
@@ -25,6 +24,7 @@ const Register = ({ setRegistered }) => {
         console.log("User registered successfully");
         localStorage.setItem("username", data.username);
         localStorage.setItem("token", data.token);
+        console.log(localStorage.getItem("username"));
         setRegistered(true);
       } else {
         setUserExists(true);

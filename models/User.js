@@ -2,11 +2,12 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
 const userSchema = new mongoose.Schema({
+  mail: { type: String, unique: true },
   username: { type: String, unique: true },
   password: String,
   dateCreated: { type: Date, default: Date.now },
-  game: String,
   team: String,
+  school: String,
 });
 
 userSchema.methods.comparePassword = function (password) {
