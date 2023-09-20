@@ -6,7 +6,6 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
   const [user, setUser] = useState(null);
   const [newUsername, setNewUsername] = useState(id);
   const [password, setPassword] = useState("");
-  const [game, setGame] = useState(""); //kan etterpå sette default til det som er i databasen
   const [team, setTeam] = useState("");
 
   useEffect(() => {
@@ -24,7 +23,6 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
           newUsername: newUsername,
           user: user,
           password: password,
-          game: game,
           team: team,
         }),
       });
@@ -64,24 +62,6 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
               }}
               className={inputStyle}
             />{" "}
-          </li>
-          <li className={`flex flex-col ${boxStyle}`}>
-            <span>Spill:</span>{" "}
-            <select
-              name="game"
-              defaultValue={game}
-              onChange={(e) => {
-                setGame(e.target.value);
-              }}
-              className={inputStyle}
-            >
-              <option value=""></option>
-              <option value="CS:GO">CS:GO</option>
-              <option value="League of Legends">League of Legends</option>
-              <option value="Dota 2">Dota 2</option>
-              <option value="Valorant">Valorant</option>
-              <option value="Overwatch">Overwatch</option>
-            </select>
           </li>
           <li className={`flex flex-col ${boxStyle}`}>
             <span>Lag:</span>{" "}

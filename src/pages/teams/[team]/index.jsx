@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
 import Header from "@/components/team/header";
 import Members from "@/components/team/members";
 
@@ -23,10 +22,40 @@ const Lag = () => {
     }
   }, [url]);
 
+  const [team, setTeam] = useState(null);
+
+  useEffect(() => {
+    getAllMembers().then();
+  }, [user]);
+
+  const getAllMembers = async () => {
+    try {
+      const res = await fetch(`/api/getTeamMembers?user=${user}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (res.status === 200) {
+        const data = await res.json();
+        setTeam(data.users);
+      } else if (res.status === 500) {
+        console.log("Error fetching data");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className={"min-h-screen flex flex-col gap-8 px-8 mb-32"}>
       <Header teamId={teamId} />
-      <Members />
+      {team &&
+        team.map((member, index) => (
+          <div key={index}>
+            <Members text={member.username} />
+          </div>
+        ))}
     </div>
   );
 };
