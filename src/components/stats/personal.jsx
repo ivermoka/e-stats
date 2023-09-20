@@ -3,6 +3,7 @@ import { BarChart } from "./barChart";
 import React, { useState, useEffect } from "react";
 import ReactLoading from "react-loading";
 import { BsCalendar } from "react-icons/bs";
+import Link from "next/link";
 
 const PersonalStats = () => {
   const [value, setValue] = useState(new Date().toLocaleDateString());
@@ -10,6 +11,7 @@ const PersonalStats = () => {
   const [dataFetched, setDataFetched] = useState(false);
   const [dataSchema, setDataSchema] = useState(null);
   const [showCalendar, setShowCalendar] = useState(false);
+  const [hasRated, setHasRated] = useState(true);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -21,7 +23,6 @@ const PersonalStats = () => {
   useEffect(() => {
     if (user) {
       getUser().then();
-      console.log("hello");
       fetchSessionData().then();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -59,7 +60,6 @@ const PersonalStats = () => {
   const getUser = async () => {
     if (dataSchema) {
       try {
-        console.log("fetch started");
         const res = await fetch(`/api/getUser?user=${user}&date=${value}`, {
           method: "POST",
           headers: {
@@ -67,9 +67,9 @@ const PersonalStats = () => {
           },
         });
         if (res.status === 202) {
-          console.log("Egenvurdering for denne dagen eksisterer.");
+          setHasRated(true);
         } else if (res.status === 201) {
-          console.log("Egenvurdering for denne dagen eksisterer ikke.");
+          setHasRated(false);
         }
       } catch (err) {
         console.log(err);
@@ -105,7 +105,7 @@ const PersonalStats = () => {
           value={value}
         />
       )}
-      {dataFetched ? (
+      {hasRated && dataFetched && dataSchema ? (
         <div>
           <BarChart
             data={{
@@ -143,10 +143,22 @@ const PersonalStats = () => {
             </div>
           </div>
         </div>
-      ) : (
+      ) : hasRated && !dataFetched ? (
         <div className="flex flex-col items-center text-text text-lg">
           <p>Laster personlig data</p>
           <ReactLoading type={"bars"} color={"#1C1B29"} width={200} />
+        </div>
+      ) : (
+        <div className="bg-primary rounded-lg shadow-md shadow-accent text-text p-2 mt-4">
+          <h2 className="text-xl font-bold italic m-2">Ingen data</h2>
+          <div className="text-text bg-bg/50 rounded-lg p-2 text-center text-xl">
+            Det er ikke registrert noe data for den valgte dagen. Vennligst gå
+            til{" "}
+            <Link className={"text-blue-500"} href={"/egenvurdering"}>
+              egenvurdering
+            </Link>{" "}
+            hvis du vil registrere data for i dag.
+          </div>
         </div>
       )}
     </div>

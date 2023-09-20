@@ -15,7 +15,7 @@ const Top = () => {
   }, []);
 
   const [dropdown, setDropdown] = useState(false);
-  const [showTerms, setShowTerms] = useState(true);
+  const [showTerms, setShowTerms] = useState(false);
 
   useEffect(() => {
     if (dropdown) {

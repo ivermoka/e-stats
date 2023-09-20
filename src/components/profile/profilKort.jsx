@@ -30,12 +30,6 @@ const ProfilKort = ({ id }) => {
         <div className={`${boxStyle} text-center w-full flex`}>{id}</div>
       </div>
       <ul className="p-4 text-xl font-semibold flex flex-col gap-4">
-        <li
-          className={`w-2/3 self-center flex items-center justify-center text-6xl font-light`}
-        >
-          <AiFillFire className={"text-red-400"} />
-          <span>7</span>
-        </li>
         <li className={`${boxStyle}`}>Skole: </li>
         <li className={`${boxStyle}`}>Spill: </li>
         <li className={`${boxStyle}`}>Lag: </li>
