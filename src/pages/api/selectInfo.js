@@ -5,7 +5,6 @@ connectDB();
 
 export default async function selectGame(req, res) {
   const { user, school } = req.body;
-  console.log("school: ", school);
 
   try {
     const foundUser = await User.findOne({ username: user });
@@ -13,9 +12,9 @@ export default async function selectGame(req, res) {
     if (!foundUser) {
       return res.status(404).json({ error: "User not found" });
     }
-    if (!school){
-        console.log("School is null.");
-        return res.status(404).json({ error: "School not found" });
+    if (!school) {
+      console.log("School is null.");
+      return res.status(404).json({ error: "School not found" });
     }
     foundUser.school = school;
     await foundUser.save();

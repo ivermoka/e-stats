@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Dropdown from "@/components/navbar/dropdown/dropdown";
 import Terms from "@/components/navbar/terms/terms";
+import ConfirmDelete from "@/components/navbar/dropdown/confirmDelete";
 
 const Top = () => {
   const [user, setUser] = useState(null);
@@ -16,14 +17,15 @@ const Top = () => {
 
   const [dropdown, setDropdown] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
 
   useEffect(() => {
-    if (dropdown) {
+    if (dropdown || showConfirmDelete) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
     }
-  }, [dropdown, showTerms]);
+  }, [dropdown]);
 
   return (
     <>
@@ -73,10 +75,18 @@ const Top = () => {
             user={user}
             showTerms={showTerms}
             setShowTerms={setShowTerms}
+            setShowConfirmDelete={setShowConfirmDelete}
           />
         )}
 
         {showTerms && <Terms setShowTerms={setShowTerms} />}
+
+        {showConfirmDelete && (
+          <ConfirmDelete
+            setShowConfirmDelete={setShowConfirmDelete}
+            user={user}
+          />
+        )}
       </div>
     </>
   );
