@@ -19,7 +19,7 @@ const AboutYou = () => {
         body: JSON.stringify({ user: user, school: skole }),
       });
       if (res.status === 200) {
-        console.log("Game selected.");
+        window.location.reload();
       } else {
         const data = await res.json();
         console.log("Error", data);

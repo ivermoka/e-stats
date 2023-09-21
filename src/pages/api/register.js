@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 
 connectDB();
 
-export default async (req, res) => {
+export default async function handler(req, res) {
   if (req.method === "POST") {
     const { username, password } = req.body;
     try {
@@ -18,13 +18,13 @@ export default async (req, res) => {
         process.env.JWT_SECRET,
         {
           expiresIn: "1h",
-        }
+        },
       );
-      res.status(201).json({ message: "User registered successfully" });
+      res.status(201).json({ token: token, username: username });
     } catch (error) {
       res.status(500).json({
         error: "Det finnes allerede en bruker med dette brukernavnet",
       });
     }
   }
-};
+}

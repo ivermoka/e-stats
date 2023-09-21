@@ -10,7 +10,10 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
   const [school, setSchool] = useState("");
 
   useEffect(() => {
-    setUser(localStorage.getItem("username"));
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setUser(localStorage.getItem("username"));
+    }
   }, []);
 
   const changeUsername = async () => {
@@ -78,42 +81,6 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
               <option value=""></option>
               <option value="Elvebakken">Elvebakken</option>
               <option value="Persbråten">Persbråten</option>
-            </select>
-          </li>
-          <li className={`flex flex-col ${boxStyle}`}>
-            <span>Spill:</span>{" "}
-            <select
-              name="game"
-              defaultValue={game}
-              onChange={(e) => {
-                setGame(e.target.value);
-              }}
-              className={inputStyle}
-            >
-              <option value=""></option>
-              <option value="CS:GO">CS:GO</option>
-              <option value="League of Legends">League of Legends</option>
-              <option value="Dota 2">Dota 2</option>
-              <option value="Valorant">Valorant</option>
-              <option value="Overwatch">Overwatch</option>
-            </select>
-          </li>
-          <li className={`flex flex-col ${boxStyle}`}>
-            <span>Lag:</span>{" "}
-            <select
-              name="team"
-              defaultValue={team}
-              onChange={(e) => {
-                setTeam(e.target.value);
-              }}
-              className={inputStyle}
-            >
-              <option value=""></option>
-              <option value="Team1">Team 1</option>
-              <option value="Team2">Team 2</option>
-              <option value="Team3">Team 3</option>
-              <option value="Team4">Team 4</option>
-              <option value="Team5">Team 5</option>
             </select>
           </li>
           <li className={`flex flex-col ${boxStyle}`}>
