@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {FiX} from "react-icons/fi";
 import {motion} from "framer-motion";
 import UserInfo from "./userInfo";
@@ -14,14 +14,41 @@ import {MdOutlineDeleteForever} from "react-icons/md";
 
 const Dropdown = ({dropdown, setDropdown, user, showTerms, setShowTerms}) => {
     const [team, setTeam] = useState(null);
-    const getTeam = async () => {
-        const res = await fetch(`http://localhost:3000/api/`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-    };
+    const [username, setUsername] = useState(null);
+
+    useEffect(() => {
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) {
+            setUsername(localStorage.getItem("username"));
+        }
+    }, []);
+
+    const deleteUser = async () => {
+
+        try {
+            const res = await fetch("/api/deleteUser", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    user: username,
+                }),
+            });
+            if (res.status === 200) {
+                console.log("User deleted");
+                localStorage.removeItem("token");
+                localStorage.removeItem("username");
+                window.location.href = "/";
+            } else if (res.status === 400) {
+                console.log(res.status);
+            }
+        } catch (error) {
+            console.log(error);
+
+        }
+
+    }
 
     return (
         <motion.div
@@ -84,9 +111,8 @@ const Dropdown = ({dropdown, setDropdown, user, showTerms, setShowTerms}) => {
                     }}
                 />
                 <Links text={"Slett Bruker"} icon={<MdOutlineDeleteForever/>} onClick={() => {
-                    localStorage.removeItem("token");
-                    localStorage.removeItem("username");
-                    window.location.href = "/";
+                    deleteUser();
+
                 }}/>
             </div>
         </motion.div>
