@@ -83,7 +83,7 @@ const EgenvurderingContainer = () => {
                   setShowAfter={setShowAfter}
                 />
               )}
-              <Selector setShowAfter={setShowAfter} />
+              <Selector showAfter={showAfter} setShowAfter={setShowAfter} />
             </>
           )}
         </>

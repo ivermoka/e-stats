@@ -1,7 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Selector = ({ showAfter, setShowAfter }) => {
   const [selected, setSelected] = useState(0);
+
+  useEffect(() => {
+    if (showAfter) {
+      setSelected(1);
+    } else {
+      setSelected(0);
+    }
+  }, [showAfter]);
   return (
     <div
       className={
@@ -11,7 +19,6 @@ const Selector = ({ showAfter, setShowAfter }) => {
       <button
         onClick={() => {
           setShowAfter(false);
-          setSelected(0);
         }}
         className={`${
           selected === 0 ? "bg-text" : "bg-secondary"
@@ -20,7 +27,6 @@ const Selector = ({ showAfter, setShowAfter }) => {
       <button
         onClick={() => {
           setShowAfter(true);
-          setSelected(1);
         }}
         className={`${
           selected === 1 ? "bg-text" : "bg-secondary"
