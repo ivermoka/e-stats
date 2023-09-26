@@ -4,9 +4,14 @@ import React, { useState, useEffect } from "react";
 import ReactLoading from "react-loading";
 import { BsCalendar } from "react-icons/bs";
 import Link from "next/link";
+import moment from "moment-timezone";
 
 const PersonalStats = () => {
-  const [value, setValue] = useState(new Date().toLocaleDateString());
+  const norwegianTimezone = "Europe/Oslo";
+  //
+  const [value, setValue] = useState(
+    moment.tz(norwegianTimezone).format("MM-DD-YYYY")
+  );
   const [user, setUser] = useState(null);
   const [dataFetched, setDataFetched] = useState(false);
   const [dataSchema, setDataSchema] = useState(null);
@@ -69,6 +74,7 @@ const PersonalStats = () => {
       });
       if (res.status === 200) {
         const data = await res.json();
+        console.log("Fetched Session Data:", data); // Debugging: Print fetched data
         setDataSchema(data.userSchema);
         setDataFetched(true);
       } else {
@@ -78,6 +84,7 @@ const PersonalStats = () => {
       console.log(err);
     }
   };
+
   const getUser = async () => {
     if (dataSchema) {
       try {
@@ -89,8 +96,10 @@ const PersonalStats = () => {
         });
         if (res.status === 202) {
           setHasRated(true);
+          console.log("User has rated"); // Debugging: Print user rating
         } else if (res.status === 201) {
           setHasRated(false);
+          console.log("User has not rated"); // Debugging: Print user not rated
         }
       } catch (err) {
         console.log(err);
@@ -120,7 +129,21 @@ const PersonalStats = () => {
           className={`bg-primary rounded-lg shadow-md shadow-accent text-text p-2 font-semibold`}
           tileClassName={"p-2 border-text border-2 rounded-lg"}
           onClickDay={(day) => {
-            setValue(new Date(day).toLocaleDateString());
+            // Convert 'day' to a JavaScript Date object
+            const selectedDate = new Date(day);
+
+            // Debugging: Print the selectedDate
+            console.log("Selected Date:", selectedDate);
+
+            // Format the selected date in the Norwegian timezone
+            const formattedDate = moment(selectedDate)
+              .tz(norwegianTimezone)
+              .format("MM-DD-YYYY");
+
+            // Debugging: Print the formatted date
+            console.log("Formatted Date:", formattedDate);
+
+            setValue(formattedDate);
             setShowCalendar(false);
           }}
           value={value}
