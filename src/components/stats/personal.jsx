@@ -36,6 +36,32 @@ const PersonalStats = () => {
         text: "Statistikk for valgt dag",
       },
     },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Kategorier",
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: "Vurdering",
+        },
+        min: 0, // Set the minimum value for the y-axis scale
+        max: 10, // Set the maximum value for the y-axis scale
+      },
+    },
+    barThickness: 20,
+    scales: {
+      x: {
+        categoryPercentage: 20,
+      },
+    },
+    maintainAspectRatio: false,
+    layout: {
+      padding: {},
+    },
   };
 
   const fetchSessionData = async () => {
@@ -107,33 +133,43 @@ const PersonalStats = () => {
       )}
       {hasRated && dataFetched && dataSchema ? (
         <div>
-          <BarChart
-            data={{
-              labels: [
-                "Mat",
-                "Søvn",
-                "Motivasjon",
-                "Fysisk",
-                "Psykisk",
-                "Spilte",
-              ],
-              datasets: [
-                {
-                  label: "Rating",
-                  backgroundColor: "#1C1B29",
-                  data: [
-                    dataSchema.disclosure1,
-                    dataSchema.disclosure2,
-                    dataSchema.disclosure3,
-                    dataSchema.disclosure4,
-                    dataSchema.disclosure5,
-                    dataSchema.disclosure6,
-                  ],
-                },
-              ],
-            }}
-            options={options}
-          />
+          <div className="h-80 ">
+            <BarChart
+              data={{
+                labels: [
+                  "Mat",
+                  "Søvn",
+                  "Motivasjon",
+                  "Fysisk",
+                  "Psykisk",
+                  "Spilte",
+                ],
+                datasets: [
+                  {
+                    label: "Rating",
+                    backgroundColor: "#ff3300", // Customize the background color for "Rating"
+                    backgroundColor: [
+                      "#33cc33",
+                      "#0066ff",
+                      "#ccff33",
+                      "#EB565B",
+                      "#ffff99",
+                      "#ff0066",
+                    ],
+                    data: [
+                      dataSchema.disclosure1,
+                      dataSchema.disclosure2,
+                      dataSchema.disclosure3,
+                      dataSchema.disclosure4,
+                      dataSchema.disclosure5,
+                      dataSchema.disclosure6,
+                    ],
+                  },
+                ],
+              }}
+              options={options}
+            />
+          </div>
           <div className="bg-primary rounded-lg shadow-md shadow-accent text-text p-2 mt-4">
             <h2 className="text-xl font-bold italic m-2">
               Kommentar for dagen
