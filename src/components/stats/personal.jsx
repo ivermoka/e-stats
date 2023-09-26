@@ -53,11 +53,6 @@ const PersonalStats = () => {
       },
     },
     barThickness: 20,
-    scales: {
-      x: {
-        categoryPercentage: 20,
-      },
-    },
     maintainAspectRatio: false,
     layout: {
       padding: {},
@@ -147,7 +142,6 @@ const PersonalStats = () => {
                 datasets: [
                   {
                     label: "Rating",
-                    backgroundColor: "#ff3300", // Customize the background color for "Rating"
                     backgroundColor: [
                       "#33cc33",
                       "#0066ff",
