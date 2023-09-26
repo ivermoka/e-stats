@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
+import ForgotPassword from "@/components/forms/forgotPassword";
 
 const LoginPage = () => {
   const [wrong, setWrong] = useState(false);
@@ -38,10 +39,12 @@ const LoginPage = () => {
     }
   };
 
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+
   const inputStyle =
     "border-b-4 border-secondary bg-transparent p-2 text-text outline-none focus:border-b-2 duration-300 w-60";
   return (
-    <div className="bg-bg w-screen h-screen flex ">
+    <div className="bg-bg w-screen h-screen flex">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-col justify-center items-center p-4 gap-6"
@@ -73,9 +76,12 @@ const LoginPage = () => {
         </div>
         <div className="text-text">
           Glemt passord?{" "}
-          <Link href="/">
-            <span className="text-blue-500 cursor-pointer">Bytt passord</span>
-          </Link>{" "}
+          <button
+            onClick={() => setShowForgotPassword(true)}
+            className="text-blue-500 cursor-pointer"
+          >
+            Bytt passord
+          </button>
         </div>{" "}
         <div className="text-text">
           Har ikke bruker?{" "}
@@ -84,6 +90,7 @@ const LoginPage = () => {
           </Link>{" "}
         </div>
       </form>
+      {showForgotPassword && <ForgotPassword setShow={setShowForgotPassword} />}
     </div>
   );
 };

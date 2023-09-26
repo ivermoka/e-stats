@@ -11,7 +11,7 @@ const EgenvurderingContainer = () => {
   const [user, setUser] = useState(null);
   const [showAfter, setShowAfter] = useState(false);
   const [hasRated1, setHasRated1] = useState(true);
-  const [hasRated2, setHasRated2] = useState(true);
+  const [hasRated2, setHasRated2] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
