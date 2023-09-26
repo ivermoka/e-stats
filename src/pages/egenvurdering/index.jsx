@@ -53,10 +53,12 @@ const EgenvurderingContainer = () => {
         <>
           {hasRated ? (
             <div className="text-text h-screen mt-20 flex flex-col items-center gap-8">
-              <div className={`${boxStyle}`}>
+              <div className={`${boxStyle} bg-transparent shadow-transparent`}>
                 Det eksisterer allerede en egenvurdering for denne dagen
               </div>
-              <div className={`${boxStyle}`}>Du kan...</div>
+              <div className={`${boxStyle} bg-transparent shadow-transparent`}>
+                Du kan...
+              </div>
               <div className={"flex gap-4"}>
                 <Link href={"/stats"} className={`${boxStyle} w-36`}>
                   Se stats
@@ -65,7 +67,9 @@ const EgenvurderingContainer = () => {
                   Se profil
                 </Link>
               </div>
-              <div className={`${boxStyle}`}>Eller...</div>{" "}
+              <div className={`${boxStyle} bg-transparent shadow-transparent`}>
+                Eller...
+              </div>{" "}
               <button className={`${boxStyle}`}>
                 Slette egenvurderingen...
               </button>

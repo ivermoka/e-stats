@@ -5,7 +5,7 @@ import Members from "@/components/team/members";
 const Header = ({ teamId }) => {
   const boxStyle = "bg-primary p-2 rounded-lg shadow-md shadow-accent";
   return (
-    <div className={"mt-24 flex gap-4 items-end w-full h-32 text-text"}>
+    <div className={"flex gap-4 items-end w-full h-32 text-text"}>
       <div className={`${boxStyle} h-full aspect-square p-2`}>
         <Image
           src={"/logo.png"}
