@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
   user: String,
   game: String,
   team: String,
+  hasRatedPart2: Boolean,
 });
 
 const Egenvurdering =
