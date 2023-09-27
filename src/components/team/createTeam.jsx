@@ -23,29 +23,39 @@ const CreateTeam = ({ setShowCreateTeam }) => {
     }
   };
   return (
-    <>
-      <div
+    <div
+      className={
+        "fixed h-screen w-screen bg-black/50 z-50 left-0 top-0 grid place-items-center"
+      }
+    >
+      <form
         className={
-          "absolute top-0 left-0 w-1/2 h-1/2 bg-black bg-opacity-50 flex justify-center items-center"
+          "w-72 h-96 bg-primary flex flex-col gap-4 justify-center items-center rounded-lg shadow-md shadow-accent"
         }
       >
-        <form>
-          <input
-            onChange={(e) => setTeamName(e.target.value)}
-            placeholder="Nytt lag"
-          />
-          <button
-            type="submit"
-            onClick={(e) => {
-              makeTeam(e).then();
-            }}
-          >
-            Opprett
-          </button>
-          <button onClick={() => setShowCreateTeam(false)}>LUKK</button>
-        </form>
-      </div>
-    </>
+        <h1 className={"text-text text-3xl"}>Opprett Lag</h1>
+        <input
+          className={"p-2 rounded-lg"}
+          onChange={(e) => setTeamName(e.target.value)}
+          placeholder="Nytt lag"
+        />
+        <button
+          className={"p-2 rounded-lg text-text bg-accent text-xl font-semibold"}
+          type="submit"
+          onClick={(e) => {
+            makeTeam(e).then();
+          }}
+        >
+          Opprett
+        </button>
+        <button
+          className={"p-2 rounded-lg text-text bg-accent text-xl font-semibold"}
+          onClick={() => setShowCreateTeam(false)}
+        >
+          LUKK
+        </button>
+      </form>
+    </div>
   );
 };
 

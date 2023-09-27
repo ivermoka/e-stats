@@ -49,7 +49,13 @@ const Register = ({ setRegistered }) => {
           className={inputStyle}
         />
         <input
-          {...register("username", { required: "*Skriv brukernavn" })}
+          {...register("username", {
+            required: "*Skriv brukernavn",
+            minLength: {
+              value: 3,
+              message: "*Brukernavn må ha minst 3 tegn",
+            },
+          })}
           placeholder="username"
           type="text"
           className={inputStyle}
