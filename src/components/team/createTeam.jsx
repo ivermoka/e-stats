@@ -11,7 +11,7 @@ const CreateTeam = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({teamName: teamName}),
+                body: JSON.stringify({teamName: teamName, username: localStorage.getItem("username")}),
             });
             if (res.status === 200) {
                 console.log("Team created");
