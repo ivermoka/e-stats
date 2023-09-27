@@ -4,7 +4,7 @@ const Terms = ({ setShowTerms }) => {
   return (
     <div
       className={
-        "fixed top-0 left-0 h-screen w-screen overflow-y-scroll bg-bg/70 backdrop-blur-md p-8 flex flex-col text-center gap-4"
+        "fixed top-0 left-0 h-screen w-screen overflow-y-scroll bg-bg/70 backdrop-blur-md p-8 flex flex-col text-center gap-6"
       }
     >
       <h1 className={"text-text font-bold text-4xl"}>

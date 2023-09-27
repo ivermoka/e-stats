@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Egenvurdering from "@/components/home/egenvurdering/egenvurdering";
 import After from "@/components/home/egenvurdering/after";
 import Selector from "@/components/home/egenvurdering/selector";
+import HasRatedPage from "@/components/home/egenvurdering/hasRatedPage";
 import Link from "next/link";
 import ReactLoading from "react-loading";
 
@@ -9,7 +10,8 @@ const EgenvurderingContainer = () => {
   const [date, setDate] = useState(null);
   const [user, setUser] = useState(null);
   const [showAfter, setShowAfter] = useState(false);
-  const [hasRated, setHasRated] = useState(true);
+  const [hasRated1, setHasRated1] = useState(true);
+  const [hasRated2, setHasRated2] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -35,9 +37,13 @@ const EgenvurderingContainer = () => {
         },
       });
       if (res.status === 202) {
-        setHasRated(true);
+        setHasRated1(true);
       } else if (res.status === 201) {
-        setHasRated(false);
+        setHasRated1(false);
+      } else if (res.status === 203) {
+        setHasRated2(false);
+      } else if (res.status === 204) {
+        setHasRated2(true);
       }
       setLoaded(true);
     } catch (err) {
@@ -51,41 +57,30 @@ const EgenvurderingContainer = () => {
     <div className={"p-4 min-h-screen"}>
       {loaded ? (
         <>
-          {hasRated ? (
-            <div className="text-text h-screen mt-20 flex flex-col items-center gap-8">
-              <div className={`${boxStyle}`}>
-                Det eksisterer allerede en egenvurdering for denne dagen
-              </div>
-              <div className={`${boxStyle}`}>Du kan...</div>
-              <div className={"flex gap-4"}>
-                <Link href={"/stats"} className={`${boxStyle} w-36`}>
-                  Se stats
-                </Link>
-                <Link href={`/users/${user}`} className={`${boxStyle} w-36`}>
-                  Se profil
-                </Link>
-              </div>
-              <div className={`${boxStyle}`}>Eller...</div>{" "}
-              <button className={`${boxStyle}`}>
-                Slette egenvurderingen...
-              </button>
-            </div>
+          {showAfter ? (
+            <>
+              {hasRated2 ? (
+                <HasRatedPage user={user} />
+              ) : (
+                <After date={date} user={user} />
+              )}
+            </>
           ) : (
             <>
-              {showAfter ? (
-                <After date={date} user={user} />
+              {hasRated1 ? (
+                <HasRatedPage user={user} />
               ) : (
                 <Egenvurdering
                   date={date}
                   user={user}
-                  hasRated={hasRated}
-                  setHasRated={setHasRated}
+                  hasRated={hasRated1}
+                  setHasRated={setHasRated1}
                   setShowAfter={setShowAfter}
                 />
               )}
-              <Selector showAfter={showAfter} setShowAfter={setShowAfter} />
             </>
           )}
+          <Selector showAfter={showAfter} setShowAfter={setShowAfter} />
         </>
       ) : (
         <div className="h-screen grid place-items-center">
