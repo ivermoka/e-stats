@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 
 const teamModel = new mongoose.Schema({
-    teamName: String,
+    teamName: {type: String, unique: true},
+    members: {type: Array, default: []},
 });
 
 const Team =
