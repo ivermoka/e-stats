@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Header from "@/components/team/header";
 import Members from "@/components/team/members";
+import CreateTeam from "@/components/team/createTeam";
 
 const Lag = () => {
   const [user, setUser] = useState(null);
@@ -47,16 +48,24 @@ const Lag = () => {
     }
   };
 
+  const [showCreateTeam, setShowCreateTeam] = useState(false);
+
   const boxStyle = "bg-primary rounded-lg shadow-lg shadow-accent p-4";
 
   return (
     <div className={"min-h-screen flex flex-col gap-8 px-8 mb-32"}>
       <div className={"mt-24 h-16 flex gap-4 text-2xl text-text font-semibold"}>
         <button className={`${boxStyle} w-1/2`}>Finn</button>
-        <button className={`${boxStyle} w-1/2`}>Opprett</button>
+        <button
+          onClick={() => setShowCreateTeam(true)}
+          className={`${boxStyle} w-1/2`}
+        >
+          Opprett
+        </button>
       </div>
 
       <Header teamId={teamId} />
+      {showCreateTeam && <CreateTeam setShowCreateTeam={setShowCreateTeam} />}
       <div
         className={"border-primary border-4 flex flex-col gap-8 p-4 rounded-lg"}
       >
