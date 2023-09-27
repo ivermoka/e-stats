@@ -26,7 +26,7 @@ const Lag = () => {
 
     useEffect(() => {
         getAllMembers().then();
-    }, [user, team]);
+    }, []);
 
     const getAllMembers = async () => {
         try {
