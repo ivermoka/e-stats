@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import SearchBar from "@/components/team/searchBar";
 import Header from "@/components/team/header";
 import Members from "@/components/team/members";
 
@@ -27,7 +26,7 @@ const Lag = () => {
 
   useEffect(() => {
     getAllMembers().then();
-  }, [user, team]);
+  }, []);
 
   const getAllMembers = async () => {
     try {
@@ -48,16 +47,33 @@ const Lag = () => {
     }
   };
 
+  const boxStyle = "bg-primary rounded-lg shadow-lg shadow-accent p-4";
+
   return (
     <div className={"min-h-screen flex flex-col gap-8 px-8 mb-32"}>
-      <SearchBar />
+      <div className={"mt-24 h-16 flex gap-4 text-2xl text-text font-semibold"}>
+        <button className={`${boxStyle} w-1/2`}>Finn</button>
+        <button className={`${boxStyle} w-1/2`}>Opprett</button>
+      </div>
+
       <Header teamId={teamId} />
-      {team &&
-        team.map((member, index) => (
-          <div key={index}>
-            <Members text={member.username} />
-          </div>
-        ))}
+      <div
+        className={"border-primary border-4 flex flex-col gap-8 p-4 rounded-lg"}
+      >
+        <h2
+          className={
+            "bg-bg text-text absolute -mt-9 text-2xl px-2 font-semibold"
+          }
+        >
+          Lagmedlemmer
+        </h2>
+        {team &&
+          team.map((member, index) => (
+            <div key={index}>
+              <Members text={member.username} />
+            </div>
+          ))}
+      </div>
     </div>
   );
 };

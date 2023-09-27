@@ -1,6 +1,10 @@
 import React from "react";
 
 const ForgotPassword = ({ setShow }) => {
+  const finnBruker = (e) => {
+    e.preventDefault();
+    console.log("finn bruker");
+  };
   return (
     <div
       className={
@@ -8,10 +12,7 @@ const ForgotPassword = ({ setShow }) => {
       }
     >
       <h1 className="text-4xl">Glemt Passord</h1>
-      <form
-        onSubmit={() => "kjør fetch av bruker"}
-        className={"flex flex-col gap-2"}
-      >
+      <form onSubmit={(e) => finnBruker(e)} className={"flex flex-col gap-2"}>
         <label className={"w-1/2 text-2xl"}>Brukernavn</label>
         <input className={"w-1/2 h-8 rounded-lg p-2 text-bg"} type={"text"} />
         <button

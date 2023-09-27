@@ -1,12 +1,10 @@
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import Members from "@/components/team/members";
 
 const Header = ({ teamId }) => {
   const boxStyle = "bg-primary p-2 rounded-lg shadow-md shadow-accent";
   return (
-    <div className={"flex gap-4 items-end w-full h-32 text-text"}>
-      <div className={`${boxStyle} h-full aspect-square p-2`}>
+    <div className={"flex flex-col gap-4 items-center w-full text-text"}>
+      <div className={`${boxStyle} h-40 aspect-square p-2`}>
         <Image
           src={"/logo.png"}
           alt={"team logo"}
@@ -15,7 +13,7 @@ const Header = ({ teamId }) => {
           priority
         />
       </div>
-      <h2 className={"text-5xl font-bold"}>wikjsfkj</h2>
+      <h2 className={"text-5xl font-bold"}>{teamId}</h2>
     </div>
   );
 };

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 const EndreProfil = ({ setModalOpen, id, setId }) => {
   const [error, setError] = useState(null);
   const [user, setUser] = useState(null);
-  const [newUsername, setNewUsername] = useState(id);
+  const [newUsername, setNewUsername] = useState("");
   const [password, setPassword] = useState("");
   const [team, setTeam] = useState("");
   const [school, setSchool] = useState("");
@@ -13,6 +13,7 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
       setUser(localStorage.getItem("username"));
+      setNewUsername(id);
     }
   }, []);
 
@@ -72,7 +73,7 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
             <span>Skole:</span>{" "}
             <select
               name="skole"
-              defaultValue={school}
+              defaultValue={"xpp"}
               onChange={(e) => {
                 setSchool(e.target.value);
               }}

@@ -14,13 +14,6 @@ const ProfilKort = ({ id }) => {
     getUser();
   }, [user]);
 
-  useEffect(() => {
-    if (data) {
-      setDataExists(true);
-    } else {
-      setDataExists(false);
-    }
-  }, [data]);
   const getUser = async () => {
     try {
       const res = await fetch("/api/getUser", {
@@ -40,6 +33,19 @@ const ProfilKort = ({ id }) => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (data) {
+      if (data.school === "") {
+        data.school = "Ikke valgt";
+      }
+      if (data.team === "") {
+        data.team = "Ikke valgt";
+      }
+      setDataExists(true);
+    }
+  }, [data]);
+
   const boxStyle = "bg-primary p-4 rounded-lg shadow-md shadow-accent";
   return (
     <motion.div
