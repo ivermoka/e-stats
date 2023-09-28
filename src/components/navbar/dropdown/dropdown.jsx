@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FiX } from "react-icons/fi";
 import { motion } from "framer-motion";
 import UserInfo from "./userInfo";
 import Links from "./dropdownLink";
 import Line from "./sepLine";
 import Link from "next/link";
+import ThemeToggle from "@/components/navbar/dropdown/themeToggle";
 
 import { BiUser } from "react-icons/bi";
 import { AiOutlineTeam } from "react-icons/ai";
@@ -33,7 +34,7 @@ const Dropdown = ({
     >
       <div
         className={
-          "h-20 w-screen px-2 border-primary border-b-2 flex items-center"
+          "h-20 w-screen px-2 border-primary border-b-2 flex justify-between items-center"
         }
       >
         <div
@@ -46,6 +47,7 @@ const Dropdown = ({
         >
           <FiX className={"text-primary text-5xl"} />
         </div>
+        <ThemeToggle />
       </div>
       <UserInfo />
       <div className={"flex flex-col w-full px-4 gap-3 mt-2"}>

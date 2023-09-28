@@ -4,11 +4,10 @@ import React, { useState, useEffect } from "react";
 import ReactLoading from "react-loading";
 import { BsCalendar } from "react-icons/bs";
 import Link from "next/link";
-import moment from "moment-timezone";
 
 const PersonalStats = () => {
-  const norwegianTimezone = "Europe/Oslo";
   const [value, setValue] = useState(new Date().toLocaleDateString("en-US"));
+  const [date, setDate] = useState(new Date().toLocaleDateString("no-NO"));
   const [user, setUser] = useState(null);
   const [dataFetched, setDataFetched] = useState(false);
   const [dataSchema, setDataSchema] = useState(null);
@@ -25,7 +24,6 @@ const PersonalStats = () => {
   useEffect(() => {
     if (user) {
       fetchSessionData().then();
-      console.log(value);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, value]);
@@ -90,7 +88,7 @@ const PersonalStats = () => {
       <div className="text-text text-xl font-bold italic mt-12">
         <h1>Personlig statistikk for </h1>
         <span className="text-orange-200">
-          {user} - {value}
+          {user} - {date}
         </span>
       </div>
       <button
@@ -107,6 +105,7 @@ const PersonalStats = () => {
           className={`bg-primary rounded-lg shadow-md shadow-accent text-text p-2 font-semibold`}
           tileClassName={"p-2 border-text border-2 rounded-lg"}
           onClickDay={(day) => {
+            setDate(day.toLocaleDateString("no-NO"));
             setValue(day.toLocaleDateString("en-US"));
             setShowCalendar(false);
           }}

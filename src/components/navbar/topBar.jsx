@@ -15,7 +15,7 @@ const Top = () => {
     }
   }, []);
 
-  const [dropdown, setDropdown] = useState(false);
+  const [dropdown, setDropdown] = useState(true);
   const [showTerms, setShowTerms] = useState(false);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
 

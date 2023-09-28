@@ -22,6 +22,8 @@ export default async function handler(req, res) {
       );
       res.status(201).json({ token: token, username: username });
     } catch (error) {
+      console.log(error);
+
       res.status(500).json({
         error: "Det finnes allerede en bruker med dette brukernavnet",
       });
