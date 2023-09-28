@@ -40,7 +40,6 @@ const Lag = () => {
             });
             if (res.status === 200) {
                 const data = await res.json();
-                console.log(data)
                 setAllMembers(data.users);
                 setTeam(data.userTeam)
             } else if (res.status === 500) {
