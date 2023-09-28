@@ -38,7 +38,7 @@ const Lag = () => {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       if (res.status === 200) {
         const data = await res.json();
@@ -87,34 +87,12 @@ const Lag = () => {
         >
           Lagmedlemmer
         </h2>
-        {team &&
-          team.map((member, index) => (
+        {allMembers &&
+          allMembers.map((member, index) => (
             <div key={index}>
               <Members text={member.username} />
             </div>
           ))}
-
-        <Header team={team} />
-        {showCreateTeam && <CreateTeam setShowCreateTeam={setShowCreateTeam} />}
-        <div
-          className={
-            "border-primary border-4 flex flex-col gap-8 p-4 rounded-lg"
-          }
-        >
-          <h2
-            className={
-              "bg-bg text-text absolute -mt-9 text-2xl px-2 font-semibold"
-            }
-          >
-            Lagmedlemmer
-          </h2>
-          {allMembers &&
-            allMembers.map((member, index) => (
-              <div key={index}>
-                <Members text={member.username} />
-              </div>
-            ))}
-        </div>
       </div>
     </div>
   );
