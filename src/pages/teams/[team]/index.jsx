@@ -5,13 +5,19 @@ import Members from "@/components/team/members";
 import CreateTeam from "@/components/team/createTeam";
 
 const Lag = () => {
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    setUser(localStorage.getItem("username"));
-  }, []);
-
+  const [team, setTeam] = useState(null);
   const url = usePathname();
   const [teamId, setTeamId] = useState(null);
+  const [allMembers, setAllMembers] = useState(null);
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      if (localStorage.getItem("username") !== null) {
+        getAllMembers().then();
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined" && url !== null) {
@@ -23,23 +29,21 @@ const Lag = () => {
     }
   }, [url]);
 
-  const [team, setTeam] = useState(null);
-
-  useEffect(() => {
-    getAllMembers().then();
-  }, []);
-
   const getAllMembers = async () => {
     try {
-      const res = await fetch(`/api/getTeamMembers?user=${user}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(
+        `/api/getTeamMembers?user=${localStorage.getItem("username")}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       if (res.status === 200) {
         const data = await res.json();
-        setTeam(data.users);
+        setAllMembers(data.users);
+        setTeam(data.userTeam);
       } else if (res.status === 500) {
         console.log("Error fetching data");
       }
@@ -89,6 +93,28 @@ const Lag = () => {
               <Members text={member.username} />
             </div>
           ))}
+
+        <Header team={team} />
+        {showCreateTeam && <CreateTeam setShowCreateTeam={setShowCreateTeam} />}
+        <div
+          className={
+            "border-primary border-4 flex flex-col gap-8 p-4 rounded-lg"
+          }
+        >
+          <h2
+            className={
+              "bg-bg text-text absolute -mt-9 text-2xl px-2 font-semibold"
+            }
+          >
+            Lagmedlemmer
+          </h2>
+          {allMembers &&
+            allMembers.map((member, index) => (
+              <div key={index}>
+                <Members text={member.username} />
+              </div>
+            ))}
+        </div>
       </div>
     </div>
   );
