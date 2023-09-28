@@ -29,12 +29,12 @@ const Dropdown = ({
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.15 }}
       className={
-        "h-screen w-screen fixed top-0 left-0 bg-bg/70 backdrop-blur-md z-50"
+        "h-screen w-screen fixed top-0 left-0 dark:bg-bg/70 bg-bgLight/70 backdrop-blur-md z-50"
       }
     >
       <div
         className={
-          "h-20 w-screen px-2 border-primary border-b-2 flex justify-between items-center"
+          "h-20 w-screen px-2 dark:border-primary border-primaryLight border-b-2 flex justify-between items-center"
         }
       >
         <div
@@ -42,10 +42,10 @@ const Dropdown = ({
             setDropdown(!dropdown);
           }}
           className={
-            "w-14 rounded-full border-primary border-4 grid place-items-center"
+            "w-14 rounded-full dark:border-primary border-primaryLight border-4 grid place-items-center"
           }
         >
-          <FiX className={"text-primary text-5xl"} />
+          <FiX className={"dark:text-primary text-primaryLight text-5xl"} />
         </div>
         <ThemeToggle />
       </div>

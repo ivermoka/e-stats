@@ -41,7 +41,7 @@ const Egenvurdering = ({ date, user, setShowAfter }) => {
   };
 
   const boxStyle =
-    "bg-primary rounded-lg p-2 shadow-md shadow-accent font-semibold text-center text-2xl";
+    "dark:bg-primary bg-primaryLight rounded-lg p-2 shadow-md dark:shadow-accent shadow-accentLight font-semibold text-center text-2xl";
 
   return (
     <>
@@ -49,12 +49,12 @@ const Egenvurdering = ({ date, user, setShowAfter }) => {
         <div className="flex justify-between">
           <Day />
           <Link href={"/"}>
-            <div className="rounded-lg text-text font-bold p-2 my-4 w-10 text-center italic bg-primary shadow-md shadow-accent">
+            <div className="rounded-lg dark:text-text text-textLight font-bold p-2 my-4 w-10 text-center italic dark:bg-primary bg-primaryLight shadow-md dark:shadow-accent shadow-accentLight">
               <AiOutlineRollback className="w-full h-full" />
             </div>
           </Link>
         </div>
-        <div className="flex flex-col gap-2 bg-primary rounded-lg">
+        <div className="flex flex-col gap-2 dark:bg-primary bg-primaryLight rounded-lg">
           <DisclosureMenu
             setDisclosure={setDisclosure1}
             header="Hvor fornuftig har jeg spist i dag?"
@@ -78,7 +78,7 @@ const Egenvurdering = ({ date, user, setShowAfter }) => {
         </div>
         <button
           type="submit"
-          className="rounded-lg bg-primary p-3 shadow-md shadow-accent text-text font-bold italic my-4"
+          className="rounded-lg dark:bg-primary bg-primaryLight p-3 shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight font-bold italic my-4"
         >
           LAGRE
         </button>

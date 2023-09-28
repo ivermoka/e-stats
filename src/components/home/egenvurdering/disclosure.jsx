@@ -6,7 +6,7 @@ import Arrow from "../../../../assets/icons/arrowSVG";
 const DisclosureMenu = ({ header, setDisclosure }) => {
   const [selected, setSelected] = useState(0);
   return (
-    <div className="py-2 w-full rounded-md text-text">
+    <div className="py-2 w-full rounded-md dark:text-text text-textLight">
       <Disclosure>
         {({ open }) => (
           <>
@@ -25,7 +25,11 @@ const DisclosureMenu = ({ header, setDisclosure }) => {
                     setDisclosure(1);
                   }}
                   number="1"
-                  className={`${selected === 1 ? "bg-text text-primary" : ""}`}
+                  className={`${
+                    selected === 1
+                      ? "dark:bg-text bg-textLight dark:text-primary text-primaryLight"
+                      : ""
+                  }`}
                 />
                 <Box
                   onClick={() => {
@@ -33,7 +37,11 @@ const DisclosureMenu = ({ header, setDisclosure }) => {
                     setDisclosure(2);
                   }}
                   number="2"
-                  className={`${selected === 2 ? "bg-text text-primary" : ""}`}
+                  className={`${
+                    selected === 2
+                      ? "dark:bg-text bg-textLight dark:text-primary text-primaryLight"
+                      : ""
+                  }`}
                 />
                 <Box
                   onClick={() => {
@@ -41,7 +49,11 @@ const DisclosureMenu = ({ header, setDisclosure }) => {
                     setDisclosure(3);
                   }}
                   number="3"
-                  className={`${selected === 3 ? "bg-text text-primary" : ""}`}
+                  className={`${
+                    selected === 3
+                      ? "dark:bg-text bg-textLight dark:text-primary text-primaryLight"
+                      : ""
+                  }`}
                 />
                 <Box
                   onClick={() => {
@@ -49,7 +61,11 @@ const DisclosureMenu = ({ header, setDisclosure }) => {
                     setDisclosure(4);
                   }}
                   number="4"
-                  className={`${selected === 4 ? "bg-text text-primary" : ""}`}
+                  className={`${
+                    selected === 4
+                      ? "dark:bg-text bg-textLight dark:text-primary text-primaryLight"
+                      : ""
+                  }`}
                 />
                 <Box
                   onClick={() => {
@@ -57,7 +73,11 @@ const DisclosureMenu = ({ header, setDisclosure }) => {
                     setDisclosure(5);
                   }}
                   number="5"
-                  className={`${selected === 5 ? "bg-text text-primary" : ""}`}
+                  className={`${
+                    selected === 5
+                      ? "dark:bg-text bg-textLight dark:text-primary text-primaryLight"
+                      : ""
+                  }`}
                 />
                 <Box
                   onClick={() => {
@@ -65,7 +85,11 @@ const DisclosureMenu = ({ header, setDisclosure }) => {
                     setDisclosure(6);
                   }}
                   number="6"
-                  className={`${selected === 6 ? "bg-text text-primary" : ""}`}
+                  className={`${
+                    selected === 6
+                      ? "dark:bg-text bg-textLight dark:text-primary text-primaryLight"
+                      : ""
+                  }`}
                 />
                 <Box
                   onClick={() => {
@@ -73,7 +97,11 @@ const DisclosureMenu = ({ header, setDisclosure }) => {
                     setDisclosure(7);
                   }}
                   number="7"
-                  className={`${selected === 7 ? "bg-text text-primary" : ""}`}
+                  className={`${
+                    selected === 7
+                      ? "dark:bg-text bg-textLight dark:text-primary text-primaryLight"
+                      : ""
+                  }`}
                 />
                 <Box
                   onClick={() => {
@@ -81,7 +109,11 @@ const DisclosureMenu = ({ header, setDisclosure }) => {
                     setDisclosure(8);
                   }}
                   number="8"
-                  className={`${selected === 8 ? "bg-text text-primary" : ""}`}
+                  className={`${
+                    selected === 8
+                      ? "dark:bg-text bg-textLight dark:text-primary text-primaryLight"
+                      : ""
+                  }`}
                 />
                 <Box
                   onClick={() => {
@@ -89,7 +121,11 @@ const DisclosureMenu = ({ header, setDisclosure }) => {
                     setDisclosure(9);
                   }}
                   number="9"
-                  className={`${selected === 9 ? "bg-text text-primary" : ""}`}
+                  className={`${
+                    selected === 9
+                      ? "dark:bg-text bg-textLight dark:text-primary text-primaryLight"
+                      : ""
+                  }`}
                 />
                 <Box
                   onClick={() => {
@@ -97,7 +133,11 @@ const DisclosureMenu = ({ header, setDisclosure }) => {
                     setDisclosure(10);
                   }}
                   number="10"
-                  className={`${selected === 10 ? "bg-text text-primary" : ""}`}
+                  className={`${
+                    selected === 10
+                      ? "dark:bg-text bg-textLight dark:text-primary text-primaryLight"
+                      : ""
+                  }`}
                 />
               </Disclosure.Panel>
             </div>

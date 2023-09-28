@@ -5,7 +5,7 @@ const Layout = ({ children }) => {
   return (
     <div className={"flex flex-col items-center"}>
       <TopBar />
-      <main className="bg-bg w-screen">{children}</main>
+      <main className="dark:bg-bg bg-bgLight w-screen">{children}</main>
       <Nav />
     </div>
   );

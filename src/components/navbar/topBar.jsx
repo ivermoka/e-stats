@@ -15,7 +15,7 @@ const Top = () => {
     }
   }, []);
 
-  const [dropdown, setDropdown] = useState(true);
+  const [dropdown, setDropdown] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
 
@@ -31,7 +31,7 @@ const Top = () => {
     <>
       <div
         className={
-          "h-20 top-0 w-screen fixed border-primary border-b-2 flex justify-between items-center px-2 bg-bg z-20"
+          "h-20 top-0 w-screen fixed dark:border-primary border-primaryLight border-b-2 flex justify-between items-center px-2 dark:bg-bg bg-bgLight z-20"
         }
       >
         <div className={"w-20"}></div>
@@ -50,7 +50,7 @@ const Top = () => {
               setDropdown(!dropdown);
             }}
             className={
-              "w-14 rounded-full border-primary border-4 grid place-items-center"
+              "w-14 rounded-full dark:border-primary border-primaryLight border-4 grid place-items-center"
             }
           >
             <Image
@@ -62,7 +62,7 @@ const Top = () => {
             />
           </div>
         ) : (
-          <div className="h-16 w-20 p-2 flex flex-col gap-2 justify-center items-center text-text font-thin text-md">
+          <div className="h-16 w-20 p-2 flex flex-col gap-2 justify-center items-center dark:text-text text-textLight font-thin text-md">
             <Link href="/register">Registrer </Link>
             <Link href="/login">Logg Inn</Link>
           </div>

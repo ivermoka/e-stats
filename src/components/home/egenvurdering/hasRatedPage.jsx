@@ -3,9 +3,9 @@ import React from "react";
 
 const HasRatedPage = ({ user }) => {
   const boxStyle =
-    "bg-primary rounded-lg p-2 shadow-md shadow-accent font-semibold text-center text-2xl";
+    "dark:bg-primary bg-primaryLight rounded-lg p-2 shadow-md dark:shadow-accent shadow-accentLight font-semibold text-center text-2xl";
   return (
-    <div className="text-text h-screen mt-20 flex flex-col items-center gap-8">
+    <div className="dark:text-text text-textLight h-screen mt-20 flex flex-col items-center gap-8">
       <div className={`${boxStyle} bg-transparent shadow-transparent`}>
         Det eksisterer allerede en egenvurdering for denne dagen
       </div>

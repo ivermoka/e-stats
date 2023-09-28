@@ -46,7 +46,8 @@ const ProfilKort = ({ id }) => {
     }
   }, [data]);
 
-  const boxStyle = "bg-primary p-4 rounded-lg shadow-md shadow-accent";
+  const boxStyle =
+    "dark:bg-primary bg-primaryLight p-4 rounded-lg shadow-md dark:shadow-accent shadow-accentLight";
   return (
     <motion.div
       initial={{ x: 200, opacity: 0 }}
@@ -59,7 +60,9 @@ const ProfilKort = ({ id }) => {
       }}
     >
       <div className="box-border p-4 text-3xl font-bold flex gap-2">
-        <div className={`bg-primary rounded-full shadow-md shadow-accent w-24`}>
+        <div
+          className={`dark:bg-primary bg-primaryLight rounded-full shadow-md dark:shadow-accent shadow-accentLight w-24`}
+        >
           <Image
             src={profilePicture}
             alt="profile picture"

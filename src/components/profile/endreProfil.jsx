@@ -47,13 +47,14 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
     }
   };
 
-  const boxStyle = "bg-primary p-4 rounded-lg shadow-md shadow-accent";
+  const boxStyle =
+    "dark:bg-primary bg-primaryLight p-4 rounded-lg shadow-md dark:shadow-accent shadow-accentLight";
 
   const inputStyle =
-    "border-2 border-primary rounded-lg p-1 box-border text-black";
+    "border-2 dark:border-primary border-primaryLight rounded-lg p-1 box-border text-black";
 
   return (
-    <div className="fixed top-0 left-0 h-screen w-screen p-8 flex flex-col gap-2 text-text bg-bg z-50">
+    <div className="fixed top-0 left-0 h-screen w-screen p-8 flex flex-col gap-2 dark:text-text text-textLight dark:bg-bg bg-bgLight z-50">
       <div className={`font-bold text-xl italic ${boxStyle}`}>
         Endre Personlig Informasjon
       </div>

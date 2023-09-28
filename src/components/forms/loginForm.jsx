@@ -42,14 +42,14 @@ const LoginPage = () => {
   const [showForgotPassword, setShowForgotPassword] = useState(false);
 
   const inputStyle =
-    "border-b-4 border-secondary bg-transparent p-2 text-text outline-none focus:border-b-2 duration-300 w-60";
+    "border-b-4 dark:border-secondary border-secondaryLight bg-transparent p-2 dark:text-text text-textLight outline-none focus:border-b-2 duration-300 w-60";
   return (
-    <div className="bg-bg w-screen h-screen flex">
+    <div className="dark:bg-bg bg-bgLight w-screen h-screen flex">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-col justify-center items-center p-4 gap-6"
       >
-        <h1 className="text-text text-5xl m-4">Logg Inn</h1>
+        <h1 className="dark:text-text text-textLight text-5xl m-4">Logg Inn</h1>
         <input
           {...register("username", { required: "*Skriv brukernavn" })}
           placeholder="username"
@@ -74,7 +74,7 @@ const LoginPage = () => {
           <span>{errors.password?.message}</span>
           <span>{wrong && "*Feil brukernavn eller passord"}</span>
         </div>
-        <div className="text-text">
+        <div className="dark:text-text text-textLight">
           Glemt passord?{" "}
           <button
             onClick={() => setShowForgotPassword(true)}
@@ -83,7 +83,7 @@ const LoginPage = () => {
             Bytt passord
           </button>
         </div>{" "}
-        <div className="text-text">
+        <div className="dark:text-text text-textLight">
           Har ikke bruker?{" "}
           <Link href="/register">
             <span className="text-blue-500 cursor-pointer">Opprett bruker</span>

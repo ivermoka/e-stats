@@ -19,7 +19,7 @@ export default function Index() {
               initial={{ x: -200, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.5, ease: "easeInOut", type: "spring" }}
-              className="text-text font-bold text-7xl text-center"
+              className="dark:text-text text-textLight font-bold text-7xl text-center"
             >
               e-sport dagboka
             </motion.h1>
@@ -35,7 +35,7 @@ export default function Index() {
                     type: "spring",
                     delay: 0.3,
                   }}
-                  className="text-text font-semibold text-2xl bg-primary rounded-lg p-4 shadow-md shadow-accent w-full"
+                  className="dark:text-text text-textLight font-semibold text-2xl dark:bg-primary bg-primaryLight rounded-lg p-4 shadow-md dark:shadow-accent shadow-accentLight w-full"
                 >
                   EGENVURDERING
                 </motion.button>
@@ -53,7 +53,7 @@ export default function Index() {
                       type: "spring",
                       delay: 0.3,
                     }}
-                    className="bg-primary rounded-lg p-4 shadow-md shadow-accent w-36"
+                    className="dark:bg-primary bg-primaryLight rounded-lg p-4 shadow-md dark:shadow-accent shadow-accentLight w-36"
                   >
                     Logg Inn
                   </motion.button>
@@ -68,7 +68,7 @@ export default function Index() {
                       type: "spring",
                       delay: 0.5,
                     }}
-                    className="bg-primary rounded-lg p-4 shadow-md shadow-accent w-36"
+                    className="dark:bg-primary bg-primaryLight rounded-lg p-4 shadow-md dark:shadow-accent shadow-accentLight w-36"
                   >
                     Registrer
                   </motion.button>

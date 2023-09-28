@@ -34,14 +34,14 @@ const Register = ({ setRegistered }) => {
   };
 
   const inputStyle =
-    "border-b-4 border-secondary bg-transparent p-2 text-text outline-none focus:border-b-2 duration-300 w-60";
+    "border-b-4 dark:border-secondary border-secondaryLight bg-transparent p-2 dark:text-text text-textLight outline-none focus:border-b-2 duration-300 w-60";
   return (
-    <div className="bg-bg w-screen h-screen flex justify-center items-center">
+    <div className="dark:bg-bg bg-bgLight w-screen h-screen flex justify-center items-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="rounded-lg flex flex-col justify-center items-center gap-4"
       >
-        <h1 className="text-text text-5xl m-4">Register</h1>
+        <h1 className="dark:text-text text-textLight text-5xl m-4">Register</h1>
         <input
           {...register("mail", { required: "*Skriv mail" })}
           placeholder="mail"
@@ -72,7 +72,7 @@ const Register = ({ setRegistered }) => {
           type="password"
           className={inputStyle}
         />
-        <button className={`${inputStyle} font-semibold`} text="Opprett bruker">
+        <button className={`${inputStyle} font-semibold`}>
           Opprett bruker
         </button>
         <div className="flex flex-col text-center italic text-red-900">
@@ -81,7 +81,7 @@ const Register = ({ setRegistered }) => {
           <span>{errors.password?.message}</span>
           <span>{userExists ? "*Dette brukernavnet er tatt :(" : null}</span>
         </div>
-        <span className="text-text">
+        <span className="dark:text-text text-textLight">
           Har allerede en bruker?{" "}
           <Link href="/login">
             <span className="text-blue-500 cursor-pointer">Logg Inn</span>

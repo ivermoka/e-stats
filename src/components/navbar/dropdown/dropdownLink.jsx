@@ -2,7 +2,7 @@ const DropdownLink = ({ icon, text, onClick }) => {
   return (
     <div
       className={
-        "h-10 bg-primary shadow-md shadow-accent rounded-lg flex gap-2 items-center text-text font-semibold text-xl px-2"
+        "h-10 dark:bg-primary bg-primaryLight shadow-md dark:shadow-accent shadow-accentLight rounded-lg flex gap-2 items-center dark:text-text text-textLight font-semibold text-xl px-2"
       }
       onClick={onClick}
     >

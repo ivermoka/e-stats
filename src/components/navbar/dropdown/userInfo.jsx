@@ -18,7 +18,11 @@ const UserInfo = () => {
       >
         <Image src={"/logo.png"} alt={"profile pic"} width={50} height={50} />
       </div>
-      <h2 className={"text-text font-semibold text-xl px-2"}>{user}</h2>
+      <h2
+        className={"dark:text-text text-textLight font-semibold text-xl px-2"}
+      >
+        {user}
+      </h2>
     </div>
   );
 };

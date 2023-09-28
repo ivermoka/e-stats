@@ -8,7 +8,7 @@ const ForgotPassword = ({ setShow }) => {
   return (
     <div
       className={
-        "z-50 fixed bg-bg/70 backdrop-blur-md h-screen w-screen flex flex-col justify-center gap-8 p-8 text-text"
+        "z-50 fixed dark:bg-bg/70 bg-bgLight/70 backdrop-blur-md h-screen w-screen flex flex-col justify-center gap-8 p-8 dark:text-text text-textLight"
       }
     >
       <h1 className="text-4xl">Glemt Passord</h1>
@@ -18,7 +18,7 @@ const ForgotPassword = ({ setShow }) => {
         <button
           type={"submit"}
           className={
-            "text-2xl font-semibold rounded-lg shadow-md shadow-accent bg-primary py-2 w-1/2"
+            "text-2xl font-semibold rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:bg-primary bg-primaryLight py-2 w-1/2"
           }
         >
           Finn Bruker
@@ -28,7 +28,7 @@ const ForgotPassword = ({ setShow }) => {
       <button
         onClick={() => setShow(false)}
         className={
-          "text-2xl font-semibold rounded-lg shadow-md shadow-accent bg-primary py-2 w-1/2"
+          "text-2xl font-semibold rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:bg-primary bg-primaryLight py-2 w-1/2"
         }
       >
         Lukk

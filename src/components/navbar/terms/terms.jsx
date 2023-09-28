@@ -4,10 +4,10 @@ const Terms = ({ setShowTerms }) => {
   return (
     <div
       className={
-        "fixed top-0 left-0 h-screen w-screen overflow-y-scroll bg-bg/70 backdrop-blur-md p-8 flex flex-col text-center gap-6"
+        "fixed top-0 left-0 h-screen w-screen overflow-y-scroll dark:bg-bg/70 bg-bgLight/70 backdrop-blur-md p-8 flex flex-col text-center gap-6"
       }
     >
-      <h1 className={"text-text font-bold text-4xl"}>
+      <h1 className={"dark:text-text text-textLight font-bold text-4xl"}>
         Vilkår for bruk av Treningsdagboka
       </h1>
       <Disclosure
@@ -59,7 +59,7 @@ const Terms = ({ setShowTerms }) => {
       <button
         onClick={() => setShowTerms(false)}
         className={
-          "text-2xl text-text font-semibold rounded-lg shadow-md shadow-accent bg-primary px-4 py-2"
+          "text-2xl dark:text-text text-textLight font-semibold rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:bg-primary bg-primaryLight px-4 py-2"
         }
       >
         Lukk

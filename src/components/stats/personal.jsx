@@ -85,9 +85,9 @@ const PersonalStats = () => {
 
   return (
     <div>
-      <div className="text-text text-xl font-bold italic mt-12">
+      <div className="dark:text-text text-textLight text-xl font-bold italic mt-12">
         <h1>Personlig statistikk for </h1>
-        <span className="text-orange-200">
+        <span className="dark:text-orange-200 text-orange-700">
           {user} - {date}
         </span>
       </div>
@@ -95,15 +95,17 @@ const PersonalStats = () => {
         onClick={() => {
           setShowCalendar(!showCalendar);
         }}
-        className="text-text font-bold py-2 px-4 rounded-lg bg-primary shadow-md shadow-accent my-4"
+        className="dark:text-text text-textLight font-bold py-2 px-4 rounded-lg dark:bg-primary bg-primaryLight shadow-md dark:shadow-accent shadow-accentLight my-4"
       >
         VELG DATO
         <BsCalendar className="inline ml-2 mb-[2px]" />
       </button>
       {showCalendar && (
         <Calendar
-          className={`bg-primary rounded-lg shadow-md shadow-accent text-text p-2 font-semibold`}
-          tileClassName={"p-2 border-text border-2 rounded-lg"}
+          className={`dark:bg-primary bg-primaryLight rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 font-semibold`}
+          tileClassName={
+            "p-2 dark:border-text border-textLight border-2 rounded-lg"
+          }
           onClickDay={(day) => {
             setDate(day.toLocaleDateString("no-NO"));
             setValue(day.toLocaleDateString("en-US"));
@@ -150,24 +152,23 @@ const PersonalStats = () => {
               options={options}
             />
           </div>
-          <div className="bg-primary rounded-lg shadow-md shadow-accent text-text p-2 mt-4">
+          <div className="dark:bg-primary bg-primaryLight rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 mt-4">
             <h2 className="text-xl font-bold italic m-2">
               Kommentar for dagen
             </h2>
-            <div className="text-text bg-bg/50 rounded-lg p-2">
+            <div className="dark:bg-bg/50 bg-bgLight/50 rounded-lg p-2">
               {dataSchema.comment}
             </div>
           </div>
         </div>
       ) : hasRated && !dataFetched ? (
         <div className="flex flex-col items-center text-text text-lg">
-          <p>Laster personlig data</p>
           <ReactLoading type={"bars"} color={"#1C1B29"} width={200} />
         </div>
       ) : (
-        <div className="bg-primary rounded-lg shadow-md shadow-accent text-text p-2 mt-4">
+        <div className="dark:bg-primary bg-primaryLight rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 mt-4">
           <h2 className="text-xl font-bold italic m-2">Ingen data</h2>
-          <div className="text-text bg-bg/50 rounded-lg p-2 text-center text-xl">
+          <div className="dark:bg-bg/50 bg-bgLight/50 rounded-lg p-2 text-center text-xl">
             Det er ikke registrert noe data for den valgte dagen. Vennligst gå
             til{" "}
             <Link className={"text-blue-500"} href={"/egenvurdering"}>

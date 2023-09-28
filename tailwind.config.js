@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -21,6 +22,12 @@ module.exports = {
         primary: "#1C1B29",
         secondary: "#292841",
         accent: "#21262C",
+
+        textLight: "#030104",
+        bgLight: "#f6f8fd",
+        primaryLight: "#d8d7e5",
+        secondaryLight: "#bdbdd6",
+        accentLight: "#d3d8de",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

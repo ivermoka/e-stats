@@ -1,9 +1,14 @@
 import Image from "next/image";
 
 const Header = ({ teamId }) => {
-  const boxStyle = "bg-primary p-2 rounded-lg shadow-md shadow-accent";
+  const boxStyle =
+    "dark:bg-primary bg-primaryLight p-2 rounded-lg shadow-md dark:shadow-accent shadow-accentLight";
   return (
-    <div className={"flex flex-col gap-4 w-full text-text items-center"}>
+    <div
+      className={
+        "flex flex-col gap-4 w-full dark:text-text text-textLight items-center"
+      }
+    >
       <div
         className={`${boxStyle} h-full w-1/2 aspect-square p-2 grid place-items-center`}
       >

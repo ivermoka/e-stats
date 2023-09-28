@@ -3,6 +3,7 @@ import { usePathname } from "next/navigation";
 import Card from "../../../components/profile/profilKort";
 import Edit from "../../../components/profile/endreProfil";
 import { motion } from "framer-motion";
+import { GetUser } from "@/actions/getUser";
 
 const Profil = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -10,13 +11,7 @@ const Profil = () => {
   const url = usePathname();
 
   const [owned, setOwned] = useState(false);
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      setUser(localStorage.getItem("username"));
-    }
-  }, []);
+  const user = GetUser();
 
   useEffect(() => {
     if (typeof window !== "undefined" && url !== null) {
@@ -36,10 +31,11 @@ const Profil = () => {
     }
   }, [id, user]);
 
-  const boxStyle = "bg-primary p-4 rounded-lg shadow-md shadow-accent";
+  const boxStyle =
+    "dark:bg-primary bg-primaryLight p-4 rounded-lg shadow-md dark:shadow-accent shadow-accentLight";
 
   return (
-    <div className="h-screen w-screen p-8 flex flex-col gap-4 text-text overflow-x-hidden">
+    <div className="h-screen w-screen p-8 flex flex-col gap-4 dark:text-text text-textLight overflow-x-hidden">
       <motion.div
         initial={{ x: 200, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
