@@ -16,13 +16,10 @@ export default async function handler(req, res) {
 
       if (userSchema === null) {
         res.status(201).send("No egenvurdering found");
-        console.log("No egenvurdering found");
       } else {
         if (!userSchema.hasRatedPart2) {
-          console.log("User has not rated part 2");
           res.status(203).json({ userSchema });
         } else if (userSchema.hasRatedPart2) {
-          console.log("User has rated part 2");
           res.status(204).json({ userSchema });
         }
       }

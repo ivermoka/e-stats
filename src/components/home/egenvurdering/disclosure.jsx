@@ -11,7 +11,7 @@ const DisclosureMenu = ({ header, setDisclosure }) => {
         {({ open }) => (
           <>
             <div className="flex flex-col justify-center items-center p-2">
-              <Disclosure.Button className="p-2 text-lg font-semibold flex justify-center items-center gap-2 w-full rounded-lg bg-bg/40">
+              <Disclosure.Button className="p-2 text-lg font-semibold flex justify-center items-center gap-2 w-full rounded-lg dark:bg-bg/40 bg-secondaryLight">
                 <span>{header}</span>
                 <Arrow
                   className={`${open ? "rotate-180 transform" : ""}

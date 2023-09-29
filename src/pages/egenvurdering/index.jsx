@@ -42,6 +42,7 @@ const EgenvurderingContainer = () => {
         setHasRated1(false);
       } else if (res.status === 203) {
         setHasRated2(false);
+        setShowAfter(true);
       } else if (res.status === 204) {
         setHasRated2(true);
       }

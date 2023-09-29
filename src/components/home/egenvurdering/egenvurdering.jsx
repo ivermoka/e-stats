@@ -3,7 +3,6 @@ import DisclosureMenu from "./disclosure";
 import React, { useState, useEffect } from "react";
 import { AiOutlineRollback } from "react-icons/ai";
 import Link from "next/link";
-import ReactLoading from "react-loading";
 
 const Egenvurdering = ({ date, user, setShowAfter }) => {
   const [disclosure1, setDisclosure1] = useState(0);
@@ -32,8 +31,6 @@ const Egenvurdering = ({ date, user, setShowAfter }) => {
       });
       if (res.status === 201) {
         setShowAfter(true);
-      } else {
-        const data = await res.json();
       }
     } catch (error) {
       console.log(error);

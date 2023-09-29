@@ -4,22 +4,17 @@ import React, { useState, useEffect } from "react";
 import ReactLoading from "react-loading";
 import { BsCalendar } from "react-icons/bs";
 import Link from "next/link";
+import TimeStats from "@/components/stats/overTimeStats/timeStats";
+import { GetUser } from "@/actions/getUser";
 
 const PersonalStats = () => {
+  const user = GetUser();
   const [value, setValue] = useState(new Date().toLocaleDateString("en-US"));
   const [date, setDate] = useState(new Date().toLocaleDateString("no-NO"));
-  const [user, setUser] = useState(null);
   const [dataFetched, setDataFetched] = useState(false);
   const [dataSchema, setDataSchema] = useState(null);
   const [showCalendar, setShowCalendar] = useState(false);
   const [hasRated, setHasRated] = useState(true);
-
-  useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      setUser(localStorage.getItem("username"));
-    }
-  }, []);
 
   useEffect(() => {
     if (user) {
@@ -178,6 +173,7 @@ const PersonalStats = () => {
           </div>
         </div>
       )}
+      {dataFetched ? <TimeStats /> : null}
     </div>
   );
 };
