@@ -52,6 +52,8 @@ const EgenvurderingContainer = () => {
     }
   };
 
+
+
   const boxStyle =
     "bg-primary rounded-lg p-2 shadow-md shadow-accent font-semibold text-center text-2xl";
   return (
