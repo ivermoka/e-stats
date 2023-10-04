@@ -1,8 +1,6 @@
 import connectDB from "./../../../db";
 import User from "./../../../models/User";
 import jwt from "jsonwebtoken";
-import mongoose from "mongoose";
-import bcrypt from "bcrypt";
 
 connectDB();
 
@@ -17,10 +15,8 @@ export default async function handler(req, res) {
       const token = jwt.sign(
         { username: user.username },
         process.env.JWT_SECRET,
-        {
-          expiresIn: "1h",
-        }
       );
+
       res.status(200).json({ token: token, username: user.username });
     }
   } catch (error) {

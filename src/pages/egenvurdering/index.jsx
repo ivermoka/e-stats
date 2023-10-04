@@ -3,7 +3,6 @@ import Egenvurdering from "@/components/home/egenvurdering/egenvurdering";
 import After from "@/components/home/egenvurdering/after";
 import Selector from "@/components/home/egenvurdering/selector";
 import HasRatedPage from "@/components/home/egenvurdering/hasRatedPage";
-import Link from "next/link";
 import ReactLoading from "react-loading";
 
 const EgenvurderingContainer = () => {
@@ -52,9 +51,6 @@ const EgenvurderingContainer = () => {
     }
   };
 
-  const boxStyle =
-    "bg-primary rounded-lg p-2 shadow-md shadow-accent font-semibold text-center text-2xl";
-  return (
     <div className={"p-4 min-h-screen"}>
       {loaded ? (
         <>

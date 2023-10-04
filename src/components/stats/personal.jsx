@@ -35,7 +35,7 @@ const PersonalStats = () => {
         const data = await res.json();
         setDataSchema(data.userSchema);
         setDataFetched(true);
-        setHasRated(true);
+        setHasRated(true)
       } else if (res.status === 201) {
         setDataFetched(true);
         setHasRated(false);
