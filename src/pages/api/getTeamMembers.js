@@ -8,16 +8,17 @@ export default async function handler(req, res) {
         const user = req.query.user;
         const userSchema = await User.findOne({username: user})
         const userTeam = userSchema.team;
-
         const users = await User.find({
             'team': {$in: [userTeam]}
         });
+        console.log(userTeam)
         try {
             res.status(200).json({users, userTeam});
         } catch (error) {
             res.status(500).json({
                 error: "Det oppstod en feil ved henting av brukere.",
             });
+            console.log(error)
         }
     }
 }

@@ -44,6 +44,7 @@ const Lag = () => {
         const data = await res.json();
         setAllMembers(data.users);
         setTeam(data.userTeam);
+        console.log(team)
       } else if (res.status === 500) {
         console.log("Error fetching data");
       }
@@ -73,7 +74,7 @@ const Lag = () => {
         </button>
       </div>
 
-      <Header teamId={teamId} />
+      <Header team={team} />
       {showCreateTeam && <CreateTeam setShowCreateTeam={setShowCreateTeam} />}
       <div
         className={

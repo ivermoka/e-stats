@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const Header = ({ teamId }) => {
+const Header = ({ team }) => {
   const boxStyle =
     "dark:bg-primary bg-primaryLight p-2 rounded-lg shadow-md dark:shadow-accent shadow-accentLight";
   return (
@@ -20,7 +20,7 @@ const Header = ({ teamId }) => {
           priority
         />
       </div>
-      <h2 className={"text-5xl font-bold"}>{teamId}</h2>
+      <h2 className={"text-5xl font-bold"}>{team}</h2>
     </div>
   );
 };
