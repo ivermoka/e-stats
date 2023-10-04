@@ -1,14 +1,11 @@
 import Egenvurdering from "@/components/home/egenvurdering/egenvurdering";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { GetUser } from "@/actions/getUser" 
 
 export default function Index() {
-  const [storedToken, setStoredToken] = useState("");
-  useEffect(() => {
-    setStoredToken(localStorage.getItem("token"));
-  }, []);
-
+  const user = GetUser()
   const [showEgenvurdering, setShowEgenvurdering] = useState(false);
   return (
     <>
@@ -23,7 +20,7 @@ export default function Index() {
             >
               e-sport dagboka
             </motion.h1>
-            {storedToken && (
+            {user && (
               <Link href={"/egenvurdering"}>
                 {" "}
                 <motion.button
@@ -41,7 +38,7 @@ export default function Index() {
                 </motion.button>
               </Link>
             )}
-            {!storedToken && (
+            {!user && (
               <div className="flex justify-center text-text font-semibold text-xl gap-2">
                 <Link href="/login">
                   <motion.button

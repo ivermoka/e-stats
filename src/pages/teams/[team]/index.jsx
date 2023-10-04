@@ -3,19 +3,18 @@ import { usePathname } from "next/navigation";
 import Header from "@/components/team/header";
 import Members from "@/components/team/members";
 import CreateTeam from "@/components/team/createTeam";
+import { GetUser } from "@/actions/getUser";
 
 const Lag = () => {
   const [team, setTeam] = useState(null);
   const url = usePathname();
   const [teamId, setTeamId] = useState(null);
   const [allMembers, setAllMembers] = useState(null);
+  const user = GetUser()
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      if (localStorage.getItem("username") !== null) {
-        getAllMembers().then();
-      }
+    if (user !== null) {
+      getAllMembers().then();
     }
   }, []);
 

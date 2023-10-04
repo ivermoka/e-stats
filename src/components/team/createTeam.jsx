@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, { useState } from "react";
+import { GetUser } from "@/actions/getUser";
 
 const CreateTeam = ({setShowCreateTeam}) => {
     const [teamName, setTeamName] = useState("");
-    const [user, setUser] = useState(null);
-    useEffect(() => {
-        setUser(localStorage.getItem("username"));
-    }, []);
+    const user = GetUser()
+
     const makeTeam = async (e) => {
         e.preventDefault();
         console.log(teamName);

@@ -6,7 +6,9 @@ const GetUser = () => {
   useEffect(() => {
     const storedUsername = localStorage.getItem("username")
     const storedToken = localStorage.getItem("token")
-    verifyUser(storedUsername, storedToken)
+    if (storedUsername && storedToken) {
+      verifyUser(storedUsername, storedToken).then()
+    }
   }, [])
 
   const verifyUser = async (username, token) => {
@@ -24,9 +26,13 @@ const GetUser = () => {
       if (response.status === 200) {
         setUser(await response.json())
       } else {
+        localStorage.removeItem("username")
+        localStorage.removeItem("token")
         console.error("Error", await response.json());
       }
     } catch (error) {
+      localStorage.removeItem("username")
+      localStorage.removeItem("token")
       console.error("Error logging in:", error);
     }
   };

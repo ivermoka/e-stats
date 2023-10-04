@@ -13,10 +13,11 @@ const HasRatedPage = ({ user }) => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    user: localStorage.getItem("username"),
+                    user: user,
                 }),
             });
             if (res.status === 200) {
+                console.log(res.status)
                 window.location.href = "/";
             } else if (res.status === 400) {
                 console.log(res.status);
@@ -45,7 +46,7 @@ const HasRatedPage = ({ user }) => {
       <div className={`${boxStyle} bg-transparent shadow-transparent`}>
         Eller...
       </div>{" "}
-      <button onClick={deleteRating} className={`${boxStyle}`}>Slette egenvurderingen...</button>
+      <button onClick={() => deleteRating()} className={`${boxStyle}`} type="button">Slette egenvurderingen...</button>
     </div>
   );
 };
