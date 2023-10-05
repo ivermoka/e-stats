@@ -1,7 +1,10 @@
 import Link from "next/link";
 import React from "react";
+import ConfirmDeleteRating from "@/components/home/egenvurdering/confirmDeleteRating"
+import { useState } from "react"
 
 const HasRatedPage = ({ user }) => {
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const boxStyle =
     "dark:bg-primary bg-primaryLight rounded-lg p-2 shadow-md dark:shadow-accent shadow-accentLight font-semibold text-center text-2xl";
 
@@ -46,7 +49,15 @@ const HasRatedPage = ({ user }) => {
       <div className={`${boxStyle} bg-transparent shadow-transparent`}>
         Eller...
       </div>{" "}
-      <button onClick={() => deleteRating()} className={`${boxStyle}`} type="button">Slette egenvurderingen...</button>
+      <button onClick={() => setShowConfirmDelete(true)} className={`${boxStyle}`} type="button">Slette egenvurderingen...</button>
+
+      {showConfirmDelete && (
+        <ConfirmDeleteRating
+         deleteRating={deleteRating}
+         setShowConfirmDelete={setShowConfirmDelete}
+         user={user}
+       />
+     )}
     </div>
   );
 };
