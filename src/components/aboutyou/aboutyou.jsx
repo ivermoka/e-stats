@@ -1,13 +1,10 @@
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { GetUser } from "@/actions/getUser";
 
 const AboutYou = () => {
+  const user = GetUser()
   const [skole, setSkole] = useState("");
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    setUser(localStorage.getItem("username"));
-  }, [user]);
 
   const gameSelect = async () => {
     try {

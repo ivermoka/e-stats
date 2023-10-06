@@ -4,12 +4,13 @@ import Card from "../../../components/profile/profilKort";
 import Edit from "../../../components/profile/endreProfil";
 import { motion } from "framer-motion";
 import { GetUser } from "@/actions/getUser";
+import ReactLoading from "react-loading"
 
 const Profil = () => {
+  const [loaded, setLoaded] = useState(false)
   const [modalOpen, setModalOpen] = useState(false);
   const [id, setId] = useState(null);
   const url = usePathname();
-
   const [owned, setOwned] = useState(false);
   const user = GetUser();
 
@@ -31,12 +32,55 @@ const Profil = () => {
     }
   }, [id, user]);
 
+  useEffect(() => {
+    if (user) {
+      getUserData();
+    }
+  }, [user]);
+
+  const [data, setData] = useState(null)
+
+  const getUserData = async () => {
+    try {
+      const res = await fetch("/api/getUser", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user: id,
+        }),
+      });
+      if (res.status === 200) {
+        setData(await res.json());
+      } else {
+        console.log("not work")
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (data) {
+      if (!data.school) {
+        data.school = "Ikke valgt"
+      }
+      if (!data.team) {
+        data.team = "Ikke valgt"
+      }
+      setLoaded(true)
+    }
+  }, [data])
+
   const boxStyle =
     "dark:bg-primary bg-primaryLight p-4 rounded-lg shadow-md dark:shadow-accent shadow-accentLight";
 
   return (
     <div className="h-screen w-screen p-8 flex flex-col gap-4 dark:text-text text-textLight overflow-x-hidden">
-      <motion.div
+      {loaded ? 
+      <>
+       <motion.div
         initial={{ x: 200, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeInOut", type: "spring" }}
@@ -44,7 +88,7 @@ const Profil = () => {
       >
         Personlig Informasjon
       </motion.div>
-      <Card id={id} setModalOpen={setModalOpen} />
+      <Card id={id} setModalOpen={setModalOpen} data={data} />
       {modalOpen && (
         <Edit
           modalOpen={modalOpen}
@@ -91,6 +135,10 @@ const Profil = () => {
           </motion.button>
         </div>
       )}
+      </> : 
+      <div className="flex justify-center items-center h-screen">
+        <ReactLoading type="bars" color="black" width={200} />
+      </div>}
     </div>
   );
 };

@@ -4,17 +4,10 @@ import { useEffect, useState } from "react";
 import Dropdown from "@/components/navbar/dropdown/dropdown";
 import Terms from "@/components/navbar/terms/terms";
 import ConfirmDelete from "@/components/navbar/dropdown/confirmDelete";
+import {GetUser} from "@/actions/getUser"
 
 const Top = () => {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      setUser(localStorage.getItem("username"));
-    }
-  }, []);
-
+  const user = GetUser()
   const [dropdown, setDropdown] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
@@ -34,7 +27,7 @@ const Top = () => {
           "h-20 top-0 w-screen fixed dark:border-primary border-primaryLight border-b-2 flex justify-between items-center px-2 dark:bg-bg bg-bgLight z-20"
         }
       >
-        <div className={"w-20"}></div>
+        <div className={"w-20"} />
         <Link href={"/"} className={"w-14"}>
           <Image
             src={"/logo.png"}
@@ -45,7 +38,8 @@ const Top = () => {
           />
         </Link>
         {user ? (
-          <div
+          <button
+            type="button"
             onClick={() => {
               setDropdown(!dropdown);
             }}
@@ -60,7 +54,7 @@ const Top = () => {
               height={100}
               priority
             />
-          </div>
+          </button>
         ) : (
           <div className="h-16 w-20 p-2 flex flex-col gap-2 justify-center items-center dark:text-text text-textLight font-thin text-md">
             <Link href="/register">Registrer </Link>

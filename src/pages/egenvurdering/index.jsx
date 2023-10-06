@@ -4,21 +4,18 @@ import After from "@/components/home/egenvurdering/after";
 import Selector from "@/components/home/egenvurdering/selector";
 import HasRatedPage from "@/components/home/egenvurdering/hasRatedPage";
 import ReactLoading from "react-loading";
+import { GetUser } from "@/actions/getUser";
 
 const EgenvurderingContainer = () => {
+  const user = GetUser()
   const [date, setDate] = useState(null);
-  const [user, setUser] = useState(null);
   const [showAfter, setShowAfter] = useState(false);
   const [hasRated1, setHasRated1] = useState(true);
   const [hasRated2, setHasRated2] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      setUser(localStorage.getItem("username"));
-      setDate(new Date().toLocaleDateString());
-    }
+    setDate(new Date().toLocaleDateString());
   }, []);
 
   useEffect(() => {
@@ -51,8 +48,6 @@ const EgenvurderingContainer = () => {
     }
   };
 
-  const boxStyle =
-    "bg-primary rounded-lg p-2 shadow-md shadow-accent font-semibold text-center text-2xl";
   return (
     <div className={"p-4 min-h-screen"}>
       {loaded ? (

@@ -25,6 +25,7 @@ export default async function handler(req, res) {
       }
     } else if (req.method === "PUT") {
       const { user } = req.body;
+      console.log(user)
       const userInfo = await User.findOne({ username: user });
       res.status(200).json(userInfo);
     } else {

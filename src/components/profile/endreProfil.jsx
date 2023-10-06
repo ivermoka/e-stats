@@ -1,21 +1,17 @@
-import Button from "./button";
-import { useEffect, useState } from "react";
+import { GetUser } from "@/actions/getUser"
+import { useState, useEffect } from "react";
 
 const EndreProfil = ({ setModalOpen, id, setId }) => {
+  const user = GetUser()
   const [error, setError] = useState(null);
-  const [user, setUser] = useState(null);
   const [newUsername, setNewUsername] = useState("");
   const [password, setPassword] = useState("");
   const [team, setTeam] = useState("");
   const [school, setSchool] = useState("");
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      setUser(localStorage.getItem("username"));
-      setNewUsername(id);
-    }
-  }, []);
+   setNewUsername(user) 
+  }, [user])
 
   const changeUsername = async () => {
     try {
@@ -36,7 +32,7 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
       if (res.status === 200) {
         localStorage.setItem("username", newUsername);
         setId(newUsername);
-        window.location.href = "/users/" + newUsername;
+        window.location.href = `/users/${newUsername}`;
         setModalOpen(false);
       } else {
         const data = await res.json();
@@ -63,7 +59,7 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
           <li className={`flex flex-col ${boxStyle}`}>
             <span>Brukernavn:</span>{" "}
             <input
-              defaultValue={newUsername}
+              defaultValue={user}
               onChange={(e) => {
                 setNewUsername(e.target.value);
               }}
@@ -80,7 +76,7 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
               }}
               className={inputStyle}
             >
-              <option value=""></option>
+              <option value="" />
               <option value="Elvebakken">Elvebakken</option>
               <option value="Persbråten">Persbråten</option>
             </select>
@@ -96,6 +92,7 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
             />
           </li>
           <button
+            type="button"
             className={`${boxStyle}`}
             onClick={() => {
               changeUsername();
@@ -104,6 +101,7 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
             LAGRE
           </button>
           <button
+            type="button"
             className={`${boxStyle}`}
             onClick={() => {
               setModalOpen(false);

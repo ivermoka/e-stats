@@ -5,7 +5,6 @@ connectDB().then();
 
 export default async function deleteUser(req, res) {
     const {user} = req.body;
-
     try {
         const userSchema = await User.findOne({username: user});
         if (!userSchema) {

@@ -37,7 +37,8 @@ const Dropdown = ({
           "h-20 w-screen px-2 dark:border-primary border-primaryLight border-b-2 flex justify-between items-center"
         }
       >
-        <div
+        <button
+          type="button"
           onClick={() => {
             setDropdown(!dropdown);
           }}
@@ -46,7 +47,7 @@ const Dropdown = ({
           }
         >
           <FiX className={"dark:text-primary text-primaryLight text-5xl"} />
-        </div>
+        </button>
         <ThemeToggle />
       </div>
       <UserInfo />

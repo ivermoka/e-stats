@@ -1,50 +1,9 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { AiFillFire } from "react-icons/ai";
+import { useState } from "react";
 
-const ProfilKort = ({ id }) => {
-  const [dataExists, setDataExists] = useState(false);
+const ProfilKort = ({ id, data }) => {
   const [profilePicture, setProfilePicture] = useState("/logo.png");
-  const [user, setUser] = useState("");
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    setUser(localStorage.getItem("username"));
-    getUser();
-  }, [user]);
-
-  const getUser = async () => {
-    try {
-      const res = await fetch("/api/getUser", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user: user,
-        }),
-      });
-
-      if (res.status === 200) {
-        setData(await res.json());
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    if (data) {
-      if (data.school === "") {
-        data.school = "Ikke valgt";
-      }
-      if (data.team === "") {
-        data.team = "Ikke valgt";
-      }
-      setDataExists(true);
-    }
-  }, [data]);
 
   const boxStyle =
     "dark:bg-primary bg-primaryLight p-4 rounded-lg shadow-md dark:shadow-accent shadow-accentLight";
@@ -72,17 +31,10 @@ const ProfilKort = ({ id }) => {
         </div>
         <div className={`${boxStyle} text-center w-full flex`}>{id}</div>
       </div>
-      {dataExists ? (
         <ul className="p-4 text-xl font-semibold flex flex-col gap-4">
           <li className={`${boxStyle}`}>Skole: {data.school}</li>
           <li className={`${boxStyle}`}>Lag: {data.team}</li>
         </ul>
-      ) : (
-        <ul className="p-4 text-xl font-semibold flex flex-col gap-4">
-          <li className={`${boxStyle}`}>Skole: </li>
-          <li className={`${boxStyle}`}>Team: </li>
-        </ul>
-      )}
     </motion.div>
   );
 };
