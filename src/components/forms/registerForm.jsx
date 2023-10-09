@@ -4,11 +4,13 @@ import { useState } from "react";
 
 const Register = ({ setRegistered }) => {
   const [userExists, setUserExists] = useState(false);
+  
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ defaultValues: { mail: "", username: "", password: "" } });
+  } = useForm({ defaultValues: { mail: "", username: "", password: "", terms: "" } });
+
   const onSubmit = async (data, e) => {
     e.preventDefault();
     try {
@@ -72,14 +74,23 @@ const Register = ({ setRegistered }) => {
           type="password"
           className={inputStyle}
         />
-        <button className={`${inputStyle} font-semibold`}>
+        <div className="flex gap-2 text-textLight dark:text-text">
+          <input {...register("terms", {
+            required: "*Du må akseptere vilkårene"
+          })}
+          className="h-6 w-6 rounded-full"
+          type="checkbox" />
+          <span>Jeg aksepterer vilkårene</span>
+        </div>
+        <button className={`${inputStyle} font-semibold`} type="submit">
           Opprett bruker
         </button>
         <div className="flex flex-col text-center italic text-red-900">
           <span>{errors.mail?.message}</span>
           <span>{errors.username?.message}</span>
           <span>{errors.password?.message}</span>
-          <span>{userExists ? "*Dette brukernavnet er tatt :(" : null}</span>
+          <span>{errors.terms?.message}</span>
+          <span>{userExists ? "*Dette brukernavnet er tatt" : null}</span>
         </div>
         <span className="dark:text-text text-textLight">
           Har allerede en bruker?{" "}

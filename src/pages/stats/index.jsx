@@ -5,7 +5,7 @@ const Stats = () => {
   const user = GetUser();
   return (
     <div className="min-h-screen pt-10 p-8 flex flex-col">
-      {user !== null && <PersonalStats />}
+      {user !== null && <PersonalStats />}  
       {user === null && (
         <h1 className="dark:text-text text-textLight text-xl font-bold italic mt-14">
           Du må logge inn for å se personlig statistikk!

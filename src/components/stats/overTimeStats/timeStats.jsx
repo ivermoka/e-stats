@@ -40,6 +40,7 @@ const StatsOverTime = () => {
       <div className={"flex justify-around"}>
         <div>
           <button
+            type="button"
             onClick={() => setStatsDropdownOpen(!statsDropdownOpen)}
             className={`${boxStyle} my-4`}
           >
@@ -51,11 +52,12 @@ const StatsOverTime = () => {
           )}
         </div>
 
-        <button className={`${boxStyle} my-4`}>
+        <button className={`${boxStyle} my-4`} type="button">
           TIDSINTERVALL
           <BsCalendar className="inline ml-2 mb-[2px]" />
         </button>
       </div>
+      <LineChart data={data} options={options} />
     </div>
   );
 };

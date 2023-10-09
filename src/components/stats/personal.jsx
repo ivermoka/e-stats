@@ -6,6 +6,7 @@ import { BsCalendar } from "react-icons/bs";
 import Link from "next/link";
 import TimeStats from "@/components/stats/overTimeStats/timeStats";
 import { GetUser } from "@/actions/getUser";
+import Selector from "../home/egenvurdering/selector";
 
 const PersonalStats = () => {
   const user = GetUser();
@@ -15,6 +16,7 @@ const PersonalStats = () => {
   const [dataSchema, setDataSchema] = useState(null);
   const [showCalendar, setShowCalendar] = useState(false);
   const [hasRated, setHasRated] = useState(true);
+  const [showToday, setShowToday] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -35,7 +37,7 @@ const PersonalStats = () => {
         const data = await res.json();
         setDataSchema(data.userSchema);
         setDataFetched(true);
-        setHasRated(true)
+        setHasRated(true);
       } else if (res.status === 201) {
         setDataFetched(true);
         setHasRated(false);
@@ -80,100 +82,107 @@ const PersonalStats = () => {
 
   return (
     <div>
-      <div className="dark:text-text text-textLight text-xl font-bold italic mt-12">
-        <h1>Personlig statistikk for </h1>
-        <span className="dark:text-orange-200 text-orange-700">
-          {user} - {date}
-        </span>
-      </div>
-      <button
-        onClick={() => {
-          setShowCalendar(!showCalendar);
-        }}
-        className="dark:text-text text-textLight font-bold py-2 px-4 rounded-lg dark:bg-primary bg-primaryLight shadow-md dark:shadow-accent shadow-accentLight my-4"
-      >
-        VELG DATO
-        <BsCalendar className="inline ml-2 mb-[2px]" />
-      </button>
-      {showCalendar && (
-        <Calendar
-          className={`dark:bg-primary bg-primaryLight rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 font-semibold`}
-          tileClassName={
-            "p-2 dark:border-text border-textLight border-2 rounded-lg"
-          }
-          onClickDay={(day) => {
-            setDate(day.toLocaleDateString("no-NO"));
-            setValue(day.toLocaleDateString("en-US"));
-            setShowCalendar(false);
-          }}
-          value={value}
-        />
-      )}
-      {hasRated && dataFetched && dataSchema ? (
-        <div>
-          <div className="h-80 ">
-            <BarChart
-              data={{
-                labels: [
-                  "Mat",
-                  "Søvn",
-                  "Motivasjon",
-                  "Fysisk",
-                  "Psykisk",
-                  "Spilte",
-                ],
-                datasets: [
-                  {
-                    label: "Rating",
-                    backgroundColor: [
-                      "#33cc33",
-                      "#0066ff",
-                      "#ccff33",
-                      "#EB565B",
-                      "#ffff99",
-                      "#ff0066",
-                    ],
-                    data: [
-                      dataSchema.disclosure1,
-                      dataSchema.disclosure2,
-                      dataSchema.disclosure3,
-                      dataSchema.disclosure4,
-                      dataSchema.disclosure5,
-                      dataSchema.disclosure6,
-                    ],
-                  },
-                ],
-              }}
-              options={options}
-            />
-          </div>
-          <div className="dark:bg-primary bg-primaryLight rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 mt-4">
-            <h2 className="text-xl font-bold italic m-2">
-              Kommentar for dagen
-            </h2>
-            <div className="dark:bg-bg/50 bg-bgLight/50 rounded-lg p-2">
-              {dataSchema.comment}
-            </div>
-          </div>
-        </div>
-      ) : hasRated && !dataFetched ? (
-        <div className="flex flex-col items-center text-text text-lg">
-          <ReactLoading type={"bars"} color={"#1C1B29"} width={200} />
-        </div>
+      {showToday ? (
+        <TimeStats />
       ) : (
-        <div className="dark:bg-primary bg-primaryLight rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 mt-4">
-          <h2 className="text-xl font-bold italic m-2">Ingen data</h2>
-          <div className="dark:bg-bg/50 bg-bgLight/50 rounded-lg p-2 text-center text-xl">
-            Det er ikke registrert noe data for den valgte dagen. Vennligst gå
-            til{" "}
-            <Link className={"text-blue-500"} href={"/egenvurdering"}>
-              egenvurdering
-            </Link>{" "}
-            hvis du vil registrere data for i dag.
+        <>
+          <div className="dark:text-text text-textLight text-xl font-bold italic mt-12">
+            <h1>Personlig statistikk for </h1>
+            <span className="dark:text-orange-200 text-orange-700">
+              {user} - {date}
+            </span>
           </div>
-        </div>
+          <button
+            type="button"
+            onClick={() => {
+              setShowCalendar(!showCalendar);
+            }}
+            className="dark:text-text text-textLight font-bold py-2 px-4 rounded-lg dark:bg-primary bg-primaryLight shadow-md dark:shadow-accent shadow-accentLight my-4"
+          >
+            VELG DATO
+            <BsCalendar className="inline ml-2 mb-[2px]" />
+          </button>
+          {showCalendar && (
+            <Calendar
+              className={`dark:bg-primary bg-primaryLight rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 font-semibold`}
+              tileClassName={
+                "p-2 dark:border-text border-textLight border-2 rounded-lg"
+              }
+              onClickDay={(day) => {
+                setDate(day.toLocaleDateString("no-NO"));
+                setValue(day.toLocaleDateString("en-US"));
+                setShowCalendar(false);
+              }}
+              value={value}
+            />
+          )}
+          {hasRated && dataFetched && dataSchema ? (
+            <div>
+              <div className="h-80 ">
+                <BarChart
+                  data={{
+                    labels: [
+                      "Mat",
+                      "Søvn",
+                      "Motivasjon",
+                      "Fysisk",
+                      "Psykisk",
+                      "Spilte",
+                    ],
+                    datasets: [
+                      {
+                        label: "Rating",
+                        backgroundColor: [
+                          "#33cc33",
+                          "#0066ff",
+                          "#ccff33",
+                          "#EB565B",
+                          "#ffff99",
+                          "#ff0066",
+                        ],
+                        data: [
+                          dataSchema.disclosure1,
+                          dataSchema.disclosure2,
+                          dataSchema.disclosure3,
+                          dataSchema.disclosure4,
+                          dataSchema.disclosure5,
+                          dataSchema.disclosure6,
+                        ],
+                      },
+                    ],
+                  }}
+                  options={options}
+                />
+              </div>
+              <div className="dark:bg-primary bg-primaryLight rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 mt-4">
+                <h2 className="text-xl font-bold italic m-2">
+                  Kommentar for dagen
+                </h2>
+                <div className="dark:bg-bg/50 bg-bgLight/50 rounded-lg p-2">
+                  {dataSchema.comment}
+                </div>
+              </div>
+            </div>
+          ) : hasRated && !dataFetched ? (
+            <div className="flex flex-col items-center text-text text-lg">
+              <ReactLoading type={"bars"} color={"#1C1B29"} width={200} />
+            </div>
+          ) : (
+            <div className="dark:bg-primary bg-primaryLight rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 mt-4">
+              <h2 className="text-xl font-bold italic m-2">Ingen data</h2>
+              <div className="dark:bg-bg/50 bg-bgLight/50 rounded-lg p-2 text-center text-xl">
+                Det er ikke registrert noe data for den valgte dagen. Vennligst
+                gå til{" "}
+                <Link className={"text-blue-500"} href={"/egenvurdering"}>
+                  egenvurdering
+                </Link>{" "}
+                hvis du vil registrere data for i dag.
+              </div>
+            </div>
+          )}
+        </>
       )}
-      {dataFetched ? <TimeStats /> : null}
+      <Selector showAfter={showToday} setShowAfter={setShowToday} />
     </div>
   );
 };

@@ -20,5 +20,5 @@ ChartJS.register(
 );
 
 export function BarChart({ data, options }) {
-  return <Bar options={options} data={data} />;
+  return <Bar id="barchart" options={options} data={data} />;
 }

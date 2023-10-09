@@ -7,6 +7,7 @@ import { GetUser } from "@/actions/getUser";
 import ReactLoading from "react-loading"
 
 const Profil = () => {
+  const [userExists, setUserExists] = useState(true)
   const [loaded, setLoaded] = useState(false)
   const [modalOpen, setModalOpen] = useState(false);
   const [id, setId] = useState(null);

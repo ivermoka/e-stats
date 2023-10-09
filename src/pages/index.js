@@ -2,10 +2,10 @@ import Egenvurdering from "@/components/home/egenvurdering/egenvurdering";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
-import { GetUser } from "@/actions/getUser" 
+import { GetUser } from "@/actions/getUser";
 
 export default function Index() {
-  const user = GetUser()
+  const user = GetUser();
   const [showEgenvurdering, setShowEgenvurdering] = useState(false);
   return (
     <>

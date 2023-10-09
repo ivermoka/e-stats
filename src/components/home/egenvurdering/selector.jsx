@@ -17,6 +17,7 @@ const Selector = ({ showAfter, setShowAfter }) => {
       }
     >
       <button
+        type="button"
         onClick={() => {
           setShowAfter(false);
         }}
@@ -25,8 +26,9 @@ const Selector = ({ showAfter, setShowAfter }) => {
             ? "dark:bg-text bg-textLight"
             : "dark:bg-secondary bg-secondaryLight"
         } rounded-full h-5 w-5`}
-      ></button>
+      />
       <button
+        type="button"
         onClick={() => {
           setShowAfter(true);
         }}
@@ -35,7 +37,7 @@ const Selector = ({ showAfter, setShowAfter }) => {
             ? "dark:bg-text bg-textLight"
             : "dark:bg-secondary bg-secondaryLight"
         } rounded-full h-5 w-5`}
-      ></button>
+      />
     </div>
   );
 };
