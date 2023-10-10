@@ -17,6 +17,7 @@ const PersonalStats = () => {
   const [showCalendar, setShowCalendar] = useState(false);
   const [hasRated, setHasRated] = useState(true);
   const [showToday, setShowToday] = useState(false);
+  const [currentDate, setCurrentDate] = useState(false)
 
   useEffect(() => {
     if (user) {
@@ -104,17 +105,27 @@ const PersonalStats = () => {
           </button>
           {showCalendar && (
             <Calendar
-              className={`dark:bg-primary bg-primaryLight rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 font-semibold`}
-              tileClassName={
-                "p-2 dark:border-text border-textLight border-2 rounded-lg"
-              }
-              onClickDay={(day) => {
-                setDate(day.toLocaleDateString("no-NO"));
-                setValue(day.toLocaleDateString("en-US"));
-                setShowCalendar(false);
-              }}
-              value={value}
-            />
+            className={`dark:bg-primary bg-primaryLight rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 font-semibold`}
+            tileClassName={({ date, view }) => {
+
+              const isSelectedDate = date.toLocaleDateString("no-NO") === currentDate;             
+              return isSelectedDate
+                ? "selected-date-class dark:bg-[#F8D8B1] bg-[#305464] dark:text-black text-white p-2 dark: border-textLight dark:border rounded-lg"
+                : "p-2 dark:border-text border-textLight border rounded-lg";
+            }}
+            onClickDay={(day) => {
+              console.log(day);
+              setDate(day.toLocaleDateString("no-NO"));
+              setValue(day.toLocaleDateString("en-US"));
+              setShowCalendar(false);
+              setCurrentDate(day.toLocaleDateString("no-NO"));
+            }}
+            value={value}
+          />
+          
+           
+              
+            
           )}
           {hasRated && dataFetched && dataSchema ? (
             <div>

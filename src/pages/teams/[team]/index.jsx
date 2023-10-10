@@ -10,40 +10,35 @@ const Lag = () => {
   const url = usePathname();
   const [teamId, setTeamId] = useState(null);
   const [allMembers, setAllMembers] = useState(null);
-  const user = GetUser()
+  const user = GetUser();
 
   useEffect(() => {
-    if (user !== null) {
+    if (user !== null && url !== null) {
       getAllMembers().then();
     }
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     if (typeof window !== "undefined" && url !== null) {
       const urlParts = url.split("/");
       if (urlParts.length >= 3) {
         const newId = urlParts[2];
-        setTeamId(newId);
+        setTeam(newId);
       }
     }
   }, [url]);
 
   const getAllMembers = async () => {
     try {
-      const res = await fetch(
-        `/api/getTeamMembers?user=${localStorage.getItem("username")}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+      const res = await fetch(`/api/getTeamMembers?team=${team}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+      });
       if (res.status === 200) {
         const data = await res.json();
         setAllMembers(data.users);
-        setTeam(data.userTeam);
-        console.log(team)
       } else if (res.status === 500) {
         console.log("Error fetching data");
       }
