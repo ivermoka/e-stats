@@ -4,11 +4,11 @@ import Card from "../../../components/profile/profilKort";
 import Edit from "../../../components/profile/endreProfil";
 import { motion } from "framer-motion";
 import { GetUser } from "@/actions/getUser";
-import ReactLoading from "react-loading"
+import ReactLoading from "react-loading";
 
 const Profil = () => {
-  const [userExists, setUserExists] = useState(true)
-  const [loaded, setLoaded] = useState(false)
+  const [takingTime, setTakingTime] = useState("");
+  const [loaded, setLoaded] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [id, setId] = useState(null);
   const url = usePathname();
@@ -39,7 +39,7 @@ const Profil = () => {
     }
   }, [user]);
 
-  const [data, setData] = useState(null)
+  const [data, setData] = useState(null);
 
   const getUserData = async () => {
     try {
@@ -55,7 +55,7 @@ const Profil = () => {
       if (res.status === 200) {
         setData(await res.json());
       } else {
-        console.log("not work")
+        console.log("not work");
       }
     } catch (error) {
       console.log(error);
@@ -65,81 +65,93 @@ const Profil = () => {
   useEffect(() => {
     if (data) {
       if (!data.school) {
-        data.school = "Ikke valgt"
+        console.log("bruker finnes ikke");
       }
       if (!data.team) {
-        data.team = "Ikke valgt"
+        data.team = "Ikke valgt";
       }
-      setLoaded(true)
+      setLoaded(true);
     }
-  }, [data])
+  }, [data]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTakingTime(
+        "Dette ser ut til å ta litt tid, pass på at brukeren du prøver å gå inn på eksisterer",
+      );
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const boxStyle =
     "dark:bg-primary bg-primaryLight p-4 rounded-lg shadow-md dark:shadow-accent shadow-accentLight";
 
   return (
     <div className="h-screen w-screen p-8 flex flex-col gap-4 dark:text-text text-textLight overflow-x-hidden">
-      {loaded ? 
-      <>
-       <motion.div
-        initial={{ x: 200, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: "easeInOut", type: "spring" }}
-        className={`font-bold text-xl italic mt-16 ${boxStyle}`}
-      >
-        Personlig Informasjon
-      </motion.div>
-      <Card id={id} setModalOpen={setModalOpen} data={data} />
-      {modalOpen && (
-        <Edit
-          modalOpen={modalOpen}
-          setModalOpen={setModalOpen}
-          id={id}
-          setId={setId}
-        />
-      )}
-      {owned && (
-        <div className="flex justify-between font-semibold text-xl text-center">
-          <motion.button
+      {loaded ? (
+        <>
+          <motion.div
             initial={{ x: 200, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            transition={{
-              duration: 0.5,
-              ease: "easeInOut",
-              type: "spring",
-              delay: 0.5,
-            }}
-            onClick={() => {
-              localStorage.removeItem("token");
-              localStorage.removeItem("username");
-              window.location.href = "/";
-            }}
-            className={`${boxStyle} w-[45%] text-red-400`}
+            transition={{ duration: 0.5, ease: "easeInOut", type: "spring" }}
+            className={`font-bold text-xl italic mt-16 ${boxStyle}`}
           >
-            Logg Ut
-          </motion.button>
-          <motion.button
-            initial={{ x: 200, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{
-              duration: 0.5,
-              ease: "easeInOut",
-              type: "spring",
-              delay: 0.55,
-            }}
-            className={`${boxStyle} w-[45%] text-center text-blue-300`}
-            onClick={() => {
-              setModalOpen(true);
-            }}
-          >
-            Endre
-          </motion.button>
+            Personlig Informasjon
+          </motion.div>
+          <Card id={id} setModalOpen={setModalOpen} data={data} />
+          {modalOpen && (
+            <Edit
+              modalOpen={modalOpen}
+              setModalOpen={setModalOpen}
+              id={id}
+              setId={setId}
+            />
+          )}
+          {owned && (
+            <div className="flex justify-between font-semibold text-xl text-center">
+              <motion.button
+                initial={{ x: 200, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{
+                  duration: 0.5,
+                  ease: "easeInOut",
+                  type: "spring",
+                  delay: 0.5,
+                }}
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  localStorage.removeItem("username");
+                  window.location.href = "/";
+                }}
+                className={`${boxStyle} w-[45%] text-red-400`}
+              >
+                Logg Ut
+              </motion.button>
+              <motion.button
+                initial={{ x: 200, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{
+                  duration: 0.5,
+                  ease: "easeInOut",
+                  type: "spring",
+                  delay: 0.55,
+                }}
+                className={`${boxStyle} w-[45%] text-center text-blue-300`}
+                onClick={() => {
+                  setModalOpen(true);
+                }}
+              >
+                Endre
+              </motion.button>
+            </div>
+          )}
+        </>
+      ) : (
+        <div className="flex flex-col justify-center items-center h-screen">
+          <ReactLoading type="bars" color="black" width={200} />
+          <span className="mt-32 text-center">{takingTime}</span>
         </div>
       )}
-      </> : 
-      <div className="flex justify-center items-center h-screen">
-        <ReactLoading type="bars" color="black" width={200} />
-      </div>}
     </div>
   );
 };
