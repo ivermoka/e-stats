@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiX } from "react-icons/fi";
 import { motion } from "framer-motion";
 import UserInfo from "./userInfo";
@@ -6,6 +6,7 @@ import Links from "./dropdownLink";
 import Line from "./sepLine";
 import Link from "next/link";
 import ThemeToggle from "@/components/navbar/dropdown/themeToggle";
+import { GetUser } from "@/actions/getUser";
 
 import { BiUser } from "react-icons/bi";
 import { AiOutlineTeam } from "react-icons/ai";
@@ -15,14 +16,38 @@ import { MdOutlineDeleteForever } from "react-icons/md";
 
 const Dropdown = ({
   dropdown,
-  setDropdown,
   user,
+  setDropdown,
   showTerms,
   setShowTerms,
   setShowConfirmDelete,
 }) => {
   const [team, setTeam] = useState(null);
 
+  useEffect(() => {
+    if (user !== null) {
+      fetchSessionData().then();
+    }
+  }, []);
+  const fetchSessionData = async () => {
+    try {
+      const res = await fetch(`/api/getUser`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user: user }),
+      });
+      if (res.status === 200) {
+        const data = await res.json();
+        setTeam(data.team);
+      } else if (res.status === 405) {
+        console.log("Error fetching data");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <motion.div
       initial={{ opacity: 0, x: 300 }}
