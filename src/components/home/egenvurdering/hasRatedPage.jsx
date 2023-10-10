@@ -1,34 +1,35 @@
 import Link from "next/link";
 import React from "react";
-import ConfirmDeleteRating from "@/components/home/egenvurdering/confirmDeleteRating"
-import { useState } from "react"
+import ConfirmDeleteRating from "@/components/home/egenvurdering/confirmDeleteRating";
+import { useState } from "react";
 
 const HasRatedPage = ({ user }) => {
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const boxStyle =
     "dark:bg-primary bg-primaryLight rounded-lg p-2 shadow-md dark:shadow-accent shadow-accentLight font-semibold text-center text-2xl";
 
-    const deleteRating = async () => {
-        try {
-            const res = await fetch("/api/deleteRating", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    user: user,
-                }),
-            });
-            if (res.status === 200) {
-                console.log(res.status)
-                window.location.href = "/";
-            } else if (res.status === 400) {
-                console.log(res.status);
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
+  const deleteRating = async () => {
+    try {
+      const res = await fetch("/api/deleteRating", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user: user,
+          date: new Date().toLocaleDateString("en-US"),
+        }),
+      });
+      if (res.status === 200) {
+        console.log(res.status);
+        window.location.href = "/";
+      } else if (res.status === 400) {
+        console.log(res.status);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="dark:text-text text-textLight h-screen mt-20 flex flex-col items-center gap-8">
@@ -49,15 +50,20 @@ const HasRatedPage = ({ user }) => {
       <div className={`${boxStyle} bg-transparent shadow-transparent`}>
         Eller...
       </div>{" "}
-      <button onClick={() => setShowConfirmDelete(true)} className={`${boxStyle}`} type="button">Slette egenvurderingen...</button>
-
+      <button
+        onClick={() => setShowConfirmDelete(true)}
+        className={`${boxStyle}`}
+        type="button"
+      >
+        Slette egenvurderingen...
+      </button>
       {showConfirmDelete && (
         <ConfirmDeleteRating
-         deleteRating={deleteRating}
-         setShowConfirmDelete={setShowConfirmDelete}
-         user={user}
-       />
-     )}
+          deleteRating={deleteRating}
+          setShowConfirmDelete={setShowConfirmDelete}
+          user={user}
+        />
+      )}
     </div>
   );
 };
