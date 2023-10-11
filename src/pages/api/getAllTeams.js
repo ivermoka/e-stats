@@ -1,5 +1,7 @@
 import connectDB from "./../../../db";
-import Team from "../../../models/Team";
+
+const mongoose = require("mongoose");
+const Team = mongoose.model("Teams");
 
 connectDB();
 
