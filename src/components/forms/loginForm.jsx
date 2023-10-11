@@ -5,6 +5,7 @@ import ForgotPassword from "@/components/forms/forgotPassword";
 import ReactLoading from "react-loading";
 
 const LoginPage = () => {
+  const [pending, setPending] = useState(false);
   const [wrong, setWrong] = useState(false);
   const {
     register,
@@ -43,8 +44,6 @@ const LoginPage = () => {
 
   const [showForgotPassword, setShowForgotPassword] = useState(false);
 
-  const [pending, setPending] = useState(false);
-
   const inputStyle =
     "border-b-4 dark:border-secondary border-secondaryLight bg-transparent p-2 dark:text-text text-textLight outline-none focus:border-b-2 duration-300 w-60";
   return (
@@ -73,12 +72,7 @@ const LoginPage = () => {
           className={inputStyle}
         />
         {pending ? (
-          <ReactLoading
-            type="bars"
-            className="bg-blue-400"
-            color="black"
-            width="50"
-          />
+          <ReactLoading type={"cylon"} color={"black"} width={40} />
         ) : (
           <button type="submit" className={`${inputStyle} font-semibold`}>
             Logg Inn

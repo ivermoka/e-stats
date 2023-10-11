@@ -1,18 +1,23 @@
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { useState } from "react";
+import ReactLoading from "react-loading";
 
 const Register = ({ setRegistered }) => {
+  const [pending, setPending] = useState(false);
   const [userExists, setUserExists] = useState(false);
-  
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ defaultValues: { mail: "", username: "", password: "", terms: "" } });
+  } = useForm({
+    defaultValues: { mail: "", username: "", password: "", terms: "" },
+  });
 
   const onSubmit = async (data, e) => {
     e.preventDefault();
+    setPending(true);
     try {
       const response = await fetch("http://localhost:3000/api/register", {
         method: "POST",
@@ -28,6 +33,7 @@ const Register = ({ setRegistered }) => {
         localStorage.setItem("token", data.token);
         setRegistered(true);
       } else {
+        setPending(false);
         setUserExists(true);
       }
     } catch (error) {
@@ -75,16 +81,22 @@ const Register = ({ setRegistered }) => {
           className={inputStyle}
         />
         <div className="flex gap-2 text-textLight dark:text-text">
-          <input {...register("terms", {
-            required: "*Du må akseptere vilkårene"
-          })}
-          className="h-6 w-6 rounded-full"
-          type="checkbox" />
+          <input
+            {...register("terms", {
+              required: "*Du må akseptere vilkårene",
+            })}
+            className="h-6 w-6 rounded-full"
+            type="checkbox"
+          />
           <span>Jeg aksepterer vilkårene</span>
         </div>
-        <button className={`${inputStyle} font-semibold`} type="submit">
-          Opprett bruker
-        </button>
+        {pending ? (
+          <ReactLoading type={"cylon"} color={"black"} width={40} />
+        ) : (
+          <button className={`${inputStyle} font-semibold`} type="submit">
+            Opprett bruker
+          </button>
+        )}
         <div className="flex flex-col text-center italic text-red-900">
           <span>{errors.mail?.message}</span>
           <span>{errors.username?.message}</span>
