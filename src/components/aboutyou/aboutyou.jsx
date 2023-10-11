@@ -48,12 +48,9 @@ const AboutYou = () => {
               setSkole(e.target.value);
             }}
           >
-<<<<<<< Updated upstream
             <option value="" />
-=======
             <Skoledropdown />
             {/* <option value=""></option>
->>>>>>> Stashed changes
             <option value="Elvebakken">Elvebakken</option>
             <option value="Persbråten">Persbråten</option> */}
           </select>
