@@ -42,7 +42,7 @@ const ConfirmDelete = ({ setShowConfirmDelete, user }) => {
         </h2>
         <input
           className={
-            "dark:text-bg text-bgLight p-2 rounded-lg shadow-md dark:shadow-accent shadow-accentLight"
+            "text-bg p-2 rounded-lg shadow-md dark:shadow-accent shadow-accentLight"
           }
           type="text"
           onChange={(e) => setConfirm(e.target.value)}
