@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { GetUser } from "@/actions/getUser";
+import Skoledropdown from "@/components/aboutyou/headlessuiDropdown";
 
 const AboutYou = () => {
   const user = GetUser();
@@ -39,7 +40,6 @@ const AboutYou = () => {
       </span>
       <form className="dark:bg-primary bg-primaryLight h-3/5 w-80 rounded-lg shadow-md dark:shadow-accent shadow-accentLight flex flex-col gap-6 p-4 px-6 box-border font-semibold text-xl">
         <div className="flex flex-col gap-2 dark:bg-bg bg-secondaryLight p-4 rounded-lg">
-          Skole:
           <select
             className="rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:bg-primary bg-primaryLight p-2"
             name="skole"
@@ -48,9 +48,14 @@ const AboutYou = () => {
               setSkole(e.target.value);
             }}
           >
+<<<<<<< Updated upstream
             <option value="" />
+=======
+            <Skoledropdown />
+            {/* <option value=""></option>
+>>>>>>> Stashed changes
             <option value="Elvebakken">Elvebakken</option>
-            <option value="Persbråten">Persbråten</option>
+            <option value="Persbråten">Persbråten</option> */}
           </select>
         </div>
         <Link href="/">
@@ -67,5 +72,39 @@ const AboutYou = () => {
     </div>
   );
 };
+
+{
+  /* <form className="dark:bg-primary bg-primaryLight h-3/5 w-80 rounded-lg shadow-md dark:shadow-accent shadow-accentLight flex flex-col gap-6 p-4 px-6 box-border font-semibold text-xl">
+  {" "}
+  <div className="flex flex-col gap-2 dark:bg-bg bg-secondaryLight p-4 rounded-lg">
+    {" "}
+    Skole:{" "}
+    <select
+      className="rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:bg-primary bg-primaryLight p-2"
+      name="skole"
+      defaultValue={skole}
+      onChange={(e) => {
+        setSkole(e.target.value);
+      }}
+    >
+      {" "}
+      <option value="" /> <option value="Elvebakken">Elvebakken</option>{" "}
+      <option value="Persbråten">Persbråten</option>{" "}
+    </select>{" "}
+  </div>{" "}
+  <Link href="/">
+    {" "}
+    <button
+      type="submit"
+      onClick={(e) => gameSelect(e)}
+      className="dark:bg-secondary bg-secondaryLight rounded-lg shadow-md dark:shadow-accent shadow-accentLight w-full font-bold italic p-2"
+    >
+      {" "}
+      REGISTRER{" "}
+    </button>{" "}
+  </Link>{" "}
+  <span className="text-red-700 italic text-center">{errorMessage}</span>{" "}
+</form>; */
+}
 
 export default AboutYou;

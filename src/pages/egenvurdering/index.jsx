@@ -7,12 +7,13 @@ import ReactLoading from "react-loading";
 import { GetUser } from "@/actions/getUser";
 
 const EgenvurderingContainer = () => {
-  const user = GetUser()
+  const user = GetUser();
   const [date, setDate] = useState(null);
   const [showAfter, setShowAfter] = useState(false);
   const [hasRated1, setHasRated1] = useState(true);
   const [hasRated2, setHasRated2] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [userExists, setUserExists] = useState(false);
 
   useEffect(() => {
     setDate(new Date().toLocaleDateString());
@@ -20,7 +21,10 @@ const EgenvurderingContainer = () => {
 
   useEffect(() => {
     if (user) {
+      setUserExists(true);
       fetchSessionData();
+    } else {
+      setUserExists(false);
     }
   }, [user]);
 
@@ -50,37 +54,43 @@ const EgenvurderingContainer = () => {
 
   return (
     <div className={"p-4 min-h-screen"}>
-      {loaded ? (
+      {userExists ? (
         <>
-          {showAfter ? (
+          {loaded ? (
             <>
-              {hasRated2 ? (
-                <HasRatedPage user={user} />
+              {showAfter ? (
+                <>
+                  {hasRated2 ? (
+                    <HasRatedPage user={user} />
+                  ) : (
+                    <After date={date} user={user} />
+                  )}
+                </>
               ) : (
-                <After date={date} user={user} />
+                <>
+                  {hasRated1 ? (
+                    <HasRatedPage user={user} />
+                  ) : (
+                    <Egenvurdering
+                      date={date}
+                      user={user}
+                      hasRated={hasRated1}
+                      setHasRated={setHasRated1}
+                      setShowAfter={setShowAfter}
+                    />
+                  )}
+                </>
               )}
+              <Selector showAfter={showAfter} setShowAfter={setShowAfter} />
             </>
           ) : (
-            <>
-              {hasRated1 ? (
-                <HasRatedPage user={user} />
-              ) : (
-                <Egenvurdering
-                  date={date}
-                  user={user}
-                  hasRated={hasRated1}
-                  setHasRated={setHasRated1}
-                  setShowAfter={setShowAfter}
-                />
-              )}
-            </>
+            <div className="h-screen grid place-items-center">
+              <ReactLoading type={"bars"} color={"black"} width={200} />
+            </div>
           )}
-          <Selector showAfter={showAfter} setShowAfter={setShowAfter} />
         </>
       ) : (
-        <div className="h-screen grid place-items-center">
-          <ReactLoading type={"bars"} color={"black"} width={200} />
-        </div>
+        <h1 className="text-text mt-20">use doesnt exist</h1>
       )}
     </div>
   );
