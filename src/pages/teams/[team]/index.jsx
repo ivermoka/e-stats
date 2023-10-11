@@ -4,6 +4,7 @@ import Header from "@/components/team/header";
 import Members from "@/components/team/members";
 import CreateTeam from "@/components/team/createTeam";
 import { GetUser } from "@/actions/getUser";
+import Searchbar from "@/components/team/searchbar";
 
 const Lag = () => {
   const [team, setTeam] = useState(null);
@@ -48,6 +49,7 @@ const Lag = () => {
   };
 
   const [showCreateTeam, setShowCreateTeam] = useState(false);
+  const [showSearch, setShowSearch] = useState(true);
 
   const boxStyle =
     "dark:bg-primary bg-primaryLight rounded-lg shadow-lg dark:shadow-accent shadow-accentLight p-4";
@@ -59,7 +61,12 @@ const Lag = () => {
           "mt-24 h-16 flex gap-4 text-2xl dark:text-text text-textLight font-semibold"
         }
       >
-        <button className={`${boxStyle} w-1/2`}>Finn</button>
+        <button
+          onClick={() => setShowSearch(!showSearch)}
+          className={`${boxStyle} w-1/2`}
+        >
+          Finn
+        </button>
         <button
           onClick={() => setShowCreateTeam(true)}
           className={`${boxStyle} w-1/2`}
@@ -67,6 +74,8 @@ const Lag = () => {
           Opprett
         </button>
       </div>
+
+      {showSearch && <Searchbar />}
 
       <Header team={team} />
       {showCreateTeam && <CreateTeam setShowCreateTeam={setShowCreateTeam} />}
