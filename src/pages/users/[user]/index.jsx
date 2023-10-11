@@ -65,7 +65,7 @@ const Profil = () => {
   useEffect(() => {
     if (data) {
       if (!data.school) {
-        console.log("bruker finnes ikke");
+        data.school = "Ikke valgt";
       }
       if (!data.team) {
         data.team = "Ikke valgt";
