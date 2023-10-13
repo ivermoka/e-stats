@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 
 const GetUser = () => {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const storedUsername = localStorage.getItem("username")
-    const storedToken = localStorage.getItem("token")
+    const storedUsername = localStorage.getItem("username");
+    const storedToken = localStorage.getItem("token");
     if (storedUsername && storedToken) {
-      verifyUser(storedUsername, storedToken).then()
+      verifyUser(storedUsername, storedToken).then();
     }
-  }, [])
+  }, []);
 
   const verifyUser = async (username, token) => {
     try {
@@ -20,23 +20,22 @@ const GetUser = () => {
           headers: {
             "Content-Type": "application/json",
           },
-        },
+        }
       );
 
       if (response.status === 200) {
-        setUser(await response.json())
+        setUser(await response.json());
       } else {
-        localStorage.removeItem("username")
-        localStorage.removeItem("token")
+        localStorage.removeItem("username");
+        localStorage.removeItem("token");
         console.error("Error", await response.json());
       }
     } catch (error) {
-      localStorage.removeItem("username")
-      localStorage.removeItem("token")
+      localStorage.removeItem("username");
+      localStorage.removeItem("token");
       console.error("Error logging in:", error);
     }
   };
-  return user
+  return user;
 };
 export { GetUser };
-

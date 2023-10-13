@@ -18,13 +18,13 @@ const LoginPage = () => {
     setPending(true);
     try {
       const response = await fetch(
-        `http://localhost:3000/api/login?username=${data.username}&password=${data.password}`,
+        `/api/login?username=${data.username}&password=${data.password}`,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
-        },
+        }
       );
 
       if (response.status === 200) {

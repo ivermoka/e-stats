@@ -18,7 +18,7 @@ const PersonalStats = () => {
   const [hasRated, setHasRated] = useState(true);
   const [showToday, setShowToday] = useState(false);
   const [currentDate, setCurrentDate] = useState(
-    new Date().toLocaleDateString("no-NO"),
+    new Date().toLocaleDateString("no-NO")
   );
 
   useEffect(() => {
