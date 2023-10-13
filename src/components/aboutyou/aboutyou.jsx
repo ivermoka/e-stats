@@ -11,6 +11,7 @@ const AboutYou = () => {
   const gameSelect = async (e) => {
     e.preventDefault();
     if (skole !== "") {
+      console.log(skole);
       try {
         const res = await fetch("/api/selectInfo", {
           method: "PUT",
@@ -39,22 +40,11 @@ const AboutYou = () => {
         (Du kan endre dette når som helst!)
       </span>
       <form className="dark:bg-primary bg-primaryLight h-3/5 w-80 rounded-lg shadow-md dark:shadow-accent shadow-accentLight flex flex-col gap-6 p-4 px-6 box-border font-semibold text-xl">
-        <div className="flex flex-col gap-2 dark:bg-bg bg-secondaryLight p-4 rounded-lg">
-          <select
-            className="rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:bg-primary bg-primaryLight p-2"
-            name="skole"
-            defaultValue={skole}
-            onChange={(e) => {
-              setSkole(e.target.value);
-            }}
-          >
-            <option value="" />
-            <Skoledropdown />
-            {/* <option value=""></option>
+        <Skoledropdown skole={skole} setSkole={setSkole} />
+        {/* <option value=""></option>
             <option value="Elvebakken">Elvebakken</option>
             <option value="Persbråten">Persbråten</option> */}
-          </select>
-        </div>
+
         <Link href="/">
           <button
             type="submit"
