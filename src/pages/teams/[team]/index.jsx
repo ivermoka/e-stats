@@ -9,7 +9,6 @@ import Searchbar from "@/components/team/searchbar";
 const Lag = () => {
   const [team, setTeam] = useState(null);
   const url = usePathname();
-  const [teamId, setTeamId] = useState(null);
   const [allMembers, setAllMembers] = useState(null);
   const user = GetUser();
 
@@ -62,12 +61,14 @@ const Lag = () => {
         }
       >
         <button
+          type="button"
           onClick={() => setShowSearch(!showSearch)}
           className={`${boxStyle} w-1/2`}
         >
           Finn
         </button>
         <button
+          type="button"
           onClick={() => setShowCreateTeam(true)}
           className={`${boxStyle} w-1/2`}
         >

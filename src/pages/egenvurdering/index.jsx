@@ -13,7 +13,6 @@ const EgenvurderingContainer = () => {
   const [hasRated1, setHasRated1] = useState(true);
   const [hasRated2, setHasRated2] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [userExists, setUserExists] = useState(false);
 
   useEffect(() => {
     setDate(new Date().toLocaleDateString());
@@ -21,10 +20,7 @@ const EgenvurderingContainer = () => {
 
   useEffect(() => {
     if (user) {
-      setUserExists(true);
       fetchSessionData();
-    } else {
-      setUserExists(false);
     }
   }, [user]);
 
@@ -54,7 +50,7 @@ const EgenvurderingContainer = () => {
 
   return (
     <div className={"p-4 min-h-screen"}>
-      {userExists ? (
+      {user ? (
         <>
           {loaded ? (
             <>

@@ -10,7 +10,7 @@ const SearchBar = () => {
 
   const getAllTeams = async () => {
     try {
-      const res = await fetch(`/api/getAllTeams`, {
+      const res = await fetch("/api/getAllTeams", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -31,10 +31,10 @@ const SearchBar = () => {
     : [];
 
   return (
-    <div className="mt-24 bg-primary h-screen w-full rounded-lg shadow-md shadow-accent grid place-items-center p-2">
+    <div className="dark:bg-primary bg-primaryLight w-full rounded-lg shadow-md dark:shadow-accent shadow-accentLight flex flex-col items-center p-2">
       <input
         type="text"
-        className="w-full h-full rounded-lg p-2 text-text bg-bg/75 duration-300 focus:bg-red-400"
+        className="w-full h-12 rounded-lg p-2 bg-secondaryLight dark:bg-secondary dark:text-text text-textLight bg-bg/75 duration-300 focus:border-2 dark:border-bg border-b-bgLight outline-none"
         placeholder="Søk etter lag"
         onChange={(e) => setSearch(e.target.value)}
       />
