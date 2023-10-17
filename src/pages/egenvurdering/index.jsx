@@ -15,7 +15,7 @@ const EgenvurderingContainer = () => {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    setDate(new Date().toLocaleDateString());
+    setDate(new Date().toLocaleDateString("en-US"));
   }, []);
 
   useEffect(() => {

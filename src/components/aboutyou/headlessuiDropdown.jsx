@@ -10,9 +10,6 @@ export default function Skoledropdown({ skole, setSkole }) {
       value=""
       name="skole"
       defaultValue={skole}
-      onChange={(e) => {
-        setSkole(e.target.value);
-      }}
     >
       <Menu>
         <div>
@@ -46,12 +43,9 @@ export default function Skoledropdown({ skole, setSkole }) {
                     className={`${
                       active ? "bg-violet-500 text-white" : "text-gray-900"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                    type="submit"
+                    type="button"
                     value={"Elvebakken"}
                     defaultValue={Menu.Items}
-                    onChange={(e) => {
-                      setSkole(e.target.value);
-                    }}
                   >
                     {active ? (
                       <EditActiveIcon
@@ -71,15 +65,13 @@ export default function Skoledropdown({ skole, setSkole }) {
               <Menu.Item>
                 {({ active }) => (
                   <button
+                    onClick={() => setSkole("Persbråten")}
                     className={`${
                       active ? "bg-violet-500 text-white" : "text-gray-900"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                    type="submit"
+                    type="button"
                     value={"Persbråten"}
                     defaultValue={Menu.Items}
-                    onChange={(e) => {
-                      setSkole(e.target.value);
-                    }}
                   >
                     {active ? (
                       <EditActiveIcon
