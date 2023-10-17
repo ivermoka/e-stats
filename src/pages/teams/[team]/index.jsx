@@ -48,7 +48,7 @@ const Lag = () => {
   };
 
   const [showCreateTeam, setShowCreateTeam] = useState(false);
-  const [showSearch, setShowSearch] = useState(true);
+  const [showSearch, setShowSearch] = useState(false);
 
   const boxStyle =
     "dark:bg-primary bg-primaryLight rounded-lg shadow-lg dark:shadow-accent shadow-accentLight p-4";
