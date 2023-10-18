@@ -1,16 +1,25 @@
 import { useEffect, useState } from "react";
-import Members from "@/components/team/members";
+import Team from "@/components/team/team";
+import { GetUser } from "@/actions/getUser";
 
 const SearchBar = () => {
   const [allTeams, setAllTeams] = useState(null);
   const [search, setSearch] = useState("");
+  const [selectedTeam, setSelectedTeam] = useState(null);
+  const user = GetUser();
   useEffect(() => {
     getAllTeams().then();
-  }, []);
+  }, [search]);
+
+  useEffect(() => {
+    if (selectedTeam !== null) {
+      sendJoinRequest().then();
+    }
+  }, [selectedTeam]);
 
   const getAllTeams = async () => {
     try {
-      const res = await fetch("/api/getAllTeams", {
+      const res = await fetch("/api/teamPage", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -21,6 +30,27 @@ const SearchBar = () => {
         setAllTeams(data.teams);
       } else if (res.status === 508) {
         console.log("Error fetching data");
+      }
+    } catch (err) {
+      console.log("ERROR: ", err);
+    }
+  };
+  const sendJoinRequest = async () => {
+    console.log(selectedTeam, user);
+    console.log("Sending join request");
+    try {
+      const res = await fetch("/api/teamPage", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ selectedTeam, user }),
+      });
+      if (res.status === 200) {
+        const data = await res.json();
+        console.log(data);
+      } else if (res.status === 400) {
+        console.log("Error fetching data, ", res.status);
       }
     } catch (err) {
       console.log(err);
@@ -39,9 +69,13 @@ const SearchBar = () => {
         onChange={(e) => setSearch(e.target.value)}
       />
       {filteredTeams.map((team) => (
-        <Members text={team.teamName} key={team.teamName}>
+        <Team
+          setSelectedTeam={setSelectedTeam}
+          text={team.teamName}
+          key={team.teamName}
+        >
           {" "}
-        </Members>
+        </Team>
       ))}
     </div>
   );
