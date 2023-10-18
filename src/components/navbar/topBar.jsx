@@ -25,10 +25,10 @@ const Top = () => {
     <>
       <div
         className={
-          "h-20 top-0 w-screen fixed dark:border-primary border-primaryLight border-b-2 flex justify-between items-center px-2 dark:bg-bg bg-bgLight z-20"
+          "h-16 top-0 w-screen fixed dark:border-primary border-primaryLight border-b-2 flex items-center px-2 dark:bg-bg bg-bgLight z-20"
         }
       >
-        <div className={"w-20"} />
+        <div className={"w-3"} />
         <Link href={"/"} className={"w-14"}>
           <Image
             src={"/logo.png"}
@@ -38,6 +38,7 @@ const Top = () => {
             priority
           />
         </Link>
+        <div className="w-full"></div>
         {user ? (
           <button
             type="button"
@@ -50,6 +51,7 @@ const Top = () => {
           >
             {/*navbar ikonet, hamburgermenu, react icons*/}
             <RxHamburgerMenu className=" dark:text-white text-black h-9 w-9" />
+            <div className="w-2"></div>
           </button>
         ) : (
           <div className="h-16 w-20 p-2 flex flex-col gap-2 justify-center items-center dark:text-text text-textLight font-thin text-md">

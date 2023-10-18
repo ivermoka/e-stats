@@ -98,16 +98,17 @@ const Lag = () => {
           )}
           <div
             className={
-              "dark:border-primary border-primaryLight border-4 flex flex-col p-4 rounded-lg"
+              "dark:border-primary border-primaryLight  flex flex-col gap-6 p-4 "
             }
           >
             <h2
               className={
-                "dark:bg-bg bg-bgLight dark:text-text text-textLight absolute -mt-9 text-2xl px-2 font-semibold"
+                " dark:text-text text-textLight text-2xl px-2 font-semibold"
               }
             >
               Lagmedlemmer
             </h2>
+            <div className="h-[1px] w-full dark:bg-white bg-black -mt-4"></div>
             {allMembers &&
               allMembers.map((member, index) => (
                 <div key={index}>
