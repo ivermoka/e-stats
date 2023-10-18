@@ -58,6 +58,26 @@ const Lag = () => {
       console.log(err);
     }
   };
+  const leaveTeam = async () => {
+    console.log(user);
+    try {
+      const res = await fetch("/api/teamPage", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user }),
+      });
+      if (res.status === 200) {
+        console.log("Team left");
+        window.location.reload();
+      } else if (res.status === 400) {
+        console.log(res);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const [showCreateTeam, setShowCreateTeam] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
@@ -120,6 +140,7 @@ const Lag = () => {
             <button
               type="button"
               className={`${boxStyle} text-red-400 font-semibold text-2xl`}
+              onClick={() => leaveTeam()}
             >
               Forlat lag
             </button>
