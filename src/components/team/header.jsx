@@ -10,7 +10,7 @@ const Header = ({ team }) => {
       }
     >
       <div
-        className={`${boxStyle} h-full w-1/2 aspect-square p-2 grid place-items-center`}
+        className={`${boxStyle} h-full w-1/2 aspect-square p-2 grid place-items-center dark:bg-slate-100`}
       >
         <Image
           src={"/logo.png"}
