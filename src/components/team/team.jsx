@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const Team = ({ text, setSelectedTeam }) => {
+const Team = ({ text, setSelectedTeam, setShowCode }) => {
   return (
     <div
       className={
@@ -8,7 +8,14 @@ const Team = ({ text, setSelectedTeam }) => {
       }
     >
       {text}
-      <button onClick={() => setSelectedTeam(text)}>Join</button>
+      <button
+        onClick={() => {
+          setSelectedTeam(text);
+          setShowCode(true);
+        }}
+      >
+        Join
+      </button>
     </div>
   );
 };

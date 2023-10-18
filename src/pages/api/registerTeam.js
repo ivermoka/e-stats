@@ -5,12 +5,12 @@ import User from "./../../../models/User";
 connectDB();
 
 export default async function handler(req, res) {
-  const teamName = req.body.teamName;
-  const username = req.body.username;
+  const { teamName, username, teamCode } = req.body;
   try {
     const team = new Team({
       teamName: teamName,
       members: username,
+      teamCode: teamCode,
     });
     await team.save();
 
