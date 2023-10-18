@@ -16,8 +16,8 @@ const CreateTeam = ({ setShowCreateTeam }) => {
         },
         body: JSON.stringify({
           teamName: teamName,
-          teamCode: teamCode,
           username: user,
+          teamCode: teamCode,
         }),
       });
       if (res.status === 200) {

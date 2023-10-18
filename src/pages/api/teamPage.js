@@ -5,25 +5,30 @@ connectDB();
 
 export default async function teamPage(req, res) {
   if (req.method === "POST") {
-    const { selectedTeam, user } = req.body;
+    const { selectedTeam, user, teamCode } = req.body;
     try {
       const teamSchema = await Team.findOne({ teamName: selectedTeam });
-      teamSchema.requests = [...teamSchema.requests, user];
-
-      await teamSchema.save();
+      if (teamSchema.teamCode === teamCode) {
+        teamSchema.members = [...teamSchema.members, user];
+        await teamSchema.save();
+        res.status(200).json({ success: "Bruker lagt til team" });
+      } else {
+        res.status(400).json({ error: "Feil teamkode" });
+      }
     } catch (error) {
       console.log(error);
       res.status(400).json({ error });
     }
   }
   if (req.method === "DELETE") {
+    const { selectedTeam, user } = req.body;
     const teamSchema = await Team.findOne({ teamName: user });
     teamSchema.requests = teamSchema.requests.filter((name) => name !== user);
     await teamSchema.save();
   }
-
   if (req.method === "GET") {
     try {
+      console.log("Henter brukere");
       const teams = await Team.find({});
       res.status(200).json({ teams });
     } catch (error) {

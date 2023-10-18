@@ -3,6 +3,8 @@ import Team from "@/components/team/team";
 import { GetUser } from "@/actions/getUser";
 
 const SearchBar = () => {
+  const [showCode, setShowCode] = useState(false);
+  const [teamCode, setTeamCode] = useState("");
   const [allTeams, setAllTeams] = useState(null);
   const [search, setSearch] = useState("");
   const [selectedTeam, setSelectedTeam] = useState(null);
@@ -10,12 +12,6 @@ const SearchBar = () => {
   useEffect(() => {
     getAllTeams().then();
   }, [search]);
-
-  useEffect(() => {
-    if (selectedTeam !== null) {
-      sendJoinRequest().then();
-    }
-  }, [selectedTeam]);
 
   const getAllTeams = async () => {
     try {
@@ -35,22 +31,20 @@ const SearchBar = () => {
       console.log("ERROR: ", err);
     }
   };
-  const sendJoinRequest = async () => {
-    console.log(selectedTeam, user);
-    console.log("Sending join request");
+  const joinTeam = async () => {
     try {
       const res = await fetch("/api/teamPage", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ selectedTeam, user }),
+        body: JSON.stringify({ selectedTeam, user, teamCode }),
       });
       if (res.status === 200) {
         const data = await res.json();
         console.log(data);
       } else if (res.status === 400) {
-        console.log("Error fetching data, ", res.status);
+        console.log("feil kode");
       }
     } catch (err) {
       console.log(err);
@@ -62,6 +56,15 @@ const SearchBar = () => {
 
   return (
     <div className="dark:bg-primary bg-primaryLight w-full rounded-lg shadow-md dark:shadow-accent shadow-accentLight flex flex-col items-center p-2 ">
+      {showCode && (
+        <div>
+          <input
+            onChange={(e) => setTeamCode(e.target.value)}
+            placeholder={"Team code: "}
+          ></input>
+          <button onClick={() => joinTeam()}>join</button>
+        </div>
+      )}
       <input
         type="text"
         className="w-full h-12 rounded-3xl p-2 bg-secondaryLight dark:bg-secondary dark:text-text text-textLight bg-bg/75 duration-300 focus:border-2 dark:border-bg border-b-bgLight outline-none"
@@ -70,6 +73,7 @@ const SearchBar = () => {
       />
       {filteredTeams.slice(0, 5).map((team) => (
         <Team
+          setShowCode={setShowCode}
           setSelectedTeam={setSelectedTeam}
           text={team.teamName}
           key={team.teamName}
