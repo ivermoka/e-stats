@@ -3,6 +3,7 @@ import { GetUser } from "@/actions/getUser";
 
 const CreateTeam = ({ setShowCreateTeam }) => {
   const [teamName, setTeamName] = useState("");
+  const [teamCode, setTeamCode] = useState("");
   const user = GetUser();
 
   const makeTeam = async (e) => {
@@ -13,10 +14,15 @@ const CreateTeam = ({ setShowCreateTeam }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ teamName: teamName, username: user }),
+        body: JSON.stringify({
+          teamName: teamName,
+          teamCode: teamCode,
+          username: user,
+        }),
       });
       if (res.status === 200) {
         console.log("Team created");
+        window.location.href = `/teams/${teamName}`;
       } else if (res.status === 500) {
         console.log("Error fetching data");
       }
@@ -32,17 +38,24 @@ const CreateTeam = ({ setShowCreateTeam }) => {
     >
       <form
         className={
-          "w-72 h-96 bg-primary flex flex-col gap-4 justify-center items-center rounded-lg shadow-md shadow-accent"
+          "w-72 h-96 dark:bg-primary bg-primaryLight dark:text-text text-textLight flex flex-col gap-4 justify-center items-center rounded-lg shadow-md dark:shadow-accent shadow-accentLight"
         }
       >
-        <h1 className={"text-text text-3xl"}>Opprett Lag</h1>
+        <h1 className={"text-3xl"}>Opprett Lag</h1>
         <input
           className={"p-2 rounded-lg"}
           onChange={(e) => setTeamName(e.target.value)}
           placeholder="Nytt lag"
         />
+        <input
+          className={"p-2 rounded-lg"}
+          onChange={(e) => setTeamCode(e.target.value)}
+          placeholder="Din lag kode"
+        />
         <button
-          className={"p-2 rounded-lg text-text bg-accent text-xl font-semibold"}
+          className={
+            "p-2 rounded-lg dark:bg-accent bg-secondaryLight text-xl font-semibold"
+          }
           type="submit"
           onClick={(e) => {
             makeTeam(e).then();
@@ -51,7 +64,10 @@ const CreateTeam = ({ setShowCreateTeam }) => {
           Opprett
         </button>
         <button
-          className={"p-2 rounded-lg text-text bg-accent text-xl font-semibold"}
+          type="button"
+          className={
+            "p-2 rounded-lg dark:bg-accent bg-secondaryLight text-xl font-semibold"
+          }
           onClick={() => setShowCreateTeam(false)}
         >
           LUKK

@@ -108,13 +108,13 @@ const PersonalStats = () => {
           {showCalendar && (
             <Calendar
               defaultValue={date}
-              className={`dark:bg-primary bg-primaryLight rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 font-semibold`}
+              className={`dark:bg-primary bg-primaryLight shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 font-semibold`}
               tileClassName={({ date }) => {
                 const isSelectedDate =
                   date.toLocaleDateString("no-NO") === currentDate;
                 return isSelectedDate
-                  ? "selected-date-class dark:bg-[#F8D8B1] bg-[#305464] dark:text-black text-white p-2 dark: border-textLight dark:border rounded-lg"
-                  : "p-2 dark:border-text border-textLight border rounded-lg";
+                  ? "selected-date-class dark:bg-[#F8D8B1] bg-[#305464] dark:text-black text-white p-2 dark: border-textLight dark:border"
+                  : "p-2 dark:border-text border-textLight border";
               }}
               onClickDay={(day) => {
                 setDate(day.toLocaleDateString("no-NO"));
