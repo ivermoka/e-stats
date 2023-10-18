@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import Dropdown from "@/components/navbar/dropdown/dropdown";
 import Terms from "@/components/navbar/terms/terms";
 import ConfirmDelete from "@/components/navbar/dropdown/confirmDelete";
-import {GetUser} from "@/actions/getUser"
+import { GetUser } from "@/actions/getUser";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const Top = () => {
-  const user = GetUser()
+  const user = GetUser();
   const [dropdown, setDropdown] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
@@ -44,16 +45,11 @@ const Top = () => {
               setDropdown(!dropdown);
             }}
             className={
-              "w-14 rounded-full dark:border-primary border-primaryLight border-4 grid place-items-center"
+              "w-14 rounded-full dark:border-primary  grid place-items-center"
             }
           >
-            <Image
-              src={"/logo.png"}
-              alt={"profile picture"}
-              width={100}
-              height={100}
-              priority
-            />
+            {/*navbar ikonet, hamburgermenu, react icons*/}
+            <RxHamburgerMenu className=" dark:text-white text-black h-9 w-9" />
           </button>
         ) : (
           <div className="h-16 w-20 p-2 flex flex-col gap-2 justify-center items-center dark:text-text text-textLight font-thin text-md">
