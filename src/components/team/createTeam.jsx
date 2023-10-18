@@ -4,30 +4,36 @@ import { GetUser } from "@/actions/getUser";
 const CreateTeam = ({ setShowCreateTeam }) => {
   const [teamName, setTeamName] = useState("");
   const [teamCode, setTeamCode] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const user = GetUser();
 
   const makeTeam = async (e) => {
     e.preventDefault();
-    try {
-      const res = await fetch("/api/registerTeam", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          teamName: teamName,
-          teamCode: teamCode,
-          username: user,
-        }),
-      });
-      if (res.status === 200) {
-        console.log("Team created");
-        window.location.href = `/teams/${teamName}`;
-      } else if (res.status === 500) {
-        console.log("Error fetching data");
+    if (teamName.includes(" ")) {
+      setErrorMessage("*Lagnavn kan bare inneholde bokstaver, tall, _ og -");
+    } else {
+      setErrorMessage("");
+      try {
+        const res = await fetch("/api/registerTeam", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            teamName: teamName,
+            teamCode: teamCode,
+            username: user,
+          }),
+        });
+        if (res.status === 200) {
+          console.log("Team created");
+          window.location.href = `/teams/${teamName}`;
+        } else if (res.status === 500) {
+          console.log("Error fetching data");
+        }
+      } catch (err) {
+        console.log(err);
       }
-    } catch (err) {
-      console.log(err);
     }
   };
   return (
@@ -43,15 +49,20 @@ const CreateTeam = ({ setShowCreateTeam }) => {
       >
         <h1 className={"text-3xl"}>Opprett Lag</h1>
         <input
+          type="text"
           className={"p-2 rounded-lg"}
           onChange={(e) => setTeamName(e.target.value)}
           placeholder="Nytt lag"
         />
         <input
+          type="password"
           className={"p-2 rounded-lg"}
           onChange={(e) => setTeamCode(e.target.value)}
           placeholder="Din lag kode"
         />
+        <span className="text-red-900 italic text-center mx-2">
+          {errorMessage}
+        </span>
         <button
           className={
             "p-2 rounded-lg dark:bg-accent bg-secondaryLight text-xl font-semibold"
