@@ -43,6 +43,8 @@ const SearchBar = () => {
       if (res.status === 200) {
         const data = await res.json();
         console.log(data);
+        window.location.reload();
+        window.location.href = `/teams/${selectedTeam}`;
       } else if (res.status === 400) {
         console.log("feil kode");
       }
