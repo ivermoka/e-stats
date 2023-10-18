@@ -38,10 +38,8 @@ const SearchBar = () => {
         placeholder="Søk etter lag"
         onChange={(e) => setSearch(e.target.value)}
       />
-      {filteredTeams.map((team) => (
-        <Members text={team.teamName} key={team.teamName}>
-          {" "}
-        </Members>
+      {filteredTeams.slice(0, 5).map((team) => (
+        <Members text={team.teamName} key={team.teamName} />
       ))}
     </div>
   );
