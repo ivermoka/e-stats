@@ -31,10 +31,10 @@ const SearchBar = () => {
     : [];
 
   return (
-    <div className="dark:bg-primary bg-primaryLight w-full rounded-lg shadow-md dark:shadow-accent shadow-accentLight flex flex-col items-center p-2">
+    <div className="dark:bg-primary bg-primaryLight w-full rounded-lg shadow-md dark:shadow-accent shadow-accentLight flex flex-col items-center p-2 ">
       <input
         type="text"
-        className="w-full h-12 rounded-lg p-2 bg-secondaryLight dark:bg-secondary dark:text-text text-textLight bg-bg/75 duration-300 focus:border-2 dark:border-bg border-b-bgLight outline-none"
+        className="w-full h-12 rounded-3xl p-2 bg-secondaryLight dark:bg-secondary dark:text-text text-textLight bg-bg/75 duration-300 focus:border-2 dark:border-bg border-b-bgLight outline-none"
         placeholder="Søk etter lag"
         onChange={(e) => setSearch(e.target.value)}
       />
