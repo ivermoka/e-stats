@@ -1,5 +1,6 @@
 import connectDB from "../../../db";
 import Team from "../../../models/Team";
+import User from "./../../../models/User";
 
 connectDB();
 
@@ -8,9 +9,13 @@ export default async function teamPage(req, res) {
     const { selectedTeam, user, teamCode } = req.body;
     try {
       const teamSchema = await Team.findOne({ teamName: selectedTeam });
+      const userSchema = await User.findOne({ username: user });
       if (teamSchema.teamCode === teamCode) {
         teamSchema.members = [...teamSchema.members, user];
         await teamSchema.save();
+
+        userSchema.team = selectedTeam;
+        await userSchema.save();
         res.status(200).json({ success: "Bruker lagt til team" });
       } else {
         res.status(400).json({ error: "Feil teamkode" });
