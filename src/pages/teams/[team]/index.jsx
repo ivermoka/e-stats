@@ -5,8 +5,10 @@ import Members from "@/components/team/members";
 import CreateTeam from "@/components/team/createTeam";
 import { GetUser } from "@/actions/getUser";
 import Searchbar from "@/components/team/searchbar";
+import ReactLoading from "react-loading";
 
 const Lag = () => {
+  const [loaded, setLoaded] = useState(false);
   const [team, setTeam] = useState(null);
   const url = usePathname();
   const [allMembers, setAllMembers] = useState(null);
@@ -14,9 +16,19 @@ const Lag = () => {
 
   useEffect(() => {
     if (user !== null && url !== null) {
-      getAllMembers().then();
+      getAllMembers().then(() => setLoaded(true));
     }
   }, [user]);
+
+  const [isMember, setIsMember] = useState(false);
+
+  useEffect(() => {
+    if (allMembers) {
+      if (allMembers.some((allMembers) => allMembers.username.includes(user))) {
+        setIsMember(true);
+      }
+    }
+  }, [allMembers, user]);
 
   useEffect(() => {
     if (typeof window !== "undefined" && url !== null) {
@@ -54,52 +66,70 @@ const Lag = () => {
     "dark:bg-primary bg-primaryLight rounded-lg shadow-lg dark:shadow-accent shadow-accentLight p-4";
 
   return (
-    <div className={"min-h-screen flex flex-col gap-8 px-8 mb-32"}>
-      <div
-        className={
-          "mt-24 h-16 flex gap-4 text-2xl dark:text-text text-textLight font-semibold"
-        }
-      >
-        <button
-          type="button"
-          onClick={() => setShowSearch(!showSearch)}
-          className={`${boxStyle} w-1/2`}
-        >
-          Finn
-        </button>
-        <button
-          type="button"
-          onClick={() => setShowCreateTeam(true)}
-          className={`${boxStyle} w-1/2`}
-        >
-          Opprett
-        </button>
-      </div>
+    <>
+      {loaded ? (
+        <div className={"min-h-screen flex flex-col gap-8 px-8 mb-32"}>
+          <div
+            className={
+              "mt-24 h-16 flex gap-4 text-2xl dark:text-text text-textLight font-semibold"
+            }
+          >
+            <button
+              type="button"
+              onClick={() => setShowSearch(!showSearch)}
+              className={`${boxStyle} w-1/2`}
+            >
+              Finn
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowCreateTeam(true)}
+              className={`${boxStyle} w-1/2`}
+            >
+              Opprett
+            </button>
+          </div>
 
-      {showSearch && <Searchbar />}
+          {showSearch && <Searchbar />}
 
-      <Header team={team} />
-      {showCreateTeam && <CreateTeam setShowCreateTeam={setShowCreateTeam} />}
-      <div
-        className={
-          "dark:border-primary border-primaryLight border-4 flex flex-col gap-8 p-4 rounded-lg"
-        }
-      >
-        <h2
-          className={
-            "dark:bg-bg bg-bgLight dark:text-text text-textLight absolute -mt-9 text-2xl px-2 font-semibold"
-          }
-        >
-          Lagmedlemmer
-        </h2>
-        {allMembers &&
-          allMembers.map((member, index) => (
-            <div key={index}>
-              <Members text={member.username} />
-            </div>
-          ))}
-      </div>
-    </div>
+          <Header team={team} />
+          {showCreateTeam && (
+            <CreateTeam setShowCreateTeam={setShowCreateTeam} />
+          )}
+          <div
+            className={
+              "dark:border-primary border-primaryLight border-4 flex flex-col gap-8 p-4 rounded-lg"
+            }
+          >
+            <h2
+              className={
+                "dark:bg-bg bg-bgLight dark:text-text text-textLight absolute -mt-9 text-2xl px-2 font-semibold"
+              }
+            >
+              Lagmedlemmer
+            </h2>
+            {allMembers &&
+              allMembers.map((member, index) => (
+                <div key={index}>
+                  <Members text={member.username} />
+                </div>
+              ))}
+          </div>
+          {isMember && (
+            <button
+              type="button"
+              className={`${boxStyle} text-red-400 font-semibold text-2xl`}
+            >
+              Forlat lag
+            </button>
+          )}
+        </div>
+      ) : (
+        <div className="h-screen flex justify-center items-center">
+          <ReactLoading color={"black"} width={200} type="bars" />
+        </div>
+      )}
+    </>
   );
 };
 

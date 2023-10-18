@@ -12,7 +12,6 @@ export default async function handler(req, res) {
       teamName: teamName,
       members: username,
     });
-    console.log(teamName, username);
     await team.save();
 
     const user = await User.findOne({ username: username });
