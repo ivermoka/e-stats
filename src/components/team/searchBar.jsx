@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Team from "@/components/team/team";
+import JoinTeamPopup from "./joinTeamPopup";
 import { GetUser } from "@/actions/getUser";
 
 const SearchBar = () => {
@@ -9,6 +10,7 @@ const SearchBar = () => {
   const [search, setSearch] = useState("");
   const [selectedTeam, setSelectedTeam] = useState(null);
   const user = GetUser();
+
   useEffect(() => {
     getAllTeams().then();
   }, [search]);
@@ -52,20 +54,19 @@ const SearchBar = () => {
       console.log(err);
     }
   };
+
   const filteredTeams = allTeams
     ? allTeams.filter((team) => team.teamName.includes(search))
     : [];
 
   return (
-    <div className="dark:bg-primary bg-primaryLight w-full rounded-lg shadow-md dark:shadow-accent shadow-accentLight flex flex-col items-center p-2 ">
+    <div className="dark:bg-primary bg-primaryLight w-full rounded-lg shadow-md dark:shadow-accent shadow-accentLight flex flex-col items-center p-2">
       {showCode && (
-        <div>
-          <input
-            onChange={(e) => setTeamCode(e.target.value)}
-            placeholder={"Team code: "}
-          ></input>
-          <button onClick={() => joinTeam()}>join</button>
-        </div>
+        <JoinTeamPopup
+          joinTeam={joinTeam}
+          setTeamCode={setTeamCode}
+          setShowCode={setShowCode}
+        />
       )}
       <input
         type="text"

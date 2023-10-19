@@ -37,9 +37,6 @@ const Egenvurdering = ({ date, user, setShowAfter }) => {
     }
   };
 
-  const boxStyle =
-    "dark:bg-primary bg-primaryLight rounded-lg p-2 shadow-md dark:shadow-accent shadow-accentLight font-semibold text-center text-2xl";
-
   return (
     <>
       <form onSubmit={rateDay} className="mb-20 xs:p-4 mt-16 overflow-x-hidden">

@@ -36,6 +36,7 @@ const Lag = () => {
       if (urlParts.length >= 3) {
         const newId = urlParts[2];
         setTeam(newId);
+        getAllMembers();
       }
     }
   }, [url]);
@@ -98,7 +99,7 @@ const Lag = () => {
           )}
           <div
             className={
-              "dark:border-primary border-primaryLight border-4 flex flex-col gap-8 p-4 rounded-lg"
+              "dark:border-primary border-primaryLight border-4 flex flex-col p-4 rounded-lg"
             }
           >
             <h2

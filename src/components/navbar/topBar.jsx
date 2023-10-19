@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import Dropdown from "@/components/navbar/dropdown/dropdown";
 import Terms from "@/components/navbar/terms/terms";
 import ConfirmDelete from "@/components/navbar/dropdown/confirmDelete";
-import {GetUser} from "@/actions/getUser"
+import { GetUser } from "@/actions/getUser";
 
 const Top = () => {
-  const user = GetUser()
+  const user = GetUser();
   const [dropdown, setDropdown] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
@@ -27,7 +27,7 @@ const Top = () => {
           "h-20 top-0 w-screen fixed dark:border-primary border-primaryLight border-b-2 flex justify-between items-center px-2 dark:bg-bg bg-bgLight z-20"
         }
       >
-        <div className={"w-20"} />
+        <div className={"w-14"} />
         <Link href={"/"} className={"w-14"}>
           <Image
             src={"/logo.png"}
