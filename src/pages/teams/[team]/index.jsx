@@ -59,6 +59,26 @@ const Lag = () => {
       console.log(err);
     }
   };
+  const leaveTeam = async () => {
+    console.log(user);
+    try {
+      const res = await fetch("/api/teamPage", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user }),
+      });
+      if (res.status === 200) {
+        console.log("Team left");
+        window.location.reload();
+      } else if (res.status === 400) {
+        console.log(res);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const [showCreateTeam, setShowCreateTeam] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
@@ -99,16 +119,17 @@ const Lag = () => {
           )}
           <div
             className={
-              "dark:border-primary border-primaryLight border-4 flex flex-col p-4 rounded-lg"
+              "dark:border-primary border-primaryLight flex flex-col gap-6 p-4 "
             }
           >
             <h2
               className={
-                "dark:bg-bg bg-bgLight dark:text-text text-textLight absolute -mt-9 text-2xl px-2 font-semibold"
+                " dark:text-text text-textLight text-2xl px-2 font-semibold"
               }
             >
               Lagmedlemmer
             </h2>
+            <div className="h-[1px] w-full dark:bg-white bg-black -mt-4"></div>
             {allMembers &&
               allMembers.map((member, index) => (
                 <div key={index}>
@@ -120,6 +141,7 @@ const Lag = () => {
             <button
               type="button"
               className={`${boxStyle} text-red-400 font-semibold text-2xl`}
+              onClick={() => leaveTeam()}
             >
               Forlat lag
             </button>

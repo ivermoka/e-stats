@@ -26,10 +26,18 @@ export default async function teamPage(req, res) {
     }
   }
   if (req.method === "DELETE") {
-    const { selectedTeam, user } = req.body;
-    const teamSchema = await Team.findOne({ teamName: user });
-    teamSchema.requests = teamSchema.requests.filter((name) => name !== user);
-    await teamSchema.save();
+    try {
+      const user = req.body;
+      const userSchema = await User.findOne({ username: user.user });
+      const teamSchema = await Team.findOne({ teamName: userSchema.team });
+      teamSchema.members = teamSchema.members.filter((name) => name !== user);
+      userSchema.team = "";
+      await userSchema.save();
+      await teamSchema.save();
+      res.status(200).json({ success: "Bruker fjernet fra team" });
+    } catch (e) {
+      res.status(400).json({ error: "Feil ved sletting av bruker", e });
+    }
   }
   if (req.method === "GET") {
     try {

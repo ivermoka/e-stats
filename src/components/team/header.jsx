@@ -9,18 +9,7 @@ const Header = ({ team }) => {
         "flex flex-col gap-4 w-full dark:text-text text-textLight items-center"
       }
     >
-      <div
-        className={`${boxStyle} h-full w-1/2 aspect-square p-2 grid place-items-center`}
-      >
-        <Image
-          src={"/logo.png"}
-          alt={"team logo"}
-          width={200}
-          height={200}
-          priority
-        />
-      </div>
-      <h2 className={"text-5xl font-bold"}>{team}</h2>
+      <h2 className={"text-6xl mt-8 font-bold"}>{team}</h2>
     </div>
   );
 };

@@ -43,8 +43,6 @@ const SearchBar = () => {
         body: JSON.stringify({ selectedTeam, user, teamCode }),
       });
       if (res.status === 200) {
-        const data = await res.json();
-        console.log(data);
         window.location.reload();
         window.location.href = `/teams/${selectedTeam}`;
       } else if (res.status === 400) {
