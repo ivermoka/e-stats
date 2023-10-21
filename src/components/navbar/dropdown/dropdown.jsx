@@ -62,6 +62,7 @@ const Dropdown = ({
           "h-20 w-screen px-2 dark:border-primary border-primaryLight border-b-2 flex justify-between items-center"
         }
       >
+        <ThemeToggle />
         <button
           type="button"
           onClick={() => {
@@ -73,7 +74,6 @@ const Dropdown = ({
         >
           <FiX className={"dark:text-primary text-primaryLight text-5xl"} />
         </button>
-        <ThemeToggle />
       </div>
       <UserInfo />
       <div className={"flex flex-col w-full px-4 gap-3 mt-2"}>
@@ -84,13 +84,23 @@ const Dropdown = ({
             onClick={() => setDropdown(false)}
           />
         </Link>
-        <Link href={`/teams/${team}`}>
-          <Links
-            text={"Ditt Lag"}
-            icon={<AiOutlineTeam />}
-            onClick={() => setDropdown(false)}
-          />
-        </Link>
+        {team ? (
+          <Link href={`/teams/${team}`}>
+            <Links
+              text={"Ditt Lag"}
+              icon={<AiOutlineTeam />}
+              onClick={() => setDropdown(false)}
+            />
+          </Link>
+        ) : (
+          <Link href={"/teams/noteam"}>
+            <Links
+              text={"Ditt Lag"}
+              icon={<AiOutlineTeam />}
+              onClick={() => setDropdown(false)}
+            />
+          </Link>
+        )}
         <Line />
         <Links
           text={"Vilkår for bruk"}

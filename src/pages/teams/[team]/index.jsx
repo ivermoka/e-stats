@@ -6,8 +6,10 @@ import CreateTeam from "@/components/team/createTeam";
 import { GetUser } from "@/actions/getUser";
 import Searchbar from "@/components/team/searchbar";
 import ReactLoading from "react-loading";
+import JoinTeamPopup from "@/components/team/joinTeamPopup";
 
 const Lag = () => {
+  const [selectedTeam, setSelectedTeam] = useState(null);
   const [loaded, setLoaded] = useState(false);
   const [team, setTeam] = useState(null);
   const url = usePathname();
@@ -36,7 +38,7 @@ const Lag = () => {
       if (urlParts.length >= 3) {
         const newId = urlParts[2];
         setTeam(newId);
-        getAllMembers();
+        setSelectedTeam(newId);
       }
     }
   }, [url]);
@@ -59,6 +61,31 @@ const Lag = () => {
       console.log(err);
     }
   };
+
+  const [teamCode, setTeamCode] = useState("");
+  const [showCode, setShowCode] = useState(false);
+
+  const joinTeam = async () => {
+    console.log(selectedTeam);
+    try {
+      const res = await fetch("/api/teamPage", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ selectedTeam, user, teamCode }),
+      });
+      if (res.status === 200) {
+        window.location.reload();
+        window.location.href = `/teams/${selectedTeam}`;
+      } else if (res.status === 400) {
+        console.log("feil kode");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const leaveTeam = async () => {
     console.log(user);
     try {
@@ -111,7 +138,23 @@ const Lag = () => {
             </button>
           </div>
 
-          {showSearch && <Searchbar />}
+          {showSearch && (
+            <Searchbar
+              joinTeam={joinTeam}
+              setTeamCode={setTeamCode}
+              setSelectedTeam={setSelectedTeam}
+              showCode={showCode}
+              setShowCode={setShowCode}
+            />
+          )}
+
+          {showCode && (
+            <JoinTeamPopup
+              joinTeam={joinTeam}
+              setTeamCode={setTeamCode}
+              setShowCode={setShowCode}
+            />
+          )}
 
           <Header team={team} />
           {showCreateTeam && (
@@ -137,13 +180,21 @@ const Lag = () => {
                 </div>
               ))}
           </div>
-          {isMember && (
+          {isMember ? (
             <button
               type="button"
               className={`${boxStyle} text-red-400 font-semibold text-2xl`}
               onClick={() => leaveTeam()}
             >
               Forlat lag
+            </button>
+          ) : (
+            <button
+              type="button"
+              className={`${boxStyle} text-blue-400 font-semibold text-2xl`}
+              onClick={() => setShowCode(true)}
+            >
+              Bli med
             </button>
           )}
         </div>

@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import Team from "@/components/team/team";
 import JoinTeamPopup from "./joinTeamPopup";
-import { GetUser } from "@/actions/getUser";
 
-const SearchBar = () => {
-  const [showCode, setShowCode] = useState(false);
-  const [teamCode, setTeamCode] = useState("");
+const SearchBar = ({
+  joinTeam,
+  setTeamCode,
+  setSelectedTeam,
+  showCode,
+  setShowCode,
+}) => {
   const [allTeams, setAllTeams] = useState(null);
   const [search, setSearch] = useState("");
-  const [selectedTeam, setSelectedTeam] = useState(null);
-  const user = GetUser();
 
   useEffect(() => {
     getAllTeams().then();
@@ -31,25 +32,6 @@ const SearchBar = () => {
       }
     } catch (err) {
       console.log("ERROR: ", err);
-    }
-  };
-  const joinTeam = async () => {
-    try {
-      const res = await fetch("/api/teamPage", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ selectedTeam, user, teamCode }),
-      });
-      if (res.status === 200) {
-        window.location.reload();
-        window.location.href = `/teams/${selectedTeam}`;
-      } else if (res.status === 400) {
-        console.log("feil kode");
-      }
-    } catch (err) {
-      console.log(err);
     }
   };
 
