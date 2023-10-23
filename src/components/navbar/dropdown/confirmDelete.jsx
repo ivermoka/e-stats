@@ -16,7 +16,6 @@ const ConfirmDelete = ({ setShowConfirmDelete, user }) => {
       });
       if (res.status === 200) {
         localStorage.removeItem("token");
-        localStorage.removeItem("username");
         window.location.href = "/";
       } else if (res.status === 400) {
         console.log(res.status);

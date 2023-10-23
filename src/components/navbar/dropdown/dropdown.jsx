@@ -6,7 +6,6 @@ import Links from "./dropdownLink";
 import Line from "./sepLine";
 import Link from "next/link";
 import ThemeToggle from "@/components/navbar/dropdown/themeToggle";
-import { GetUser } from "@/actions/getUser";
 
 import { BiUser } from "react-icons/bi";
 import { AiOutlineTeam } from "react-icons/ai";

@@ -24,13 +24,12 @@ const LoginPage = () => {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
 
       if (response.status === 200) {
         const data = await response.json();
         localStorage.setItem("token", data.token);
-        localStorage.setItem("username", data.username);
         window.location.href = "/";
       } else {
         setWrong(true);
@@ -72,7 +71,7 @@ const LoginPage = () => {
           className={inputStyle}
         />
         {pending ? (
-          <ReactLoading type={"cylon"} color={"black"} width={40} />
+          <ReactLoading type={"spin"} color={"black"} width={40} height={44} />
         ) : (
           <button type="submit" className={`${inputStyle} font-semibold`}>
             Logg Inn

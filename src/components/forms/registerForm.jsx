@@ -29,7 +29,6 @@ const Register = ({ setRegistered }) => {
 
       if (response.status === 201) {
         const data = await response.json();
-        localStorage.setItem("username", data.username);
         localStorage.setItem("token", data.token);
         setRegistered(true);
       } else {
@@ -91,7 +90,7 @@ const Register = ({ setRegistered }) => {
           <span>Jeg aksepterer vilkårene</span>
         </div>
         {pending ? (
-          <ReactLoading type={"cylon"} color={"black"} width={40} />
+          <ReactLoading type={"spin"} color={"black"} width={40} height={44} />
         ) : (
           <button className={`${inputStyle} font-semibold`} type="submit">
             Opprett bruker

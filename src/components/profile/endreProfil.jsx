@@ -1,8 +1,8 @@
-import { GetUser } from "@/actions/getUser"
+import { GetUser } from "@/actions/getUser";
 import { useState, useEffect } from "react";
 
 const EndreProfil = ({ setModalOpen, id, setId }) => {
-  const user = GetUser()
+  const user = GetUser();
   const [error, setError] = useState(null);
   const [newUsername, setNewUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -10,8 +10,8 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
   const [school, setSchool] = useState("");
 
   useEffect(() => {
-   setNewUsername(user) 
-  }, [user])
+    setNewUsername(user);
+  }, [user]);
 
   const changeUsername = async () => {
     try {
@@ -30,7 +30,6 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
       });
 
       if (res.status === 200) {
-        localStorage.setItem("username", newUsername);
         setId(newUsername);
         window.location.href = `/users/${newUsername}`;
         setModalOpen(false);

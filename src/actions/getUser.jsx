@@ -4,34 +4,28 @@ const GetUser = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const storedUsername = localStorage.getItem("username");
     const storedToken = localStorage.getItem("token");
-    if (storedUsername && storedToken) {
-      verifyUser(storedUsername, storedToken).then();
+    if (storedToken) {
+      verifyUser(storedToken).then();
     }
   }, []);
 
-  const verifyUser = async (username, token) => {
+  const verifyUser = async (token) => {
     try {
-      const response = await fetch(
-        `/api/verifyUser?username=${username}&token=${token}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(`/api/verifyUser?token=${token}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       if (response.status === 200) {
         setUser(await response.json());
       } else {
-        localStorage.removeItem("username");
         localStorage.removeItem("token");
         console.error("Error", await response.json());
       }
     } catch (error) {
-      localStorage.removeItem("username");
       localStorage.removeItem("token");
       console.error("Error logging in:", error);
     }

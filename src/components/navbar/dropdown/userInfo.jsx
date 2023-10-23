@@ -1,14 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
+import { GetUser } from "@/actions/getUser";
 
 const UserInfo = () => {
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      setUser(localStorage.getItem("username"));
-    }
-  }, []);
+  const user = GetUser();
   return (
     <div className={"h-16 flex justify-center items-center"}>
       <div
