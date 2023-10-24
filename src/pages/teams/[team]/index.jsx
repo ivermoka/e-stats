@@ -14,6 +14,7 @@ const Lag = () => {
   const url = usePathname();
   const [allMembers, setAllMembers] = useState(null);
   const user = GetUser();
+  const [teamCodeTrue, setTeamCodeTrue] = useState(null);
 
   useEffect(() => {
     if (user !== null && url !== null) {
@@ -44,15 +45,19 @@ const Lag = () => {
 
   const getAllMembers = async () => {
     try {
-      const res = await fetch(`/api/getTeamMembers?team=${team}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        `/api/getTeamMembers?team=${team}&selectedTeam=${selectedTeam}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
         },
-      });
+      );
       if (res.status === 200) {
         const data = await res.json();
         setAllMembers(data.users);
+        setTeamCodeTrue(data.teamSchema.teamCode);
       } else if (res.status === 500) {
         console.log("Error fetching data");
       }
@@ -132,6 +137,7 @@ const Lag = () => {
               "dark:border-primary border-primaryLight flex flex-col gap-6 p-4 "
             }
           >
+            {teamCodeTrue}
             <h2
               className={
                 " dark:text-text text-textLight text-2xl px-2 font-semibold"
