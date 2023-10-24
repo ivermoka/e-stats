@@ -10,7 +10,6 @@ const userSchema = new mongoose.Schema({
   comment: String,
   date: String,
   user: String,
-  game: String,
   team: String,
   hasRatedPart2: Boolean,
 });
