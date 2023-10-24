@@ -1,14 +1,7 @@
 import { useEffect, useState } from "react";
 import Team from "@/components/team/team";
-import JoinTeamPopup from "./joinTeamPopup";
 
-const SearchBar = ({
-  joinTeam,
-  setTeamCode,
-  setSelectedTeam,
-  showCode,
-  setShowCode,
-}) => {
+const SearchBar = ({ setSelectedTeam, setShowCode }) => {
   const [allTeams, setAllTeams] = useState(null);
   const [search, setSearch] = useState("");
 
@@ -34,36 +27,34 @@ const SearchBar = ({
       console.log("ERROR: ", err);
     }
   };
-
   const filteredTeams = allTeams
-    ? allTeams.filter((team) => team.teamName.includes(search))
+    ? allTeams.filter((team) =>
+        team.teamName.toLowerCase().includes(search.toLowerCase()),
+      )
     : [];
 
   return (
     <div className="dark:bg-primary bg-primaryLight w-full rounded-lg shadow-md dark:shadow-accent shadow-accentLight flex flex-col items-center p-2">
-      {showCode && (
-        <JoinTeamPopup
-          joinTeam={joinTeam}
-          setTeamCode={setTeamCode}
-          setShowCode={setShowCode}
-        />
-      )}
       <input
         type="text"
-        className="w-full h-12 rounded-3xl p-2 bg-secondaryLight dark:bg-secondary dark:text-text text-textLight bg-bg/75 duration-300 focus:border-2 dark:border-bg border-b-bgLight outline-none"
+        className="w-full h-12 rounded-md p-2 bg-secondaryLight dark:bg-secondary dark:text-text text-textLight bg-bg/75 duration-300 focus:border-2 dark:border-bg border-b-bgLight outline-none"
         placeholder="Søk etter lag"
         onChange={(e) => setSearch(e.target.value)}
       />
-      {filteredTeams.slice(0, 5).map((team) => (
-        <Team
-          setShowCode={setShowCode}
-          setSelectedTeam={setSelectedTeam}
-          text={team.teamName}
-          key={team.teamName}
-        >
-          {" "}
-        </Team>
-      ))}
+      {search === "" ? null : (
+        <>
+          {filteredTeams.slice(0, 5).map((team) => (
+            <Team
+              setShowCode={setShowCode}
+              setSelectedTeam={setSelectedTeam}
+              text={team.teamName}
+              key={team.teamName}
+            >
+              {" "}
+            </Team>
+          ))}
+        </>
+      )}
     </div>
   );
 };

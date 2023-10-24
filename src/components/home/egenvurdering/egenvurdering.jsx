@@ -1,6 +1,6 @@
 import Day from "./day";
 import DisclosureMenu from "./disclosure";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { AiOutlineRollback } from "react-icons/ai";
 import Link from "next/link";
 
