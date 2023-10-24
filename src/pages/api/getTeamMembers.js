@@ -7,7 +7,6 @@ connectDB();
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const { team, selectedTeam } = req.query;
-    console.log(selectedTeam);
     const users = await User.find({
       team: { $in: [team] },
     });
