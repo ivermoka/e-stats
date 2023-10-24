@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
   dateCreated: { type: Date, default: Date.now },
   team: String,
   school: String,
+  isAdmin: { type: Boolean, default: false },
 });
 
 userSchema.methods.comparePassword = function (password) {
