@@ -8,7 +8,6 @@ export default async function handler(req, res) {
     const user = req.query.user;
     const date = req.query.date;
     const userSchema = await Egenvurdering.findOne({ user: user, date: date });
-    console.log(userSchema);
     try {
       res.status(200).json({ userSchema });
     } catch (error) {

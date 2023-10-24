@@ -173,8 +173,8 @@ const PersonalStats = () => {
               </div>
             </div>
           ) : hasRated && !dataFetched ? (
-            <div className="flex flex-col items-center text-text text-lg">
-              <ReactLoading type={"bars"} color={"#1C1B29"} width={200} />
+            <div className="flex flex-col items-center text-text text-lg mt-14">
+              <ReactLoading type={"spin"} color={"#1C1B29"} width={100} />
             </div>
           ) : (
             <div className="dark:bg-primary bg-primaryLight rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 mt-4">

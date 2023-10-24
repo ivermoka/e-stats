@@ -58,7 +58,7 @@ const Dropdown = ({
     >
       <div
         className={
-          "h-20 w-screen px-2 dark:border-primary border-primaryLight border-b-2 flex justify-between items-center"
+          "h-16 w-screen px-2 dark:border-primary border-primaryLight border-b-2 flex justify-between items-center"
         }
       >
         <ThemeToggle />

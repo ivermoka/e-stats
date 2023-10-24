@@ -33,10 +33,14 @@ const HasRatedPage = ({ user }) => {
 
   return (
     <div className="dark:text-text text-textLight h-screen mt-20 flex flex-col items-center gap-8">
-      <div className={`${boxStyle} bg-transparent shadow-transparent`}>
+      <div
+        className={`${boxStyle} dark:bg-transparent bg-transparent shadow-none`}
+      >
         Det eksisterer allerede en egenvurdering for denne dagen
       </div>
-      <div className={`${boxStyle} bg-transparent shadow-transparent`}>
+      <div
+        className={`${boxStyle} dark:bg-transparent bg-transparent shadow-none`}
+      >
         Du kan...
       </div>
       <div className={"flex gap-4"}>
@@ -47,7 +51,9 @@ const HasRatedPage = ({ user }) => {
           Se profil
         </Link>
       </div>
-      <div className={`${boxStyle} bg-transparent shadow-transparent`}>
+      <div
+        className={`${boxStyle} dark:bg-transparent bg-transparent shadow-none`}
+      >
         Eller...
       </div>{" "}
       <button

@@ -81,7 +81,7 @@ const EgenvurderingContainer = () => {
             </>
           ) : (
             <div className="h-screen grid place-items-center">
-              <ReactLoading type={"bars"} color={"black"} width={200} />
+              <ReactLoading type={"spin"} color={"black"} width={100} />
             </div>
           )}
         </>

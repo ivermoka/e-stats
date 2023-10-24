@@ -94,11 +94,11 @@ const Profil = () => {
             initial={{ x: 200, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5, ease: "easeInOut", type: "spring" }}
-            className={`font-bold text-xl italic mt-16 ${boxStyle}`}
+            className={"font-bold text-xl italic mt-16"}
           >
             Personlig Informasjon
           </motion.div>
-          <Card id={id} setModalOpen={setModalOpen} data={data} />
+          <Card id={id} setModalOpen={setModalOpen} data={data} user={user} />
           {modalOpen && (
             <Edit
               modalOpen={modalOpen}
@@ -148,7 +148,7 @@ const Profil = () => {
         </>
       ) : (
         <div className="flex flex-col justify-center items-center h-screen">
-          <ReactLoading type="bars" color="black" width={200} />
+          <ReactLoading type="spin" color="black" width={100} />
           <span className="mt-32 text-center">{takingTime}</span>
         </div>
       )}

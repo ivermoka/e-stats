@@ -57,6 +57,7 @@ const Terms = ({ setShowTerms }) => {
         }
       />
       <button
+        type="button"
         onClick={() => setShowTerms(false)}
         className={
           "text-2xl dark:text-text text-textLight font-semibold rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:bg-primary bg-primaryLight px-4 py-2"

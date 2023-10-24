@@ -4,7 +4,6 @@ import Header from "@/components/team/header";
 import Members from "@/components/team/members";
 import CreateTeam from "@/components/team/createTeam";
 import { GetUser } from "@/actions/getUser";
-import Searchbar from "@/components/team/searchbar";
 import ReactLoading from "react-loading";
 import JoinTeamPopup from "@/components/team/joinTeamPopup";
 
@@ -108,7 +107,6 @@ const Lag = () => {
   };
 
   const [showCreateTeam, setShowCreateTeam] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
 
   const boxStyle =
     "dark:bg-primary bg-primaryLight rounded-lg shadow-lg dark:shadow-accent shadow-accentLight p-4";
@@ -116,38 +114,7 @@ const Lag = () => {
   return (
     <>
       {loaded ? (
-        <div className={"min-h-screen flex flex-col gap-8 px-8 mb-32"}>
-          <div
-            className={
-              "mt-24 h-16 flex gap-4 text-2xl dark:text-text text-textLight font-semibold"
-            }
-          >
-            <button
-              type="button"
-              onClick={() => setShowSearch(!showSearch)}
-              className={`${boxStyle} w-1/2`}
-            >
-              Finn
-            </button>
-            <button
-              type="button"
-              onClick={() => setShowCreateTeam(true)}
-              className={`${boxStyle} w-1/2`}
-            >
-              Opprett
-            </button>
-          </div>
-
-          {showSearch && (
-            <Searchbar
-              joinTeam={joinTeam}
-              setTeamCode={setTeamCode}
-              setSelectedTeam={setSelectedTeam}
-              showCode={showCode}
-              setShowCode={setShowCode}
-            />
-          )}
-
+        <div className={"min-h-screen flex flex-col gap-8 px-8 mb-32 mt-16"}>
           {showCode && (
             <JoinTeamPopup
               joinTeam={joinTeam}
@@ -200,7 +167,7 @@ const Lag = () => {
         </div>
       ) : (
         <div className="h-screen flex justify-center items-center">
-          <ReactLoading color={"black"} width={200} type="bars" />
+          <ReactLoading color={"black"} width={100} type="spin" />
         </div>
       )}
     </>
