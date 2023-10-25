@@ -9,11 +9,13 @@ import { GetUser } from "@/actions/getUser";
 const Admin = () => {
   const [date, setDate] = useState(new Date().toLocaleDateString("en-US"));
   const [currentDate, setCurrentDate] = useState(
-    new Date().toLocaleDateString("no-NO")
+    new Date().toLocaleDateString("no-NO"),
   );
   const [showCalendar, setShowCalendar] = useState(false);
+  const [showTeamsDropdown, setShowTeamsDropdown] = useState(false);
   const [team, setTeam] = useState("WeWe");
   const user = GetUser();
+
   useEffect(() => {
     return () => {
       getStats();
@@ -51,12 +53,18 @@ const Admin = () => {
           VELG DATO
           <BsCalendar className="inline ml-2 mb-[2px]" />
         </button>
-        <button type="button" className={boxStyle}>
+        <button
+          type="button"
+          onClick={() => {
+            setShowTeamsDropdown(!showTeamsDropdown);
+          }}
+          className={boxStyle}
+        >
           VELG LAG
         </button>
       </div>
 
-      {/*Vis kalender vis showCalendar er true*/}
+      {/*Vis kalender omg showCalendar er true*/}
 
       {showCalendar && (
         <Calendar
@@ -75,6 +83,12 @@ const Admin = () => {
             setCurrentDate(new Date(day).toLocaleDateString("no-NO"));
           }}
         />
+      )}
+
+      {/*Vis lag dropdown om showTeamsDropdown er true*/}
+
+      {showTeamsDropdown && (
+        <div className={`${boxStyle} flex flex-col`}>hhh1</div>
       )}
 
       {/*Stats container*/}
