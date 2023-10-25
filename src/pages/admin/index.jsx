@@ -1,16 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 
 import { BsCalendar } from "react-icons/bs";
 import { BiLeftArrow } from "react-icons/bi";
 import { BiRightArrow } from "react-icons/bi";
+import { GetUser } from "@/actions/getUser";
 
 const Admin = () => {
   const [date, setDate] = useState(new Date().toLocaleDateString("en-US"));
   const [currentDate, setCurrentDate] = useState(
-    new Date().toLocaleDateString("no-NO"),
+    new Date().toLocaleDateString("no-NO")
   );
   const [showCalendar, setShowCalendar] = useState(false);
+  const [team, setTeam] = useState("WeWe");
+  const user = GetUser();
+  useEffect(() => {
+    return () => {
+      getStats();
+    };
+  }, []);
+
+  const getStats = async () => {
+    try {
+      const res = await fetch("api/getTeamStats", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ date, user, team }),
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const boxStyle =
     "dark:text-text text-textLight font-bold py-2 px-4 rounded-lg dark:bg-primary bg-primaryLight shadow-md dark:shadow-accent shadow-accentLight";

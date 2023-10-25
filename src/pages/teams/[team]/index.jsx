@@ -93,7 +93,6 @@ const Lag = () => {
   };
 
   const leaveTeam = async () => {
-    console.log(user);
     try {
       const res = await fetch("/api/teamPage", {
         method: "DELETE",

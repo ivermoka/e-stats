@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
   date: String,
   user: String,
   team: String,
+  school: String,
   hasRatedPart2: Boolean,
 });
 
