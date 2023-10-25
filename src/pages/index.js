@@ -32,7 +32,7 @@ export default function Index() {
                     type: "spring",
                     delay: 0.3,
                   }}
-                  className="dark:text-text text-textLight font-semibold text-2xl dark:bg-primary bg-primaryLight rounded-lg p-4 shadow-md dark:shadow-accent shadow-accentLight w-full"
+                  className="dark:text-text text-textLight text-2xl font-semibold border-2 dark:border-primary border-primaryLight rounded-md p-4 shadow-lg dark:shadow-accent shadow-accentLight w-full"
                 >
                   EGENVURDERING
                 </motion.button>

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { RiTeamFill } from "react-icons/ri";
 import AdjustTeam from "./adjustTeam";
 
-const ProfilKort = ({ id, data, user }) => {
+const ProfilKort = ({ id, data, user, owned }) => {
   const [profilePicture, setProfilePicture] = useState("/logo.png");
   const [showTeam, setShowTeam] = useState(false);
 
@@ -39,14 +39,16 @@ const ProfilKort = ({ id, data, user }) => {
           <li className={`${boxStyle}`}>Skole: {data.school}</li>
           <li className={`${boxStyle} flex justify-between`}>
             <span>Lag: {data.team}</span>
-            <button
-              type="button"
-              onClick={() => {
-                setShowTeam(true);
-              }}
-            >
-              <RiTeamFill className="text-3xl" />
-            </button>
+            {owned && (
+              <button
+                type="button"
+                onClick={() => {
+                  setShowTeam(true);
+                }}
+              >
+                <RiTeamFill className="text-3xl" />
+              </button>
+            )}
           </li>
         </ul>
       </motion.div>

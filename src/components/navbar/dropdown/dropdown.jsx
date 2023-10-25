@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { FiX } from "react-icons/fi";
 import { motion } from "framer-motion";
 import UserInfo from "./userInfo";
 import Links from "./dropdownLink";
@@ -7,6 +6,7 @@ import Line from "./sepLine";
 import Link from "next/link";
 import ThemeToggle from "@/components/navbar/dropdown/themeToggle";
 
+import { RxCross1 } from "react-icons/rx";
 import { BiUser } from "react-icons/bi";
 import { AiOutlineTeam } from "react-icons/ai";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
@@ -30,7 +30,7 @@ const Dropdown = ({
   }, []);
   const fetchSessionData = async () => {
     try {
-      const res = await fetch(`/api/getUser`, {
+      const res = await fetch("/api/getUser", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -67,11 +67,8 @@ const Dropdown = ({
           onClick={() => {
             setDropdown(!dropdown);
           }}
-          className={
-            "w-14 rounded-full dark:border-primary border-primaryLight border-4 grid place-items-center"
-          }
         >
-          <FiX className={"dark:text-primary text-primaryLight text-5xl"} />
+          <RxCross1 className={"dark:text-text text-textLight text-4xl"} />
         </button>
       </div>
       <UserInfo />
@@ -127,6 +124,9 @@ const Dropdown = ({
             setShowConfirmDelete(true);
           }}
         />
+        <Link href="/admin">
+          <Links text={"Admin View"} icon={<MdOutlineDeleteForever />} />
+        </Link>
       </div>
     </motion.div>
   );

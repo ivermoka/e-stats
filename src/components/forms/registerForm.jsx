@@ -63,7 +63,7 @@ const Register = ({ setRegistered }) => {
               message: "*Brukernavn må ha minst 3 tegn",
             },
           })}
-          placeholder="username"
+          placeholder="brukernavn"
           type="text"
           className={inputStyle}
         />
@@ -75,7 +75,12 @@ const Register = ({ setRegistered }) => {
               message: "*Passordet må ha minst 8 tegn",
             },
           })}
-          placeholder="password"
+          placeholder="passord"
+          type="password"
+          className={inputStyle}
+        />
+        <input
+          placeholder="bekreft passord"
           type="password"
           className={inputStyle}
         />
@@ -84,7 +89,7 @@ const Register = ({ setRegistered }) => {
             {...register("terms", {
               required: "*Du må akseptere vilkårene",
             })}
-            className="h-6 w-6 rounded-full"
+            className="h-6 w-5"
             type="checkbox"
           />
           <span>Jeg aksepterer vilkårene</span>

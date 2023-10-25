@@ -14,6 +14,7 @@ const Profil = () => {
   const url = usePathname();
   const [owned, setOwned] = useState(false);
   const user = GetUser();
+  const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined" && url !== null) {
@@ -98,7 +99,13 @@ const Profil = () => {
           >
             Personlig Informasjon
           </motion.div>
-          <Card id={id} setModalOpen={setModalOpen} data={data} user={user} />
+          <Card
+            id={id}
+            setModalOpen={setModalOpen}
+            data={data}
+            user={user}
+            owned={owned}
+          />
           {modalOpen && (
             <Edit
               modalOpen={modalOpen}

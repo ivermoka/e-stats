@@ -14,7 +14,6 @@ const Lag = () => {
   const url = usePathname();
   const [allMembers, setAllMembers] = useState(null);
   const user = GetUser();
-  const [teamCodeTrue, setTeamCodeTrue] = useState(null);
 
   useEffect(() => {
     if (user !== null && url !== null) {
@@ -43,6 +42,9 @@ const Lag = () => {
     }
   }, [url]);
 
+  const [currentTeamCode, setCurrentTeamCode] = useState(null);
+  const [showCurrentTeamCode, setShowCurrentThemeCode] = useState(false);
+
   const getAllMembers = async () => {
     try {
       const res = await fetch(
@@ -57,7 +59,7 @@ const Lag = () => {
       if (res.status === 200) {
         const data = await res.json();
         setAllMembers(data.users);
-        setTeamCodeTrue(data.teamSchema.teamCode);
+        setCurrentTeamCode(data.teamSchema.teamCode);
       } else if (res.status === 500) {
         console.log("Error fetching data");
       }
@@ -114,7 +116,7 @@ const Lag = () => {
   const [showCreateTeam, setShowCreateTeam] = useState(false);
 
   const boxStyle =
-    "dark:bg-primary bg-primaryLight rounded-lg shadow-lg dark:shadow-accent shadow-accentLight p-4";
+    "dark:bg-primary bg-primaryLight rounded-md shadow-lg dark:shadow-accent shadow-accentLight p-4";
 
   return (
     <>
@@ -137,7 +139,7 @@ const Lag = () => {
               "dark:border-primary border-primaryLight flex flex-col gap-6 p-4 "
             }
           >
-            {teamCodeTrue}
+            {currentTeamCode}
             <h2
               className={
                 " dark:text-text text-textLight text-2xl px-2 font-semibold"
