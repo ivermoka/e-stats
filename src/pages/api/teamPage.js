@@ -43,7 +43,9 @@ export default async function teamPage(req, res) {
       const user = req.body;
       const userSchema = await User.findOne({ username: user.user });
       const teamSchema = await Team.findOne({ teamName: userSchema.team });
-      teamSchema.members = teamSchema.members.filter((name) => name !== user);
+      teamSchema.members = teamSchema.members.filter(
+        (name) => name !== user.user,
+      );
       userSchema.team = "";
       await userSchema.save();
       await teamSchema.save();
