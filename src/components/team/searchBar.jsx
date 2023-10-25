@@ -29,7 +29,7 @@ const SearchBar = ({ setSelectedTeam, setShowCode }) => {
   };
   const filteredTeams = allTeams
     ? allTeams.filter((team) =>
-        team.teamName.toLowerCase().includes(search.toLowerCase()),
+        team.teamName.toLowerCase().includes(search.toLowerCase())
       )
     : [];
 

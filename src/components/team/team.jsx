@@ -3,13 +3,26 @@ import SeperationLine from "../navbar/dropdown/sepLine";
 
 const Team = ({ text }) => {
   return (
-    <Link
-      className="px-1 rounded-lg dark:text-text text-textLight text-2xl w-full flex flex-col my-2"
-      href={`/teams/${text}`}
-    >
-      {text}
+    <>
+      <div
+        className={
+          "dark:bg-primary bg-primaryLight p-4 rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight text-2xl w-full flex justify-between items-center "
+        }
+      >
+        <Link href={`${text}`}>{text}</Link>
+        <button
+          type="button"
+          className="text-xl font-semibold"
+          onClick={() => {
+            setSelectedTeam(text);
+            setShowCode(true);
+          }}
+        >
+          Bli med
+        </button>
+      </div>
       <SeperationLine />
-    </Link>
+    </>
   );
 };
 
