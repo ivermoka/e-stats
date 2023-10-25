@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 import ForgotPassword from "@/components/forms/forgotPassword";
 import ReactLoading from "react-loading";
+import { BiShow } from "react-icons/bi";
 
 const LoginPage = () => {
   const [pending, setPending] = useState(false);
@@ -24,7 +25,7 @@ const LoginPage = () => {
           headers: {
             "Content-Type": "application/json",
           },
-        },
+        }
       );
 
       if (response.status === 200) {
@@ -41,10 +42,28 @@ const LoginPage = () => {
     }
   };
 
+  function showPassword() {
+    const password = document.getElementById("passwordInput");
+    if (password.type === "password") {
+      password.type = "text";
+    } else {
+      password.type = "password";
+    }
+  }
+  function showConfirmedPassword() {
+    const confirmPassword = document.getElementById("confirmPasswordInput");
+    if (confirmPassword.type === "password") {
+      confirmPassword.type = "text";
+    } else {
+      confirmPassword.type = "password";
+    }
+  }
+
   const [showForgotPassword, setShowForgotPassword] = useState(false);
 
   const inputStyle =
     "border-b-4 dark:border-secondary border-secondaryLight bg-transparent p-2 dark:text-text text-textLight outline-none focus:border-b-2 duration-300 w-60";
+
   return (
     <div className="dark:bg-bg bg-bgLight w-screen h-screen flex">
       <form
@@ -52,24 +71,46 @@ const LoginPage = () => {
         className="w-full flex flex-col justify-center items-center p-4 gap-6"
       >
         <h1 className="dark:text-text text-textLight text-5xl m-4">Logg Inn</h1>
-        <input
-          {...register("username", { required: "*Skriv brukernavn" })}
-          placeholder="username"
-          type="text"
-          className={inputStyle}
-        />
-        <input
-          {...register("password", {
-            required: "*Skriv passord",
-            minLength: {
-              value: 8,
-              message: "*Passordet må ha minst 8 tegn",
-            },
-          })}
-          placeholder="password"
-          type="password"
-          className={inputStyle}
-        />
+        <div className="flex flex-row border-b-4 dark:border-secondary border-secondaryLight outline-none focus:border-b-2 duration-300 ">
+          <input
+            {...register("username", { required: "*Skriv brukernavn" })}
+            placeholder="username"
+            type="text"
+            className="bg-transparent p-2 dark:text-text text-textLight w-60 outline-none"
+          />
+          <div className="w-4 h-4"></div>
+        </div>
+        <div className="flex flex-row border-b-4 dark:border-secondary border-secondaryLight outline-none focus:border-b-2 duration-300 ">
+          <input
+            {...register("password", {
+              required: "*Skriv passord",
+              minLength: {
+                value: 8,
+                message: "*Passordet må ha minst 8 tegn",
+              },
+            })}
+            placeholder="password"
+            type="password"
+            className="bg-transparent p-2 dark:text-text text-textLight w-60 outline-none"
+            id="passwordInput"
+          />
+          <BiShow
+            onClick={() => showPassword()}
+            className="dark:text-white light:text-black w-5 h-5"
+          />
+        </div>
+        <div className="flex flex-row border-b-4 dark:border-secondary border-secondaryLight focus:border-b-2 duration-300">
+          <input
+            placeholder="bekreft passord"
+            type="password"
+            id="confirmPasswordInput"
+            className="bg-transparent p-2 dark:text-text text-textLight w-60 outline-none"
+          />
+          <BiShow
+            onClick={() => showConfirmedPassword()}
+            className="dark:text-white light:text-black w-5 h-5"
+          />
+        </div>
         {pending ? (
           <ReactLoading type={"spin"} color={"black"} width={40} height={44} />
         ) : (

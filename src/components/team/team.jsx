@@ -6,7 +6,7 @@ const Team = ({ text }) => {
     <>
       <div
         className={
-          "dark:bg-primary bg-primaryLight p-4 rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight text-2xl w-full flex justify-between items-center "
+          " dark:bg-primary bg-primaryLight p-4 rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight text-2xl w-full flex justify-start self-ml-10 items-center "
         }
       >
         <Link href={`/teams/${text}`}>{text}</Link>
