@@ -9,7 +9,7 @@ const Team = ({ text }) => {
           "dark:bg-primary bg-primaryLight p-4 rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight text-2xl w-full flex justify-between items-center "
         }
       >
-        <Link href={`${text}`}>{text}</Link>
+        <Link href={`/teams/${text}`}>{text}</Link>
         <button
           type="button"
           className="text-xl font-semibold"

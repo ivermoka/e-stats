@@ -6,7 +6,10 @@ import { BiLeftArrow } from "react-icons/bi";
 import { BiRightArrow } from "react-icons/bi";
 
 const Admin = () => {
-  const [date, setDate] = useState(new Date().toLocaleDateString("no-NO"));
+  const [date, setDate] = useState(new Date().toLocaleDateString("en-US"));
+  const [currentDate, setCurrentDate] = useState(
+    new Date().toLocaleDateString("no-NO"),
+  );
   const [showCalendar, setShowCalendar] = useState(false);
 
   const boxStyle =
@@ -33,7 +36,24 @@ const Admin = () => {
 
       {/*Vis kalender vis showCalendar er true*/}
 
-      {showCalendar && <Calendar className={boxStyle} />}
+      {showCalendar && (
+        <Calendar
+          className={
+            "dark:bg-primary bg-primaryLight shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 font-semibold"
+          }
+          tileClassName={({ date }) => {
+            const isSelectedDate =
+              date.toLocaleDateString("no-NO") === currentDate;
+            return isSelectedDate
+              ? "selected-date-class dark:bg-[#F8D8B1] bg-[#305464] dark:text-black text-white p-2 dark: border-textLight dark:border"
+              : "p-2 dark:border-text border-textLight border";
+          }}
+          onClickDay={(day) => {
+            setDate(new Date(day).toLocaleDateString("en-US"));
+            setCurrentDate(new Date(day).toLocaleDateString("no-NO"));
+          }}
+        />
+      )}
 
       {/*Stats container*/}
 

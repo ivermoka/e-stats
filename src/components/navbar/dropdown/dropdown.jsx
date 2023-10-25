@@ -12,6 +12,7 @@ import { AiOutlineTeam } from "react-icons/ai";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { ImExit } from "react-icons/im";
 import { MdOutlineDeleteForever } from "react-icons/md";
+import { RiAdminLine } from "react-icons/ri";
 
 const Dropdown = ({
   dropdown,
@@ -97,6 +98,15 @@ const Dropdown = ({
             />
           </Link>
         )}
+        <Link href="/admin">
+          <Links
+            onClick={() => {
+              setDropdown(false);
+            }}
+            text={"Trener UI"}
+            icon={<RiAdminLine />}
+          />
+        </Link>
         <Line />
         <Links
           text={"Vilkår for bruk"}
@@ -124,15 +134,6 @@ const Dropdown = ({
             setShowConfirmDelete(true);
           }}
         />
-        <Link href="/admin">
-          <Links
-            onClick={() => {
-              setDropdown(false);
-            }}
-            text={"Admin View"}
-            icon={<MdOutlineDeleteForever />}
-          />
-        </Link>
       </div>
     </motion.div>
   );
