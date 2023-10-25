@@ -58,13 +58,15 @@ const AdjustTeam = ({ user, setShowTeam, data }) => {
       >
         Opprett
       </button>
-      <button
-        type="button"
-        className={`${boxStyle} text-red-400 font-semibold text-2xl`}
-        onClick={() => leaveTeam()}
-      >
-        Forlat {data.team}?
-      </button>
+      {data.team !== "Ikke valgt" && (
+        <button
+          type="button"
+          className={`${boxStyle} text-red-400 font-semibold text-2xl`}
+          onClick={() => leaveTeam()}
+        >
+          Forlat {data.team}?
+        </button>
+      )}
     </div>
   );
 };

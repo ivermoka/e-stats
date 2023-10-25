@@ -56,7 +56,6 @@ export default async function teamPage(req, res) {
   }
   if (req.method === "GET") {
     try {
-      console.log("Henter brukere");
       const teams = await Team.find({});
       res.status(200).json({ teams });
     } catch (error) {

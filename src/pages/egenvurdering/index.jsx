@@ -86,7 +86,9 @@ const EgenvurderingContainer = () => {
           )}
         </>
       ) : (
-        <h1 className="text-text mt-20">use doesnt exist</h1>
+        <h1 className="dark:text-text text-textLight text-xl font-bold italic mt-14">
+          Du må logge inn for å se personlig statistikk!
+        </h1>
       )}
     </div>
   );
