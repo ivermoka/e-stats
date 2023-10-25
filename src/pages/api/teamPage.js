@@ -11,6 +11,19 @@ export default async function teamPage(req, res) {
       const teamSchema = await Team.findOne({ teamName: selectedTeam });
       const userSchema = await User.findOne({ username: user });
       if (teamSchema.teamCode === teamCode) {
+        if (userSchema.team) {
+          const currentTeam = await Team.findOne({ teamName: userSchema.team });
+          await Team.updateMany(
+            { members: user },
+            { $pull: { members: user } },
+          );
+          if (currentTeam) {
+            currentTeam.members = currentTeam.members.filter(
+              (name) => name !== user,
+            );
+            await currentTeam.save();
+          }
+        }
         teamSchema.members = [...teamSchema.members, user];
         await teamSchema.save();
 
