@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CreateTeam from "@/components/team/createTeam";
-import Searchbar from "@/components/team/searchbar";
+import Searchbar from "./../../components/team/searchBar";
 import { AiOutlineRollback } from "react-icons/ai";
 
 const AdjustTeam = ({ user, setShowTeam, data }) => {
