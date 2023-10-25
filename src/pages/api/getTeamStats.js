@@ -11,7 +11,6 @@ export default async function handler(req, res) {
       date,
       team,
     });
-    console.log(date, team, ratings);
     res.status(200).json({ ratings });
   } catch (error) {
     res.status(508).json({

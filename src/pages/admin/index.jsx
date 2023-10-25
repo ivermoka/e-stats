@@ -9,16 +9,16 @@ import { GetUser } from "@/actions/getUser";
 const Admin = () => {
   const [date, setDate] = useState(new Date().toLocaleDateString("en-US"));
   const [currentDate, setCurrentDate] = useState(
-    new Date().toLocaleDateString("no-NO")
+    new Date().toLocaleDateString("no-NO"),
   );
   const [showCalendar, setShowCalendar] = useState(false);
   const [team, setTeam] = useState("WeWe");
   const user = GetUser();
+  const [stats, setStats] = useState([]);
+
   useEffect(() => {
-    return () => {
-      getStats();
-    };
-  }, []);
+    getStats();
+  }, [date]);
 
   const getStats = async () => {
     try {
@@ -29,6 +29,11 @@ const Admin = () => {
         },
         body: JSON.stringify({ date, user, team }),
       });
+      if (res.status === 200) {
+        const data = await res.json();
+        console.log(data.ratings);
+        setStats(data);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -93,13 +98,6 @@ const Admin = () => {
       </div>
 
       {/*Container for kommentarer*/}
-
-      <div className={boxStyle}>
-        <h2 className="text-xl italic p-2">bruker sin kommentar</h2>
-        <div className="dark:bg-bg/50 bg-bgLight/50 rounded-lg p-2 font-normal">
-          kommentar
-        </div>
-      </div>
     </div>
   );
 };
