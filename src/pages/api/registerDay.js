@@ -27,8 +27,10 @@ export default async function handler(req, res) {
         date,
         user,
         team,
+        school: userSchema.school,
         hasRatedPart2: false,
       });
+      console.log(userSchema.school);
       await egenvurdering.save();
       res.status(201).json({ message: "Egenvurdering registrert." });
     } catch (error) {
@@ -39,24 +41,16 @@ export default async function handler(req, res) {
   }
   if (req.method === "POST") {
     const { disclosure6, comment, date, user } = req.body;
-    console.log(
-      "user: ",
-      user,
-      "date: ",
-      date,
-      "disclosure6: ",
-      disclosure6,
-      "comment: ",
-      comment,
-    );
     const egenvurdering = await Egenvurdering.findOne({
       user: user,
       date: date,
     });
+    const userSchema = await User.findOne({ username: user });
     try {
       egenvurdering.disclosure6 = disclosure6;
       egenvurdering.comment = comment;
       egenvurdering.hasRatedPart2 = true;
+      egenvurdering.school = userSchema.school;
       await egenvurdering.save();
       res.status(201).json({ message: "Egenvurdering oppdatert." });
     } catch (error) {
