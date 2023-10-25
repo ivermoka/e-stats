@@ -11,7 +11,9 @@ const ProfilKort = ({ id, data, user }) => {
   const boxStyle = "p-4 border-b-2 border-primaryLight dark:border-primary";
   return (
     <>
-      {showTeam && <AdjustTeam user={user} />}
+      {showTeam && (
+        <AdjustTeam data={data} user={user} setShowTeam={setShowTeam} />
+      )}
       <motion.div
         initial={{ x: 200, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
