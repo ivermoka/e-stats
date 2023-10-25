@@ -125,7 +125,13 @@ const Dropdown = ({
           }}
         />
         <Link href="/admin">
-          <Links text={"Admin View"} icon={<MdOutlineDeleteForever />} />
+          <Links
+            onClick={() => {
+              setDropdown(false);
+            }}
+            text={"Admin View"}
+            icon={<MdOutlineDeleteForever />}
+          />
         </Link>
       </div>
     </motion.div>

@@ -7,14 +7,19 @@ connectDB();
 export default async function handler(req, res) {
   const { teamName, username, teamCode } = req.body;
   try {
+    const user = await User.findOne({ username: username });
+    await Team.updateMany(
+      { members: username },
+      { $pull: { members: username } },
+    );
     const team = new Team({
       teamName: teamName,
       members: username,
       teamCode: teamCode,
+      school: user.school,
     });
     await team.save();
 
-    const user = await User.findOne({ username: username });
     user.team = teamName;
     await user.save();
     res.status(200).json({ success: "Team created" });

@@ -6,6 +6,7 @@ import { BiLeftArrow } from "react-icons/bi";
 import { BiRightArrow } from "react-icons/bi";
 
 const Admin = () => {
+  const [date, setDate] = useState(new Date().toLocaleDateString("no-NO"));
   const [showCalendar, setShowCalendar] = useState(false);
 
   const boxStyle =
