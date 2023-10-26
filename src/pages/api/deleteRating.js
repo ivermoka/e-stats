@@ -3,7 +3,7 @@ import Egenvurdering from "../../../models/EgenvurderingModel";
 
 connectDB().then();
 
-export default async function deleteUser(req, res) {
+export default async function deleteRating(req, res) {
   const { user, date } = req.body;
 
   try {
