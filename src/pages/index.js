@@ -9,7 +9,7 @@ export default function Index() {
   const [showEgenvurdering, setShowEgenvurdering] = useState(false);
   return (
     <>
-      <div className="p-4 w-screen min-h-screen grid place-items-center">
+      <div className="p-4 w-screen h-screen grid place-items-center">
         {!showEgenvurdering && (
           <div className="h-full flex flex-col justify-center gap-4 break-words">
             <motion.h1
