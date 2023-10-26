@@ -10,16 +10,6 @@ const Team = ({ text }) => {
         }
       >
         <Link href={`/teams/${text}`}>{text}</Link>
-        <button
-          type="button"
-          className="text-xl font-semibold"
-          onClick={() => {
-            setSelectedTeam(text);
-            setShowCode(true);
-          }}
-        >
-          Bli med
-        </button>
       </div>
       <SeperationLine />
     </>
