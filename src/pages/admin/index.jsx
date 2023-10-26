@@ -6,6 +6,7 @@ import { BsCalendar } from "react-icons/bs";
 import { BiLeftArrow } from "react-icons/bi";
 import { BiRightArrow } from "react-icons/bi";
 import { AiOutlineTeam } from "react-icons/ai";
+import { BsArrowReturnLeft } from "react-icons/bs";
 
 const Admin = () => {
   const [date, setDate] = useState(new Date().toLocaleDateString("en-US"));
@@ -18,6 +19,7 @@ const Admin = () => {
   const user = GetUser();
   const [stats, setStats] = useState([]);
   const [allTeams, setAllTeams] = useState([]);
+  const [showReply, setShowReply] = useState(false);
 
   useEffect(() => {
     getStats();
@@ -38,7 +40,7 @@ const Admin = () => {
       if (res.status === 200) {
         const data = await res.json();
         console.log(data.ratings);
-        setStats(data);
+        setStats(data.ratings);
       }
     } catch (err) {
       console.log(err);
@@ -55,7 +57,6 @@ const Admin = () => {
       if (res.status === 200) {
         const data = await res.json();
         setAllTeams(data.teams);
-        console.log(allTeams);
       } else if (res.status === 508) {
         console.log("Error fetching data");
       }
@@ -146,6 +147,30 @@ const Admin = () => {
       </div>
 
       {/*Container for kommentarer*/}
+      {stats.map((rating, i) => (
+        <div
+          key={i}
+          className="dark:bg-primary bg-primaryLight rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 mt-4"
+        >
+          <h2 className="text-xl font-bold italic m-2">{rating.user} </h2>
+          <div className="dark:bg-bg/50 bg-bgLight/50 rounded-lg p-2">
+            {rating.comment}
+          </div>
+          {showReply && (
+            <>
+              <input type="text" />
+              <button type="submit">Send</button>
+            </>
+          )}
+          <button
+            onClick={() => setShowReply(!showReply)}
+            type="button"
+            className="flex justify-end w-full pr-2 pt-2 text-2xl"
+          >
+            <BsArrowReturnLeft />
+          </button>
+        </div>
+      ))}
     </div>
   );
 };
