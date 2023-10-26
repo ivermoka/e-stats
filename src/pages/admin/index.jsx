@@ -24,6 +24,7 @@ const Admin = () => {
   useEffect(() => {
     getStats();
   }, [date, team]);
+
   useEffect(() => {
     getAllTeams();
   }, []);
@@ -68,7 +69,7 @@ const Admin = () => {
   const boxStyle =
     "dark:text-text text-textLight font-bold py-2 px-4 rounded-md border-2 dark:border-primary border-secondaryLight shadow-lg dark:shadow-accent shadow-accentLight";
   return (
-    <div className="h-screen mt-16 flex flex-col gap-4 p-4">
+    <div className="min-h-screen mt-16 flex flex-col gap-4 p-4 mb-32">
       {/*Velg dato og lag knapper */}
 
       <div className="flex justify-around text-lg">
@@ -79,7 +80,7 @@ const Admin = () => {
           }}
           className={boxStyle}
         >
-          VELG DATO
+          {currentDate}
           <BsCalendar className="inline ml-2 mb-[2px] w-6" />
         </button>
         <button
@@ -93,6 +94,12 @@ const Admin = () => {
           <AiOutlineTeam className="inline ml-2 mb-[2px] w-6" />
         </button>
       </div>
+
+      {/*tekst som viser hvilket lag og hvilken dato som er valgt*/}
+
+      <h1>
+        Lag: {team} Dato: {currentDate}
+      </h1>
 
       {/*Vis kalender om showCalendar er true*/}
 
@@ -158,7 +165,7 @@ const Admin = () => {
           </div>
           {showReply && (
             <>
-              <input type="text" />
+              <input className="dark:bg-secondary" type="text" />
               <button type="submit">Send</button>
             </>
           )}

@@ -13,7 +13,6 @@ const Loading = () => {
       ) : (
         <ReactLoading color="black" width={100} type="spin" />
       )}
-      ;
     </div>
   );
 };
