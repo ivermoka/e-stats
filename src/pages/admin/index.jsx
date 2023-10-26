@@ -17,10 +17,14 @@ const Admin = () => {
   const [team, setTeam] = useState("WeWe");
   const user = GetUser();
   const [stats, setStats] = useState([]);
+  const [allTeams, setAllTeams] = useState([]);
 
   useEffect(() => {
     getStats();
-  }, [date]);
+  }, [date, team]);
+  useEffect(() => {
+    getAllTeams();
+  }, []);
 
   const getStats = async () => {
     try {
@@ -38,6 +42,25 @@ const Admin = () => {
       }
     } catch (err) {
       console.log(err);
+    }
+  };
+  const getAllTeams = async () => {
+    try {
+      const res = await fetch("/api/teamPage", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (res.status === 200) {
+        const data = await res.json();
+        setAllTeams(data.teams);
+        console.log(allTeams);
+      } else if (res.status === 508) {
+        console.log("Error fetching data");
+      }
+    } catch (err) {
+      console.log("ERROR: ", err);
     }
   };
 
@@ -94,7 +117,17 @@ const Admin = () => {
       {/*Vis lag dropdown om showTeamsDropdown er true*/}
 
       {showTeamsDropdown && (
-        <div className={`${boxStyle} flex flex-col`}>hhh1</div>
+        <div className={`${boxStyle} flex flex-col`}>
+          {allTeams.map((team, index) => (
+            <div
+              key={index}
+              onClick={() => setTeam(team.teamName)}
+              className="team-item"
+            >
+              {team.teamName}
+            </div>
+          ))}
+        </div>
       )}
 
       {/*Stats container*/}
