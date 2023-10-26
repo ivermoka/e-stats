@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Team from "@/components/team/team";
+import { GoSearch } from "react-icons/go";
 
 const SearchBar = ({ setSelectedTeam, setShowCode }) => {
   const [allTeams, setAllTeams] = useState(null);
@@ -34,13 +35,16 @@ const SearchBar = ({ setSelectedTeam, setShowCode }) => {
     : [];
 
   return (
-    <div className="dark:bg-primary bg-primaryLight w-full rounded-lg shadow-md dark:shadow-accent shadow-accentLight flex flex-col items-center p-2">
-      <input
-        type="text"
-        className="w-full h-12 rounded-md p-2 bg-secondaryLight dark:bg-secondary dark:text-text text-textLight bg-bg/75 duration-300 focus:border-2 dark:border-bg border-b-bgLight outline-none"
-        placeholder="Søk etter lag"
-        onChange={(e) => setSearch(e.target.value)}
-      />
+    <div className="flex flex-col w-4/5 bg-transparent gap-3">
+      <section className="flex items-center w-full rounded-3xl dark:border-white border-black border-2 focus:border-2 duration-300">
+        <input
+          type="text"
+          className="w-full h-12 p-2 bg-transparent pl-6 dark:text-text text-textLight outline-none"
+          placeholder="Søk etter lag"
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <GoSearch className="w-8 h-8 mr-3" />
+      </section>
       {search === "" ? null : (
         <>
           {filteredTeams.slice(0, 5).map((team) => (

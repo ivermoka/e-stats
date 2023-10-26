@@ -1,17 +1,18 @@
 import Link from "next/link";
-import SeperationLine from "../navbar/dropdown/sepLine";
+import { AiOutlineUserAdd } from "react-icons/ai";
 
-const Team = ({ text }) => {
+const Team = ({ text, onClick }) => {
   return (
     <>
       <div
         className={
-          " dark:bg-primary bg-primaryLight p-4 rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight text-2xl w-full flex justify-start self-ml-10 items-center "
+          " dark:bg-bg  border-b-2- dark:border-bg  border p-4 rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight text-2xl w-full flex justify-start self-ml-10 items-center "
         }
       >
         <Link href={`/teams/${text}`}>{text}</Link>
+        <AiOutlineUserAdd className="ml-auto w-8 h-8" onClick={onClick} />
       </div>
-      <SeperationLine />
+      <div className="w-full h-[1px] dark:bg-white bg-black"></div>
     </>
   );
 };

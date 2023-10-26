@@ -1,7 +1,7 @@
 import { useState } from "react";
 import CreateTeam from "@/components/team/createTeam";
 import Searchbar from "./../../components/team/searchBar";
-import { AiOutlineRollback } from "react-icons/ai";
+import { BiArrowBack } from "react-icons/bi";
 
 const AdjustTeam = ({ user, setShowTeam, data }) => {
   const [showCreateTeam, setShowCreateTeam] = useState(false);
@@ -30,33 +30,48 @@ const AdjustTeam = ({ user, setShowTeam, data }) => {
   const boxStyle =
     "dark:bg-primary bg-primaryLight rounded-lg shadow-lg dark:shadow-accent shadow-accentLight p-4 text-2xl font-semibold";
   return (
-    <div className="fixed top-16 left-0 h-screen w-screen dark:bg-bg/70 bg-bgLight/70 backdrop-blur-md p-8 flex flex-col gap-6 items-center">
+    <div className="fixed  h-screen w-screen dark:bg-bg/70 bg-bgLight/70 backdrop-blur-md p-8 flex flex-col  gap-6  ">
+      <div className="flex w-screen h-12 justify-start items-center ">
+        <div className="w-6"></div>
+        <button
+          type="button"
+          className="rounded-lg p-2 my-4 w-10 text-center dark:text-primary text-primaryLight shadow-md dark:shadow-accent shadow-accentLight"
+          onClick={() => {
+            setShowTeam(false);
+          }}
+        >
+          <BiArrowBack className="w-full h-full dark:text-text text-textLight font-bold" />
+        </button>
+      </div>
+
       {data.team !== "Ikke valgt" ? (
-        <h1 className="font-bold text-xl italic mt-16">
+        <h1 className="font-bold text-xl italic mt-2">
           Du er medlem av laget: {data.team}
         </h1>
       ) : (
-        <h1 className="font-bold text-xl italic mt-16">
+        <h1 className="font-bold text-xl italic mt-2">
           Du er ikke medlem av noe lag
         </h1>
       )}
-      <button
-        type="button"
-        className="rounded-lg p-2 my-4 w-10 text-center dark:bg-primary bg-primaryLight shadow-md dark:shadow-accent shadow-accentLight fixed right-8 top-4"
-        onClick={() => {
-          setShowTeam(false);
-        }}
-      >
-        <AiOutlineRollback className="w-full h-full dark:text-text text-textLight font-bold" />
-      </button>
-      {showCreateTeam && <CreateTeam setShowCreateTeam={setShowCreateTeam} />}
+
+      {showCreateTeam && (
+        <CreateTeam setShowCreateTeam={setShowCreateTeam} className="mr-7" />
+      )}
+
       <Searchbar />
+      <div className="h-[1px] w-4/5 bg-white"></div>
+      <div className="flex justify-start w-full ">
+        <span className=" text-xl">Eller</span>
+      </div>
+
       <button
         type="button"
         onClick={() => setShowCreateTeam(true)}
-        className={`${boxStyle} w-1/2`}
+        className={
+          " dark:bg-bg  flex items-center justify-start rounded-2xl  shadow-lg dark:shadow-accent shadow-accentLight pl-4 text-2xl border-b dark:border dark:border-white border-black h-10 font-semibold w-7/12"
+        }
       >
-        Opprett
+        <span className="">Opprett lag</span>
       </button>
       {data.team !== "Ikke valgt" && (
         <button
