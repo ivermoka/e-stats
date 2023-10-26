@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
+import { GetUser } from "@/actions/getUser";
 
 import { BsCalendar } from "react-icons/bs";
 import { BiLeftArrow } from "react-icons/bi";
 import { BiRightArrow } from "react-icons/bi";
-import { GetUser } from "@/actions/getUser";
+import { AiOutlineTeam } from "react-icons/ai";
 
 const Admin = () => {
   const [date, setDate] = useState(new Date().toLocaleDateString("en-US"));
   const [currentDate, setCurrentDate] = useState(
-    new Date().toLocaleDateString("no-NO")
+    new Date().toLocaleDateString("no-NO"),
   );
   const [showCalendar, setShowCalendar] = useState(false);
   const [showTeamsDropdown, setShowTeamsDropdown] = useState(false);
@@ -41,12 +42,12 @@ const Admin = () => {
   };
 
   const boxStyle =
-    "dark:text-text text-textLight font-bold py-2 px-4 rounded-lg dark:bg-primary bg-primaryLight shadow-md dark:shadow-accent shadow-accentLight";
+    "dark:text-text text-textLight font-bold py-2 px-4 rounded-md border-2 dark:border-primary border-secondaryLight shadow-lg dark:shadow-accent shadow-accentLight";
   return (
     <div className="h-screen mt-16 flex flex-col gap-4 p-4">
       {/*Velg dato og lag knapper */}
 
-      <div className="flex justify-around">
+      <div className="flex justify-around text-lg">
         <button
           type="button"
           onClick={() => {
@@ -55,7 +56,7 @@ const Admin = () => {
           className={boxStyle}
         >
           VELG DATO
-          <BsCalendar className="inline ml-2 mb-[2px]" />
+          <BsCalendar className="inline ml-2 mb-[2px] w-6" />
         </button>
         <button
           type="button"
@@ -65,6 +66,7 @@ const Admin = () => {
           className={boxStyle}
         >
           VELG LAG
+          <AiOutlineTeam className="inline ml-2 mb-[2px] w-6" />
         </button>
       </div>
 
@@ -73,7 +75,7 @@ const Admin = () => {
       {showCalendar && (
         <Calendar
           className={
-            "dark:bg-primary bg-primaryLight shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 font-semibold"
+            "dark:border-primary border-secondaryLight border-2 shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 font-semibold"
           }
           tileClassName={({ date }) => {
             const isSelectedDate =

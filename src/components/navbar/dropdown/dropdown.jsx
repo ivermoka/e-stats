@@ -23,6 +23,7 @@ const Dropdown = ({
   setShowConfirmDelete,
 }) => {
   const [team, setTeam] = useState(null);
+  const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
     if (user !== null) {
@@ -41,6 +42,9 @@ const Dropdown = ({
       if (res.status === 200) {
         const data = await res.json();
         setTeam(data.team);
+        if (data.isAdmin) {
+          setAdmin(true);
+        }
       } else if (res.status === 405) {
         console.log("Error fetching data");
       }
@@ -98,15 +102,17 @@ const Dropdown = ({
             />
           </Link>
         )}
-        <Link href="/admin">
-          <Links
-            onClick={() => {
-              setDropdown(false);
-            }}
-            text={"Trener UI"}
-            icon={<RiAdminLine />}
-          />
-        </Link>
+        {admin && (
+          <Link href="/admin">
+            <Links
+              onClick={() => {
+                setDropdown(false);
+              }}
+              text={"Trener UI"}
+              icon={<RiAdminLine />}
+            />
+          </Link>
+        )}
         <Line />
         <Links
           text={"Vilkår for bruk"}

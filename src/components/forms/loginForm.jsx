@@ -4,10 +4,12 @@ import Link from "next/link";
 import ForgotPassword from "@/components/forms/forgotPassword";
 import ReactLoading from "react-loading";
 import { BiShow } from "react-icons/bi";
+import { BiHide } from "react-icons/bi";
 
 const LoginPage = () => {
   const [pending, setPending] = useState(false);
   const [wrong, setWrong] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
@@ -25,7 +27,7 @@ const LoginPage = () => {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
 
       if (response.status === 200) {
@@ -42,27 +44,21 @@ const LoginPage = () => {
     }
   };
 
-  function showPassword() {
+  function toggleShowPassword() {
     const password = document.getElementById("passwordInput");
     if (password.type === "password") {
       password.type = "text";
+      setShowPassword(true);
     } else {
       password.type = "password";
-    }
-  }
-  function showConfirmedPassword() {
-    const confirmPassword = document.getElementById("confirmPasswordInput");
-    if (confirmPassword.type === "password") {
-      confirmPassword.type = "text";
-    } else {
-      confirmPassword.type = "password";
+      setShowPassword(false);
     }
   }
 
   const [showForgotPassword, setShowForgotPassword] = useState(false);
 
   const inputStyle =
-    "border-b-4 dark:border-secondary border-secondaryLight bg-transparent p-2 dark:text-text text-textLight outline-none focus:border-b-2 duration-300 w-60";
+    "border-b-4 dark:border-primary border-secondaryLight bg-transparent p-2 dark:text-text text-textLight outline-none focus:border-b-2 duration-300 w-64";
 
   return (
     <div className="dark:bg-bg bg-bgLight w-screen h-screen flex">
@@ -71,16 +67,16 @@ const LoginPage = () => {
         className="w-full flex flex-col justify-center items-center p-4 gap-6"
       >
         <h1 className="dark:text-text text-textLight text-5xl m-4">Logg Inn</h1>
-        <div className="flex flex-row border-b-4 dark:border-secondary border-secondaryLight outline-none focus:border-b-2 duration-300 ">
+        <div>
           <input
             {...register("username", { required: "*Skriv brukernavn" })}
             placeholder="username"
             type="text"
-            className="bg-transparent p-2 dark:text-text text-textLight w-60 outline-none"
+            className={inputStyle}
           />
           <div className="w-4 h-4"></div>
         </div>
-        <div className="flex flex-row border-b-4 dark:border-secondary border-secondaryLight outline-none focus:border-b-2 duration-300 ">
+        <div className="flex">
           <input
             {...register("password", {
               required: "*Skriv passord",
@@ -91,25 +87,20 @@ const LoginPage = () => {
             })}
             placeholder="password"
             type="password"
-            className="bg-transparent p-2 dark:text-text text-textLight w-60 outline-none"
+            className={inputStyle}
             id="passwordInput"
           />
-          <BiShow
-            onClick={() => showPassword()}
-            className="dark:text-white light:text-black w-5 h-5"
-          />
-        </div>
-        <div className="flex flex-row border-b-4 dark:border-secondary border-secondaryLight focus:border-b-2 duration-300">
-          <input
-            placeholder="bekreft passord"
-            type="password"
-            id="confirmPasswordInput"
-            className="bg-transparent p-2 dark:text-text text-textLight w-60 outline-none"
-          />
-          <BiShow
-            onClick={() => showConfirmedPassword()}
-            className="dark:text-white light:text-black w-5 h-5"
-          />
+          {showPassword ? (
+            <BiHide
+              onClick={() => toggleShowPassword()}
+              className="dark:text-white light:text-black w-5 h-5 mt-2 -ml-6"
+            />
+          ) : (
+            <BiShow
+              onClick={() => toggleShowPassword()}
+              className="dark:text-white light:text-black w-5 h-5 mt-2 -ml-6"
+            />
+          )}
         </div>
         {pending ? (
           <ReactLoading type={"spin"} color={"black"} width={40} height={44} />
