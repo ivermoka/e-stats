@@ -11,7 +11,7 @@ import { BsArrowReturnLeft } from "react-icons/bs";
 const Admin = () => {
   const [date, setDate] = useState(new Date().toLocaleDateString("en-US"));
   const [currentDate, setCurrentDate] = useState(
-    new Date().toLocaleDateString("no-NO")
+    new Date().toLocaleDateString("no-NO"),
   );
   const [showCalendar, setShowCalendar] = useState(false);
   const [showTeamsDropdown, setShowTeamsDropdown] = useState(false);
@@ -41,7 +41,6 @@ const Admin = () => {
       });
       if (res.status === 200) {
         const data = await res.json();
-        console.log(data.ratings);
         setStats(data.ratings);
       }
     } catch (err) {
@@ -76,7 +75,6 @@ const Admin = () => {
         },
         body: JSON.stringify({ reply, id, user }),
       });
-      console.log(await res.json());
     } catch (e) {
       console.log(e);
     }

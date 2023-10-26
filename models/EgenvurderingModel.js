@@ -13,7 +13,6 @@ const userSchema = new mongoose.Schema({
   team: String,
   school: String,
   hasRatedPart2: Boolean,
-  adminRated: { type: Boolean, default: false },
 });
 
 const Egenvurdering =
