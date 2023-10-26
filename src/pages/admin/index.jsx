@@ -70,7 +70,7 @@ const Admin = () => {
         </button>
       </div>
 
-      {/*Vis kalender omg showCalendar er true*/}
+      {/*Vis kalender om showCalendar er true*/}
 
       {showCalendar && (
         <Calendar

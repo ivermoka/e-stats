@@ -4,8 +4,8 @@ import Header from "@/components/team/header";
 import Members from "@/components/team/members";
 import CreateTeam from "@/components/team/createTeam";
 import { GetUser } from "@/actions/getUser";
-import ReactLoading from "react-loading";
 import JoinTeamPopup from "@/components/team/joinTeamPopup";
+import Loading from "@/components/loading";
 
 const Lag = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);
@@ -173,9 +173,7 @@ const Lag = () => {
           )}
         </div>
       ) : (
-        <div className="h-screen flex justify-center items-center">
-          <ReactLoading color={"black"} width={100} type="spin" />
-        </div>
+        <Loading />
       )}
     </>
   );
