@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 
 const GetUser = () => {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
       verifyUser(storedToken).then();
-    } else {
-      return "no";
     }
   }, []);
 
