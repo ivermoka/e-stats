@@ -36,27 +36,25 @@ const CreateTeam = ({ setShowCreateTeam }) => {
       }
     }
   };
+  const inputs = `bg-transparent dark:border-white border-black border dark:text-white text-black p-2 rounded-3xl outline-none text-black placeholder`;
+
   return (
-    <div
-      className={
-        "fixed h-screen w-screen bg-black/50 z-50 left-0 top-0 grid place-items-center"
-      }
-    >
+    <div className={"fixed h-screen w-screen flex   place-items-center"}>
       <form
         className={
-          "w-72 h-96 dark:bg-primary bg-primaryLight dark:text-text text-textLight flex flex-col gap-4 justify-center items-center rounded-lg shadow-md dark:shadow-accent shadow-accentLight"
+          "w-72 h-96 dark:bg-accent bg-primaryLight dark:text-text text-textLight flex flex-col gap-4 justify-center items-center rounded-lg shadow-md dark:shadow-accent shadow-accentLight"
         }
       >
         <h1 className={"text-3xl"}>Opprett Lag</h1>
         <input
           type="text"
-          className={"p-2 rounded-lg"}
+          className={`${inputs}`}
           onChange={(e) => setTeamName(e.target.value)}
           placeholder="Nytt lag"
         />
         <input
           type="password"
-          className={"p-2 rounded-lg"}
+          className={`${inputs}`}
           onChange={(e) => setTeamCode(e.target.value)}
           placeholder="Din lag kode"
         />

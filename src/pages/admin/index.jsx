@@ -21,6 +21,7 @@ const Admin = () => {
   const [stats, setStats] = useState([]);
   const [allTeams, setAllTeams] = useState([]);
   const [showReply, setShowReply] = useState(false);
+  const [reply, setReply] = useState("");
 
   useEffect(() => {
     getStats();
@@ -41,7 +42,6 @@ const Admin = () => {
       });
       if (res.status === 200) {
         const data = await res.json();
-        console.log(data.ratings);
         setStats(data.ratings);
       }
     } catch (err) {
@@ -65,6 +65,20 @@ const Admin = () => {
       }
     } catch (err) {
       console.log("ERROR: ", err);
+    }
+  };
+  const sendReply = async (id) => {
+    console.log(reply, id, user);
+    try {
+      const res = await fetch("/api/reply", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ reply, id, user }),
+      });
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -155,11 +169,7 @@ const Admin = () => {
       {showTeamsDropdown && (
         <div className={`${boxStyle} flex flex-col`}>
           {allTeams.map((team, index) => (
-            <div
-              key={index}
-              onClick={() => setTeam(team.teamName)}
-              className="team-item"
-            >
+            <div key={index} onClick={() => setTeam(team.teamName)}>
               {team.teamName}
             </div>
           ))}
@@ -190,13 +200,15 @@ const Admin = () => {
           className="dark:bg-primary bg-primaryLight rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 mt-4"
         >
           <h2 className="text-xl font-bold italic m-2">{rating.user} </h2>
-          <div className="dark:bg-bg/50 bg-bgLight/50 rounded-lg p-2">
-            {rating.comment}
+          <div className="dark:bg-bg/50 bg-bgLight/50 rounded-lg p-2 whitespace-pre-line">
+            <span dangerouslySetInnerHTML={{ __html: rating.comment }} />
           </div>
           {showReply && (
             <>
-              <input className="dark:bg-secondary" type="text" />
-              <button type="submit">Send</button>
+              <input type="text" onChange={(e) => setReply(e.target.value)} />
+              <button type="submit" onClick={() => sendReply(rating._id)}>
+                Send
+              </button>
             </>
           )}
           <button
