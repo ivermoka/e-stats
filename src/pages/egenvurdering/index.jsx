@@ -3,7 +3,7 @@ import Egenvurdering from "@/components/home/egenvurdering/egenvurdering";
 import After from "@/components/home/egenvurdering/after";
 import Selector from "@/components/home/egenvurdering/selector";
 import HasRatedPage from "@/components/home/egenvurdering/hasRatedPage";
-import ReactLoading from "react-loading";
+import Loading from "@/components/loading";
 import { GetUser } from "@/actions/getUser";
 
 const EgenvurderingContainer = () => {
@@ -76,9 +76,7 @@ const EgenvurderingContainer = () => {
               <Selector showAfter={showAfter} setShowAfter={setShowAfter} />
             </>
           ) : (
-            <div className="h-screen grid place-items-center">
-              <ReactLoading type={"spin"} color={"black"} width={100} />
-            </div>
+            <Loading />
           )}
         </>
       ) : (

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
+import { BarChart } from "@/components/stats/barChart";
 import { GetUser } from "@/actions/getUser";
 
 import { BsCalendar } from "react-icons/bs";
@@ -47,6 +48,7 @@ const Admin = () => {
       console.log(err);
     }
   };
+
   const getAllTeams = async () => {
     try {
       const res = await fetch("/api/teamPage", {
@@ -64,6 +66,32 @@ const Admin = () => {
     } catch (err) {
       console.log("ERROR: ", err);
     }
+  };
+
+  //line chart settings
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Statistikk over tid",
+      },
+    },
+  };
+
+  const labels = [1, 2, 3, 4, 5, 6, 7];
+
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Din vurdering",
+        data: [5, 6, 7, 8, 9, 10, 7],
+      },
+    ],
   };
 
   const boxStyle =
@@ -140,7 +168,9 @@ const Admin = () => {
 
       {/*Stats container*/}
 
-      <div className="h-80 bg-blue-400">stats</div>
+      <div className="h-80">
+        <BarChart data={data} options={options} />
+      </div>
 
       {/*Piler for neste eller forrige stats som skal vises*/}
 
