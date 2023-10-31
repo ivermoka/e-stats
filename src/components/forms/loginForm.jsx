@@ -93,12 +93,12 @@ const LoginPage = () => {
           {showPassword ? (
             <BiHide
               onClick={() => toggleShowPassword()}
-              className="dark:text-white light:text-black w-5 h-5 mt-2 -ml-6"
+              className="dark:text-white light:text-black text-2xl mt-2 -ml-6"
             />
           ) : (
             <BiShow
               onClick={() => toggleShowPassword()}
-              className="dark:text-white light:text-black w-5 h-5 mt-2 -ml-6"
+              className="dark:text-white light:text-black text-2xl mt-2 -ml-6"
             />
           )}
         </div>

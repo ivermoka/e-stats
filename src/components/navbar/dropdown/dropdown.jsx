@@ -77,7 +77,7 @@ const Dropdown = ({
         </button>
       </div>
       <UserInfo />
-      <div className={"flex flex-col w-full px-4 gap-3 mt-2"}>
+      <div className={"flex flex-col w-full px-4 gap-2 mt-2"}>
         <Link href={`/users/${user}`}>
           <Links
             text={"Din Profil"}

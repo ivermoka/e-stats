@@ -7,6 +7,9 @@ import { GetUser } from "@/actions/getUser";
 export default function Index() {
   const user = GetUser();
   const [showEgenvurdering, setShowEgenvurdering] = useState(false);
+
+  const buttonStyle =
+    "dark:text-text text-textLight text-2xl font-semibold border-2 dark:border-primary border-secondaryLight rounded-md p-4 w-full";
   return (
     <>
       <div className="p-4 w-screen h-screen grid place-items-center">
@@ -16,7 +19,7 @@ export default function Index() {
               initial={{ x: -200, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.5, ease: "easeInOut", type: "spring" }}
-              className="dark:text-text text-textLight font-bold text-7xl text-center"
+              className="dark:text-text text-textLight font-semibold text-7xl text-center -mt-4"
             >
               e-sport dagboka
             </motion.h1>
@@ -32,7 +35,7 @@ export default function Index() {
                     type: "spring",
                     delay: 0.3,
                   }}
-                  className="dark:text-text text-textLight text-2xl font-semibold border-2 dark:border-primary border-primaryLight rounded-md p-4 shadow-lg dark:shadow-accent shadow-accentLight w-full"
+                  className={buttonStyle}
                 >
                   EGENVURDERING
                 </motion.button>
@@ -50,7 +53,7 @@ export default function Index() {
                       type: "spring",
                       delay: 0.3,
                     }}
-                    className="dark:bg-primary bg-primaryLight rounded-lg p-4 shadow-md dark:shadow-accent shadow-accentLight w-36"
+                    className={buttonStyle}
                   >
                     Logg Inn
                   </motion.button>
@@ -65,7 +68,7 @@ export default function Index() {
                       type: "spring",
                       delay: 0.5,
                     }}
-                    className="dark:bg-primary bg-primaryLight rounded-lg p-4 shadow-md dark:shadow-accent shadow-accentLight w-36"
+                    className={buttonStyle}
                   >
                     Registrer
                   </motion.button>

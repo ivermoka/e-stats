@@ -30,7 +30,7 @@ const AdjustTeam = ({ user, setShowTeam, data }) => {
   const boxStyle =
     "dark:bg-primary bg-primaryLight rounded-lg shadow-lg dark:shadow-accent shadow-accentLight p-4 text-2xl font-semibold";
   return (
-    <div className="fixed  h-screen w-screen dark:bg-bg/70 bg-bgLight/70 backdrop-blur-md p-8 flex flex-col  gap-6  ">
+    <div className="fixed left-0 h-screen w-screen dark:bg-bg/70 bg-bgLight/70 backdrop-blur-md p-8 flex flex-col  gap-6  ">
       <div className="flex w-screen h-12 justify-start items-center ">
         <div className="w-6"></div>
         <button

@@ -32,4 +32,5 @@ const GetUser = () => {
   };
   return user;
 };
+
 export { GetUser };
