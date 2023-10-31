@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
-import { BarChart } from "@/components/stats/barChart";
+import { LineChart } from "@/components/stats/overTimeStats/lineChart";
 import { GetUser } from "@/actions/getUser";
 
 import { BsCalendar } from "react-icons/bs";
-import { BiLeftArrow } from "react-icons/bi";
-import { BiRightArrow } from "react-icons/bi";
 import { AiOutlineTeam } from "react-icons/ai";
 import { BsArrowReturnLeft } from "react-icons/bs";
 
@@ -25,6 +23,7 @@ const Admin = () => {
 
   useEffect(() => {
     getStats();
+    console.log(stats);
   }, [date, team]);
 
   useEffect(() => {
@@ -82,6 +81,28 @@ const Admin = () => {
     }
   };
 
+  // Calculate average values and sort by date
+  const groupedData = {};
+  stats.forEach((rating, i) => {
+    const date = rating.date;
+    if (!groupedData[date]) {
+      groupedData[date] = { date, sum: 0, count: 0 };
+    }
+    // Assuming you want to calculate the average for disclosure1
+    groupedData[date].sum += rating.i;
+    groupedData[date].count += 1;
+  });
+
+  const sortedData = Object.values(groupedData)
+    .map((entry) => ({
+      date: entry.date,
+      averageValue: entry.sum / entry.count,
+    }))
+    .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+  // Now 'sortedData' contains an array of objects with 'date' and 'averageValue' properties,
+  // sorted by date based on disclosure1.
+
   //line chart settings
   const options = {
     responsive: true,
@@ -96,14 +117,22 @@ const Admin = () => {
     },
   };
 
-  const labels = [1, 2, 3, 4, 5, 6, 7];
+  const labels = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+    22, 23, 24, 25, 26, 27, 28, 29, 30,
+  ];
 
   const data = {
     labels: labels,
     datasets: [
       {
-        label: "Din vurdering",
-        data: [5, 6, 7, 8, 9, 10, 7],
+        label: "Mat",
+        data: sortedData.map((rating) => rating.averageValue),
+        backgroundColor: "rgb(255, 99, 132)",
+        borderColor: "rgb(255, 99, 132)",
+      },
+      {
+        label: "Mat",
       },
     ],
   };
@@ -178,19 +207,8 @@ const Admin = () => {
 
       {/*Stats container*/}
 
-      <div className="h-80">
-        <BarChart data={data} options={options} />
-      </div>
-
-      {/*Piler for neste eller forrige stats som skal vises*/}
-
-      <div className="flex justify-around text-4xl">
-        <button type="button">
-          <BiLeftArrow />
-        </button>
-        <button type="button">
-          <BiRightArrow />
-        </button>
+      <div>
+        <LineChart options={options} data={data} />
       </div>
 
       {/*Container for kommentarer*/}

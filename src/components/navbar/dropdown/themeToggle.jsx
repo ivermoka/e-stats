@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BsFillMoonStarsFill } from "react-icons/bs";
 import { GiFlashGrenade } from "react-icons/gi";
+import { Switch } from "@headlessui/react";
 
 const ThemeToggle = () => {
   const [dark, setDark] = useState(false);
@@ -37,15 +38,19 @@ const ThemeToggle = () => {
 
   return (
     <div className="h-12 aspect-square grid place-items-center">
-      {dark ? (
-        <button onClick={toggleTheme}>
-          <GiFlashGrenade className="text-text text-3xl" />
-        </button>
-      ) : (
-        <button onClick={toggleTheme}>
-          <BsFillMoonStarsFill className="text-textLight text-3xl" />
-        </button>
-      )}
+      <Switch
+        checked={dark}
+        onChange={toggleTheme}
+        className={`${
+          dark ? "bg-blue-600" : "bg-secondaryLight"
+        } relative inline-flex h-8 w-14 items-center rounded-full`}
+      >
+        <span
+          className={`${
+            dark ? "translate-x-8" : "translate-x-1"
+          } inline-block h-5 w-5 transform rounded-full bg-white transition`}
+        />
+      </Switch>
     </div>
   );
 };

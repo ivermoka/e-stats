@@ -85,7 +85,7 @@ const Register = ({ setRegistered }) => {
           {/*implementa -ml-6 i stedet for å kunne beholde animasjoner for input fields, det er fortsatt scaleable, beholdte boksen med flex for å ha øye på samme linje*/}
           <input
             {...register("mail", { required: "*Skriv mail" })}
-            placeholder="mail"
+            placeholder="Mail"
             type="email"
             className={inputStyle}
           />
@@ -100,7 +100,7 @@ const Register = ({ setRegistered }) => {
                 message: "*Brukernavn må ha minst 3 tegn",
               },
             })}
-            placeholder="brukernavn"
+            placeholder="Brukernavn"
             type="text"
             className={inputStyle}
           />
@@ -114,7 +114,7 @@ const Register = ({ setRegistered }) => {
                 message: "*Passordet må ha minst 8 tegn",
               },
             })}
-            placeholder="passord"
+            placeholder="Passord"
             type="password"
             id="passwordInput"
             className={inputStyle}
@@ -134,7 +134,7 @@ const Register = ({ setRegistered }) => {
         <div className="flex">
           <input
             {...register("confirmPassword")}
-            placeholder="bekreft passord"
+            placeholder="Bekreft Passord"
             type="password"
             id="confirmPasswordInput"
             className={inputStyle}

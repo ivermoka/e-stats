@@ -32,7 +32,7 @@ const HasRatedPage = ({ user }) => {
   };
 
   return (
-    <div className="dark:text-text text-textLight h-screen mt-20 flex flex-col items-center gap-8">
+    <div className="dark:text-text text-textLight mt-20 overflow-y-hidden flex flex-col items-center gap-8">
       <div
         className={`${boxStyle} dark:bg-transparent bg-transparent shadow-none`}
       >

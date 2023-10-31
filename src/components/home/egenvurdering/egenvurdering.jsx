@@ -74,7 +74,7 @@ const Egenvurdering = ({ date, user, setShowAfter }) => {
           type="submit"
           className="rounded-lg dark:bg-primary bg-primaryLight p-3 shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight font-bold italic my-4"
         >
-          LAGRE
+          NESTE
         </button>
       </form>
     </>
