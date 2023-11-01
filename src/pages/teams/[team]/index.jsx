@@ -44,6 +44,7 @@ const Lag = () => {
 
   const [currentTeamCode, setCurrentTeamCode] = useState(null);
   const [showCurrentTeamCode, setShowCurrentThemeCode] = useState(false);
+  const [isLeader, setIsLeader] = useState(false);
 
   const getAllMembers = async () => {
     try {
@@ -60,6 +61,11 @@ const Lag = () => {
         const data = await res.json();
         setAllMembers(data.users);
         setCurrentTeamCode(data.teamSchema.teamCode);
+        console.log(data);
+        const leader = data.teamSchema.leader;
+        if (leader === user) {
+          setIsLeader(true);
+        }
       } else if (res.status === 500) {
         console.log("Error fetching data");
       }
@@ -138,7 +144,7 @@ const Lag = () => {
               "dark:border-primary border-primaryLight flex flex-col gap-6 p-4 "
             }
           >
-            {currentTeamCode}
+            {isLeader ? currentTeamCode : null}
             <h2
               className={
                 " dark:text-text text-textLight text-2xl px-2 font-semibold"

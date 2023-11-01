@@ -17,6 +17,7 @@ export default async function handler(req, res) {
       members: username,
       teamCode: teamCode,
       school: user.school,
+      leader: user.username,
     });
     await team.save();
 

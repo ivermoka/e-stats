@@ -5,6 +5,7 @@ const teamModel = new mongoose.Schema({
   members: { type: Array, default: [] },
   teamCode: { type: String, required: true },
   school: { type: String },
+  leader: { type: String },
 });
 
 const Team = mongoose.models.Teams || mongoose.model("Teams", teamModel);
