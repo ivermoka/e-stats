@@ -38,14 +38,6 @@ export default async function handler(req, res) {
       },
       team,
     });
-    console.log(
-      ratings,
-      "ratings",
-      date,
-      team,
-      currentDateFormatted,
-      priorDate,
-    );
     res.status(200).json({ ratings });
   } catch (error) {
     res.status(508).json({
