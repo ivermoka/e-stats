@@ -55,7 +55,7 @@ const Lag = () => {
           headers: {
             "Content-Type": "application/json",
           },
-        },
+        }
       );
       if (res.status === 200) {
         const data = await res.json();

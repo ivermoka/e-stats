@@ -18,6 +18,11 @@ export default async function handler(req, res) {
     const userSchema = await User.findOne({ username: user });
     const team = userSchema.team;
     try {
+      if (userSchema.team === "") {
+        return res.status(500).json({
+          message: "Du må velge lag før du kan registrere egenvurdering.",
+        });
+      }
       const egenvurdering = new Egenvurdering({
         disclosure1,
         disclosure2,
@@ -30,7 +35,6 @@ export default async function handler(req, res) {
         school: userSchema.school,
         hasRatedPart2: false,
       });
-      console.log(userSchema.school);
       await egenvurdering.save();
       res.status(201).json({ message: "Egenvurdering registrert." });
     } catch (error) {

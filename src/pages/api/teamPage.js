@@ -26,7 +26,6 @@ export default async function teamPage(req, res) {
         }
         teamSchema.members = [...teamSchema.members, user];
         await teamSchema.save();
-
         userSchema.team = selectedTeam;
         await userSchema.save();
         res.status(200).json({ success: "Bruker lagt til team" });
@@ -49,6 +48,9 @@ export default async function teamPage(req, res) {
       userSchema.team = "";
       await userSchema.save();
       await teamSchema.save();
+      if (teamSchema.members.length === 0) {
+        await Team.deleteOne({ teamName: teamSchema.teamName });
+      }
       res.status(200).json({ success: "Bruker fjernet fra team" });
     } catch (e) {
       res.status(400).json({ error: "Feil ved sletting av bruker", e });

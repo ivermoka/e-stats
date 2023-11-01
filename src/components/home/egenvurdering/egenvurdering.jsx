@@ -31,6 +31,8 @@ const Egenvurdering = ({ date, user, setShowAfter }) => {
       });
       if (res.status === 201) {
         setShowAfter(true);
+      } else if (res.status === 500) {
+        console.log("Du må velge lag før du kan registrere dag");
       }
     } catch (error) {
       console.log(error);
