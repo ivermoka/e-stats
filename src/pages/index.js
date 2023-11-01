@@ -1,7 +1,5 @@
-import Egenvurdering from "@/components/home/egenvurdering/egenvurdering";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useState } from "react";
 import { GetUser } from "@/actions/getUser";
 
 export default function Index() {
@@ -10,7 +8,7 @@ export default function Index() {
   const buttonStyle =
     "dark:text-text text-textLight text-2xl font-semibold border-2 dark:border-primary border-secondaryLight rounded-md p-4 w-full";
   return (
-    <div className="p-4 h-screen flex flex-col justify-center gap-4">
+    <div className="p-4 absolute inset-0 overflow-hidden flex flex-col justify-center gap-4">
       <motion.h1
         initial={{ x: -200, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
