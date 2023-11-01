@@ -109,7 +109,7 @@ const Lag = () => {
       });
       if (res.status === 200) {
         console.log("Team left");
-        window.location.reload();
+        window.location.href = "/";
       } else if (res.status === 400) {
         console.log(res);
       }
@@ -124,7 +124,7 @@ const Lag = () => {
     "dark:bg-primary bg-primaryLight rounded-md shadow-lg dark:shadow-accent shadow-accentLight p-4";
 
   return (
-    <div className=" min-h-screen">
+    <div className="min-h-screen">
       {loaded ? (
         <div className={"flex flex-col gap-8 px-8 mb-32 mt-16"}>
           {showCode && (

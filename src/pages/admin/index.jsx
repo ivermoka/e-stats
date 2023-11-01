@@ -23,7 +23,6 @@ const Admin = () => {
 
   useEffect(() => {
     getStats();
-    console.log(stats);
   }, [date, team]);
 
   useEffect(() => {
@@ -84,13 +83,30 @@ const Admin = () => {
   //line chart settings
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: "top",
       },
       title: {
         display: true,
-        text: "Statistikk over tid",
+        text: `Gjennomsnitt statistikk for ${team}`,
+      },
+    },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Dato",
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: "Vurdering",
+        },
+        min: 0,
+        max: 10,
       },
     },
   };
@@ -128,14 +144,53 @@ const Admin = () => {
       data: getDisclosureData("disclosure1").map(
         (rating) => rating.averageValue,
       ),
-      backgroundColor: "rgb(255, 99, 132)",
-      borderColor: "rgb(255, 99, 132)",
+      backgroundColor: "#33cc33",
+      borderColor: "#33cc33",
     },
     {
       label: "Søvn",
       data: getDisclosureData("disclosure2").map(
         (rating) => rating.averageValue,
       ),
+      backgroundColor: "#0066ff",
+      borderColor: "#0066ff",
+      hidden: true,
+    },
+    {
+      label: "Motivasjon",
+      data: getDisclosureData("disclosure3").map(
+        (rating) => rating.averageValue,
+      ),
+      backgroundColor: "#ccff33",
+      borderColor: "#ccff33",
+      hidden: true,
+    },
+    {
+      label: "Fysisk",
+      data: getDisclosureData("disclosure4").map(
+        (rating) => rating.averageValue,
+      ),
+      backgroundColor: "#EB565B",
+      borderColor: "#EB565B",
+      hidden: true,
+    },
+    {
+      label: "Psykisk",
+      data: getDisclosureData("disclosure5").map(
+        (rating) => rating.averageValue,
+      ),
+      backgroundColor: "#ffff99",
+      borderColor: "#ffff99",
+      hidden: true,
+    },
+    {
+      label: "Spilte",
+      data: getDisclosureData("disclosure6").map(
+        (rating) => rating.averageValue,
+      ),
+      backgroundColor: "#ff0066",
+      borderColor: "#ff0066",
+      hidden: true,
     },
   ];
 
@@ -147,7 +202,7 @@ const Admin = () => {
   const boxStyle =
     "dark:text-text text-textLight font-bold py-2 px-4 rounded-md border-2 dark:border-primary border-secondaryLight shadow-lg dark:shadow-accent shadow-accentLight";
   return (
-    <div className="min-h-screen mt-16 flex flex-col gap-4 p-4">
+    <div className="dark:bg-bg bg-bgLight min-h-screen mt-16 flex flex-col gap-4 p-4">
       {/*Velg dato og lag knapper */}
 
       <div className="flex justify-around text-lg">
@@ -214,7 +269,7 @@ const Admin = () => {
 
       {/*Stats container*/}
 
-      <div>
+      <div className="md:h-96 h-72">
         <LineChart options={options} data={data} />
       </div>
 
