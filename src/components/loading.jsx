@@ -7,7 +7,7 @@ const Loading = () => {
     setTheme(localStorage.getItem("theme"));
   }, []);
   return (
-    <div className="h-screen flex justify-center items-center">
+    <div className="h-screen absolute inset-0 flex justify-center items-center">
       {theme === "dark" ? (
         <ReactLoading color="white" width={100} type="spin" />
       ) : (

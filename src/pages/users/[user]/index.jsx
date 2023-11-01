@@ -4,7 +4,7 @@ import Card from "../../../components/profile/profilKort";
 import Edit from "../../../components/profile/endreProfil";
 import { motion } from "framer-motion";
 import { GetUser } from "@/actions/getUser";
-import ReactLoading from "react-loading";
+import Loading from "@/components/loading";
 
 const Profil = () => {
   const [takingTime, setTakingTime] = useState("");
@@ -155,7 +155,7 @@ const Profil = () => {
         </>
       ) : (
         <div className="flex flex-col justify-center items-center h-screen">
-          <ReactLoading type="spin" color="black" width={100} />
+          <Loading />
           <span className="mt-32 text-center">{takingTime}</span>
         </div>
       )}

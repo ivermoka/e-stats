@@ -23,7 +23,6 @@ const Admin = () => {
 
   useEffect(() => {
     getStats();
-    console.log(stats);
   }, [date, team]);
 
   useEffect(() => {
@@ -81,28 +80,6 @@ const Admin = () => {
     }
   };
 
-  // Calculate average values and sort by date
-  const groupedData = {};
-  stats.forEach((rating, i) => {
-    const date = rating.date;
-    if (!groupedData[date]) {
-      groupedData[date] = { date, sum: 0, count: 0 };
-    }
-    // Assuming you want to calculate the average for disclosure1
-    groupedData[date].sum += rating.i;
-    groupedData[date].count += 1;
-  });
-
-  const sortedData = Object.values(groupedData)
-    .map((entry) => ({
-      date: entry.date,
-      averageValue: entry.sum / entry.count,
-    }))
-    .sort((a, b) => new Date(a.date) - new Date(b.date));
-
-  // Now 'sortedData' contains an array of objects with 'date' and 'averageValue' properties,
-  // sorted by date based on disclosure1.
-
   //line chart settings
   const options = {
     responsive: true,
@@ -117,10 +94,29 @@ const Admin = () => {
     },
   };
 
-  const labels = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-    22, 23, 24, 25, 26, 27, 28, 29, 30,
-  ];
+  // Calculate average values and sort by date
+  const groupedData = {};
+  stats.forEach((rating) => {
+    const date = rating.date;
+    if (!groupedData[date]) {
+      groupedData[date] = { date, sum: 0, count: 0 };
+    }
+    // Assuming you want to calculate the average for disclosure1
+    groupedData[date].sum += rating.disclosure1;
+    groupedData[date].count += 1;
+  });
+
+  const sortedData = Object.values(groupedData)
+    .map((entry) => ({
+      date: entry.date,
+      averageValue: entry.sum / entry.count,
+    }))
+    .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+  // Now 'sortedData' contains an array of objects with 'date' and 'averageValue' properties,
+  // sorted by date based on disclosure1.
+
+  const labels = sortedData.map((date) => date.date);
 
   const data = {
     labels: labels,
@@ -168,7 +164,7 @@ const Admin = () => {
 
       {/*tekst som viser hvilket lag og hvilken dato som er valgt*/}
 
-      <h1>
+      <h1 className="text-textLight dark:text-text">
         Lag: {team} Dato: {currentDate}
       </h1>
 
