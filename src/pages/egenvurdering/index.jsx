@@ -45,7 +45,7 @@ const EgenvurderingContainer = () => {
   };
 
   return (
-    <div className={"p-4 min-h-screen"}>
+    <div className={"p-4 bg-bgLight dark:bg-bg min-h-screen"}>
       {user ? (
         <>
           {loaded ? (
@@ -55,7 +55,13 @@ const EgenvurderingContainer = () => {
                   {hasRated2 ? (
                     <HasRatedPage user={user} />
                   ) : (
-                    <After date={date} user={user} />
+                    <>
+                      <After date={date} user={user} />
+                      <Selector
+                        showAfter={showAfter}
+                        setShowAfter={setShowAfter}
+                      />
+                    </>
                   )}
                 </>
               ) : (
@@ -63,17 +69,22 @@ const EgenvurderingContainer = () => {
                   {hasRated1 ? (
                     <HasRatedPage user={user} />
                   ) : (
-                    <Egenvurdering
-                      date={date}
-                      user={user}
-                      hasRated={hasRated1}
-                      setHasRated={setHasRated1}
-                      setShowAfter={setShowAfter}
-                    />
+                    <>
+                      <Egenvurdering
+                        date={date}
+                        user={user}
+                        hasRated={hasRated1}
+                        setHasRated={setHasRated1}
+                        setShowAfter={setShowAfter}
+                      />
+                      <Selector
+                        showAfter={showAfter}
+                        setShowAfter={setShowAfter}
+                      />
+                    </>
                   )}
                 </>
               )}
-              <Selector showAfter={showAfter} setShowAfter={setShowAfter} />
             </>
           ) : (
             <Loading />

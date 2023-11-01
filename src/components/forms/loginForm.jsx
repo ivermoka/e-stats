@@ -70,7 +70,7 @@ const LoginPage = () => {
         <div>
           <input
             {...register("username", { required: "*Skriv brukernavn" })}
-            placeholder="username"
+            placeholder="Brukernavn"
             type="text"
             className={inputStyle}
           />
@@ -85,7 +85,7 @@ const LoginPage = () => {
                 message: "*Passordet må ha minst 8 tegn",
               },
             })}
-            placeholder="password"
+            placeholder="Passord"
             type="password"
             className={inputStyle}
             id="passwordInput"

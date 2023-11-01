@@ -25,19 +25,16 @@ const Egenvurdering = ({ date, user }) => {
         }),
       });
       if (res.status === 201) {
-        window.location.href = "/";
+        window.location.href = "/stats";
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const boxStyle =
-    "dark:bg-primary bg-primaryLight rounded-lg p-2 shadow-md dark:shadow-accent shadow-accentLight font-semibold text-center text-2xl";
-
   return (
     <>
-      <form onSubmit={rateDay} className="mb-20 xs:p-4 mt-16 overflow-x-hidden">
+      <form onSubmit={rateDay} className="xs:p-4 mt-16 overflow-x-hidden">
         <div className="flex justify-between">
           <Day />
           <Link href={"/"}>
@@ -57,7 +54,7 @@ const Egenvurdering = ({ date, user }) => {
           type="submit"
           className="rounded-lg dark:bg-primary bg-primaryLight p-3 shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight font-bold italic my-4"
         >
-          LAGRE
+          SEND INN
         </button>
       </form>
     </>

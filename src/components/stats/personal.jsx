@@ -1,7 +1,7 @@
 import Calendar from "react-calendar";
 import { BarChart } from "./barChart";
 import React, { useState, useEffect } from "react";
-import ReactLoading from "react-loading";
+import Loading from "../loading";
 import { BsCalendar } from "react-icons/bs";
 import Link from "next/link";
 import TimeStats from "@/components/stats/overTimeStats/timeStats";
@@ -174,7 +174,7 @@ const PersonalStats = () => {
             </div>
           ) : hasRated && !dataFetched ? (
             <div className="flex flex-col items-center text-text text-lg mt-14">
-              <ReactLoading type={"spin"} color={"#1C1B29"} width={100} />
+              <Loading />
             </div>
           ) : (
             <div className="dark:bg-primary bg-primaryLight rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 mt-4">
