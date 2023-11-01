@@ -108,8 +108,7 @@ const Lag = () => {
         body: JSON.stringify({ user }),
       });
       if (res.status === 200) {
-        console.log("Team left");
-        window.location.reload();
+        window.location.href = "/";
       } else if (res.status === 400) {
         console.log(res);
       }
