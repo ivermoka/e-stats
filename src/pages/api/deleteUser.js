@@ -10,9 +10,11 @@ export default async function deleteUser(req, res) {
   try {
     const userSchema = await User.findOne({ username: user });
     await Egenvurdering.deleteMany({ user: user });
-    const team = await Team.findOne({ teamName: userSchema.team });
-    team.members = team.members.filter((member) => member !== user);
-    await team.save();
+    if (userSchema.team === "") {
+      const team = await Team.findOne({ teamName: userSchema.team });
+      team.members = team.members.filter((member) => member !== user);
+      await team.save();
+    }
     if (!userSchema) {
       return res.status(400).json({ status: "User not found" });
     }
