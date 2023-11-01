@@ -15,7 +15,7 @@ export default function Index() {
         transition={{ duration: 0.5, ease: "easeInOut", type: "spring" }}
         className="dark:text-text text-textLight font-semibold text-7xl text-center -mt-4"
       >
-        e-sport dagboka
+        e-stats
       </motion.h1>
       {user && (
         <Link href={"/egenvurdering"}>

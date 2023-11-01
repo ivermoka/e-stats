@@ -23,6 +23,7 @@ const Admin = () => {
 
   useEffect(() => {
     getStats();
+    console.log(stats);
   }, [date, team]);
 
   useEffect(() => {
@@ -94,49 +95,59 @@ const Admin = () => {
     },
   };
 
-  // Calculate average values and sort by date
-  const groupedData = {};
-  stats.forEach((rating) => {
-    const date = rating.date;
-    if (!groupedData[date]) {
-      groupedData[date] = { date, sum: 0, count: 0 };
-    }
-    // Assuming you want to calculate the average for disclosure1
-    groupedData[date].sum += rating.disclosure1;
-    groupedData[date].count += 1;
-  });
+  const getDisclosureData = (disclosure) => {
+    const groupedData = {};
 
-  const sortedData = Object.values(groupedData)
-    .map((entry) => ({
-      date: entry.date,
-      averageValue: entry.sum / entry.count,
-    }))
-    .sort((a, b) => new Date(a.date) - new Date(b.date));
+    stats.forEach((rating) => {
+      const date = rating.date;
+      const disclosureValue = rating[disclosure];
 
-  // Now 'sortedData' contains an array of objects with 'date' and 'averageValue' properties,
-  // sorted by date based on disclosure1.
+      if (!groupedData[date]) {
+        groupedData[date] = { date, sum: 0, count: 0 };
+      }
 
-  const labels = sortedData.map((date) => date.date);
+      groupedData[date].sum += disclosureValue;
+      groupedData[date].count += 1;
+    });
+
+    const sortedData = Object.values(groupedData)
+      .map((entry) => ({
+        date: entry.date,
+        averageValue: entry.sum / entry.count,
+      }))
+      .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+    return sortedData;
+  };
+
+  const labels = getDisclosureData().map((date) => date.date);
+
+  const datasets = [
+    {
+      label: "Mat",
+      data: getDisclosureData("disclosure1").map(
+        (rating) => rating.averageValue,
+      ),
+      backgroundColor: "rgb(255, 99, 132)",
+      borderColor: "rgb(255, 99, 132)",
+    },
+    {
+      label: "Søvn",
+      data: getDisclosureData("disclosure2").map(
+        (rating) => rating.averageValue,
+      ),
+    },
+  ];
 
   const data = {
     labels: labels,
-    datasets: [
-      {
-        label: "Mat",
-        data: sortedData.map((rating) => rating.averageValue),
-        backgroundColor: "rgb(255, 99, 132)",
-        borderColor: "rgb(255, 99, 132)",
-      },
-      {
-        label: "Mat",
-      },
-    ],
+    datasets: datasets,
   };
 
   const boxStyle =
     "dark:text-text text-textLight font-bold py-2 px-4 rounded-md border-2 dark:border-primary border-secondaryLight shadow-lg dark:shadow-accent shadow-accentLight";
   return (
-    <div className="min-h-screen mt-16 flex flex-col gap-4 p-4 mb-32">
+    <div className="min-h-screen mt-16 flex flex-col gap-4 p-4">
       {/*Velg dato og lag knapper */}
 
       <div className="flex justify-around text-lg">
@@ -208,32 +219,34 @@ const Admin = () => {
       </div>
 
       {/*Container for kommentarer*/}
-      {stats.map((rating, i) => (
-        <div
-          key={i}
-          className="dark:bg-primary bg-primaryLight rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 mt-4"
-        >
-          <h2 className="text-xl font-bold italic m-2">{rating.user} </h2>
-          <div className="dark:bg-bg/50 bg-bgLight/50 rounded-lg p-2 whitespace-pre-line">
-            <span dangerouslySetInnerHTML={{ __html: rating.comment }} />
-          </div>
-          {showReply && (
-            <>
-              <input type="text" onChange={(e) => setReply(e.target.value)} />
-              <button type="submit" onClick={() => sendReply(rating._id)}>
-                Send
-              </button>
-            </>
-          )}
-          <button
-            onClick={() => setShowReply(!showReply)}
-            type="button"
-            className="flex justify-end w-full pr-2 pt-2 text-2xl"
+      <div className="mb-20">
+        {stats.map((rating, i) => (
+          <div
+            key={i}
+            className="dark:bg-primary bg-primaryLight rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 mt-4"
           >
-            <BsArrowReturnLeft />
-          </button>
-        </div>
-      ))}
+            <h2 className="text-xl font-bold italic m-2">{rating.user} </h2>
+            <div className="dark:bg-bg/50 bg-bgLight/50 rounded-lg p-2 whitespace-pre-line">
+              <span dangerouslySetInnerHTML={{ __html: rating.comment }} />
+            </div>
+            {showReply && (
+              <>
+                <input type="text" onChange={(e) => setReply(e.target.value)} />
+                <button type="submit" onClick={() => sendReply(rating._id)}>
+                  Send
+                </button>
+              </>
+            )}
+            <button
+              onClick={() => setShowReply(!showReply)}
+              type="button"
+              className="flex justify-end w-full pr-2 pt-2 text-2xl"
+            >
+              <BsArrowReturnLeft />
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
