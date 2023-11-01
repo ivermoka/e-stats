@@ -31,12 +31,14 @@ export default async function handler(req, res) {
       new Date().setDate(currentDate.getDate() - 30),
     ).toLocaleDateString();
     const currentDateFormatted = currentDate.toLocaleDateString();
+    const user = await User.find({ username: req.body.user }).select("school");
     const ratings = await Egenvurdering.find({
       date: {
         $gte: priorDate,
         $lte: currentDateFormatted,
       },
       team,
+      school: user.school,
     });
     res.status(200).json({ ratings });
   } catch (error) {
