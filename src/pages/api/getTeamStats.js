@@ -25,24 +25,26 @@ function monthAbbreviationToNumber(abbreviation) {
 
 export default async function handler(req, res) {
   try {
-    const { date, team } = req.body;
+    const { date, user, team } = req.body;
     const currentDate = new Date(date);
     const priorDate = new Date(
       new Date().setDate(currentDate.getDate() - 30),
     ).toLocaleDateString();
     const currentDateFormatted = currentDate.toLocaleDateString();
-    const user = await User.find({ username: req.body.user }).select("school");
+    const userSchema = await User.findOne({ username: user });
+
+    const school = userSchema.school;
     const ratings = await Egenvurdering.find({
       date: {
         $gte: priorDate,
         $lte: currentDateFormatted,
       },
       team,
-      school: user.school,
+      school,
     });
     res.status(200).json({ ratings });
   } catch (error) {
-    res.status(508).json({
+    res.status(500).json({
       error: "Det oppstod en feil ved henting av brukere.",
     });
     console.log(error);

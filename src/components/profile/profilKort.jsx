@@ -34,16 +34,6 @@ const ProfilKort = ({ id, data, owned }) => {
           <li className={`${boxStyle}`}>Skole: {data.school}</li>
           <li className={`${boxStyle} flex justify-between`}>
             <span>Lag: {data.team}</span>
-            {owned && (
-              <button
-                type="button"
-                onClick={() => {
-                  setShowTeam(true);
-                }}
-              >
-                <RiTeamFill className="text-3xl" />
-              </button>
-            )}
           </li>
         </ul>
       </motion.div>
