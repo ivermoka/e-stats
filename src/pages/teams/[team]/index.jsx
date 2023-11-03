@@ -6,6 +6,7 @@ import CreateTeam from "@/components/team/createTeam";
 import { GetUser } from "@/actions/getUser";
 import JoinTeamPopup from "@/components/team/joinTeamPopup";
 import Loading from "@/components/loading";
+import AdjustTeam from "@/components/profile/adjustTeam";
 
 const Lag = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);
@@ -43,7 +44,6 @@ const Lag = () => {
   }, [url]);
 
   const [currentTeamCode, setCurrentTeamCode] = useState(null);
-  const [showCurrentTeamCode, setShowCurrentThemeCode] = useState(false);
   const [isLeader, setIsLeader] = useState(false);
 
   const getAllMembers = async () => {
@@ -55,13 +55,12 @@ const Lag = () => {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       if (res.status === 200) {
         const data = await res.json();
         setAllMembers(data.users);
         setCurrentTeamCode(data.teamSchema.teamCode);
-        console.log(data);
         const leader = data.teamSchema.leader;
         if (leader === user) {
           setIsLeader(true);
@@ -78,7 +77,6 @@ const Lag = () => {
   const [showCode, setShowCode] = useState(false);
 
   const joinTeam = async () => {
-    console.log(selectedTeam);
     try {
       const res = await fetch("/api/teamPage", {
         method: "POST",

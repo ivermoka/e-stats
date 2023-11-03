@@ -14,7 +14,6 @@ const Profil = () => {
   const url = usePathname();
   const [owned, setOwned] = useState(false);
   const user = GetUser();
-  const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined" && url !== null) {

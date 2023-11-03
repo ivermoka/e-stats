@@ -94,7 +94,7 @@ const Dropdown = ({
             />
           </Link>
         ) : (
-          <Link href={"/teams/noteam"}>
+          <Link href={"/teams"}>
             <Links
               text={"Ditt Lag"}
               icon={<AiOutlineTeam />}
