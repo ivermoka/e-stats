@@ -16,7 +16,7 @@ const PersonalStats = () => {
   const [dataSchema, setDataSchema] = useState(null);
   const [showCalendar, setShowCalendar] = useState(false);
   const [hasRated, setHasRated] = useState(true);
-  const [showToday, setShowToday] = useState(false);
+  const [showToday, setShowToday] = useState(true);
   const [currentDate, setCurrentDate] = useState(
     new Date().toLocaleDateString("no-NO"),
   );
