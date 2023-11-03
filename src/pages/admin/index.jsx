@@ -22,8 +22,10 @@ const Admin = () => {
   const [reply, setReply] = useState("");
 
   useEffect(() => {
-    getStats();
-  }, [date, team]);
+    if (user) {
+      getStats();
+    }
+  }, [user, date, team]);
 
   useEffect(() => {
     getAllTeams();
