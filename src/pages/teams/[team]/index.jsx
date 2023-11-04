@@ -122,7 +122,7 @@ const Lag = () => {
     "dark:bg-primary bg-primaryLight rounded-md shadow-lg dark:shadow-accent shadow-accentLight p-4";
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen dark:bg-bg bg-bgLight">
       {loaded ? (
         <div className={"flex flex-col gap-8 px-8 mb-32 mt-16"}>
           {showCode && (

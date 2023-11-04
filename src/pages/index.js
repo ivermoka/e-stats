@@ -6,9 +6,9 @@ export default function Index() {
   const user = GetUser();
 
   const buttonStyle =
-    "dark:text-text text-textLight text-2xl font-semibold border-2 dark:border-primary border-secondaryLight rounded-md p-4 w-1/2";
+    "dark:text-text text-textLight text-2xl font-semibold border-2 dark:border-primary border-secondaryLight rounded-md p-4 sm:w-1/2 w-full";
   return (
-    <div className="p-4 flex flex-col justify-center gap-4 h-full">
+    <div className="p-4 flex flex-col justify-center gap-4 h-full dark:bg-bg bg-bgLight">
       <motion.h1
         initial={{ x: -200, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
@@ -37,7 +37,7 @@ export default function Index() {
       )}
       {!user && (
         <div className="flex justify-center text-text font-semibold text-xl gap-2">
-          <Link href="/login">
+          <Link className="sm:w-1/2 w-full flex justify-end" href="/login">
             <motion.button
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -52,7 +52,7 @@ export default function Index() {
               Logg Inn
             </motion.button>
           </Link>
-          <Link href="register">
+          <Link className="sm:w-1/2 w-full" href="register">
             <motion.button
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}

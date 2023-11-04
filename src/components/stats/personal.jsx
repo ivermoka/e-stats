@@ -163,7 +163,7 @@ const PersonalStats = () => {
                   options={options}
                 />
               </div>
-              <div className="dark:bg-primary bg-primaryLight rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 mt-4">
+              <div className="dark:bg-primary bg-primaryLight rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 mt-4 mb-20">
                 <h2 className="text-xl font-bold italic m-2">
                   Kommentar for dagen
                 </h2>
