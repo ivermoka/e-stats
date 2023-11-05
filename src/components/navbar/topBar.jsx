@@ -13,12 +13,12 @@ const Top = ({ user }) => {
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
 
   useEffect(() => {
-    if (dropdown || showConfirmDelete) {
+    if (dropdown || showConfirmDelete || showTerms) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
     }
-  }, [dropdown]);
+  }, [dropdown, showTerms]);
 
   return (
     <>

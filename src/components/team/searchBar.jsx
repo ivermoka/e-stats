@@ -30,7 +30,7 @@ const SearchBar = ({ setSelectedTeam, setShowCode }) => {
   };
   const filteredTeams = allTeams
     ? allTeams.filter((team) =>
-        team.teamName.toLowerCase().includes(search.toLowerCase())
+        team.teamName.toLowerCase().includes(search.toLowerCase()),
       )
     : [];
 
@@ -49,13 +49,13 @@ const SearchBar = ({ setSelectedTeam, setShowCode }) => {
         <>
           {filteredTeams.slice(0, 5).map((team) => (
             <Team
-              setShowCode={setShowCode}
-              setSelectedTeam={setSelectedTeam}
+              onClick={() => {
+                setSelectedTeam(team.teamName);
+                setShowCode(true);
+              }}
               text={team.teamName}
               key={team.teamName}
-            >
-              {" "}
-            </Team>
+            />
           ))}
         </>
       )}

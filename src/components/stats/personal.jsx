@@ -84,7 +84,7 @@ const PersonalStats = () => {
   };
 
   return (
-    <div>
+    <>
       {showToday ? (
         <TimeStats />
       ) : (
@@ -100,7 +100,7 @@ const PersonalStats = () => {
             onClick={() => {
               setShowCalendar(!showCalendar);
             }}
-            className="dark:text-text text-textLight font-bold py-2 px-4 rounded-lg dark:bg-primary bg-primaryLight shadow-md dark:shadow-accent shadow-accentLight my-4"
+            className="dark:text-text text-textLight font-bold py-2 px-4 rounded-lg dark:bg-primary bg-primaryLight shadow-md dark:shadow-accent shadow-accentLight my-4 w-40"
           >
             VELG DATO
             <BsCalendar className="inline ml-2 mb-[2px]" />
@@ -192,7 +192,7 @@ const PersonalStats = () => {
         </>
       )}
       <Selector showAfter={showToday} setShowAfter={setShowToday} />
-    </div>
+    </>
   );
 };
 

@@ -34,7 +34,10 @@ const Egenvurdering = ({ date, user }) => {
 
   return (
     <>
-      <form onSubmit={rateDay} className="xs:p-4 mt-16 overflow-x-hidden">
+      <form
+        onSubmit={rateDay}
+        className="p-4 mt-16 absolute inset-0 dark:bg-bg bg-bgLight"
+      >
         <div className="flex justify-between">
           <Day />
           <Link href={"/"}>

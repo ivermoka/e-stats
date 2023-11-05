@@ -122,9 +122,9 @@ const Lag = () => {
     "dark:bg-primary bg-primaryLight rounded-md shadow-lg dark:shadow-accent shadow-accentLight p-4";
 
   return (
-    <div className="min-h-screen dark:bg-bg bg-bgLight">
+    <div className="dark:bg-bg bg-bgLight min-h-screen w-screen">
       {loaded ? (
-        <div className={"flex flex-col gap-8 px-8 mb-32 mt-16"}>
+        <div className={"flex flex-col gap-8 px-8 mt-16"}>
           {showCode && (
             <JoinTeamPopup
               joinTeam={joinTeam}

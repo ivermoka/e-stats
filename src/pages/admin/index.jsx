@@ -205,7 +205,7 @@ const Admin = () => {
   const boxStyle =
     "dark:text-text text-textLight font-bold py-2 px-4 rounded-md border-2 dark:border-primary border-secondaryLight shadow-lg dark:shadow-accent shadow-accentLight";
   return (
-    <div className="dark:bg-bg bg-bgLight min-h-screen mt-16 flex flex-col gap-4 p-4">
+    <div className="dark:bg-bg bg-bgLight min-h-screen w-screen mt-16 flex flex-col gap-4 p-4">
       {/*Velg dato og lag knapper */}
 
       <div className="flex justify-around text-lg">

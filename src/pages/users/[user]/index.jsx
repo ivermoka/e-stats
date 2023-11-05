@@ -87,7 +87,7 @@ const Profil = () => {
     "dark:bg-primary bg-primaryLight p-4 rounded-lg shadow-md dark:shadow-accent shadow-accentLight";
 
   return (
-    <div className="dark:bg-bg bg-bgLight h-screen p-8 flex flex-col gap-4 dark:text-text text-textLight overflow-x-hidden">
+    <div className="absolute inset-0 overflow-hidden dark:bg-bg bg-bgLight p-8 flex flex-col gap-4 dark:text-text text-textLight">
       {loaded ? (
         <>
           <motion.div

@@ -30,6 +30,7 @@ const Dropdown = ({
       fetchSessionData().then();
     }
   }, []);
+
   const fetchSessionData = async () => {
     try {
       const res = await fetch("/api/getUser", {

@@ -20,6 +20,14 @@ const EgenvurderingContainer = () => {
     }
   }, [user]);
 
+  useEffect(() => {
+    if (showAfter) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [showAfter]);
+
   const fetchSessionData = async () => {
     try {
       const res = await fetch(`/api/getUser?user=${user}&date=${date}`, {
@@ -45,7 +53,7 @@ const EgenvurderingContainer = () => {
   };
 
   return (
-    <div className={"p-4 bg-bgLight dark:bg-bg min-h-screen"}>
+    <div className={"p-4 bg-bgLight dark:bg-bg min-h-screen w-screen"}>
       {user ? (
         <>
           {loaded ? (

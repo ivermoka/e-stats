@@ -1,4 +1,5 @@
 import Disclosure from "./termsDisclosure";
+import { AiOutlineRollback } from "react-icons/ai";
 
 const Terms = ({ setShowTerms }) => {
   return (
@@ -7,8 +8,17 @@ const Terms = ({ setShowTerms }) => {
         "fixed top-0 left-0 h-screen w-screen overflow-y-scroll dark:bg-bg/70 bg-bgLight/70 backdrop-blur-md p-8 flex flex-col text-center gap-6"
       }
     >
+      <button
+        type="button"
+        onClick={() => setShowTerms(false)}
+        className={
+          "fixed right-8 grid place-items-center text-xl p-2 w-10 aspect-square rounded-lg dark:text-text text-textLight border-2 dark:border-primary border-primaryLight shadow-md shadow-accentLight dark:shadow-accent"
+        }
+      >
+        <AiOutlineRollback />
+      </button>
       <h1 className={"dark:text-text text-textLight font-bold text-4xl"}>
-        Vilkår for bruk av Treningsdagboka
+        Vilkår for bruk
       </h1>
       <Disclosure
         header={"Bruksvilkår"}
@@ -56,15 +66,6 @@ const Terms = ({ setShowTerms }) => {
           "Har du spørsmål eller bekymringer angående disse Vilkårene, kan du kontakte oss på elura001@osloskolen.no."
         }
       />
-      <button
-        type="button"
-        onClick={() => setShowTerms(false)}
-        className={
-          "text-2xl dark:text-text text-textLight font-semibold rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:bg-primary bg-primaryLight px-4 py-2"
-        }
-      >
-        Lukk
-      </button>
     </div>
   );
 };

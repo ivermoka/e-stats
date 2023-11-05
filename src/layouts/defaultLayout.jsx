@@ -5,9 +5,11 @@ import { GetUser } from "@/actions/getUser";
 const Layout = ({ children }) => {
   const user = GetUser();
   return (
-    <div className={"flex flex-col items-center bg-bgLight dark:bg-bg"}>
+    <div
+      className={"flex flex-col items-center bg-bgLight dark:bg-bg w-screen"}
+    >
       <TopBar user={user} />
-      <main className="dark:bg-bg bg-bgLight absolute inset-0">{children}</main>
+      <main>{children}</main>
       {user && <Nav />}
     </div>
   );

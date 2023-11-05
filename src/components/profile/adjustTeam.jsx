@@ -3,7 +3,7 @@ import CreateTeam from "@/components/team/createTeam";
 import Searchbar from "./../../components/team/searchBar";
 import Loading from "../loading";
 
-const AdjustTeam = ({ user, data }) => {
+const AdjustTeam = ({ user, data, setSelectedTeam, setShowCode }) => {
   const [showCreateTeam, setShowCreateTeam] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
@@ -52,7 +52,10 @@ const AdjustTeam = ({ user, data }) => {
             />
           )}
 
-          <Searchbar />
+          <Searchbar
+            setSelectedTeam={setSelectedTeam}
+            setShowCode={setShowCode}
+          />
           <div className="h-[1px] w-4/5 bg-white"></div>
           <div className="flex justify-start w-full ">
             <span className=" text-xl">Eller</span>
