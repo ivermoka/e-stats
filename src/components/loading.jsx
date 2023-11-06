@@ -8,11 +8,11 @@ const Loading = () => {
   }, []);
   return (
     <div className="h-screen absolute inset-0 flex justify-center items-center">
-      {theme === "dark" ? (
-        <ReactLoading color="white" width={100} type="spin" />
-      ) : (
-        <ReactLoading color="black" width={100} type="spin" />
-      )}
+      <ReactLoading
+        color={theme === "dark" ? "white" : "black"}
+        width={100}
+        type="spin"
+      />
     </div>
   );
 };

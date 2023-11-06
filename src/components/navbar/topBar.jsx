@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Dropdown from "@/components/navbar/dropdown/dropdown";
 import Terms from "@/components/navbar/terms/terms";
 import ConfirmDelete from "@/components/navbar/dropdown/confirmDelete";
-import { GetUser } from "@/actions/getUser";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 const Top = ({ user }) => {

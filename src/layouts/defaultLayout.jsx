@@ -6,10 +6,10 @@ const Layout = ({ children }) => {
   const user = GetUser();
   return (
     <div
-      className={"flex flex-col items-center bg-bgLight dark:bg-bg w-screen"}
+      className={"flex flex-col items-center w-screen dark:bg-bg bg-bgLight"}
     >
       <TopBar user={user} />
-      <main>{children}</main>
+      <main className="overflow-hidden">{children}</main>
       {user && <Nav />}
     </div>
   );
