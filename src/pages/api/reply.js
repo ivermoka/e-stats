@@ -10,6 +10,7 @@ export default async function handler(req, res) {
     rating.comment =
       rating.comment + "\n\n<strong>" + user + ": " + reply + "</strong>";
     await rating.save();
+    res.status(200).json({ status: "Reply sent" });
   } catch (error) {
     res.status(508).json({
       error: "Det oppstod en feil ved henting av brukere.",

@@ -40,44 +40,46 @@ const Egenvurdering = ({ date, user, setShowAfter }) => {
   };
 
   return (
-    <form onSubmit={rateDay} className="mb-20 mt-16">
-      <div className="flex justify-between">
-        <Day />
-        <Link href={"/"}>
-          <div className="rounded-lg dark:text-text text-textLight font-bold p-2 my-4 w-10 text-center italic dark:bg-primary bg-primaryLight shadow-md dark:shadow-accent shadow-accentLight">
-            <AiOutlineRollback className="w-full h-full" />
-          </div>
-        </Link>
-      </div>
-      <div className="flex flex-col gap-2 dark:bg-primary bg-primaryLight rounded-lg">
-        <DisclosureMenu
-          setDisclosure={setDisclosure1}
-          header="Hvor fornuftig har jeg spist i dag?"
-        />
-        <DisclosureMenu
-          setDisclosure={setDisclosure2}
-          header="Hvor godt har jeg sovet i natt?"
-        />
-        <DisclosureMenu
-          setDisclosure={setDisclosure3}
-          header="Hvor motivert er jeg for å spille i dag?"
-        />
-        <DisclosureMenu
-          setDisclosure={setDisclosure4}
-          header="Hvordan føler jeg meg fysisk?"
-        />
-        <DisclosureMenu
-          setDisclosure={setDisclosure5}
-          header="Hvordan føler jeg meg psykisk?"
-        />
-      </div>
-      <button
-        type="submit"
-        className="rounded-lg dark:bg-primary bg-primaryLight p-3 shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight font-bold italic my-4"
-      >
-        NESTE
-      </button>
-    </form>
+    <>
+      <form onSubmit={rateDay} className="mb-20 mt-16">
+        <div className="flex justify-between">
+          <Day />
+          <Link href={"/"}>
+            <div className="rounded-lg dark:text-text text-textLight font-bold p-2 my-4 w-10 text-center italic dark:bg-primary bg-primaryLight shadow-md dark:shadow-accent shadow-accentLight">
+              <AiOutlineRollback className="w-full h-full" />
+            </div>
+          </Link>
+        </div>
+        <div className="flex flex-col gap-2 dark:bg-primary bg-primaryLight rounded-lg">
+          <DisclosureMenu
+            setDisclosure={setDisclosure1}
+            header="Hvor fornuftig har jeg spist i dag?"
+          />
+          <DisclosureMenu
+            setDisclosure={setDisclosure2}
+            header="Hvor godt har jeg sovet i natt?"
+          />
+          <DisclosureMenu
+            setDisclosure={setDisclosure3}
+            header="Hvor motivert er jeg for å spille i dag?"
+          />
+          <DisclosureMenu
+            setDisclosure={setDisclosure4}
+            header="Hvordan føler jeg meg fysisk?"
+          />
+          <DisclosureMenu
+            setDisclosure={setDisclosure5}
+            header="Hvordan føler jeg meg psykisk?"
+          />
+        </div>
+        <button
+          type="submit"
+          className="rounded-lg dark:bg-primary bg-primaryLight p-3 shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight font-bold italic my-4"
+        >
+          NESTE
+        </button>
+      </form>
+    </>
   );
 };
 

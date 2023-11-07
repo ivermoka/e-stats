@@ -7,6 +7,8 @@ const GetUser = () => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
       verifyUser(storedToken).then();
+    } else {
+      setUser("");
     }
   }, []);
 

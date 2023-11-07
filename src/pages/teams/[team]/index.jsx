@@ -6,7 +6,6 @@ import CreateTeam from "@/components/team/createTeam";
 import { GetUser } from "@/actions/getUser";
 import JoinTeamPopup from "@/components/team/joinTeamPopup";
 import Loading from "@/components/loading";
-import AdjustTeam from "@/components/profile/adjustTeam";
 
 const Lag = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);
@@ -15,6 +14,7 @@ const Lag = () => {
   const url = usePathname();
   const [allMembers, setAllMembers] = useState(null);
   const user = GetUser();
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (user !== null && url !== null) {
@@ -86,10 +86,11 @@ const Lag = () => {
         body: JSON.stringify({ selectedTeam, user, teamCode }),
       });
       if (res.status === 200) {
+        setError("");
         window.location.reload();
         window.location.href = `/teams/${selectedTeam}`;
       } else if (res.status === 400) {
-        console.log("feil kode");
+        setError("*Feil kode!");
       }
     } catch (err) {
       console.log(err);
@@ -130,6 +131,7 @@ const Lag = () => {
               joinTeam={joinTeam}
               setTeamCode={setTeamCode}
               setShowCode={setShowCode}
+              error={error}
             />
           )}
 

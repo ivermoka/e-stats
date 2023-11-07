@@ -15,18 +15,12 @@ const EgenvurderingContainer = () => {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    if (user) {
+    if (user !== "") {
       fetchSessionData();
+    } else {
+      setLoaded(true);
     }
   }, [user]);
-
-  useEffect(() => {
-    if (showAfter) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-  }, [showAfter]);
 
   const fetchSessionData = async () => {
     try {
@@ -45,6 +39,8 @@ const EgenvurderingContainer = () => {
         setShowAfter(true);
       } else if (res.status === 204) {
         setHasRated2(true);
+      } else {
+        setLoaded(true);
       }
       setLoaded(true);
     } catch (err) {
@@ -54,9 +50,9 @@ const EgenvurderingContainer = () => {
 
   return (
     <div className={"p-4 bg-bgLight dark:bg-bg min-h-screen w-screen"}>
-      {user ? (
+      {loaded ? (
         <>
-          {loaded ? (
+          {user ? (
             <>
               {showAfter ? (
                 <>
@@ -95,13 +91,13 @@ const EgenvurderingContainer = () => {
               )}
             </>
           ) : (
-            <Loading />
+            <h1 className="dark:text-text text-textLight text-xl font-bold italic mt-14">
+              Du må logge inn for å se personlig statistikk!
+            </h1>
           )}
         </>
       ) : (
-        <h1 className="dark:text-text text-textLight text-xl font-bold italic mt-14">
-          Du må logge inn for å se personlig statistikk!
-        </h1>
+        <Loading />
       )}
     </div>
   );

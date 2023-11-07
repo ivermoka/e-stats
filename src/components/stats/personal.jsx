@@ -5,11 +5,9 @@ import Loading from "../loading";
 import { BsCalendar } from "react-icons/bs";
 import Link from "next/link";
 import TimeStats from "@/components/stats/overTimeStats/timeStats";
-import { GetUser } from "@/actions/getUser";
 import Selector from "../home/egenvurdering/selector";
 
-const PersonalStats = () => {
-  const user = GetUser();
+const PersonalStats = ({ user }) => {
   const [value, setValue] = useState(new Date().toLocaleDateString("en-US"));
   const [date, setDate] = useState(new Date().toLocaleDateString("no-NO"));
   const [dataFetched, setDataFetched] = useState(false);

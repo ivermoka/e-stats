@@ -6,6 +6,7 @@ import JoinTeamPopup from "@/components/team/joinTeamPopup";
 const AdjustTeamPage = () => {
   const user = GetUser();
   const [data, setData] = useState(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (user) {
@@ -48,10 +49,11 @@ const AdjustTeamPage = () => {
         body: JSON.stringify({ selectedTeam, user, teamCode }),
       });
       if (res.status === 200) {
+        setError("");
         window.location.reload();
         window.location.href = `/teams/${selectedTeam}`;
       } else if (res.status === 400) {
-        console.log("feil kode");
+        setError("*Feil kode!");
       }
     } catch (err) {
       console.log(err);
@@ -71,6 +73,7 @@ const AdjustTeamPage = () => {
           joinTeam={joinTeam}
           setShowCode={setShowCode}
           setTeamCode={setTeamCode}
+          error={error}
         />
       )}
     </div>

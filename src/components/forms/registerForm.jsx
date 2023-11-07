@@ -4,8 +4,10 @@ import { useState } from "react";
 import ReactLoading from "react-loading";
 import { BiShow } from "react-icons/bi";
 import { BiHide } from "react-icons/bi";
+import Terms from "../navbar/terms/terms";
 
 const Register = ({ setRegistered }) => {
+  const [showTerms, setShowTerms] = useState(false);
   const [pending, setPending] = useState(false);
   const [userExists, setUserExists] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -79,7 +81,9 @@ const Register = ({ setRegistered }) => {
         onSubmit={handleSubmit(onSubmit)}
         className="rounded-lg flex flex-col justify-center items-center gap-4"
       >
-        <h1 className="dark:text-text text-textLight text-5xl m-4">Register</h1>
+        <h1 className="dark:text-text text-textLight text-5xl m-4">
+          Registrer
+        </h1>
         <div className="flex">
           {/* Denne boksen trengs fordi man ikke kan ha elementer inne i inputs. */}
           {/*implementa -ml-6 i stedet for å kunne beholde animasjoner for input fields, det er fortsatt scaleable, beholdte boksen med flex for å ha øye på samme linje*/}
@@ -159,7 +163,12 @@ const Register = ({ setRegistered }) => {
             className="h-6 w-5"
             type="checkbox"
           />
-          <span>Jeg aksepterer vilkårene</span>
+          <span>
+            Jeg aksepterer{" "}
+            <span onClick={() => setShowTerms(true)} className="text-blue-500">
+              vilkårene
+            </span>
+          </span>
         </div>
         {pending ? (
           <ReactLoading type={"spin"} color={"black"} width={40} height={44} />
@@ -183,6 +192,7 @@ const Register = ({ setRegistered }) => {
           </Link>
         </span>
       </form>
+      {showTerms && <Terms setShowTerms={setShowTerms} />}
     </div>
   );
 };

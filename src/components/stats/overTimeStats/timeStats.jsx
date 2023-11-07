@@ -46,7 +46,11 @@ const StatsOverTime = () => {
   };
 
   return (
-    <div className={"dark:text-text text-textLight font-bold mb-28"}>
+    <div
+      className={
+        "dark:text-text text-textLight font-bold mb-28 flex flex-col gap-2"
+      }
+    >
       <h1 className={"mt-12  text-xl  italic"}>Statistikk over tid</h1>
       <div className="flex items-center gap-2">
         <button
