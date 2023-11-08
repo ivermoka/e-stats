@@ -36,7 +36,7 @@ const Egenvurdering = ({ date, user }) => {
     <>
       <form
         onSubmit={rateDay}
-        className="p-4 mt-16 absolute inset-0 dark:bg-bg bg-bgLight"
+        className="p-4 mt-16 absolute inset-0 dark:bg-bg bg-bgLight flex flex-col"
       >
         <div className="flex justify-between">
           <Day />
@@ -55,7 +55,7 @@ const Egenvurdering = ({ date, user }) => {
         <Comment setComment={setComment} />
         <button
           type="submit"
-          className="rounded-lg dark:bg-primary bg-primaryLight p-3 shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight font-bold italic my-4"
+          className="rounded-lg dark:bg-primary bg-primaryLight p-3 shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight font-bold italic my-4 self-end"
         >
           SEND INN
         </button>

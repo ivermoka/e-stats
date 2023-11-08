@@ -17,7 +17,7 @@ export default function Index() {
       >
         e-stats
       </motion.h1>
-      {user !== "no" && user && (
+      {user !== "no" && user ? (
         <Link className={"flex justify-center"} href={"/egenvurdering"}>
           {" "}
           <motion.button
@@ -34,8 +34,7 @@ export default function Index() {
             EGENVURDERING
           </motion.button>
         </Link>
-      )}
-      {user === "no" && (
+      ) : (
         <div className="flex justify-center text-text font-semibold text-xl gap-2">
           <Link className="sm:w-1/2 w-full flex justify-end" href="/login">
             <motion.button
