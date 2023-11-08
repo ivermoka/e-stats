@@ -17,7 +17,7 @@ const Top = ({ user }) => {
     } else {
       document.body.style.overflow = "unset";
     }
-  }, [dropdown, showTerms]);
+  }, [dropdown, showTerms, showConfirmDelete]);
 
   return (
     <>
@@ -35,7 +35,7 @@ const Top = ({ user }) => {
             priority
           />
         </Link>
-        {user ? (
+        {user !== "no" && user ? (
           <button
             type="button"
             onClick={() => {

@@ -41,7 +41,7 @@ const Egenvurdering = ({ date, user, setShowAfter }) => {
 
   return (
     <>
-      <form onSubmit={rateDay} className="mb-20 mt-16">
+      <form onSubmit={rateDay} className="mb-20 mt-16 flex flex-col">
         <div className="flex justify-between">
           <Day />
           <Link href={"/"}>
@@ -74,7 +74,7 @@ const Egenvurdering = ({ date, user, setShowAfter }) => {
         </div>
         <button
           type="submit"
-          className="rounded-lg dark:bg-primary bg-primaryLight p-3 shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight font-bold italic my-4"
+          className="rounded-lg dark:bg-primary bg-primaryLight p-3 shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight font-bold italic my-4 self-end"
         >
           NESTE
         </button>

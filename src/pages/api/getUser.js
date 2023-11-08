@@ -20,7 +20,7 @@ export default async function handler(req, res) {
         if (!userSchema.hasRatedPart2) {
           res.status(203).json({ userSchema });
         } else if (userSchema.hasRatedPart2) {
-          res.status(204).json({ userSchema });
+          res.status(202).json({ userSchema });
         }
       }
     } else if (req.method === "PUT") {

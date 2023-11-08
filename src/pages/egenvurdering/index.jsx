@@ -15,9 +15,9 @@ const EgenvurderingContainer = () => {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    if (user !== "") {
+    if (user) {
       fetchSessionData();
-    } else {
+    } else if (user === "no") {
       setLoaded(true);
     }
   }, [user]);
@@ -30,17 +30,13 @@ const EgenvurderingContainer = () => {
           "Content-Type": "application/json",
         },
       });
-      if (res.status === 202) {
-        setHasRated1(true);
-      } else if (res.status === 201) {
+      if (res.status === 201) {
         setHasRated1(false);
       } else if (res.status === 203) {
-        setHasRated2(false);
         setShowAfter(true);
-      } else if (res.status === 204) {
+        setHasRated2(false);
+      } else if (res.status === 202) {
         setHasRated2(true);
-      } else {
-        setLoaded(true);
       }
       setLoaded(true);
     } catch (err) {
@@ -52,7 +48,11 @@ const EgenvurderingContainer = () => {
     <div className={"p-4 bg-bgLight dark:bg-bg min-h-screen w-screen"}>
       {loaded ? (
         <>
-          {user ? (
+          {user === "no" ? (
+            <h1 className="dark:text-text text-textLight text-xl font-bold italic mt-14">
+              Du må logge inn for å lage egenvurdering!
+            </h1>
+          ) : (
             <>
               {showAfter ? (
                 <>
@@ -90,10 +90,6 @@ const EgenvurderingContainer = () => {
                 </>
               )}
             </>
-          ) : (
-            <h1 className="dark:text-text text-textLight text-xl font-bold italic mt-14">
-              Du må logge inn for å se personlig statistikk!
-            </h1>
           )}
         </>
       ) : (

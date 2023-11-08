@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
     <div className={"flex flex-col items-center w-screen"}>
       <TopBar user={user} />
       <main className="overflow-hidden">{children}</main>
-      {user && <Nav />}
+      {user !== "no" && user && <Nav />}
       <ToastContainer
         position="bottom-right"
         autoClose={5000}

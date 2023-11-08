@@ -8,7 +8,7 @@ const GetUser = () => {
     if (storedToken) {
       verifyUser(storedToken).then();
     } else {
-      setUser("");
+      setUser("no");
     }
   }, []);
 
