@@ -38,7 +38,7 @@ const AdminPage = () => {
   };
 
   return (
-    <div className="bg-bgLight dark:bg-bg min-h-screen">
+    <div className="bg-bgLight dark:bg-bg min-h-screen w-screen overflow-x-hidden">
       {loaded ? <>{admin && <Admin user={user} />} </> : <Loading />}
     </div>
   );

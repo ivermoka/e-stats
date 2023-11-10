@@ -14,37 +14,10 @@ const AdjustTeam = ({ user, data, setSelectedTeam, setShowCode }) => {
     }
   }, [data]);
 
-  const leaveTeam = async () => {
-    console.log(user);
-    try {
-      const res = await fetch("/api/teamPage", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ user }),
-      });
-      if (res.status === 200) {
-        console.log("Team left");
-        window.location.reload();
-      } else if (res.status === 400) {
-        console.log(res);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const boxStyle =
-    "dark:bg-primary bg-primaryLight rounded-lg shadow-lg dark:shadow-accent shadow-accentLight p-4 text-2xl font-semibold";
   return (
     <>
       {loaded ? (
-        <div className="fixed left-0 h-screen w-screen dark:bg-bg/70 bg-bgLight/70 backdrop-blur-md p-8 flex flex-col  gap-6  ">
-          <div className="flex w-screen h-12 justify-start items-center ">
-            <div className="w-6"></div>
-          </div>
-
+        <div className="fixed left-0 h-screen w-screen dark:bg-bg/70 bg-bgLight/70 backdrop-blur-md p-8 flex flex-col gap-6 mt-14">
           {showCreateTeam && (
             <CreateTeam
               setShowCreateTeam={setShowCreateTeam}
@@ -69,13 +42,6 @@ const AdjustTeam = ({ user, data, setSelectedTeam, setShowCode }) => {
             }
           >
             <span className="">Opprett lag</span>
-          </button>
-          <button
-            type="button"
-            className={`${boxStyle} text-red-400 font-semibold text-2xl`}
-            onClick={() => leaveTeam()}
-          >
-            Forlat {data.team}
           </button>
         </div>
       ) : (

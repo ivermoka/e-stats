@@ -1,12 +1,11 @@
 import { GetUser } from "@/actions/getUser";
 import { useState, useEffect } from "react";
 
-const EndreProfil = ({ setModalOpen, id, setId }) => {
+const EndreProfil = ({ setModalOpen, setId }) => {
   const user = GetUser();
   const [error, setError] = useState(null);
   const [newUsername, setNewUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [team, setTeam] = useState("");
   const [school, setSchool] = useState("");
 
   useEffect(() => {
@@ -14,6 +13,9 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
   }, [user]);
 
   const changeUsername = async () => {
+    if (newUsername > 3) {
+      console.log("for kort");
+    }
     try {
       const res = await fetch("/api/changeUsername", {
         method: "PUT",
@@ -24,14 +26,14 @@ const EndreProfil = ({ setModalOpen, id, setId }) => {
           newUsername: newUsername,
           user: user,
           password: password,
-          team: team,
           school: school,
         }),
       });
 
       if (res.status === 200) {
         setId(newUsername);
-        window.location.href = `/users/${newUsername}`;
+        localStorage.removeItem("token");
+        window.location.href = "/login";
         setModalOpen(false);
       } else {
         const data = await res.json();

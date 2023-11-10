@@ -107,7 +107,6 @@ const Lag = () => {
         body: JSON.stringify({ user }),
       });
       if (res.status === 200) {
-        console.log("Team left");
         window.location.href = "/";
       } else if (res.status === 400) {
         console.log(res);
@@ -123,7 +122,7 @@ const Lag = () => {
     "dark:bg-primary bg-primaryLight rounded-md shadow-lg dark:shadow-accent shadow-accentLight p-4";
 
   return (
-    <div className="dark:bg-bg bg-bgLight min-h-screen w-screen">
+    <div className="dark:bg-bg bg-bgLight min-h-screen">
       {loaded ? (
         <div className={"flex flex-col gap-8 px-8 mt-16"}>
           {showCode && (

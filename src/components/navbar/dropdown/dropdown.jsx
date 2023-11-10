@@ -129,7 +129,6 @@ const Dropdown = ({
           icon={<ImExit />}
           onClick={() => {
             localStorage.removeItem("token");
-            localStorage.removeItem("username");
             window.location.href = "/";
           }}
         />

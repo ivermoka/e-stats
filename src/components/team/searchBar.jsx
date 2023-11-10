@@ -36,29 +36,27 @@ const SearchBar = ({ setSelectedTeam, setShowCode }) => {
 
   return (
     <div className="flex flex-col w-4/5 bg-transparent gap-3">
-      <section className="flex items-center w-full rounded-3xl dark:border-white border-black border-2 focus:border-2 duration-300">
+      <section className="flex items-center w-full rounded-3xl dark:border-white border-black border-2 focus:border-2 duration-300 dark:text-text text-textLight">
         <input
           type="text"
-          className="w-full h-12 p-2 bg-transparent pl-6 dark:text-text text-textLight outline-none"
+          className="w-full h-12 p-2 bg-transparent pl-6 outline-none"
           placeholder="Søk etter lag"
           onChange={(e) => setSearch(e.target.value)}
         />
         <GoSearch className="w-8 h-8 mr-3" />
       </section>
-      {search === "" ? null : (
-        <>
-          {filteredTeams.slice(0, 5).map((team) => (
-            <Team
-              onClick={() => {
-                setSelectedTeam(team.teamName);
-                setShowCode(true);
-              }}
-              text={team.teamName}
-              key={team.teamName}
-            />
-          ))}
-        </>
-      )}
+      <>
+        {filteredTeams.slice(0, 5).map((team) => (
+          <Team
+            onClick={() => {
+              setSelectedTeam(team.teamName);
+              setShowCode(true);
+            }}
+            text={team.teamName}
+            key={team.teamName}
+          />
+        ))}
+      </>
     </div>
   );
 };
