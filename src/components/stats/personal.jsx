@@ -8,7 +8,7 @@ import TimeStats from "@/components/stats/overTimeStats/timeStats";
 import Selector from "../home/egenvurdering/selector";
 
 const PersonalStats = ({ user }) => {
-  const [value, setValue] = useState(new Date().toLocaleDateString("en-US"));
+  const [value, setValue] = useState(new Date().toLocaleDateString("no-NO"));
   const [date, setDate] = useState(new Date().toLocaleDateString("no-NO"));
   const [dataFetched, setDataFetched] = useState(false);
   const [dataSchema, setDataSchema] = useState(null);

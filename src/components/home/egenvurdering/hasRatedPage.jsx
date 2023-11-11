@@ -17,7 +17,7 @@ const HasRatedPage = ({ user }) => {
         },
         body: JSON.stringify({
           user: user,
-          date: new Date().toLocaleDateString("en-US"),
+          date: new Date().toLocaleDateString("no-NO"),
         }),
       });
       if (res.status === 200) {
@@ -32,7 +32,7 @@ const HasRatedPage = ({ user }) => {
   };
 
   return (
-    <div className="dark:text-text text-textLight mt-16 flex flex-col items-center gap-8 absolute inset-0">
+    <div className="dark:text-text text-textLight mt-16 flex flex-col items-center gap-8 fixed inset-0">
       <div
         className={`${boxStyle} dark:bg-transparent bg-transparent shadow-none`}
       >

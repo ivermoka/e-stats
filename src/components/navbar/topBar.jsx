@@ -23,7 +23,7 @@ const Top = ({ user }) => {
     <>
       <div
         className={
-          "h-16 top-0 w-screen fixed dark:border-primary border-primaryLight border-b-2 flex justify-between items-center px-2 dark:bg-bg bg-bgLight z-20"
+          "h-16 top-0 w-full fixed dark:border-primary border-primaryLight border-b-2 flex justify-between items-center px-2 dark:bg-bg bg-bgLight z-20"
         }
       >
         <Link href={"/"}>

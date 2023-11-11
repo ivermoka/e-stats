@@ -36,7 +36,7 @@ const Egenvurdering = ({ date, user }) => {
     <>
       <form
         onSubmit={rateDay}
-        className="p-4 mt-16 absolute inset-0 dark:bg-bg bg-bgLight flex flex-col"
+        className="p-4 mt-16 fixed inset-0 dark:bg-bg bg-bgLight flex flex-col"
       >
         <div className="flex justify-between">
           <Day />

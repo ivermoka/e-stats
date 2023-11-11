@@ -39,7 +39,19 @@ const AdminPage = () => {
 
   return (
     <div className="bg-bgLight dark:bg-bg min-h-screen w-screen overflow-x-hidden">
-      {loaded ? <>{admin && <Admin user={user} />} </> : <Loading />}
+      {loaded ? (
+        <>
+          {admin ? (
+            <Admin user={user} />
+          ) : (
+            <h1 className="dark:text-text text-textLight text-xl font-bold italic mt-20 ml-4">
+              Du har ikke tilgang til denne siden
+            </h1>
+          )}{" "}
+        </>
+      ) : (
+        <Loading />
+      )}
     </div>
   );
 };

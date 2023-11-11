@@ -3,7 +3,7 @@ import CreateTeam from "@/components/team/createTeam";
 import Searchbar from "./../../components/team/searchBar";
 import Loading from "../loading";
 
-const AdjustTeam = ({ user, data, setSelectedTeam, setShowCode }) => {
+const AdjustTeam = ({ data, setSelectedTeam, setShowCode }) => {
   const [showCreateTeam, setShowCreateTeam] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
@@ -17,7 +17,7 @@ const AdjustTeam = ({ user, data, setSelectedTeam, setShowCode }) => {
   return (
     <>
       {loaded ? (
-        <div className="fixed left-0 h-screen w-screen dark:bg-bg/70 bg-bgLight/70 backdrop-blur-md p-8 flex flex-col gap-6 mt-14">
+        <div className="h-screen w-screen dark:bg-bg/70 bg-bgLight/70 backdrop-blur-md p-8 flex flex-col gap-6 mt-14 dark:text-text text-textLight">
           {showCreateTeam && (
             <CreateTeam
               setShowCreateTeam={setShowCreateTeam}
@@ -38,7 +38,7 @@ const AdjustTeam = ({ user, data, setSelectedTeam, setShowCode }) => {
             type="button"
             onClick={() => setShowCreateTeam(true)}
             className={
-              " dark:bg-bg  flex items-center justify-start rounded-2xl  shadow-lg dark:shadow-accent shadow-accentLight pl-4 text-2xl border-b dark:border dark:border-white border-black h-10 font-semibold w-7/12"
+              " dark:bg-bg flex items-center justify-start rounded-2xl shadow-lg dark:shadow-accent shadow-accentLight pl-4 text-2xl border-b dark:border dark:border-white border-black h-10 font-semibold w-7/12"
             }
           >
             <span className="">Opprett lag</span>

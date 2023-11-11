@@ -29,9 +29,12 @@ const SearchBar = ({ setSelectedTeam, setShowCode }) => {
     }
   };
   const filteredTeams = allTeams
-    ? allTeams.filter((team) =>
-        team.teamName.toLowerCase().includes(search.toLowerCase()),
-      )
+    ? allTeams
+        .filter((team) =>
+          team.teamName.toLowerCase().includes(search.toLowerCase()),
+        )
+        // sorterer alfabetisk elias skrev denne koden uten chatgpt
+        .sort((a, b) => a.teamName.localeCompare(b.teamName))
     : [];
 
   return (
@@ -45,18 +48,17 @@ const SearchBar = ({ setSelectedTeam, setShowCode }) => {
         />
         <GoSearch className="w-8 h-8 mr-3" />
       </section>
-      <>
-        {filteredTeams.slice(0, 5).map((team) => (
-          <Team
-            onClick={() => {
-              setSelectedTeam(team.teamName);
-              setShowCode(true);
-            }}
-            text={team.teamName}
-            key={team.teamName}
-          />
-        ))}
-      </>
+      {/* viser bare max 5 lag om gangen for å ikke gjøre det for treigt */}
+      {filteredTeams.slice(0, 5).map((team) => (
+        <Team
+          onClick={() => {
+            setSelectedTeam(team.teamName);
+            setShowCode(true);
+          }}
+          text={team.teamName}
+          key={team.teamName}
+        />
+      ))}
     </div>
   );
 };

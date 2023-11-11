@@ -7,8 +7,8 @@ import { AiOutlineTeam } from "react-icons/ai";
 import { BsArrowReturnLeft } from "react-icons/bs";
 import { LuSendHorizonal } from "react-icons/lu";
 
-const Admin = ({ user, setLoaded }) => {
-  const [date, setDate] = useState(new Date().toLocaleDateString("en-US"));
+const Admin = ({ user }) => {
+  const [date, setDate] = useState(new Date().toLocaleDateString("no-NO"));
   const [currentDate, setCurrentDate] = useState(
     new Date().toLocaleDateString("no-NO"),
   );
@@ -138,7 +138,13 @@ const Admin = ({ user, setLoaded }) => {
     return sortedData;
   };
 
-  const labels = getDisclosureData().map((date) => date.date);
+  const labels = getDisclosureData().map((date) =>
+    new Intl.DateTimeFormat("no-NO", {
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+    }).format(new Date(date.date)),
+  );
 
   const datasets = [
     {

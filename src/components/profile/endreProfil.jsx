@@ -13,10 +13,11 @@ const EndreProfil = ({ setModalOpen, setId }) => {
   }, [user]);
 
   const changeUsername = async () => {
-    if (newUsername > 3) {
-      console.log("for kort");
-    }
     try {
+      if (newUsername.length < 3) {
+        setError("Brukernavn må være minst 3 bokstaver");
+        return;
+      }
       const res = await fetch("/api/changeUsername", {
         method: "PUT",
         headers: {
@@ -51,7 +52,7 @@ const EndreProfil = ({ setModalOpen, setId }) => {
     "border-2 dark:border-primary border-primaryLight rounded-lg p-1 box-border text-black";
 
   return (
-    <div className="fixed top-0 left-0 h-screen w-screen p-8 flex flex-col gap-2 dark:text-text text-textLight dark:bg-bg bg-bgLight z-50">
+    <div className="fixed inset-0 h-screen p-8 flex flex-col gap-2 dark:text-text text-textLight dark:bg-bg bg-bgLight z-50 mt-14">
       <div className={`font-bold text-xl italic ${boxStyle}`}>
         Endre Personlig Informasjon
       </div>
