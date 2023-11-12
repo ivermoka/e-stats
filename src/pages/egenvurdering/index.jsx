@@ -8,7 +8,7 @@ import { GetUser } from "@/actions/getUser";
 
 const EgenvurderingContainer = () => {
   const user = GetUser();
-  const date = new Date().toLocaleDateString("no-NO");
+  const date = new Date().toLocaleDateString("en-US");
   const [showAfter, setShowAfter] = useState(false);
   const [hasRated1, setHasRated1] = useState(true);
   const [hasRated2, setHasRated2] = useState(false);

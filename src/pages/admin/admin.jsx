@@ -8,7 +8,7 @@ import { BsArrowReturnLeft } from "react-icons/bs";
 import { LuSendHorizonal } from "react-icons/lu";
 
 const Admin = ({ user }) => {
-  const [date, setDate] = useState(new Date().toLocaleDateString("no-NO"));
+  const [date, setDate] = useState(new Date().toLocaleDateString("en-US"));
   const [currentDate, setCurrentDate] = useState(
     new Date().toLocaleDateString("no-NO"),
   );

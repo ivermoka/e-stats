@@ -8,16 +8,12 @@ import TimeStats from "@/components/stats/overTimeStats/timeStats";
 import Selector from "../home/egenvurdering/selector";
 
 const PersonalStats = ({ user }) => {
-  const [value, setValue] = useState(new Date().toLocaleDateString("no-NO"));
-  const [date, setDate] = useState(new Date().toLocaleDateString("no-NO"));
+  const [value, setValue] = useState(new Date().toLocaleDateString("en-US"));
   const [dataFetched, setDataFetched] = useState(false);
   const [dataSchema, setDataSchema] = useState(null);
   const [showCalendar, setShowCalendar] = useState(false);
   const [hasRated, setHasRated] = useState(true);
   const [showToday, setShowToday] = useState(false);
-  const [currentDate, setCurrentDate] = useState(
-    new Date().toLocaleDateString("no-NO"),
-  );
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -97,7 +93,7 @@ const PersonalStats = ({ user }) => {
                   <div className="dark:text-text text-textLight text-xl font-bold italic mt-12">
                     <h1>Personlig statistikk for </h1>
                     <span className="dark:text-orange-200 text-orange-700">
-                      {user} - {date}
+                      {user} - {new Date(value).toLocaleDateString("no-NO")}
                     </span>
                   </div>
                   <button
@@ -105,27 +101,27 @@ const PersonalStats = ({ user }) => {
                     onClick={() => {
                       setShowCalendar(!showCalendar);
                     }}
-                    className="dark:text-text text-textLight font-bold py-2 px-4 rounded-lg dark:bg-primary bg-primaryLight shadow-md dark:shadow-accent shadow-accentLight my-4 w-40"
+                    className="dark:text-text text-textLight text-lg font-semibold border-2 dark:border-primary border-secondaryLight rounded-md px-4 py-2 my-2 w-40"
                   >
                     VELG DATO
                     <BsCalendar className="inline ml-2 mb-[2px]" />
                   </button>
                   {showCalendar && (
                     <Calendar
-                      defaultValue={date}
-                      className={`dark:bg-primary bg-primaryLight shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 font-semibold`}
+                      defaultValue={value}
+                      className={
+                        "dark:border-primary border-secondaryLight border-2 shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 font-semibold"
+                      }
                       tileClassName={({ date }) => {
                         const isSelectedDate =
-                          date.toLocaleDateString("no-NO") === currentDate;
+                          date.toLocaleDateString("en-US") === value;
                         return isSelectedDate
                           ? "selected-date-class dark:bg-[#F8D8B1] bg-[#305464] dark:text-black text-white p-2 dark: border-textLight dark:border"
                           : "p-2 dark:border-text border-textLight border";
                       }}
                       onClickDay={(day) => {
-                        setDate(day.toLocaleDateString("no-NO"));
                         setValue(day.toLocaleDateString("en-US"));
                         setShowCalendar(false);
-                        setCurrentDate(day.toLocaleDateString("no-NO"));
                       }}
                       value={value}
                     />
