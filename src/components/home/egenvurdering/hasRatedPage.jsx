@@ -17,7 +17,7 @@ const HasRatedPage = ({ user }) => {
         },
         body: JSON.stringify({
           user: user,
-          date: new Date().toLocaleDateString("no-NO"),
+          date: new Date().toLocaleDateString("en-US"),
         }),
       });
       if (res.status === 200) {
