@@ -11,6 +11,27 @@ const StatsOverTime = () => {
   const [toDate, setToDate] = useState(new Date().toLocaleDateString("no-NO"));
   const [showToCalendar, setShowToCalendar] = useState(false);
 
+  const getStats = async () => {
+    try {
+      const res = await fetch(
+        `/api/fetchUser?fromDate=${fromDate}&toDate=${toDate}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+      if (res.status === 200) {
+        console.log("xpp");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  getStats();
+
   const options = {
     responsive: true,
     plugins: {

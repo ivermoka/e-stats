@@ -15,5 +15,6 @@ export default async function handler(req, res) {
         error: "Det oppstod en feil ved henting av bruker.",
       });
     }
+  } else if (req.method === "GET") {
   }
 }
