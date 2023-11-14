@@ -1,36 +1,37 @@
 import { LineChart } from "@/components/stats/overTimeStats/lineChart";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 
-const StatsOverTime = () => {
+const StatsOverTime = ({ user }) => {
   const [fromDate, setFromDate] = useState(
-    new Date().toLocaleDateString("no-NO"),
+    new Date().toLocaleDateString("en-US")
   );
   const [showFromCalendar, setShowFromCalendar] = useState(false);
 
-  const [toDate, setToDate] = useState(new Date().toLocaleDateString("no-NO"));
+  const [toDate, setToDate] = useState(new Date().toLocaleDateString("en-US"));
   const [showToCalendar, setShowToCalendar] = useState(false);
+  useEffect(() => {
+    getStats();
+  }, [fromDate, toDate]);
 
   const getStats = async () => {
     try {
       const res = await fetch(
-        `/api/fetchUser?fromDate=${fromDate}&toDate=${toDate}`,
+        `/api/fetchUser?username=${user}fromDate=${fromDate}&toDate=${toDate}`,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
-        },
+        }
       );
       if (res.status === 200) {
-        console.log("xpp");
+        console.log(await res.json());
       }
     } catch (error) {
       console.error(error);
     }
   };
-
-  getStats();
 
   const options = {
     responsive: true,

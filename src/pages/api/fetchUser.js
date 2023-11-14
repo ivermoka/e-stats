@@ -16,5 +16,24 @@ export default async function handler(req, res) {
       });
     }
   } else if (req.method === "GET") {
+    try {
+      const { user, fromDate, toDate } = req.query;
+      const fromDateObject = new Date(fromDate);
+      const toDateObject = new Date(toDate);
+      console.log(fromDateObject, toDateObject);
+
+      const ratings = await Egenvurdering.find({
+        date: {
+          $gte: fromDate,
+          $lte: toDate,
+        },
+        username: user,
+      });
+      res.status(200).json({
+        ratings,
+      });
+    } catch (error) {
+      console.log("error", error);
+    }
   }
 }

@@ -87,7 +87,7 @@ const PersonalStats = ({ user }) => {
           {user !== "no" && user ? (
             <>
               {showToday ? (
-                <TimeStats />
+                <TimeStats user={user} />
               ) : (
                 <>
                   <div className="dark:text-text text-textLight text-xl font-bold italic mt-12">
