@@ -55,7 +55,7 @@ const Lag = () => {
           headers: {
             "Content-Type": "application/json",
           },
-        },
+        }
       );
       if (res.status === 200) {
         const data = await res.json();
@@ -143,7 +143,7 @@ const Lag = () => {
               "dark:border-primary border-primaryLight flex flex-col gap-6 p-4 "
             }
           >
-            {isLeader ? currentTeamCode : null}
+            {isLeader ? <span>Din lagkode {currentTeamCode} </span> : null}
             <h2
               className={
                 " dark:text-text text-textLight text-2xl px-2 font-semibold"

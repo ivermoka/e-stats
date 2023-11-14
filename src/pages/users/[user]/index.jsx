@@ -77,7 +77,7 @@ const Profil = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setTakingTime(
-        "Dette ser ut til å ta litt tid, pass på at brukeren du prøver å gå inn på eksisterer",
+        "Dette ser ut til å ta litt tid, pass på at brukeren du prøver å gå inn på eksisterer"
       );
     }, 5000);
     return () => clearTimeout(timer);
