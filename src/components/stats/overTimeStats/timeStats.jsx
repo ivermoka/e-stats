@@ -4,7 +4,7 @@ import Calendar from "react-calendar";
 
 const StatsOverTime = ({ user }) => {
   const [fromDate, setFromDate] = useState(
-    new Date().toLocaleDateString("en-US")
+    new Date().toLocaleDateString("en-US"),
   );
   const [showFromCalendar, setShowFromCalendar] = useState(false);
 
@@ -17,13 +17,13 @@ const StatsOverTime = ({ user }) => {
   const getStats = async () => {
     try {
       const res = await fetch(
-        `/api/fetchUser?username=${user}fromDate=${fromDate}&toDate=${toDate}`,
+        `/api/fetchUser?username=${user}&fromDate=${fromDate}&toDate=${toDate}`,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       if (res.status === 200) {
         console.log(await res.json());
@@ -61,7 +61,7 @@ const StatsOverTime = ({ user }) => {
     "dark:border-primary border-secondaryLight border-2 shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 font-semibold";
 
   const tileStyle = ({ date }) => {
-    const isSelectedDate = date.toLocaleDateString("no-NO") === fromDate;
+    const isSelectedDate = date.toLocaleDateString("en-US") === fromDate;
     return isSelectedDate
       ? "selected-date-class dark:bg-[#F8D8B1] bg-[#305464] dark:text-black text-white p-2 dark: border-textLight dark:border"
       : "p-2 dark:border-text border-textLight border";
@@ -102,7 +102,7 @@ const StatsOverTime = ({ user }) => {
           tileClassName={tileStyle}
           className={calendarStyle}
           onClickDay={(day) => {
-            setFromDate(new Date(day).toLocaleDateString("no-NO"));
+            setFromDate(new Date(day).toLocaleDateString("en-US"));
           }}
         />
       )}
@@ -111,7 +111,7 @@ const StatsOverTime = ({ user }) => {
           tileClassName={tileStyle}
           className={calendarStyle}
           onClickDay={(day) => {
-            setToDate(new Date(day).toLocaleDateString("no-NO"));
+            setToDate(new Date(day).toLocaleDateString("en-US"));
           }}
         />
       )}
