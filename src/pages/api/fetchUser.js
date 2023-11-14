@@ -18,14 +18,14 @@ export default async function handler(req, res) {
   } else if (req.method === "GET") {
     try {
       const { user, fromDate, toDate } = req.query;
+      console.log(fromDate, toDate);
       const fromDateObject = new Date(fromDate);
       const toDateObject = new Date(toDate);
-      console.log(fromDateObject, toDateObject);
 
       const ratings = await Egenvurdering.find({
         date: {
-          $gte: fromDate,
-          $lte: toDate,
+          $gte: fromDateObject,
+          $lte: toDateObject,
         },
         username: user,
       });
