@@ -17,7 +17,7 @@ const StatsOverTime = ({ user }) => {
   const getStats = async () => {
     try {
       const res = await fetch(
-        `/api/fetchUser?username=${user}&fromDate=${fromDate}&toDate=${toDate}`,
+        `/api/fetchUser?user=${user}&fromDate=${fromDate}&toDate=${toDate}`,
         {
           method: "GET",
           headers: {
