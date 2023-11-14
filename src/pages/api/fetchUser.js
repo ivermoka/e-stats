@@ -20,14 +20,13 @@ export default async function handler(req, res) {
       const { user, fromDate, toDate } = req.query;
       const fromDateObject = new Date(fromDate);
       const toDateObject = new Date(toDate);
-      console.log(fromDateObject, toDateObject);
 
       const ratings = await Egenvurdering.find({
         date: {
           $gte: fromDateObject,
           $lte: toDateObject,
         },
-        username: user,
+        user,
       });
       res.status(200).json({
         ratings,
