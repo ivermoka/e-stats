@@ -8,7 +8,7 @@ export default function Index() {
   const buttonStyle =
     "dark:text-text text-textLight text-2xl font-semibold border-2 dark:border-primary border-secondaryLight rounded-md p-4 sm:w-1/2 w-full";
   return (
-    <div className="fixed inset-0 overflow-hidden p-4 flex flex-col justify-center gap-4 dark:bg-bg bg-bgLight">
+    <div className="overscroll-none fixed inset-0 overflow-hidden p-4 flex flex-col justify-center gap-4 dark:bg-bg bg-bgLight">
       <motion.h1
         initial={{ x: -200, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
