@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 
 const ForgotPassword = ({ setShow }) => {
-  const finnBruker = (e) => {
+  const [user, setUser] = useState("");
+  const finnBruker = async (e) => {
     e.preventDefault();
-    console.log("finn bruker");
+    try {
+      const res = fetch(`/api/forgotPassword?user=${user}`, {
+        method: "GET",
+      });
+      if (res.status === 200) {
+        console.log(await res.json());
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div
@@ -14,7 +24,11 @@ const ForgotPassword = ({ setShow }) => {
       <h1 className="text-4xl">Glemt Passord</h1>
       <form onSubmit={(e) => finnBruker(e)} className={"flex flex-col gap-2"}>
         <label className={"w-1/2 text-2xl"}>Brukernavn</label>
-        <input className={"w-1/2 h-8 rounded-lg p-2 text-bg"} type={"text"} />
+        <input
+          onChange={(e) => setUser(e.target.value)}
+          className={"w-1/2 h-8 rounded-lg p-2 text-bg"}
+          type={"text"}
+        />
         <button
           type={"submit"}
           className={

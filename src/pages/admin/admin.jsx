@@ -68,7 +68,6 @@ const Admin = ({ user }) => {
   };
 
   const sendReply = async (id) => {
-    console.log(reply, id, user);
     try {
       const res = await fetch("/api/reply", {
         method: "POST",

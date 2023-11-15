@@ -77,14 +77,14 @@ const Profil = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setTakingTime(
-        "Dette ser ut til å ta litt tid, pass på at brukeren du prøver å gå inn på eksisterer"
+        "Dette ser ut til å ta litt tid, pass på at brukeren du prøver å gå inn på eksisterer",
       );
     }, 5000);
     return () => clearTimeout(timer);
   }, []);
 
   const boxStyle =
-    "dark:bg-primary bg-primaryLight p-4 rounded-lg shadow-md dark:shadow-accent shadow-accentLight";
+    "rounded-md border-2 dark:border-primary border-secondaryLight p-4";
 
   return (
     <div className="fixed inset-0 overflow-hidden dark:bg-bg bg-bgLight p-8 flex flex-col gap-4 dark:text-text text-textLight">

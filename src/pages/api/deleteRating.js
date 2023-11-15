@@ -14,7 +14,6 @@ export default async function deleteRating(req, res) {
     if (!egenvurdering) {
       return res.status(400).json({ status: "Rating not found" });
     }
-    console.log(egenvurdering);
     await egenvurdering.deleteOne();
     return res.status(200).json({ status: "Rating successfully deleted." });
   } catch (error) {

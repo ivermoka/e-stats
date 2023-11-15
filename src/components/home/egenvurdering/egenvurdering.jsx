@@ -43,7 +43,7 @@ const Egenvurdering = ({ date, user, setShowAfter }) => {
     <>
       <form onSubmit={rateDay} className="mb-20 mt-16 flex flex-col">
         <div className="flex justify-between">
-          <Day />
+          <Day text="FØR ØKT" />
           <Link href={"/"}>
             <div className="rounded-lg dark:text-text text-textLight font-bold p-2 my-4 w-10 text-center italic dark:bg-primary bg-primaryLight shadow-md dark:shadow-accent shadow-accentLight">
               <AiOutlineRollback className="w-full h-full" />
@@ -74,7 +74,7 @@ const Egenvurdering = ({ date, user, setShowAfter }) => {
         </div>
         <button
           type="submit"
-          className="rounded-lg dark:bg-primary bg-primaryLight p-3 shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight font-bold italic my-4 self-end"
+          className="rounded-md border-2 dark:border-primary border-secondaryLight p-3 dark:text-text text-textLight font-bold italic my-4 self-end"
         >
           NESTE
         </button>

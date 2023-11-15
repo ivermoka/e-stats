@@ -61,7 +61,7 @@ const AdjustTeamPage = () => {
   };
 
   return (
-    <div className="fixed inset-0 dark:bg-bg bg-bgLight">
+    <div className="min-h-screen dark:bg-bg bg-bgLight">
       <AdjustTeam
         data={data}
         user={user}

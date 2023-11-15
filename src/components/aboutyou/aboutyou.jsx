@@ -11,7 +11,6 @@ const AboutYou = () => {
   const gameSelect = async (e) => {
     e.preventDefault();
     if (skole !== "") {
-      console.log(skole);
       try {
         const res = await fetch("/api/selectInfo", {
           method: "PUT",

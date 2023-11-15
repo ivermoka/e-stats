@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify";
 const Layout = ({ children }) => {
   const user = GetUser();
   return (
-    <div className={"flex flex-col"}>
+    <div className={"flex flex-col overscroll-none"}>
       <TopBar user={user} />
       <main className="overflow-hidden">{children}</main>
       {user !== "no" && user && <Nav />}

@@ -61,10 +61,6 @@ const EgenvurderingContainer = () => {
                   ) : (
                     <>
                       <After date={date} user={user} />
-                      <Selector
-                        showAfter={showAfter}
-                        setShowAfter={setShowAfter}
-                      />
                     </>
                   )}
                 </>
@@ -79,10 +75,6 @@ const EgenvurderingContainer = () => {
                         user={user}
                         hasRated={hasRated1}
                         setHasRated={setHasRated1}
-                        setShowAfter={setShowAfter}
-                      />
-                      <Selector
-                        showAfter={showAfter}
                         setShowAfter={setShowAfter}
                       />
                     </>
