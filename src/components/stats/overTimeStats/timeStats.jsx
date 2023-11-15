@@ -6,10 +6,10 @@ const StatsOverTime = ({ user }) => {
   const [fromDate, setFromDate] = useState(
     new Date().toLocaleDateString("en-US"),
   );
-  const [showFromCalendar, setShowFromCalendar] = useState(false);
-
   const [toDate, setToDate] = useState(new Date().toLocaleDateString("en-US"));
-  const [showToCalendar, setShowToCalendar] = useState(false);
+
+  const [showCalendar, setShowCalendar] = useState(false);
+
   useEffect(() => {
     getStats();
   }, [fromDate, toDate]);
@@ -57,16 +57,6 @@ const StatsOverTime = ({ user }) => {
     ],
   };
 
-  const calendarStyle =
-    "dark:border-primary border-secondaryLight border-2 shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 font-semibold";
-
-  const tileStyle = ({ date }) => {
-    const isSelectedDate = date.toLocaleDateString("en-US") === fromDate;
-    return isSelectedDate
-      ? "selected-date-class dark:bg-[#F8D8B1] bg-[#305464] dark:text-black text-white p-2 dark: border-textLight dark:border"
-      : "p-2 dark:border-text border-textLight border";
-  };
-
   return (
     <div
       className={
@@ -77,39 +67,24 @@ const StatsOverTime = ({ user }) => {
       <div className="flex items-center gap-2">
         <button
           onClick={() => {
-            setShowToCalendar(!showToCalendar);
-            setShowFromCalendar(false);
+            setShowCalendar(!showCalendar);
           }}
           type="button"
           className="dark:text-text text-textLight font-bold py-2 px-4 rounded-md border-2 dark:border-primary border-secondaryLight shadow-lg dark:shadow-accent shadow-accentLight"
         >
-          {fromDate}
-        </button>
-        -
-        <button
-          onClick={() => {
-            setShowToCalendar(!showToCalendar);
-            setShowFromCalendar(false);
-          }}
-          type="button"
-          className="dark:text-text text-textLight font-bold py-2 px-4 rounded-md border-2 dark:border-primary border-secondaryLight shadow-lg dark:shadow-accent shadow-accentLight"
-        >
-          {toDate}
+          {new Date(fromDate).toLocaleDateString("no-NO")}
         </button>
       </div>
-      {showToCalendar && (
+      {showCalendar && (
         <Calendar
-          tileClassName={tileStyle}
-          className={calendarStyle}
-          onClickDay={(day) => {
-            setFromDate(new Date(day).toLocaleDateString("en-US"));
+          tileClassName={({ date }) => {
+            const isSelectedDate =
+              date.toLocaleDateString("en-US") === fromDate;
+            return isSelectedDate
+              ? "selected-date-class dark:bg-[#F8D8B1] bg-[#305464] dark:text-black text-white p-2 dark: border-textLight dark:border"
+              : "p-2 dark:border-text border-textLight border";
           }}
-        />
-      )}
-      {showFromCalendar && (
-        <Calendar
-          tileClassName={tileStyle}
-          className={calendarStyle}
+          className="dark:border-primary border-secondaryLight border-2 shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 font-semibold"
           onClickDay={(day) => {
             setToDate(new Date(day).toLocaleDateString("en-US"));
           }}

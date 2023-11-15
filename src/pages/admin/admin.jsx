@@ -8,9 +8,7 @@ import { BsArrowReturnLeft } from "react-icons/bs";
 import { LuSendHorizonal } from "react-icons/lu";
 
 const Admin = ({ user }) => {
-  const [fromDate, setFromDate] = useState(
-    new Date().toLocaleDateString("en-US"),
-  );
+  const [date, setDate] = useState(new Date().toLocaleDateString("en-US"));
   const [currentDate, setCurrentDate] = useState(
     new Date().toLocaleDateString("no-NO"),
   );
@@ -26,7 +24,7 @@ const Admin = ({ user }) => {
     if (user) {
       getStats();
     }
-  }, [user, fromDate, team]);
+  }, [user, date, team]);
 
   useEffect(() => {
     getAllTeams();
@@ -39,7 +37,7 @@ const Admin = ({ user }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ fromDate, user, team }),
+        body: JSON.stringify({ date, user, team }),
       });
       if (res.status === 200) {
         const data = await res.json();
@@ -259,7 +257,7 @@ const Admin = ({ user }) => {
               : "p-2 dark:border-text border-textLight border";
           }}
           onClickDay={(day) => {
-            setFromDate(new Date(day).toLocaleDateString("en-US"));
+            setDate(new Date(day).toLocaleDateString("en-US"));
             setCurrentDate(new Date(day).toLocaleDateString("no-NO"));
           }}
         />

@@ -10,6 +10,7 @@ export default async function handler(req, res) {
     const currentDate = new Date(date);
     const priorDate = new Date(currentDate);
     priorDate.setDate(currentDate.getDate() - 30);
+    console.log(date, currentDate, priorDate);
 
     const userSchema = await User.findOne({ username: user });
     const school = userSchema.school;
