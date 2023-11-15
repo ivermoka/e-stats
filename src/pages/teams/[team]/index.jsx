@@ -59,7 +59,7 @@ const Lag = () => {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       if (res.status === 200) {
         const data = await res.json();
@@ -198,7 +198,7 @@ const Lag = () => {
           {isMember ? (
             <button
               type="button"
-              className={`${boxStyle} text-red-400 font-semibold text-2xl`}
+              className={`${boxStyle} text-red-400 font-semibold text-2xl mb-28`}
               onClick={() => leaveTeam()}
             >
               Forlat lag
@@ -206,7 +206,7 @@ const Lag = () => {
           ) : (
             <button
               type="button"
-              className={`${boxStyle} text-blue-400 font-semibold text-2xl`}
+              className={`${boxStyle} text-blue-400 font-semibold text-2xl mb-28`}
               onClick={() => setShowCode(true)}
             >
               Bli med
