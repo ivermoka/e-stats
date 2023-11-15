@@ -59,7 +59,7 @@ const Lag = () => {
           headers: {
             "Content-Type": "application/json",
           },
-        },
+        }
       );
       if (res.status === 200) {
         const data = await res.json();
@@ -155,30 +155,34 @@ const Lag = () => {
               "dark:border-primary border-primaryLight flex flex-col gap-6 p-4 "
             }
           >
-            <div className="flex items-center justify-between">
-              <button
-                className="dark:text-white text-black text-xl"
-                onClick={() => setShowTeamCode((x) => !x)}
-              >
-                lagkode
-              </button>
+            {isLeader && (
+              <div className="flex items-center justify-between">
+                <button
+                  className="dark:text-white text-black text-xl"
+                  onClick={() => setShowTeamCode((x) => !x)}
+                >
+                  lagkode
+                </button>
 
-              {isLeader && ShowTeamCode ? (
-                <span className="text-red-400 text-xl">{currentTeamCode} </span>
-              ) : null}
-              <div className="w-24"></div>
-              {showIcon ? (
-                <BiHide
-                  onClick={() => showBiHideIcon()}
-                  className="dark:text-white light:text-black text-3xl "
-                />
-              ) : (
-                <BiShow
-                  onClick={() => showBiShowIcon()}
-                  className="dark:text-white light:text-black text-3xl "
-                />
-              )}
-            </div>
+                {ShowTeamCode ? (
+                  <span className="text-red-400 text-xl">
+                    {currentTeamCode}{" "}
+                  </span>
+                ) : null}
+                <div className="w-24"></div>
+                {showIcon ? (
+                  <BiHide
+                    onClick={() => showBiHideIcon()}
+                    className="dark:text-white light:text-black text-3xl "
+                  />
+                ) : (
+                  <BiShow
+                    onClick={() => showBiShowIcon()}
+                    className="dark:text-white light:text-black text-3xl "
+                  />
+                )}
+              </div>
+            )}
 
             <h2
               className={
