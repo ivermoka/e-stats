@@ -13,6 +13,7 @@ import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { ImExit } from "react-icons/im";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { RiAdminLine } from "react-icons/ri";
+import { RiMenuSearchLine } from "react-icons/ri";
 
 const Dropdown = ({
   dropdown,
@@ -86,23 +87,23 @@ const Dropdown = ({
             onClick={() => setDropdown(false)}
           />
         </Link>
-        {team ? (
-          <Link href={`/teams/${team}`}>
-            <Links
-              text={"Ditt Lag"}
-              icon={<AiOutlineTeam />}
-              onClick={() => setDropdown(false)}
-            />
-          </Link>
-        ) : (
-          <Link href={"/teams"}>
-            <Links
-              text={"Ditt Lag"}
-              icon={<AiOutlineTeam />}
-              onClick={() => setDropdown(false)}
-            />
-          </Link>
-        )}
+
+        <Link href={team ? `/teams/${team}` : "/teams"}>
+          <Links
+            text={"Ditt Lag"}
+            icon={<AiOutlineTeam />}
+            onClick={() => setDropdown(false)}
+          />
+        </Link>
+
+        <Link href="/teams">
+          <Links
+            text={"Finn Lag"}
+            icon={<RiMenuSearchLine />}
+            onClick={() => setDropdown(false)}
+          />
+        </Link>
+
         {admin && (
           <Link href="/admin">
             <Links
@@ -114,7 +115,9 @@ const Dropdown = ({
             />
           </Link>
         )}
+
         <Line />
+
         <Links
           text={"Vilkår for bruk"}
           icon={<IoMdCheckmarkCircleOutline />}
@@ -123,7 +126,9 @@ const Dropdown = ({
             setDropdown(false);
           }}
         />
+
         <Line />
+
         <Links
           text={"Logg Ut"}
           icon={<ImExit />}
@@ -132,6 +137,7 @@ const Dropdown = ({
             window.location.href = "/";
           }}
         />
+
         <Links
           text={"Slett Bruker"}
           icon={<MdOutlineDeleteForever />}

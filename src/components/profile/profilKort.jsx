@@ -1,12 +1,8 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
-import { RiTeamFill } from "react-icons/ri";
 
-const ProfilKort = ({ id, data, owned }) => {
-  const [profilePicture, setProfilePicture] = useState("/logo.png");
-
-  const boxStyle = "p-4 border-b-2 border-primaryLight dark:border-primary";
+const ProfilKort = ({ id, data }) => {
+  const boxStyle = "p-4 border-b-2 border-secondaryLight dark:border-primary";
   return (
     <>
       <motion.div
@@ -22,7 +18,7 @@ const ProfilKort = ({ id, data, owned }) => {
         <div className="box-border p-4 text-3xl font-bold flex gap-2">
           <div className={"w-24"}>
             <Image
-              src={profilePicture}
+              src={"/logo.png"}
               alt="profile picture"
               width={200}
               height={200}
