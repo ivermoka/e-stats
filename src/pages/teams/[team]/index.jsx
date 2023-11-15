@@ -123,7 +123,7 @@ const Lag = () => {
   const [showCreateTeam, setShowCreateTeam] = useState(false);
 
   const boxStyle =
-    "dark:bg-primary bg-primaryLight rounded-md shadow-lg dark:shadow-accent shadow-accentLight p-4";
+    "border-2 dark:border-primary border-primaryLight rounded-md p-4";
 
   function showBiHideIcon() {
     setShowIcon(false);

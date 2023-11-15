@@ -8,7 +8,6 @@ const AdjustTeam = ({ data, setSelectedTeam, setShowCode }) => {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    console.log(data);
     if (data) {
       setLoaded(true);
     }

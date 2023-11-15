@@ -5,7 +5,7 @@ const Members = ({ text }) => {
     <Link href={`/users/${text}`}>
       <div
         className={
-          "dark:bg-primary bg-primaryLight p-4 rounded-md  d dark:text-text text-textLight font-semibold text-2xl w-full"
+          "dark:bg-primary bg-primaryLight p-4 rounded-md dark:text-text text-textLight font-semibold text-2xl w-full break-all"
         }
       >
         {text}

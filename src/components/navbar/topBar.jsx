@@ -50,9 +50,9 @@ const Top = ({ user }) => {
           </button>
         ) : (
           <div className="h-16 p-2 flex gap-4 justify-center items-center dark:text-text text-textLight font-thin text-md">
-            <Link href="/register">Registrer </Link>
-            <span>/</span>
             <Link href="/login">Logg Inn</Link>
+            <span>/</span>
+            <Link href="/register">Registrer </Link>
           </div>
         )}
 
