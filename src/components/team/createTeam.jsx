@@ -39,10 +39,10 @@ const CreateTeam = ({ setShowCreateTeam }) => {
   const inputs = `bg-transparent dark:border-white border-black border dark:text-white text-black p-2 rounded-3xl outline-none text-black placeholder`;
 
   return (
-    <div className={"fixed h-screen w-screen flex   place-items-center"}>
+    <div className="fixed inset-0 h-screen w-screen justify-center flex place-items-center bg-transparent/75 backdrop-blur-md ">
       <form
         className={
-          "w-72 h-96 dark:bg-accent bg-primaryLight dark:text-text text-textLight flex flex-col gap-4 justify-center items-center rounded-lg shadow-md dark:shadow-accent shadow-accentLight"
+          "w-80 h-96 dark:bg-bg bg-primaryLight dark:text-text text-textLight flex flex-col gap-4 justify-center items-center rounded-lg shadow-md dark:shadow-accent shadow-accentLight"
         }
       >
         <h1 className={"text-3xl"}>Opprett Lag</h1>
