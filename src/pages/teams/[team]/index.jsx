@@ -59,7 +59,7 @@ const Lag = () => {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       if (res.status === 200) {
         const data = await res.json();
@@ -136,87 +136,92 @@ const Lag = () => {
   return (
     <div className="dark:bg-bg bg-bgLight min-h-screen">
       {loaded ? (
-        <div className={"flex flex-col gap-8 px-8 mt-16"}>
-          {showCode && (
-            <JoinTeamPopup
-              joinTeam={joinTeam}
-              setTeamCode={setTeamCode}
-              setShowCode={setShowCode}
-              error={error}
-            />
-          )}
+        <>
+          {currentTeamCode ? (
+            <div className={"flex flex-col gap-8 px-8 mt-16"}>
+              {showCode && (
+                <JoinTeamPopup
+                  joinTeam={joinTeam}
+                  setTeamCode={setTeamCode}
+                  setShowCode={setShowCode}
+                  error={error}
+                />
+              )}
 
-          <Header team={team} />
-          {showCreateTeam && (
-            <CreateTeam setShowCreateTeam={setShowCreateTeam} />
-          )}
-          <div
-            className={
-              "dark:border-primary border-primaryLight flex flex-col gap-6 p-4 "
-            }
-          >
-            {isLeader && (
-              <div className="flex items-center justify-between">
-                <button
-                  className="dark:text-white text-black text-xl"
-                  onClick={() => setShowTeamCode((x) => !x)}
-                >
-                  lagkode
-                </button>
+              <Header team={team} />
+              {showCreateTeam && (
+                <CreateTeam setShowCreateTeam={setShowCreateTeam} />
+              )}
+              <div
+                className={
+                  "dark:border-primary border-primaryLight flex flex-col gap-6 p-4 text-xl"
+                }
+              >
+                {isLeader && (
+                  <div className="flex justify-between dark:bg-primary bg-primaryLight p-2 shadow-md dark:shadow-accent shadow-accentLight rounded-md font-semibold">
+                    <div>
+                      <button
+                        className="dark:text-white text-black mr-2"
+                        onClick={() => setShowTeamCode((x) => !x)}
+                      >
+                        Kode:
+                      </button>
 
-                {ShowTeamCode ? (
-                  <span className="text-red-400 text-xl">
-                    {currentTeamCode}{" "}
-                  </span>
-                ) : null}
-                <div className="w-24"></div>
-                {showIcon ? (
-                  <BiHide
-                    onClick={() => showBiHideIcon()}
-                    className="dark:text-white light:text-black text-3xl "
-                  />
-                ) : (
-                  <BiShow
-                    onClick={() => showBiShowIcon()}
-                    className="dark:text-white light:text-black text-3xl "
-                  />
+                      {ShowTeamCode && <span>{currentTeamCode}</span>}
+                    </div>
+                    {showIcon ? (
+                      <BiHide
+                        onClick={() => showBiHideIcon()}
+                        className="dark:text-white light:text-black text-3xl "
+                      />
+                    ) : (
+                      <BiShow
+                        onClick={() => showBiShowIcon()}
+                        className="dark:text-white light:text-black text-3xl "
+                      />
+                    )}
+                  </div>
                 )}
-              </div>
-            )}
 
-            <h2
-              className={
-                " dark:text-text text-textLight text-2xl px-2 font-semibold"
-              }
-            >
-              Lagmedlemmer
-            </h2>
-            <div className="h-[1px] w-full dark:bg-white bg-black -mt-4"></div>
-            {allMembers &&
-              allMembers.map((member, index) => (
-                <div key={index}>
-                  <Members text={member.username} />
-                </div>
-              ))}
-          </div>
-          {isMember ? (
-            <button
-              type="button"
-              className={`${boxStyle} text-red-400 font-semibold text-2xl mb-28`}
-              onClick={() => leaveTeam()}
-            >
-              Forlat lag
-            </button>
+                <h2
+                  className={
+                    " dark:text-text text-textLight text-2xl px-2 font-semibold"
+                  }
+                >
+                  Lagmedlemmer
+                </h2>
+                <div className="h-[1px] w-full dark:bg-white bg-black -mt-4"></div>
+                {allMembers &&
+                  allMembers.map((member, index) => (
+                    <div key={index}>
+                      <Members text={member.username} />
+                    </div>
+                  ))}
+              </div>
+              {isMember ? (
+                <button
+                  type="button"
+                  className={`${boxStyle} text-red-400 font-semibold text-2xl mb-28`}
+                  onClick={() => leaveTeam()}
+                >
+                  Forlat lag
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className={`${boxStyle} text-blue-400 font-semibold text-2xl mb-28`}
+                  onClick={() => setShowCode(true)}
+                >
+                  Bli med
+                </button>
+              )}
+            </div>
           ) : (
-            <button
-              type="button"
-              className={`${boxStyle} text-blue-400 font-semibold text-2xl mb-28`}
-              onClick={() => setShowCode(true)}
-            >
-              Bli med
-            </button>
+            <h1 className="dark:text-text text-textLight text-xl font-bold italic mt-16 ml-4">
+              Fant ikke laget {team}
+            </h1>
           )}
-        </div>
+        </>
       ) : (
         <Loading />
       )}

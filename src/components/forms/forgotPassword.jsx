@@ -30,7 +30,7 @@ const ForgotPassword = ({ setShow }) => {
           type={"text"}
         />
         <button
-          type={"submit"}
+          type="submit"
           className={
             "text-2xl font-semibold rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:bg-primary bg-primaryLight py-2 w-1/2"
           }

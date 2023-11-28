@@ -16,7 +16,7 @@ const AdjustTeam = ({ data, setSelectedTeam, setShowCode }) => {
   return (
     <>
       {loaded ? (
-        <div className="h-screen w-screen dark:bg-bg/70 bg-bgLight/70 backdrop-blur-md p-8 flex flex-col gap-6 mt-14 dark:text-text text-textLight">
+        <div className="h-screen w-screen p-8 flex flex-col gap-6 mt-14 dark:text-text text-textLight">
           {showCreateTeam && (
             <CreateTeam
               setShowCreateTeam={setShowCreateTeam}
@@ -28,16 +28,13 @@ const AdjustTeam = ({ data, setSelectedTeam, setShowCode }) => {
             setSelectedTeam={setSelectedTeam}
             setShowCode={setShowCode}
           />
-          <div className="h-[1px] w-4/5 bg-white"></div>
-          <div className="flex justify-start w-full ">
-            <span className=" text-xl">Eller</span>
-          </div>
+          <div className="h-[1px] w-full bg-white"></div>
 
           <button
             type="button"
             onClick={() => setShowCreateTeam(true)}
             className={
-              " dark:bg-bg flex items-center justify-start rounded-2xl shadow-lg dark:shadow-accent shadow-accentLight pl-4 text-2xl border-b dark:border dark:border-white border-black h-10 font-semibold w-7/12"
+              "flex items-center justify-start rounded-md p-3 w-48 text-2xl h-10 font-semibold border dark:border-primary border-primaryLight text-center"
             }
           >
             <span className="">Opprett lag</span>

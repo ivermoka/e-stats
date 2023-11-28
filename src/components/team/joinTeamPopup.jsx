@@ -3,7 +3,7 @@ import { AiOutlineRollback } from "react-icons/ai";
 const JoinTeamPopup = ({ setTeamCode, joinTeam, setShowCode, error }) => {
   return (
     <div className="fixed h-screen w-screen bg-black/50 z-50 left-0 top-0 grid place-items-center">
-      <div className="bg-primaryLight dark:bg-secondary rounded-lg w-4/5 h-44 flex flex-col items-center justify-center gap-2 dark:text-text text-textLight">
+      <div className="bg-primaryLight dark:bg-secondary rounded-md w-4/5 h-44 flex flex-col items-center justify-center gap-2 dark:text-text text-textLight">
         <input
           className="rounded-md p-2 text-textLight"
           onChange={(e) => setTeamCode(e.target.value)}

@@ -6,7 +6,7 @@ const Kommentar = ({ setComment }) => {
       </h2>
       <textarea
         onChange={(e) => setComment(e.target.value)}
-        className="w-full dark:border-primary border-primaryLight border-2 rounded-md"
+        className="w-full dark:border-primary border-primaryLight border-2 rounded-md text-black"
       ></textarea>
     </div>
   );

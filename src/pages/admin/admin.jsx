@@ -14,7 +14,7 @@ const Admin = ({ user }) => {
   );
   const [showCalendar, setShowCalendar] = useState(false);
   const [showTeamsDropdown, setShowTeamsDropdown] = useState(false);
-  const [team, setTeam] = useState("WeWe");
+  const [team, setTeam] = useState("");
   const [stats, setStats] = useState([]);
   const [allTeams, setAllTeams] = useState([]);
   const [showReply, setShowReply] = useState(false);
@@ -235,12 +235,6 @@ const Admin = ({ user }) => {
         </button>
       </div>
 
-      {/*tekst som viser hvilket lag og hvilken dato som er valgt*/}
-
-      <h1 className="text-textLight dark:text-text">
-        Lag: {team} Dato: {currentDate}
-      </h1>
-
       {/*Vis kalender om showCalendar er true*/}
 
       {showCalendar && (
@@ -265,9 +259,13 @@ const Admin = ({ user }) => {
       {/*Vis lag dropdown om showTeamsDropdown er true*/}
 
       {showTeamsDropdown && (
-        <div className={`${boxStyle} flex flex-col`}>
+        <div className={`flex flex-col gap-2`}>
           {allTeams.map((team, index) => (
-            <div key={index} onClick={() => setTeam(team.teamName)}>
+            <div
+              className={boxStyle}
+              key={index}
+              onClick={() => setTeam(team.teamName)}
+            >
               {team.teamName}
             </div>
           ))}
