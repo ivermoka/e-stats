@@ -17,6 +17,7 @@ const Admin = ({ user }) => {
   const [stats, setStats] = useState([]);
   const [allTeams, setAllTeams] = useState([]);
   const [reply, setReply] = useState("");
+  const [sortedReplies, setSortedReplies] = useState([]);
 
   useEffect(() => {
     if (user) {
@@ -280,14 +281,29 @@ const Admin = ({ user }) => {
       </div>
 
       {/*Container for kommentarer*/}
-      <div className="mb-20">
-        {stats.map((rating, i) => (
-          <Replyinger
-            key={i}
-            rating={rating}
-            sendReply={sendReply}
-            setReply={setReply}
-          />
+      <div className="mb-20 flex flex-col gap-4">
+        {labels.reverse().map((date, i) => (
+          <div className="flex flex-col" key={i}>
+            <h2 className="text-xl font-bold">{date}</h2>
+            <div className="h-[1px] dark:bg-text bg-textLight" />
+            {stats
+              .filter((rating) => {
+                const ratingDate = new Intl.DateTimeFormat("no-NO", {
+                  day: "numeric",
+                  month: "numeric",
+                  year: "numeric",
+                }).format(new Date(rating.date));
+                return ratingDate === date;
+              })
+              .map((filteredRating, j) => (
+                <Replyinger
+                  key={j}
+                  rating={filteredRating}
+                  sendReply={sendReply}
+                  setReply={setReply}
+                />
+              ))}
+          </div>
         ))}
       </div>
     </div>
