@@ -17,7 +17,6 @@ const Admin = ({ user }) => {
   const [stats, setStats] = useState([]);
   const [allTeams, setAllTeams] = useState([]);
   const [reply, setReply] = useState("");
-  const [sortedReplies, setSortedReplies] = useState([]);
 
   useEffect(() => {
     if (user) {
@@ -276,9 +275,11 @@ const Admin = ({ user }) => {
 
       {/*Stats container*/}
 
-      <div className="md:h-96 h-72">
-        <LineChart options={options} data={data} />
-      </div>
+      {team && (
+        <div className="md:h-96 h-72">
+          <LineChart options={options} data={data} />
+        </div>
+      )}
 
       {/*Container for kommentarer*/}
       <div className="mb-20 flex flex-col gap-4">
