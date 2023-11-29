@@ -7,13 +7,13 @@
 
 
  
-<h1>E-stats appen</h1>
+<h1>E-stats appen🔥🔥</h1>
 
 
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+ℹ️ About The Project
 
 
 Vår banebrytende app **E-stats** er designet for å optimalisere esportlagets ytelse gjennom en unik tilnærming til spillerdrevet helse- og prestasjonsanalyse. Ved å svare på spørsmål om spisevaner, søvn, følelsesmessig tilstand og mer, kan spillere skape en omfattende statistikk som lagres i vår robuste database. Denne innsikten gir ikke bare individuelle spillere muligheten til å reflektere over sitt eget velvære og prestasjoner, men det gir også lagledere (trenere) en kraftig verktøykasse for å analysere og forbedre lagets samlede ytelse.
@@ -32,7 +32,7 @@ Vi inviterer deg til å ta del i vår visjon om å skape et fellesskap av esport
 
 
 
-### Built With
+### Built With ⚡
 
 * ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
 * ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
@@ -48,8 +48,7 @@ Vi inviterer deg til å ta del i vår visjon om å skape et fellesskap av esport
 
 
 <!-- GETTING STARTED -->
-## Getting Started
-
+## Getting Started 👏
 
 
 ### Installation
@@ -72,12 +71,25 @@ _Below is an example of how you can instruct your audience on installing and set
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+<h1>Demo</h1>
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+* <h2>Lag egenvurderinger</h2>
+https://github.com/ivermoka/e-stats/assets/100650958/074fa1bf-c17f-432d-a242-abee9a469e30
+
+
+* <h2>Opprett eller bli med i lag🔥</h2>
+https://github.com/ivermoka/e-stats/assets/100650958/84b92081-49ea-4c21-8c83-dd61b9195cb3
+
+<h2>Egen admin side for trenere!</h2>
+
+
+https://github.com/ivermoka/e-stats/assets/100650958/3123c8ea-5452-4584-a0d8-7603c4132c82
+
+
+
+
+
 
 
 
