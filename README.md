@@ -13,7 +13,7 @@
 
 
 <!-- ABOUT THE PROJECT -->
-<h2>ℹ️ Om prosjektet<h2/>
+<h2>ℹ️ Om prosjektet</h2>
 
 
 Vår banebrytende app **E-stats** er designet for å optimalisere esportlagets ytelse gjennom en unik tilnærming til spillerdrevet helse- og prestasjonsanalyse. Ved å svare på spørsmål om spisevaner, søvn, følelsesmessig tilstand og mer, kan spillere skape en omfattende statistikk som lagres i vår robuste database. Denne innsikten gir ikke bare individuelle spillere muligheten til å reflektere over sitt eget velvære og prestasjoner, men det gir også lagledere (trenere) en kraftig verktøykasse for å analysere og forbedre lagets samlede ytelse.
