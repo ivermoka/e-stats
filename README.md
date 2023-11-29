@@ -134,11 +134,11 @@ Don't forget to give the project a star! Thanks again!
 e-stats@googlegroups.com
 
 Eller en av lagmedlemmene: 
-* Max Petzold- lagrolle: 🏗️utvikler
+* Max Petzold- lagrolle: 👨‍💻utvikler
    - **mapea027@osloskolen.no**
-* Elias Uran- lagrolle: 🏗️utvikler
+* Elias Uran- lagrolle: 👨‍💻utvikler
   - **elura001@osloskolen.no**
-* Iver Morland karsvik- lagrolle: 🏗️utvikler
+* Iver Morland karsvik- lagrolle: 👨‍💻utvikler
   - **ivkaa003@osloskolen.no**
 
 
