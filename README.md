@@ -24,7 +24,7 @@ Vi inviterer deg til å ta del i vår visjon om å skape et fellesskap av esport
 
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 
@@ -38,7 +38,7 @@ Vi inviterer deg til å ta del i vår visjon om å skape et fellesskap av esport
 * ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 * ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 
@@ -65,7 +65,7 @@ Live demo website: <a href="https://e-stats.vercel.app/">e-stats.vercel.app</a>
 
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 
@@ -103,7 +103,7 @@ https://github.com/ivermoka/e-stats/assets/100650958/3123c8ea-5452-4584-a0d8-760
     
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 
@@ -123,7 +123,7 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 
@@ -147,7 +147,7 @@ Eller en av lagmedlemmene:
 
 Project Link: https://github.com/ivermoka/e-stats.git
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 
