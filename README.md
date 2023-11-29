@@ -49,9 +49,10 @@ Vi inviterer deg til å ta del i vår visjon om å skape et fellesskap av esport
 
 <!-- GETTING STARTED -->
 ## Getting Started 👏
+Live demo website: <a href="https://e-stats.vercel.app/">e-stats.vercel.app</a> 
 
-
-### Installation
+<h2>Or</h2>
+<h3>Local project installation</h3>
 
 1. Clone the repo
    ```sh
