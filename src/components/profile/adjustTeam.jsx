@@ -18,17 +18,14 @@ const AdjustTeam = ({ data, setSelectedTeam, setShowCode }) => {
       {loaded ? (
         <div className="h-screen w-screen p-8 flex flex-col gap-6 mt-14 dark:text-text text-textLight">
           {showCreateTeam && (
-            <CreateTeam
-              setShowCreateTeam={setShowCreateTeam}
-              className="mr-7"
-            />
+            <CreateTeam setShowCreateTeam={setShowCreateTeam} />
           )}
 
           <Searchbar
             setSelectedTeam={setSelectedTeam}
             setShowCode={setShowCode}
           />
-          <div className="h-[1px] w-full bg-white"></div>
+          <div className="h-[1px] w-full dark:bg-primary bg-primaryLight"></div>
 
           <button
             type="button"

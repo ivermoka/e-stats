@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Egenvurdering from "@/components/home/egenvurdering/egenvurdering";
 import After from "@/components/home/egenvurdering/after";
-import Selector from "@/components/home/egenvurdering/selector";
 import HasRatedPage from "@/components/home/egenvurdering/hasRatedPage";
 import Loading from "@/components/loading";
 import { GetUser } from "@/actions/getUser";

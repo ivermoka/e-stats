@@ -4,8 +4,7 @@ import { LineChart } from "@/components/stats/overTimeStats/lineChart";
 
 import { BsCalendar } from "react-icons/bs";
 import { AiOutlineTeam } from "react-icons/ai";
-import { BsArrowReturnLeft } from "react-icons/bs";
-import { LuSendHorizonal } from "react-icons/lu";
+import Replyinger from "@/components/replyinger";
 
 const Admin = ({ user }) => {
   const [date, setDate] = useState(new Date().toLocaleDateString("en-US"));
@@ -17,7 +16,6 @@ const Admin = ({ user }) => {
   const [team, setTeam] = useState("");
   const [stats, setStats] = useState([]);
   const [allTeams, setAllTeams] = useState([]);
-  const [showReply, setShowReply] = useState(false);
   const [reply, setReply] = useState("");
 
   useEffect(() => {
@@ -76,6 +74,9 @@ const Admin = ({ user }) => {
         },
         body: JSON.stringify({ reply, id, user }),
       });
+      if (res.status === 200) {
+        console.log("xp");
+      }
     } catch (e) {
       console.log(e);
     }
@@ -281,38 +282,12 @@ const Admin = ({ user }) => {
       {/*Container for kommentarer*/}
       <div className="mb-20">
         {stats.map((rating, i) => (
-          <div
+          <Replyinger
             key={i}
-            className="dark:bg-primary bg-primaryLight rounded-lg shadow-md dark:shadow-accent shadow-accentLight dark:text-text text-textLight p-2 mt-4"
-          >
-            <h2 className="text-xl font-bold italic m-2">{rating.user} </h2>
-            <div className="dark:bg-bg/50 bg-bgLight/50 rounded-lg p-2 whitespace-pre-line">
-              <span dangerouslySetInnerHTML={{ __html: rating.comment }} />
-            </div>
-            {showReply && (
-              <div className="mt-2 flex items-center gap-1">
-                <input
-                  className="rounded-md border-2 border-secondaryLight dark:border-secondary outline-none p-1 text-textLight"
-                  type="text"
-                  onChange={(e) => setReply(e.target.value)}
-                />
-                <button
-                  className="text-2xl"
-                  type="submit"
-                  onClick={() => sendReply(rating._id)}
-                >
-                  <LuSendHorizonal />
-                </button>
-              </div>
-            )}
-            <button
-              onClick={() => setShowReply(!showReply)}
-              type="button"
-              className="flex justify-end w-full pr-2 pt-2 text-2xl"
-            >
-              <BsArrowReturnLeft />
-            </button>
-          </div>
+            rating={rating}
+            sendReply={sendReply}
+            setReply={setReply}
+          />
         ))}
       </div>
     </div>

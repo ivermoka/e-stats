@@ -18,11 +18,6 @@ export default async function handler(req, res) {
     const userSchema = await User.findOne({ username: user });
     const team = userSchema.team;
     try {
-      if (!team) {
-        return res.status(500).json({
-          message: "Du må velge lag før du kan registrere egenvurdering.",
-        });
-      }
       const egenvurdering = new Egenvurdering({
         disclosure1,
         disclosure2,
