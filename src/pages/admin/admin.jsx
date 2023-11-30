@@ -283,7 +283,7 @@ const Admin = ({ user }) => {
 
       {/*Container for kommentarer*/}
       <div className="mb-20 flex flex-col gap-4">
-        {labels.reverse().map((date, i) => (
+        {[...labels].reverse().map((date, i) => (
           <div className="flex flex-col" key={i}>
             <h2 className="text-xl font-bold">{date}</h2>
             <div className="h-[1px] dark:bg-text bg-textLight" />
