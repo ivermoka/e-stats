@@ -148,7 +148,9 @@ Eller en av lagmedlemmene:
 Project Link: https://github.com/ivermoka/e-stats.git
 
 
-
+  <a href="https://github.com/ivermoka/e-stats/commits">
+      <img alt="Last commit" src="https://img.shields.io/github/last-commit/ivermoka/e-stats?      style=forthebadge&logo=starship&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41"/>
+    </a>
 
 
 
