@@ -97,7 +97,7 @@ https://github.com/ivermoka/e-stats/assets/100650958/3123c8ea-5452-4584-a0d8-760
 
 - [x] Solid database
 - [x] Fungerende app
-- [ ] Custom domenenavn
+- [x] Custom domenenavn
 - [ ] Multi-language Support
     - [ ] English
     
