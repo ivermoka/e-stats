@@ -139,8 +139,8 @@ Eller en av lagmedlemmene:
    - **mapea027@osloskolen.no**
 * Elias Uran- lagrolle: 👨‍💻utvikler
   - **elura001@osloskolen.no**
-* Iver Morland karsvik- lagrolle: 👨‍💻utvikler
-  - **ivkaa003@osloskolen.no**
+* Iver Morland Karsvik- lagrolle: 👨‍💻backend utvikler
+  - **ivermoka@icloud.com**
 
 
 
